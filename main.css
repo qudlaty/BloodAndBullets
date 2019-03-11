@@ -2,3 +2,23 @@ body {
 	background: #24292E;
 	color: red;	
 }
+
+#statusbar {
+	background: #34393E;
+	
+	width: 300px;
+	height: 30px;
+	border: 2px solid #777;
+
+	margin: auto;
+
+	text-align: center;
+
+	line-height: 30px;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+#statusbar #hp{
+	color: #0476E6;
+}
