@@ -22,3 +22,19 @@ body {
 #statusbar #hp{
 	color: #0476E6;
 }
+
+#rocket {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+  	animation: 2s infinite rotation linear;	
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+  	}
+	to {
+    	transform: rotate(360deg);
+  	}
+}
