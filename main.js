@@ -1,9 +1,8 @@
+/* eslint-env es6 */
 
 // WSAD movemant
 const gameWrapper = document.querySelector("#content-container"),
 	  rocketWrapper = document.getElementById("rocket-wrapper");
-
-
 
 window.addEventListener('keydown', e => {
 	
