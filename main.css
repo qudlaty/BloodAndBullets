@@ -1,6 +1,12 @@
-body {
-	background: #24292E;
-	color: red;	
+html {
+	height: 100%;
+    margin: 0px;
+}
+
+body  {
+	height: 100%;
+	margin: 0px;
+	color: red;		
 }
 
 #statusbar {
@@ -9,11 +15,11 @@ body {
 	width: 300px;
 	height: 30px;
 	border: 2px solid #777;
-
+	
 	margin: auto;
-
+	
 	text-align: center;
-
+	
 	line-height: 30px;
 	font-weight: bold;
 	font-size: 30px;
@@ -23,11 +29,41 @@ body {
 	color: #0476E6;
 }
 
+#rocket-wrapper {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+	transition: 0.05s;
+}
+
+#content-container {
+	background: #24292E;
+	width: 100%;
+	height: 100%;
+	border: 1px black solid;
+/* click and move ->
+	position: relative;
+	overflow: hidden;
+	cursor: pointer; */
+}
+
+/* /for click and move
+#rocket-wrapper {
+	position: relative;
+  	width:25px;
+  	height:25px;
+	left: 100px;
+	top: 100px;
+  	background-color: red;
+	transition: left 1s cubic-bezier(.42, -0.3, .78, 1.25), 
+			top 1s cubic-bezier(.42, -0.3, .78, 1.25);
+}
+*/
+
+/*spining rocket*/
 #rocket {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-  	animation: 2s infinite rotation linear;	
+	position: relative;
+  	animation: 1s infinite rotation linear;	
 }
 
 @keyframes rotation {
