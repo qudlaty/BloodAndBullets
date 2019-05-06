@@ -5,7 +5,6 @@ import rocket from './rocket';
 const gameWrapper = document.querySelector("#content-container"),
 	  rocketWrapper = document.getElementById("rocket-wrapper");
 
-
 window.addEventListener('keydown', e => {
 
 	let offsets = rocketWrapper.getBoundingClientRect();
@@ -27,7 +26,6 @@ window.addEventListener('keydown', e => {
 		console.log(rocket);
 });
 
-
 function updateView() {
   rocket.updateRocketState();
 	updateRocketOnScreen();
@@ -42,17 +40,3 @@ function updateRocketOnScreen() {
 	rocketWrapper.style.top = rocket.pos.y + 'px';
   rocketWrapper.style.transform = `rotate(${rocket.angle % 360}deg)`;
 };
-
-console.log(rocket.name);
-/*
-// click and move code ->
-gameWrapper.addEventListener("click", e => {
-
-	let xPosition = e.clientX - gameWrapper.getBoundingClientRect().left - (rocketWrapper.clientWidth / 2);
-
-	let yPosition = e.clientY - gameWrapper.getBoundingClientRect().top - (rocketWrapper.clientHeight / 2);
-	// in case of a wide border, the boarder-width needs to be considered in the formula above
-	rocketWrapper.style.left = xPosition + "px";
-	rocketWrapper.style.top = yPosition + "px";
-});
-*/

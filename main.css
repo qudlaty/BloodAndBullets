@@ -63,7 +63,6 @@ body  {
 #rocket {
   position: relative;
   transform: rotate(135deg) scale(5);
-  /*animation: 1s infinite rotation linear;	*/
 }
 
 @keyframes rotation {
