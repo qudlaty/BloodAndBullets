@@ -33,7 +33,6 @@ body  {
     position: absolute;
     left: 100px;
     top: 100px;
-	transition: 0.05s;
 }
 
 #content-container {
@@ -62,15 +61,16 @@ body  {
 
 /*spining rocket*/
 #rocket {
-	position: relative;
-  	animation: 1s infinite rotation linear;	
+  position: relative;
+  transform: rotate(135deg) scale(5);
+  /*animation: 1s infinite rotation linear;	*/
 }
 
 @keyframes rotation {
 	from {
 		transform: rotate(0deg);
-  	}
+  }
 	to {
-    	transform: rotate(360deg);
-  	}
+    transform: rotate(360deg);
+  }
 }
