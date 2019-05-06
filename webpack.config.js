@@ -5,5 +5,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.js'
-  }
+  },
+  mode: "development",
+	optimization: {
+		// We no not want to minimize our code.
+		minimize: false
+	}
 };

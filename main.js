@@ -10,23 +10,27 @@ window.addEventListener('keydown', e => {
 
 	let offsets = rocketWrapper.getBoundingClientRect();
 
-		if(e.keyCode === 68 ) {
-			let xPos = offsets.left;
-			rocketWrapper.style.left = xPos+ 20 + 'px';
+		if(e.keyCode === 68 ) { // D - right
+			rocket.pos.x = rocket.pos.x + 20;
 		}
-		else if(e.keyCode === 83) {
-			let yPos = offsets.top;
-			rocketWrapper.style.top = yPos + 20 + 'px';
+		else if(e.keyCode === 83) {// S - down
+			rocket.pos.y = rocket.pos.y + 20;
 		}
-		else if(e.keyCode === 87 && offsets.top-20 >= 0) {
-			let yPos = offsets.top;
-			rocketWrapper.style.top = yPos - 20 + 'px';
+		else if(e.keyCode === 87 && offsets.top-20 >= 0) {// W - up
+			rocket.pos.y = rocket.pos.y - 20;
 		}
-		else if(e.keyCode === 65 && offsets.left-20 >= 0) {
-			let xPos = offsets.left;
-			rocketWrapper.style.left = xPos - 20 + 'px';
+		else if(e.keyCode === 65 && offsets.left-20 >= 0) {// A - left
+			rocket.pos.x = rocket.pos.x - 20;
 		}
+
+		updateRocketOnScreen();
+		console.log(rocket);
 });
+
+function updateRocketOnScreen() {
+	rocketWrapper.style.left = rocket.pos.x + 'px';
+	rocketWrapper.style.top = rocket.pos.y + 'px';
+};
 
 console.log(rocket.name);
 /*
