@@ -1,13 +1,15 @@
 /* eslint-env es6 */
-
+import rocket from './rocket';
 // WSAD movemant
+
 const gameWrapper = document.querySelector("#content-container"),
 	  rocketWrapper = document.getElementById("rocket-wrapper");
 
+
 window.addEventListener('keydown', e => {
-	
+
 	let offsets = rocketWrapper.getBoundingClientRect();
-		
+
 		if(e.keyCode === 68 ) {
 			let xPos = offsets.left;
 			rocketWrapper.style.left = xPos+ 20 + 'px';
@@ -26,12 +28,13 @@ window.addEventListener('keydown', e => {
 		}
 });
 
+console.log(rocket.name);
 /*
 // click and move code ->
 gameWrapper.addEventListener("click", e => {
-	
+
 	let xPosition = e.clientX - gameWrapper.getBoundingClientRect().left - (rocketWrapper.clientWidth / 2);
-	
+
 	let yPosition = e.clientY - gameWrapper.getBoundingClientRect().top - (rocketWrapper.clientHeight / 2);
 	// in case of a wide border, the boarder-width needs to be considered in the formula above
 	rocketWrapper.style.left = xPosition + "px";
