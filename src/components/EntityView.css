@@ -1,0 +1,18 @@
+progress {
+  text-align: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+progress::after {
+    content: attr(value)'%';
+    text-align: center;
+    color: #000;
+}
+
+.entity {
+  border: 2px solid #eee;
+  border-radius: 2px;
+  margin: 10px;
+  padding: 10px;
+}

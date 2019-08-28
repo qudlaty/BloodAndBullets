@@ -1,13 +1,14 @@
 import React from 'react';
 import Board from './Board.js';
+import EntitiesList from './EntitiesList.js';
 
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      arenaSize: 11,
+      arenaSize: 5,
       squares: Array(121).fill(null),
-      entities: Array(1).fill(null),
+      entities: [{name: "John Rambo", age: 40, hp: 100}, {name: "Ellen Ripley", age: 30, hp: 65}],
       stepNumber: 0,
       xIsNext: true,
       isLooping: false,
@@ -68,6 +69,9 @@ export default class Game extends React.Component {
             squares={this.state.squares}
             onClick={(i) => this.handleBoardClick(i)}
             size={this.state.arenaSize}
+          />
+          <EntitiesList
+            entities={this.state.entities}
           />
         </div>
         <div className="game-info">
