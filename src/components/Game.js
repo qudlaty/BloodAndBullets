@@ -7,8 +7,11 @@ export default class Game extends React.Component {
     super(props);
     this.state = {
       arenaSize: 5,
-      squares: Array(121).fill(null),
-      entities: [{name: "John Rambo", age: 40, hp: 100}, {name: "Ellen Ripley", age: 30, hp: 65}],
+      squares: Array(5*5).fill(null),
+      entities: [
+        {position: {x:0, y:0}, value: "😠", name: "John Rambo", age: 40, hp: 95, maxHp: 100, inventory: ['KA-BAR', 'M16'], equipment: {head: 'Red Bandana'},},
+        {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'},}
+      ],
       stepNumber: 0,
       xIsNext: true,
       isLooping: false,
