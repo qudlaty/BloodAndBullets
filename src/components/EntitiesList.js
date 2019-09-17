@@ -1,5 +1,6 @@
 import React from 'react';
 import EntityView from './EntityView.js';
+import './EntitiesList.css';
 
 export default class ListOfEntities extends React.Component {
   render() {
