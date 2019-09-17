@@ -5,7 +5,7 @@ export default class ListOfEntities extends React.Component {
   render() {
     var entities = this.props.entities.map(obj => {
       return (
-        <EntityView entity={obj}/>
+        <EntityView entity={obj} key={obj.name}/>
       )
     });
     return (
