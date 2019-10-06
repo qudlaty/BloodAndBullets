@@ -2,17 +2,28 @@ import React from 'react';
 import Square from '../Square';
 import './Board.css';
 
-export default class Board extends React.Component {
+export default class Board extends React.PureComponent {
   renderCounter = 0
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(i) {
+    console.log("Handles Click on Board", i);
+    this.props.onClick(i);
+  }
 
   renderSquare(i, rowId, colId) {
     return (
       <Square 
         key={i}
+        squareId={i}
         value={this.props.squares[i] && this.props.squares[i].value} 
         rowNumber={rowId}
         colNumber={colId}
-        onClick={() => this.props.onClick(i)}
+        onClick={this.handleClick}
       />
     );
   }

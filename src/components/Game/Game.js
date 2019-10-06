@@ -35,7 +35,7 @@ export default class Game extends React.PureComponent {
     this.state.entities.forEach((entity)=>{
       this.setSquare(entity.position.x, entity.position.y, entity);
     });
-    console.log("New Squares:", this.squares)
+    //console.log("New Squares:", this.squares)
   }
 
   getSquare(x, y) {
@@ -44,9 +44,9 @@ export default class Game extends React.PureComponent {
 
   setSquare(x, y, square) {
     let targetSquareIndex = y* this.state.arenaSize + x;
-    console.log("Setting square #",targetSquareIndex, "as", square);
+    //console.log("Setting square #",targetSquareIndex, "as", square);
     this.squares[targetSquareIndex] = square;
-    console.log("this.squares:", this.squares);
+    //console.log("this.squares:", this.squares);
   }
 
   loop() {
@@ -63,7 +63,7 @@ export default class Game extends React.PureComponent {
       1 * (Math.floor(Math.random()*2)) -
       1 * (Math.floor(Math.random()*2));
 
-    if(JR.position.y < 0) JR.position.y = 0;
+    // if(JR.position.y < 0) JR.position.y = 0;
     if(JR.position.x < 0) JR.position.x = 0;
 
     if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
@@ -72,12 +72,13 @@ export default class Game extends React.PureComponent {
     this.setState({entities: entities});
 
     this.setSquaresAccordingToPositions();
-    console.log("---");
-    console.log(this.state);
+    //console.log("---");
+    //console.log(this.state);
     setTimeout(this.loop, 1000);
   }
 
   handleBoardClick(i) {
+    console.log("CLICKED ", i);
     if(this.squares[i]) {
       console.log("Clicked:", this.squares[i]);
     }
