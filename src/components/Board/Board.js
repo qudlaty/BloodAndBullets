@@ -3,6 +3,8 @@ import Square from '../Square';
 import './Board.css';
 
 export default class Board extends React.Component {
+  renderCounter = 0
+
   renderSquare(i, rowId, colId) {
     return (
       <Square 
@@ -16,6 +18,7 @@ export default class Board extends React.Component {
   }
 
   render() {
+    console.log("Rendering Board #", this.renderCounter++);
     let cellId=0; 
     let rowId=0;
     let colId;
