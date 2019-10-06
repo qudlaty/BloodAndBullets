@@ -1,3 +1,6 @@
 .listOfEntities {
   margin-top: 20px;
 }
+ol, ul {
+  padding-left: 30px;
+}
