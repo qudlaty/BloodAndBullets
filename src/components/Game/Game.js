@@ -4,6 +4,8 @@ import EntitiesList from '../EntitiesList';
 import './Game.css';
 
 export default class Game extends React.Component {
+  renderCounter = 0
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +16,6 @@ export default class Game extends React.Component {
         {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'},}
       ],
       stepNumber: 0,
-      xIsNext: true,
       isLooping: false,
       cycle: 0,
     }
@@ -94,6 +95,7 @@ export default class Game extends React.Component {
   }
 
   render() {
+    console.log("Rendering Game #", this.renderCounter++);
     return (
       <div className="game">
         <div className="game-board">
