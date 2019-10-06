@@ -85,7 +85,7 @@ export default class Game extends React.PureComponent {
   }
 
   render() {
-    console.log("Rendering Game #", this.renderCounter++);
+    console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className="game">
         <div className="game-board">

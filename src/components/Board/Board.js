@@ -16,23 +16,36 @@ export default class Board extends React.PureComponent {
   }
 
   renderSquare(i, rowId, colId) {
+    /*
+    We pass one and the same function to all the Squares when rendering,
+    so they do not detect getting a new fat-arrow function as a change of props.
+
+    This is CRUCIAL to only rerender squares with changed values.
+
+     */
+
     return (
       <Square 
-        key={i}
         squareId={i}
         value={this.props.squares[i] && this.props.squares[i].value} 
+        onClick={this.handleClick}
+
+        key={i}
+
         rowNumber={rowId}
         colNumber={colId}
-        onClick={this.handleClick}
       />
     );
   }
 
   render() {
-    console.log("Rendering Board #", this.renderCounter++);
+    console.log("Rendering Board. #", this.renderCounter++);
+
+    // Initial values for the Board
     let cellId=0; 
     let rowId=0;
     let colId;
+
     let rows = Array(this.props.size).fill(null).map((row, number) => {
       colId = 0;
       let cells = Array(this.props.size).fill(null).map((cell, number) => {
@@ -44,7 +57,7 @@ export default class Board extends React.PureComponent {
         </div>
       );
     });
-    
+
     return (
       <div className="board">
         {rows}
