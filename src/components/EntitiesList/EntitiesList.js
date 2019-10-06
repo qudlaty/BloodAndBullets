@@ -13,7 +13,7 @@ export default class ListOfEntities extends React.PureComponent {
     });
     return (
       <div className="listOfEntities">
-        List of Entities will be here: {entities}
+        List of Entities: {entities}
       </div>
     );
   }
