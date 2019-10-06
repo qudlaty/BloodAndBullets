@@ -3,32 +3,31 @@ import Board from '../Board';
 import EntitiesList from '../EntitiesList';
 import './Game.css';
 
-export default class Game extends React.Component {
+export default class Game extends React.PureComponent {
   renderCounter = 0
+  stepNumber = 0
+
+  squares = Array(5*5).fill(null)
 
   constructor(props) {
     super(props);
+
     this.state = {
       arenaSize: 5,
-      squares: Array(5*5).fill(null),
       entities: [
         {position: {x:0, y:0}, value: "😠", name: "John Rambo", age: 40, hp: 95, maxHp: 100, inventory: ['KA-BAR', 'M16'], equipment: {head: 'Red Bandana'},},
         {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'},}
       ],
-      stepNumber: 0,
-      isLooping: false,
-      cycle: 0,
     }
 
     this.loop = this.loop.bind(this);
     this.getSquare = this.getSquare.bind(this);
     this.setSquare = this.setSquare.bind(this);
-
-    this.squares = [];
   }
 
   componentDidMount(){
     this.setSquaresAccordingToPositions();
+    this.loop();
   }
 
   setSquaresAccordingToPositions() {
@@ -36,18 +35,14 @@ export default class Game extends React.Component {
     this.state.entities.forEach((entity)=>{
       this.setSquare(entity.position.x, entity.position.y, entity);
     });
-    console.log("Setting State:", this.squares)
-    this.setState({squares: this.squares});
+    console.log("New Squares:", this.squares)
   }
 
   getSquare(x, y) {
-    return this.state.squares[x * this.state.arenaSize + y];
+    return this.squares[x * this.state.arenaSize + y];
   }
 
   setSquare(x, y, square) {
-    if(!this.squares.length) {
-      this.squares = this.state.squares.slice();
-    }
     let targetSquareIndex = y* this.state.arenaSize + x;
     console.log("Setting square #",targetSquareIndex, "as", square);
     this.squares[targetSquareIndex] = square;
@@ -55,9 +50,7 @@ export default class Game extends React.Component {
   }
 
   loop() {
-    let stepNumber = this.state.stepNumber;
-
-    this.setState({isLooping: true, stepNumber: ++stepNumber});
+    this.stepNumber++;
 
     var entities = this.state.entities.slice();
     var JR = entities[0];
@@ -85,12 +78,8 @@ export default class Game extends React.Component {
   }
 
   handleBoardClick(i) {
-    let squares = this.state.squares.slice();
-    if(squares[i]) {
-      console.log("Clicked:", squares[i]);
-    }
-    if(!this.state.isLooping) {
-      this.loop();
+    if(this.squares[i]) {
+      console.log("Clicked:", this.squares[i]);
     }
   }
 
@@ -100,14 +89,14 @@ export default class Game extends React.Component {
       <div className="game">
         <div className="game-board">
           <Board
-            squares={this.state.squares}
+            squares={this.squares}
             onClick={(i) => this.handleBoardClick(i)}
             size={this.state.arenaSize}
           />
           <EntitiesList
             entities={this.state.entities}
           />
-          <div className="step-counter">{this.state.stepNumber}</div>
+          <div className="step-counter">{this.stepNumber}</div>
         </div>
         <div className="game-info">
           <ul>
