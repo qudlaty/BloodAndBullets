@@ -2,13 +2,9 @@ body {
   background: #222;
   color: #999;
 }
-
 h1, p {
   font-family: Lato;
 }
-
-
-
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
@@ -20,58 +16,9 @@ body {
   padding: 0;
   border: 0;
 }
-ol, ul {
-  padding-left: 30px;
-}
-
-.board {
-  background: #111;
-  padding: 10px;
-  border: 1px solid #555;
-}
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
 .status {
   margin-bottom: 10px;
 }
-
-.square {
-  background: #333;
-  border: 1px solid #505550;
-  box-sizing: border-box;
-  float: left;
-  font-size: 20px;
-  font-weight: bold;
-  
-  line-height: 34px;
-  height: 34px;
-  width: 34px;
-
-  margin: 2px;
-  padding: 0;
-
-  text-align: center;
-  color: #A0A0A0; 
-}
-
-.square:focus {
-  outline: none;
-}
-
 .kbd-navigation .square:focus {
   background: #ddd;
-}
-
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.game-info {
-  margin-left: 20px;
 }
