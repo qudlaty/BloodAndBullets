@@ -1,7 +1,7 @@
 import React from 'react';
-import Board from './Board.js';
-import './Board.css';
-import EntitiesList from './EntitiesList.js';
+import Board from '../Board';
+import EntitiesList from '../EntitiesList';
+import './Game.css';
 
 export default class Game extends React.Component {
   constructor(props) {

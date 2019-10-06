@@ -1,0 +1,11 @@
+.board {
+  background: #111;
+  padding: 10px;
+  border: 1px solid #555;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
