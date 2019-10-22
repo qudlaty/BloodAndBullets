@@ -8,8 +8,12 @@ class Square extends React.PureComponent {
    */
   render() {
     console.log("Rendering Square");
+    let className = "square";
+    if(this.props.active) {
+      className += " active";
+    }
     return (
-      <button className="square" onClick={() => this.props.onClick(this.props.squareId)}>
+      <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
         {this.props.value}
       </button>
     );

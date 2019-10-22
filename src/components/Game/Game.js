@@ -4,19 +4,21 @@ import EntitiesList from '../EntitiesList';
 import './Game.css';
 
 export default class Game extends React.PureComponent {
+
   renderCounter = 0
   stepNumber = 0
-
   squares = Array(5*5).fill(null)
 
   constructor(props) {
     super(props);
 
     this.state = {
-      arenaSize: 5,
+      arenaSize: 10,
       entities: [
         {position: {x:0, y:0}, value: "😠", name: "John Rambo", age: 40, hp: 95, maxHp: 100, inventory: ['KA-BAR', 'M16'], equipment: {head: 'Red Bandana'},},
-        {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'},}
+        {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'},},
+        {position: {x:8, y:8}, value: "🐙", name: "Octo", age: 8, hp: 88, maxHp: 100, inventory: [], equipment: {},},
+        {position: {x:5, y:5}, value: "🦑", name: "Squid", age: 5, hp: 55, maxHp: 100, inventory: [], equipment: {},},
       ],
     }
 
@@ -42,10 +44,10 @@ export default class Game extends React.PureComponent {
     return this.squares[x * this.state.arenaSize + y];
   }
 
-  setSquare(x, y, square) {
+  setSquare(x, y, value) {
     let targetSquareIndex = y* this.state.arenaSize + x;
     //console.log("Setting square #",targetSquareIndex, "as", square);
-    this.squares[targetSquareIndex] = square;
+    this.squares[targetSquareIndex] = value;
     //console.log("this.squares:", this.squares);
   }
 
@@ -56,18 +58,18 @@ export default class Game extends React.PureComponent {
     var JR = entities[0];
 
     //John Rambo AI
-    JR.position.x = JR.position.x +
-      1 * (Math.floor(Math.random()*2)) -
-      1 * (Math.floor(Math.random()*2));
-    JR.position.y = JR.position.y +
-      1 * (Math.floor(Math.random()*2)) -
-      1 * (Math.floor(Math.random()*2));
-
-    if(JR.position.y < 0) JR.position.y = 0;
-    if(JR.position.x < 0) JR.position.x = 0;
-
-    if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
-    if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4;
+    // JR.position.x = JR.position.x +
+    //   1 * (Math.floor(Math.random()*2)) -
+    //   1 * (Math.floor(Math.random()*2));
+    // JR.position.y = JR.position.y +
+    //   1 * (Math.floor(Math.random()*2)) -
+    //   1 * (Math.floor(Math.random()*2));
+    //
+    // if(JR.position.y < 0) JR.position.y = 0;
+    // if(JR.position.x < 0) JR.position.x = 0;
+    //
+    // if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
+    // if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4;
 
     this.setState({entities: entities});
 
@@ -79,9 +81,21 @@ export default class Game extends React.PureComponent {
 
   handleBoardClick(i) {
     console.log("CLICKED ", i);
+    var entities = this.state.entities.slice();
+    entities.forEach((entity) => {
+      entity.active = false;
+    })
     if(this.squares[i]) {
       console.log("Clicked:", this.squares[i]);
+      this.selected = this.squares[i];
+      this.selected.active = true;
+    } else {
+      this.selected = this.squares[i];  
     }
+
+
+
+    this.setState({entities: entities});
   }
 
   render() {
@@ -100,6 +114,7 @@ export default class Game extends React.PureComponent {
           <div className="step-counter">{this.stepNumber}</div>
         </div>
         <div className="game-info">
+          <span className="selected">Selected: {this.selected && this.selected.name}</span>
           <ul>
             <li>Add an actual TODO list here.</li>
             <li>Make characters selectable</li>

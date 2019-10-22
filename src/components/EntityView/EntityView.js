@@ -11,8 +11,13 @@ class EntityView extends React.Component {
       FIXME: Below should be separated into several sub-components
       Each sub-component should receive flat data (position, hp, ...)
      */
+    let className = "entity";
+    if(this.props.entity.active) {
+      className+=" active";
+    }
+
     return (
-      <div className="entity">
+      <div className={className}>
         <div className="position" title="Position">
           <span>[{this.props.entity.position.x}, {this.props.entity.position.y}]</span>
         </div>

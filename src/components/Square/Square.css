@@ -1,7 +1,7 @@
 .square {
     height: 34px;
     width: 34px;
-  
+
     box-sizing: border-box;
 
     margin: 2px;
@@ -15,11 +15,14 @@
     line-height: 34px;
 
     background: #333;
-    color: #AAA; 
+    color: #AAA;
   }
 
 
 .square:focus {
     outline: none;
 }
-  
+
+.square.active {
+  border: 1px solid #eee;
+}

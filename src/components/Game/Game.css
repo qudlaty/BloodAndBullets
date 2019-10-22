@@ -11,3 +11,10 @@ flex-direction: row;
 .game-info {
 margin-left: 20px;
 }
+
+.selected {
+  display: block;
+  border: 1px solid #555;
+  padding: 10px;
+
+}
