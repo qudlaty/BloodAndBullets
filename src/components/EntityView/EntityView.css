@@ -57,6 +57,13 @@ progress[aria-valuenow]:before  {
   position: relative;
 }
 
+.entity.active {
+  border: 2px solid #eee;
+  background: #222;
+}
+.entity.active strong{
+  color: #eee;
+}
 .position {
   float: right;
   background: #aaa;

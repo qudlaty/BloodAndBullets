@@ -25,9 +25,10 @@ export default class Board extends React.PureComponent {
      */
 
     return (
-      <Square 
+      <Square
         squareId={i}
-        value={this.props.squares[i] && this.props.squares[i].value} 
+        value={this.props.squares[i] && this.props.squares[i].value}
+        active={this.props.squares[i] && this.props.squares[i].active}
         onClick={this.handleClick}
 
         key={i}
@@ -42,7 +43,7 @@ export default class Board extends React.PureComponent {
     console.log("Rendering Board. #", this.renderCounter++);
 
     // Initial values for the Board
-    let cellId=0; 
+    let cellId=0;
     let rowId=0;
     let colId;
 
@@ -51,7 +52,7 @@ export default class Board extends React.PureComponent {
       let cells = Array(this.props.size).fill(null).map((cell, number) => {
         return this.renderSquare(cellId++, rowId, colId++);
       });
-      return ( 
+      return (
         <div key={rowId++} className="board-row">
           {cells}
         </div>

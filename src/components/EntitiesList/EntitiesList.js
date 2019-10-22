@@ -2,7 +2,7 @@ import React from 'react';
 import EntityView from '../EntityView';
 import './EntitiesList.css';
 
-export default class ListOfEntities extends React.PureComponent {
+export default class ListOfEntities extends React.Component {
   renderCounter = 0
   render() {
     console.log("Rendering EntitiesList #", this.renderCounter++);
