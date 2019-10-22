@@ -63,3 +63,14 @@ progress[aria-valuenow]:before  {
   color: black;
   padding: 3px;
 }
+
+.portrait {
+  float: left;
+  text-align: center;
+  font-size: 22px;
+  line-height: 32px;
+  border: 1px solid #666;
+  margin: 0;
+  margin-right: 10px;
+
+}

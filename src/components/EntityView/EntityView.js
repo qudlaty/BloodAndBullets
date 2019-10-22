@@ -16,7 +16,9 @@ class EntityView extends React.Component {
         <div className="position" title="Position">
           <span>[{this.props.entity.position.x}, {this.props.entity.position.y}]</span>
         </div>
-
+        <div className="portrait">
+          {this.props.entity.value}
+        </div>
         <strong title="Name">{this.props.entity.name}</strong>
         <em title="Age"> ({this.props.entity.age})</em><br />
         <span>HP: {this.props.entity.hp}/{this.props.entity.maxHp}</span>
