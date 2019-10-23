@@ -1,20 +1,20 @@
 .step-counter {
-    background: black;
-    padding: 10px;
-    float: left;
-  }
+  background: black;
+  padding: 10px;
+  float: left;
+}
+
 .game {
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .game-info {
-margin-left: 20px;
+  margin-left: 20px;
 }
 
 .selected {
   display: block;
   border: 1px solid #555;
   padding: 10px;
-
 }
