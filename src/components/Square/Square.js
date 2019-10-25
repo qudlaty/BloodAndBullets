@@ -7,7 +7,7 @@ class Square extends React.PureComponent {
     and only re-renders when props changed.
    */
   render() {
-    console.log("Rendering Square");
+    // console.log("Rendering Square");
     let className = "square";
     if(this.props.active) {
       className += " active";
@@ -19,9 +19,9 @@ class Square extends React.PureComponent {
         className += " dead";
       }
     }
-      
+
     let randomTime = `${(Math.random()+0.5).toFixed(2)}s`
-    let animationBreathing = this.props.isBreathing ? 
+    let animationBreathing = this.props.isBreathing ?
         `breathing ${randomTime} alternate infinite` : 'none';
 
     return (

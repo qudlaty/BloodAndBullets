@@ -41,7 +41,7 @@ export default class Board extends React.PureComponent {
   }
 
   render() {
-    console.log("Rendering Board. #", this.renderCounter++);
+    // console.log("Rendering Board. #", this.renderCounter++);
 
     // Initial values for the Board
     let cellId=0;
