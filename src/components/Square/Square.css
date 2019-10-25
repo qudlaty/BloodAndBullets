@@ -1,7 +1,7 @@
 .square {
     height: 34px;
     width: 34px;
-    overflow: hidden;
+    overflow: visible;
     box-sizing: border-box;
 
     margin: 2px;
@@ -43,4 +43,8 @@
 }
 .square.dead {
   background-color: red;
+}
+
+.shooting {
+  position: relative;
 }
