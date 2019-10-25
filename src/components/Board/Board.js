@@ -29,6 +29,7 @@ export default class Board extends React.PureComponent {
         squareId={i}
         value={this.props.squares[i] && this.props.squares[i].value}
         active={this.props.squares[i] && this.props.squares[i].active}
+        isBreathing={this.props.squares[i] && this.props.squares[i].isBreathing}
         onClick={this.handleClick}
 
         key={i}

@@ -39,3 +39,6 @@
 .square.active {
   border: 1px solid #eee;
 }
+.square.dead {
+  background-color: red;
+}

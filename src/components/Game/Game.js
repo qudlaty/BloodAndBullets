@@ -56,30 +56,49 @@ export default class Game extends React.PureComponent {
 
   loop() {
     this.stepNumber++;
+    this.setState( (state) => {
+      
+      var entities = JSON.parse(JSON.stringify(state.entities));
+      var JR = entities[0];
+      
+      if(JR.isBreathing){
+        //John Rambo AI
+        JR.position.x = JR.position.x +
+          1 * (Math.floor(Math.random()*2)) -
+          1 * (Math.floor(Math.random()*2));
+        JR.position.y = JR.position.y +
+          1 * (Math.floor(Math.random()*2)) -
+          1 * (Math.floor(Math.random()*2));
 
-    var entities = this.state.entities.slice();
-    var JR = entities[0];
+        if(JR.position.y < 0) JR.position.y = 0;
+        if(JR.position.x < 0) JR.position.x = 0;
 
-    //John Rambo AI
-    JR.position.x = JR.position.x +
-      1 * (Math.floor(Math.random()*2)) -
-      1 * (Math.floor(Math.random()*2));
-    JR.position.y = JR.position.y +
-      1 * (Math.floor(Math.random()*2)) -
-      1 * (Math.floor(Math.random()*2));
-
-    if(JR.position.y < 0) JR.position.y = 0;
-    if(JR.position.x < 0) JR.position.x = 0;
-
-    if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
-    if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4;
-
-    this.setState({entities: entities});
+        if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
+        if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4; 
+      }
+      return {entities: entities};
+    });
+    
 
     this.setSquaresAccordingToPositions();
     //console.log("---");
     //console.log(this.state);
+    this.processEntities();
     setTimeout(this.loop, 1000);
+  }
+
+  processEntities(){
+    //this.setState({entities: localCopyOfEntities});
+    this.setState((state) => {
+      let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
+      localCopyOfEntities.forEach(entity => {
+        if(entity.hp <= 0){
+          entity.hp = 0;
+          entity.isBreathing = false;
+        }
+      });      
+      return {entities: localCopyOfEntities}
+    });
   }
 
   handleBoardClick(i) {
@@ -95,20 +114,28 @@ export default class Game extends React.PureComponent {
     } else {
       this.selected = this.squares[i];
     }
-
-
-
+    
     this.setState({entities: entities});
   }
 
   nuke(dmg){
-    let localCopyOfEntities = JSON.parse(JSON.stringify(this.state.entities));
-    localCopyOfEntities.forEach(entity => {
-      console.log("hi " + entity.hp);
-      entity.hp = entity.hp - dmg;
-    });
-    this.setState({entities: localCopyOfEntities});
+    this.setState( (state) => {
+      let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
+      localCopyOfEntities.forEach(entity => {
+      
+        console.log("hi " + entity.hp);
+        entity.hp = entity.hp - dmg;
+      });
+      return {entities: localCopyOfEntities}
+    }, () => {
+      
+      console.log('callaback');
+      console.log(this.state);
+      
+      this.processEntities();
+    });  
   }
+
 
   toggleRotateBoard(){
     this.setState({isBoardRotated: !this.state.isBoardRotated});
