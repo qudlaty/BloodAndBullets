@@ -16,16 +16,26 @@ class EntityView extends React.Component {
       className+=" active";
     }
 
+    let { entity } = this.props;
+    let { position, value, age, name, hp, maxHp, isBreathing, active } = entity;
+    let { x, y } = position;
+    console.log(this.props)
+    console.log(entity)
+    console.log(isBreathing)
+    let lifeSigns = isBreathing ? "ALIVE" : "DEAD";
     return (
+
       <div className={className}>
         <div className="position" title="Position">
-          <span>[{this.props.entity.position.x}, {this.props.entity.position.y}]</span>
+          <span>[{entity.position.x}, {this.props.entity.position.y}]</span>
         </div>
         <div className="portrait">
           {this.props.entity.value}
         </div>
         <strong title="Name">{this.props.entity.name}</strong>
-        <em title="Age"> ({this.props.entity.age})</em><br />
+        <em title="Age"> ({this.props.entity.age})</em>
+        {` `}{lifeSigns}
+        <br />
         <span>HP: {this.props.entity.hp}/{this.props.entity.maxHp}</span>
         <progress
           title="HP"
