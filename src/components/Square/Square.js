@@ -12,11 +12,17 @@ class Square extends React.PureComponent {
     if(this.props.active) {
       className += " active";
     }
-    if(this.props.isBreathing) {
-      className += " breathing";
+    if(this.props.value){
+      if(this.props.isBreathing) {
+        className += " breathing";
+      } else {
+        className += " dead";
+      }
     }
+      
     let randomTime = `${(Math.random()+0.5).toFixed(2)}s`
-    let animationBreathing = `breathing ${randomTime} alternate infinite`;
+    let animationBreathing = this.props.isBreathing ? 
+        `breathing ${randomTime} alternate infinite` : 'none';
 
     return (
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
