@@ -5,7 +5,7 @@ class EntityView extends React.Component {
   renderCount = 0
 
   render() {
-    console.log("Rendering EntityView. #", this.renderCount++);
+    // console.log("Rendering EntityView. #", this.renderCount++);
 
     /*
       FIXME: Below should be separated into several sub-components
@@ -17,11 +17,12 @@ class EntityView extends React.Component {
     }
 
     let { entity } = this.props;
-    let { position, value, age, name, hp, maxHp, isBreathing, active } = entity;
-    let { x, y } = position;
-    console.log(this.props)
-    console.log(entity)
-    console.log(isBreathing)
+    // let { position, value, age, name, hp, maxHp, isBreathing, active } = entity;
+    let { isBreathing } = entity;
+    // let { x, y } = position;
+    // console.log(this.props)
+    // console.log(entity)
+    // console.log(isBreathing)
     let lifeSigns = isBreathing ? "ALIVE" : "DEAD";
     return (
 

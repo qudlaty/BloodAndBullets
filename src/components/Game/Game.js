@@ -31,12 +31,13 @@ export default class Game extends React.PureComponent {
   }
 
   componentDidMount(){
-    this.setSquaresAccordingToPositions();
+    this.setSquaresAccordingToEntities();
     this.loop();
   }
 
-  setSquaresAccordingToPositions() {
-    this.squares = Array(5*5).fill(null);// DRY
+  setSquaresAccordingToEntities() {
+    //console.log("settingSquaresAccordingToEntities")
+    this.squares = Array(this.state.arenaSize*this.state.arenaSize).fill(null);// DRY
     this.state.entities.forEach((entity)=>{
       this.setSquare(entity.position.x, entity.position.y, entity);
     });
@@ -57,10 +58,10 @@ export default class Game extends React.PureComponent {
   loop() {
     this.stepNumber++;
     this.setState( (state) => {
-      
+
       var entities = JSON.parse(JSON.stringify(state.entities));
       var JR = entities[0];
-      
+
       if(JR.isBreathing){
         //John Rambo AI
         JR.position.x = JR.position.x +
@@ -74,13 +75,11 @@ export default class Game extends React.PureComponent {
         if(JR.position.x < 0) JR.position.x = 0;
 
         if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
-        if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4; 
+        if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4;
       }
       return {entities: entities};
     });
-    
 
-    this.setSquaresAccordingToPositions();
     //console.log("---");
     //console.log(this.state);
     this.processEntities();
@@ -88,6 +87,7 @@ export default class Game extends React.PureComponent {
   }
 
   processEntities(){
+    //console.log("Processing entities");
     //this.setState({entities: localCopyOfEntities});
     this.setState((state) => {
       let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
@@ -96,44 +96,50 @@ export default class Game extends React.PureComponent {
           entity.hp = 0;
           entity.isBreathing = false;
         }
-      });      
+      });
+      //console.log("Processing entities setting state:");
+      //console.log(localCopyOfEntities);
       return {entities: localCopyOfEntities}
     });
+    this.setSquaresAccordingToEntities();
   }
 
   handleBoardClick(i) {
-    console.log("CLICKED ", i);
+    // console.log("CLICKED ", i);
     var entities = this.state.entities.slice();
     entities.forEach((entity) => {
       entity.active = false;
     })
     if(this.squares[i]) {
-      console.log("Clicked:", this.squares[i]);
+      // console.log("Clicked:", this.squares[i]);
       this.selected = this.squares[i];
       this.selected.active = true;
     } else {
       this.selected = this.squares[i];
     }
-    
+
     this.setState({entities: entities});
   }
 
   nuke(dmg){
+    //console.log("Nuking")
     this.setState( (state) => {
       let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
       localCopyOfEntities.forEach(entity => {
-      
-        console.log("hi " + entity.hp);
+
+        //console.log("hi " + entity.hp);
         entity.hp = entity.hp - dmg;
       });
+      // console.log("Nuking setting state")
+      // console.log(localCopyOfEntities)
       return {entities: localCopyOfEntities}
     }, () => {
-      
-      console.log('callaback');
-      console.log(this.state);
-      
+
+      // console.log('callback after nuking');
+      // console.log(this.state);
+
       this.processEntities();
-    });  
+    });
   }
 
 
@@ -143,7 +149,7 @@ export default class Game extends React.PureComponent {
 
   render() {
     let boardClassName = this.state.isBoardRotated ? "rotated-board" : "";
-    console.log("Rendering Game. #", this.renderCounter++);
+    //console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className="game">
         <div className="game-board">
