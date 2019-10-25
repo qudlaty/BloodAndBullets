@@ -99,7 +99,7 @@ export default class Game extends React.PureComponent {
   }
 
   nuke(dmg){
-    let localCopyOfEntities = JSON.parse(JSON.stringify(this.state.entities)); 
+    let localCopyOfEntities = JSON.parse(JSON.stringify(this.state.entities));
     localCopyOfEntities.forEach(entity => {
       console.log("hi " + entity.hp);
       entity.hp = entity.hp - dmg;
@@ -125,11 +125,12 @@ export default class Game extends React.PureComponent {
         <div className="game-info">
           <span className="selected">Selected: {this.selected && this.selected.name}</span>
           <button
-          onClick={ 
+            onClick={
               ()=>{
                 this.nuke(40);
               }
             }
+            className="button-nuke"
           >Nuke All</button>
           <ul>
             <li>Add an actual TODO list here.</li>
