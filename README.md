@@ -7,3 +7,5 @@ that will involve emoji-based heroes fighting aliens on the grid.
 Heroes are expected to have a set of properties, inventories, equipment.
 
 There will be bullets and there will be blood.
+
+[CLICK HERE TO START](build/)
