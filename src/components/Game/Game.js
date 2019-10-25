@@ -9,11 +9,13 @@ export default class Game extends React.PureComponent {
   stepNumber = 0
   squares = Array(5*5).fill(null)
 
+
   constructor(props) {
     super(props);
 
     this.state = {
       arenaSize: 10,
+      isBoardRotated: false,
       entities: [
         {position: {x:0, y:0}, value: "😠", name: "John Rambo", age: 40, hp: 95, maxHp: 100, inventory: ['KA-BAR', 'M16'], equipment: {head: 'Red Bandana'},isBreathing: true,},
         {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'}, isBreathing: true,},
@@ -25,6 +27,7 @@ export default class Game extends React.PureComponent {
     this.loop = this.loop.bind(this);
     this.getSquare = this.getSquare.bind(this);
     this.setSquare = this.setSquare.bind(this);
+    this.toggleRotateBoard = this.toggleRotateBoard.bind(this);
   }
 
   componentDidMount(){
@@ -107,7 +110,12 @@ export default class Game extends React.PureComponent {
     this.setState({entities: localCopyOfEntities});
   }
 
+  toggleRotateBoard(){
+    this.setState({isBoardRotated: !this.state.isBoardRotated});
+  }
+
   render() {
+    let boardClassName = this.state.isBoardRotated ? "rotated-board" : "";
     console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className="game">
@@ -116,6 +124,7 @@ export default class Game extends React.PureComponent {
             squares={this.squares}
             onClick={(i) => this.handleBoardClick(i)}
             size={this.state.arenaSize}
+            className={boardClassName}
           />
           <EntitiesList
             entities={this.state.entities}
@@ -130,8 +139,9 @@ export default class Game extends React.PureComponent {
                 this.nuke(40);
               }
             }
-            className="button-nuke"
+            className="button button-nuke"
           >Nuke All</button>
+          <button onClick={this.toggleRotateBoard} className="button">Rotate Board</button>
           <ul>
             <li>Add an actual TODO list here.</li>
             <li>Make characters selectable</li>
