@@ -59,8 +59,9 @@ export default class Board extends React.PureComponent {
       );
     });
 
+    let className = "board " + this.props.className;
     return (
-      <div className="board">
+      <div className={className}>
         {rows}
       </div>
     );
