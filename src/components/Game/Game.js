@@ -58,18 +58,18 @@ export default class Game extends React.PureComponent {
     var JR = entities[0];
 
     //John Rambo AI
-    // JR.position.x = JR.position.x +
-    //   1 * (Math.floor(Math.random()*2)) -
-    //   1 * (Math.floor(Math.random()*2));
-    // JR.position.y = JR.position.y +
-    //   1 * (Math.floor(Math.random()*2)) -
-    //   1 * (Math.floor(Math.random()*2));
-    //
-    // if(JR.position.y < 0) JR.position.y = 0;
-    // if(JR.position.x < 0) JR.position.x = 0;
-    //
-    // if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
-    // if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4;
+    JR.position.x = JR.position.x +
+      1 * (Math.floor(Math.random()*2)) -
+      1 * (Math.floor(Math.random()*2));
+    JR.position.y = JR.position.y +
+      1 * (Math.floor(Math.random()*2)) -
+      1 * (Math.floor(Math.random()*2));
+
+    if(JR.position.y < 0) JR.position.y = 0;
+    if(JR.position.x < 0) JR.position.x = 0;
+
+    if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
+    if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4;
 
     this.setState({entities: entities});
 
