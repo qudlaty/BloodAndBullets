@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/BloodAndBulllets/build/precache-manifest.9124b4b5321dac901e339900869cd77b.js"
+  "/BloodAndBulllets/build/precache-manifest.073918d5773f8fb50752593f0da23d88.js"
 );
 
 self.addEventListener('message', (event) => {
