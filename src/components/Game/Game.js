@@ -17,8 +17,8 @@ export default class Game extends React.PureComponent {
       arenaSize: 10,
       isBoardRotated: false,
       entities: [
-        {position: {x:0, y:0}, value: "😠", name: "John Rambo", age: 40, hp: 95, maxHp: 100, inventory: ['KA-BAR', 'M16'], equipment: {head: 'Red Bandana'},isBreathing: true,},
-        {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'}, isBreathing: true, isShooting: true},
+        {position: {x:0, y:0}, value: "😠", name: "John Rambo", age: 40, hp: 95, maxHp: 100, inventory: ['KA-BAR', 'M16'], equipment: {head: 'Red Bandana'}, isBreathing: true,},
+        {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'}, isBreathing: true, isShooting: true, targetPosition: {x: 5, y: 10}},
         {position: {x:8, y:8}, value: "🐙", name: "Octo", age: 8, hp: 88, maxHp: 100, inventory: [], equipment: {}, isBreathing: true,},
         {position: {x:5, y:5}, value: "🦑", name: "Squid", age: 5, hp: 55, maxHp: 100, inventory: [], equipment: {}, isBreathing: true,},
       ],
@@ -96,6 +96,7 @@ export default class Game extends React.PureComponent {
           entity.hp = 0;
           entity.isBreathing = false;
         }
+
       });
       //console.log("Processing entities setting state:");
       //console.log(localCopyOfEntities);
@@ -106,15 +107,30 @@ export default class Game extends React.PureComponent {
 
   handleBoardClick(i) {
     // console.log("CLICKED ", i);
-    var entities = this.state.entities.slice();
+    var entities = JSON.parse(JSON.stringify(this.state.entities));
     entities.forEach((entity) => {
       entity.active = false;
     })
     if(this.squares[i]) {
+      if(this.selected) {
+        entities.forEach(entity => {
+            entity.targetPosition = this.squares[i].position;
+            if(entity.name === "Ellen Ripley") {
+              entity.isShooting = true;
+            }// FIXME: find the selected entity within entities array and modify it there.
+        })
+        //this.selected.target
+        console.log("TARGET CHOSEN", this.selected.target)
+      }
       // console.log("Clicked:", this.squares[i]);
       this.selected = this.squares[i];
       this.selected.active = true;
+
     } else {
+      entities.forEach(entity => {
+        entity.isShooting = false;
+      })
+
       this.selected = this.squares[i];
     }
 
