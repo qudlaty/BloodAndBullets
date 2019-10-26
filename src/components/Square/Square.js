@@ -27,34 +27,43 @@ class Square extends React.PureComponent {
     let animationBreathing = this.props.isBreathing ?
         `breathing ${randomTime} alternate infinite` : 'none';
 
-    let targetCoords = {x: 1, y: 1};
-    let customStyle = `
-      @keyframes shooting {
-        0%   {transform: scale(1);}
-        100% {transform: translate(${3*35*targetCoords.x}px, ${3*36*targetCoords.y}px);}
-      }
-
-      `;
+    let targetCoords = this.props.targetPosition;
     let projectileNumber = 5;
-    while(projectileNumber--) {
-      customStyle += `
-      .projectile${projectileNumber} {
-        position: absolute;
-        top: 16px;
-        left: 16px;
-        animation: shooting 0.5s linear infinite;
-        animation-delay: ${projectileNumber  * 0.5}s;
-        color: white;
-      }`;
-    };
-    let projectile = this.props.isShooting ? "*" : "";
     let projectiles = [];
-    projectileNumber = 5;
+    let customStyle = "";
 
-    while(projectileNumber--) {
-      let className=`projectile projectile${projectileNumber}`
-      projectiles.push(<div class={className}>{projectile}</div>);
-    };
+    if(targetCoords) {
+      customStyle = `
+        @keyframes shooting {
+          0%   {transform: scale(1);}
+          100% {transform: translate(
+            ${35*(targetCoords.x)}px,
+            ${36*(targetCoords.y-1)}px
+          )}
+        }
+
+        `;
+
+      while(projectileNumber--) {
+        customStyle += `
+        .projectile${projectileNumber} {
+          position: absolute;
+          top: 16px;
+          left: 16px;
+          animation: shooting 0.5s linear infinite;
+          animation-delay: ${projectileNumber  * 0.5}s;
+          color: white;
+        }`;
+      };
+      let projectile = this.props.isShooting ? "*" : "";
+
+      projectileNumber = 5;
+
+      while(projectileNumber--) {
+        let className=`projectile projectile${projectileNumber}`
+        projectiles.push(<div key={className} className={className}>{projectile}</div>);
+      };
+    }
 
     return (
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
