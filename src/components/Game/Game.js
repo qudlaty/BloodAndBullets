@@ -1,7 +1,7 @@
 import React from 'react';
 import Board from '../Board';
 import EntitiesList from '../EntitiesList';
-import './Game.css';
+import './Game.scss';
 
 export default class Game extends React.PureComponent {
 
