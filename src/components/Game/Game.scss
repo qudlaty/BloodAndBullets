@@ -7,13 +7,12 @@
 .game {
   display: flex;
   flex-direction: row;
-}
-
-.game .rotated-board {
-  transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
-}
-.game-info {
-  margin-left: 20px;
+  .rotated-board{
+    transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
+  }
+  &-info {
+    margin-left: 20px;
+  }
 }
 
 .selected {
@@ -29,7 +28,7 @@
   margin-right: 5px;
   border: 2px solid #666;
   padding: 5px;
-}
-.button-nuke {
-  color: #E00;
+  &-nuke {
+    color: #E00;
+  }
 }

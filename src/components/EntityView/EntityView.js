@@ -1,5 +1,7 @@
 import React from 'react';
-import './EntityView.css';
+import './ProgressBar.scss';
+import './EntityView.scss';
+
 
 class EntityView extends React.Component {
   renderCount = 0

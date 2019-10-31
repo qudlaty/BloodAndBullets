@@ -1,6 +1,6 @@
 import React from 'react';
 import EntityView from '../EntityView';
-import './EntitiesList.css';
+import './EntitiesList.scss';
 
 export default class ListOfEntities extends React.Component {
   renderCounter = 0

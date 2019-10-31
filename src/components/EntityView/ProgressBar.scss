@@ -47,37 +47,3 @@ progress::-webkit-progress-value {
 progress[aria-valuenow]:before  {
     background: #666;
 }
-
-.entity {
-  border: 2px solid #888;
-  background: #333;
-  border-radius: 2px;
-  margin: 10px;
-  padding: 10px;
-  position: relative;
-}
-
-.entity.active {
-  border: 2px solid #eee;
-  background: #222;
-}
-.entity.active strong{
-  color: #eee;
-}
-.position {
-  float: right;
-  background: #aaa;
-  color: black;
-  padding: 3px;
-}
-
-.portrait {
-  float: left;
-  text-align: center;
-  font-size: 22px;
-  line-height: 32px;
-  border: 1px solid #666;
-  margin: 0;
-  margin-right: 10px;
-
-}
