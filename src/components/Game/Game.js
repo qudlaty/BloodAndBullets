@@ -1,6 +1,7 @@
 import React from 'react';
 import Board from '../Board';
 import EntitiesList from '../EntitiesList';
+import EntitiesValues from './EntitiesValues';
 import './Game.scss';
 
 export default class Game extends React.PureComponent {
@@ -9,19 +10,14 @@ export default class Game extends React.PureComponent {
   stepNumber = 0
   squares = Array(5*5).fill(null)
 
-
   constructor(props) {
     super(props);
 
+    // Initial value of game state
     this.state = {
       arenaSize: 10,
       isBoardRotated: false,
-      entities: [
-        {position: {x:0, y:0}, value: "😠", name: "John Rambo", age: 40, hp: 95, maxHp: 100, inventory: ['KA-BAR', 'M16'], equipment: {head: 'Red Bandana'}, isBreathing: true,},
-        {position: {x:0, y:1}, value: "👩", name: "Ellen Ripley", age: 30, hp: 50, maxHp: 65, inventory: ['Motion Detector'], equipment: {head: 'Afro'}, isBreathing: true, isShooting: false, targetPosition: {x: 5, y: 10}, damage: 10,},
-        {position: {x:8, y:8}, value: "🐙", name: "Octo", age: 8, hp: 88, maxHp: 100, inventory: [], equipment: {}, isBreathing: true,},
-        {position: {x:5, y:5}, value: "🦑", name: "Squid", age: 5, hp: 55, maxHp: 100, inventory: [], equipment: {}, isBreathing: true,},
-      ],
+      entities: EntitiesValues,
     }
 
     this.loop = this.loop.bind(this);
