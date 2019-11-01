@@ -19,10 +19,12 @@ export default class Game extends React.PureComponent {
 
     // Initial value of game state
     this.state = {
+      selected: null,
       arenaSize: 10,
       isBoardRotated: false,
       entities: EntitiesValues,
       squares: [],
+      autoLoop: false,
     }
 
     this.loop = this.loop.bind(this);
@@ -36,27 +38,24 @@ export default class Game extends React.PureComponent {
   }
 
   setSquaresAccordingToEntities() {
-    //console.log("settingSquaresAccordingToEntities")
-    //New array of squares
-    this.squares = Array(this.state.arenaSize*this.state.arenaSize).fill(null);// DRY
+    this.setState((previousState)=>{
+      let squares = JSON.parse(JSON.stringify(previousState.squares));
+      //let squares = previousState.squares;
 
-    // Copying **references to entities**
-    // from state to proper squares according to position
-    this.state.entities.forEach((entity)=>{
-      this.setSquare(entity.position.x, entity.position.y, entity);
-    });
-    //console.log("New Squares:", this.squares)
-    this.setState((state)=>{
-      return {squares: this.squares};
+      previousState.entities.forEach((entity)=>{
+        this.setSquare(squares, entity.position.x, entity.position.y, entity);
+      });
+
+      return {squares};
     });
   }
 
-  getSquare(x, y) {
-    return this.squares[this.targetSquareIndex(x, y)];
+  getSquare(squares, x, y) {
+    return squares[this.targetSquareIndex(x, y)];
   }
 
-  setSquare(x, y, value) {
-    this.squares[this.targetSquareIndex(x, y)] = value;
+  setSquare(squares, x, y, value) {
+    squares[this.targetSquareIndex(x, y)] = value;
   }
 
   targetSquareIndex(x, y) {
@@ -65,24 +64,32 @@ export default class Game extends React.PureComponent {
 
   loop() {
     this.stepNumber++;
-    this.setState( (state) => {
+    this.setState( (previousState) => {
       // new copy of entities based on up-to-date state
-      let entities = JSON.parse(JSON.stringify(state.entities));
+      let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
+      let { entities, squares } = localCopyOfPreviousState;
+
       let JR = entities[0];// a reference to JR
       if(JR.isBreathing){
         // John Rambo AI
         // changing the original JR entity within entities array
-        this.moveEntityRandomly(JR);
+        this.moveEntityRandomly(squares, JR);
       }
-      return {entities: entities};
+      //console.log(entities);
+      return {entities: entities, squares: squares};
     });
 
     this.processEntities();
-    setTimeout(this.loop, 1000);
+    if(this.state.autoLoop) {
+      setTimeout(this.loop, 1000);
+    }
   }
 
-  moveEntityRandomly(entity) {
+  moveEntityRandomly(squares, entity) {
     // modifies entity in-place
+    let oldPositionX = entity.position.x;
+    let oldPositionY = entity.position.y;
+
     entity.position.x = entity.position.x +
       (Math.floor(Math.random()*2)) -
       (Math.floor(Math.random()*2));
@@ -94,6 +101,21 @@ export default class Game extends React.PureComponent {
     if(entity.position.y < 0) entity.position.y = 0;
     if(entity.position.x > this.state.arenaSize - 1) entity.position.x = this.state.arenaSize - 1;
     if(entity.position.y > this.state.arenaSize - 1) entity.position.y = this.state.arenaSize - 1;
+
+    let newSquare = this.getSquare(squares, entity.position.x, entity.position.y);
+
+    if (newSquare) {
+      entity.position.x = oldPositionX;
+      entity.position.y = oldPositionY;
+    }
+
+    if(
+      oldPositionX !== entity.position.x ||
+      oldPositionY !== entity.position.y
+    ) {
+      this.setSquare(squares, oldPositionX, oldPositionY, null);
+    }
+
     // NO RETURN AS IT'S MODIFIED IN-PLACE return entity;
     // WHICH IS A BAD HABIT, BUT OH SO COMFY.
   }
@@ -133,36 +155,56 @@ export default class Game extends React.PureComponent {
 
   }
 
+  getEntityId(entity) {
+    return entity.name;
+  }
+
+  findEntityById(entities, id) {
+    let result = entities.filter((entity) => entity.name === id)[0];
+    console.log("found entity:", result);
+    return result;
+  }
+
   handleBoardClick(i) {
     //console.log("CLICKED ", i);
-    var entities = JSON.parse(JSON.stringify(this.state.entities));
-    entities.forEach((entity) => {
-      entity.active = false;
-    })
-    if(this.squares[i]) {
-      if(this.selected) {
+    this.setState((previousState) => {
+      let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
+      let { entities, squares, selected } = localCopyOfPreviousState;
+
+      entities.forEach((entity) => {
+        entity.active = false;
+      });
+
+      if(squares[i]) {
+        if(selected) {
+          entities.forEach(entity => {
+              entity.targetPosition = previousState.squares[i].position;
+              if(entity.name === "Ellen Ripley") {
+                entity.isShooting = true;
+              }// FIXME: find the selected entity within entities array and modify it there.
+          })
+          //this.selected.target
+          console.log("TARGET CHOSEN", selected.target)
+        }
+        // console.log("Clicked:", this.squares[i]);
+        selected = squares[i];
+        let id = this.getEntityId(selected);
+        let selectedInEntities = this.findEntityById(entities, id);
+        console.log("SIE ",selectedInEntities)
+        selected.active = true;
+        selectedInEntities.active = true;
+
+      } else {
         entities.forEach(entity => {
-            entity.targetPosition = this.squares[i].position;
-            if(entity.name === "Ellen Ripley") {
-              entity.isShooting = true;
-            }// FIXME: find the selected entity within entities array and modify it there.
+          entity.isShooting = false;
         })
-        //this.selected.target
-        console.log("TARGET CHOSEN", this.selected.target)
+        selected = null;
       }
-      // console.log("Clicked:", this.squares[i]);
-      this.selected = this.squares[i];
-      this.selected.active = true;
+      console.log(entities);
+      console.log(squares);
+      return {entities, squares, selected}
+    });
 
-    } else {
-      entities.forEach(entity => {
-        entity.isShooting = false;
-      })
-
-      this.selected = this.squares[i];
-    }
-
-    this.setState({entities: entities});
   }
 
   nuke(dmg){
@@ -181,6 +223,16 @@ export default class Game extends React.PureComponent {
 
   toggleRotateBoard(){
     this.setState({isBoardRotated: !this.state.isBoardRotated});
+  }
+
+  switchAutoLoop = () => {
+    this.setState((previousState) => {
+      return {autoLoop: !previousState.autoLoop};
+    },()=>{
+      if(this.state.autoLoop) {
+        this.loop();
+      }
+    });
   }
 
   render() {
@@ -211,6 +263,8 @@ export default class Game extends React.PureComponent {
             className="button button-nuke"
           >Nuke All</button>
           <button onClick={this.toggleRotateBoard} className="button">Rotate Board</button>
+          <button onClick={this.loop} className="button">Next Step</button>
+          <label><input type="checkbox" onChange={this.switchAutoLoop}/> Auto </label>
           <ul>
             <li>Click Ellen Ripley on the board, to select her.</li>
             <li>Click a target to shoot it.</li>
