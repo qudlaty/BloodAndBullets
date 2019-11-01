@@ -5,10 +5,14 @@ import EntitiesValues from './EntitiesValues';
 import './Game.scss';
 
 export default class Game extends React.PureComponent {
-
+  /*
+    We have `state.entities` and we have `squares`,
+    both of which are representing the actual state of the game.
+    Perhaps we should keep squares within the state.
+  */
   renderCounter = 0
   stepNumber = 0
-  squares = Array(5*5).fill(null)
+  //squares = Array(5*5).fill(null)
 
   constructor(props) {
     super(props);
@@ -18,6 +22,7 @@ export default class Game extends React.PureComponent {
       arenaSize: 10,
       isBoardRotated: false,
       entities: EntitiesValues,
+      squares: [],
     }
 
     this.loop = this.loop.bind(this);
@@ -27,64 +32,74 @@ export default class Game extends React.PureComponent {
   }
 
   componentDidMount(){
-    this.setSquaresAccordingToEntities();
     this.loop();
   }
 
   setSquaresAccordingToEntities() {
     //console.log("settingSquaresAccordingToEntities")
+    //New array of squares
     this.squares = Array(this.state.arenaSize*this.state.arenaSize).fill(null);// DRY
+
+    // Copying **references to entities**
+    // from state to proper squares according to position
     this.state.entities.forEach((entity)=>{
       this.setSquare(entity.position.x, entity.position.y, entity);
     });
     //console.log("New Squares:", this.squares)
+    this.setState((state)=>{
+      return {squares: this.squares};
+    });
   }
 
   getSquare(x, y) {
-    return this.squares[x * this.state.arenaSize + y];
+    return this.squares[this.targetSquareIndex(x, y)];
   }
 
   setSquare(x, y, value) {
-    let targetSquareIndex = y* this.state.arenaSize + x;
-    //console.log("Setting square #",targetSquareIndex, "as", square);
-    this.squares[targetSquareIndex] = value;
-    //console.log("this.squares:", this.squares);
+    this.squares[this.targetSquareIndex(x, y)] = value;
+  }
+
+  targetSquareIndex(x, y) {
+    return y * this.state.arenaSize + x;
   }
 
   loop() {
     this.stepNumber++;
     this.setState( (state) => {
-
-      var entities = JSON.parse(JSON.stringify(state.entities));
-      var JR = entities[0];
-
+      // new copy of entities based on up-to-date state
+      let entities = JSON.parse(JSON.stringify(state.entities));
+      let JR = entities[0];// a reference to JR
       if(JR.isBreathing){
-        //John Rambo AI
-        JR.position.x = JR.position.x +
-          1 * (Math.floor(Math.random()*2)) -
-          1 * (Math.floor(Math.random()*2));
-        JR.position.y = JR.position.y +
-          1 * (Math.floor(Math.random()*2)) -
-          1 * (Math.floor(Math.random()*2));
-
-        if(JR.position.y < 0) JR.position.y = 0;
-        if(JR.position.x < 0) JR.position.x = 0;
-
-        if(JR.position.y > this.state.arenaSize - 1) JR.position.y = 4;
-        if(JR.position.x > this.state.arenaSize - 1) JR.position.x = 4;
+        // John Rambo AI
+        // changing the original JR entity within entities array
+        this.moveEntityRandomly(JR);
       }
       return {entities: entities};
     });
 
-    //console.log("---");
-    //console.log(this.state);
     this.processEntities();
     setTimeout(this.loop, 1000);
   }
 
+  moveEntityRandomly(entity) {
+    // modifies entity in-place
+    entity.position.x = entity.position.x +
+      (Math.floor(Math.random()*2)) -
+      (Math.floor(Math.random()*2));
+    entity.position.y = entity.position.y +
+      (Math.floor(Math.random()*2)) -
+      (Math.floor(Math.random()*2));
+
+    if(entity.position.x < 0) entity.position.x = 0;
+    if(entity.position.y < 0) entity.position.y = 0;
+    if(entity.position.x > this.state.arenaSize - 1) entity.position.x = this.state.arenaSize - 1;
+    if(entity.position.y > this.state.arenaSize - 1) entity.position.y = this.state.arenaSize - 1;
+    // NO RETURN AS IT'S MODIFIED IN-PLACE return entity;
+    // WHICH IS A BAD HABIT, BUT OH SO COMFY.
+  }
+
   processEntities(){
     //console.log("Processing entities");
-    //this.setState({entities: localCopyOfEntities});
     this.setState((state) => {
       let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
       localCopyOfEntities.forEach(entity => {
@@ -109,15 +124,17 @@ export default class Game extends React.PureComponent {
         }
 
       });
-      //console.log("Processing entities setting state:");
-      //console.log(localCopyOfEntities);
       return {entities: localCopyOfEntities}
-    });
-    this.setSquaresAccordingToEntities();
+    },
+      () => {
+        this.setSquaresAccordingToEntities();
+      }
+    );
+
   }
 
   handleBoardClick(i) {
-    // console.log("CLICKED ", i);
+    //console.log("CLICKED ", i);
     var entities = JSON.parse(JSON.stringify(this.state.entities));
     entities.forEach((entity) => {
       entity.active = false;
@@ -153,18 +170,10 @@ export default class Game extends React.PureComponent {
     this.setState( (state) => {
       let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
       localCopyOfEntities.forEach(entity => {
-
-        //console.log("hi " + entity.hp);
         entity.hp = entity.hp - dmg;
       });
-      // console.log("Nuking setting state")
-      // console.log(localCopyOfEntities)
       return {entities: localCopyOfEntities}
     }, () => {
-
-      // console.log('callback after nuking');
-      // console.log(this.state);
-
       this.processEntities();
     });
   }
@@ -181,7 +190,7 @@ export default class Game extends React.PureComponent {
       <div className="game">
         <div className="game-board">
           <Board
-            squares={this.squares}
+            squares={this.state.squares}
             onClick={(i) => this.handleBoardClick(i)}
             size={this.state.arenaSize}
             className={boardClassName}
@@ -205,7 +214,6 @@ export default class Game extends React.PureComponent {
           <ul>
             <li>Click Ellen Ripley on the board, to select her.</li>
             <li>Click a target to shoot it.</li>
-
           </ul>
         </div>
       </div>
