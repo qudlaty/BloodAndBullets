@@ -6,6 +6,7 @@ class Square extends React.PureComponent {
     We use PureComponent, so it compares new props with previous props,
     and only re-renders when props changed.
    */
+  counter = 0
   render() {
 
     // console.log("Rendering Square");
@@ -61,7 +62,10 @@ class Square extends React.PureComponent {
         let distanceToTargetX = 35*(targetCoords.x-this.props.position.x);
         let distanceToTargetY = 35*(targetCoords.y-this.props.position.y);
         let actualDistance = Math.sqrt(Math.pow(distanceToTargetX, 2) + Math.pow(distanceToTargetY, 2));
-        actualDistance = actualDistance + 16;
+        actualDistance = actualDistance -16 + 16 * this.counter++;
+        if (this.counter == 5) {
+          this.counter = 0;
+        }
         //console.log(actualDistance);
 
         if(this.props.weaponType === 'Lazer') {
