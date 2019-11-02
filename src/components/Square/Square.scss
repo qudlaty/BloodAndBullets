@@ -1,3 +1,7 @@
+@keyframes sXhoot {
+  0%  {border-width: 1px;}
+  100%  {border-width: 4px; transform: rotate(900deg);}
+}
 .square {
   height: 34px;
   width: 34px;
@@ -23,11 +27,26 @@
     border: 1px solid #eee;
     background: green;
     &.shooting{
-      border: 1px dashed white;
+      border: 1px dotted white;
+      animation: shoot 1s infinite alternate;
+
     }
   }
   &.dead {
     background-color: red;
+    transform: rotate(180deg);
+    transition: all 1s;
+    &::before {
+      content: "X";
+      font-weight: 100;
+      color: rgba(0,0,0,0.7);
+      position: absolute;
+      font-size: 43px;
+      top: 0;
+      left: 2px;
+
+      z-index: 1700;
+    }
   }
   .content {
     z-index: 1000;
