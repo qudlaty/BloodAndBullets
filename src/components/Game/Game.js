@@ -24,7 +24,7 @@ export default class Game extends React.PureComponent {
       isBoardRotated: false,
       entities: EntitiesValues,
       squares: [],
-      autoLoop: false,
+      autoLoop: true,
     }
 
     this.loop = this.loop.bind(this);
@@ -179,7 +179,8 @@ export default class Game extends React.PureComponent {
         if(selected) {
           entities.forEach(entity => {
               entity.targetPosition = previousState.squares[i].position;
-              if(entity.name === "Ellen Ripley") {
+              if(entity.name === "Ellen Ripley" ||
+                 entity.name === "Lazer" ) {
                 entity.isShooting = true;
               }// FIXME: find the selected entity within entities array and modify it there.
           })

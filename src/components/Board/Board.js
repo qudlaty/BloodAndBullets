@@ -34,7 +34,7 @@ export default class Board extends React.PureComponent {
         isShooting={this.props.squares[i] && this.props.squares[i].isShooting}
         targetPosition={this.props.squares[i] && this.props.squares[i].targetPosition}
         onClick={this.handleClick}
-
+        weaponType={this.props.squares[i] && this.props.squares[i].inventory && this.props.squares[i].inventory[0]}
         key={i}
 
         rowNumber={rowId}
