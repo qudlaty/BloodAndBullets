@@ -25,6 +25,13 @@
   &.dead {
     background-color: red;
   }
+  .content {
+    z-index: 1000;
+    position: relative;
+  }
+  .projectile {
+    z-index: 500;
+  }
 }
 
 .shooting {

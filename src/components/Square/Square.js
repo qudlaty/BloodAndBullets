@@ -11,7 +11,7 @@ class Square extends React.PureComponent {
     // console.log("Rendering Square");
     let className = "square";
     let localId = `Sq${this.props.squareId}`;
-    
+
     if(this.props.active) {
       className += " active";
     }
@@ -34,15 +34,15 @@ class Square extends React.PureComponent {
     let projectileNumber = 5;
     let projectiles = [];
     let customStyle = "";
-    
+
     let calcNewAangle = function(x, y){
       let angle;
       if(y >= 0) {
         angle = - Math.atan(
           x/y
-        ) * (180/Math.PI);     
+        ) * (180/Math.PI);
       }else if(y < 0) {
-        angle = (180/Math.PI) * 
+        angle = (180/Math.PI) *
           (
             Math.atan(
               x/-y
@@ -51,47 +51,52 @@ class Square extends React.PureComponent {
       }
       return angle;
     }
-    
+
     if((this.props.targetPosition && this.props.position && this.props.isShooting) &&
       (this.props.targetPosition.x !== this.props.position.x ||
       this.props.targetPosition.y !== this.props.position.y)) {
-      
+
       if(targetCoords) {
-        
+
         let distanceToTargetX = 35*(targetCoords.x-this.props.position.x);
         let distanceToTargetY = 35*(targetCoords.y-this.props.position.y);
         let actualDistance = Math.sqrt(Math.pow(distanceToTargetX, 2) + Math.pow(distanceToTargetY, 2));
+        actualDistance = actualDistance + 16;
         //console.log(actualDistance);
-        
-        if(this.props.weaponType == 'Lazer') {
-          
+
+        if(this.props.weaponType === 'Lazer') {
+
           let className=`projectile${localId}_beam`;
           let projectile= "";
           let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
           console.log(angle);
           customStyle = `
             @keyframes pulsing${localId} {
-              0%  {opacity: 0;}
+              0%  {opacity: 0.1;}
               100%  {opacity: 1;}
             }
 
             .${className} {
               width: ${actualDistance}px;
               height: 3px;
-              border: 1px solid red;
+              border-radius: 5px;
+              background: #F00;
               position: absolute;
               top: 16px;
               left: 16px;
+
               transform: rotate(${angle + 90}deg);
               transform-origin: left 0px;
-              animation: pulsing${localId} 0.5s linear infinite;    
+              animation: pulsing${localId} 0.1s linear infinite;
+              box-shadow: 0 0 5px 5px white;
+              z-index: 10;
             }
 
             `;
-          
+
           projectiles.push(<div key={className} className={className}>{projectile}</div>);
         }else {
-          
+
           customStyle = `
             @keyframes shooting${localId} {
               0%   {transform: scale(1);}
@@ -122,10 +127,10 @@ class Square extends React.PureComponent {
             let className=`projectile projectile${localId}_${projectileNumber}`
             projectiles.push(<div key={className} className={className}>{projectile}</div>);
           };
-        } 
+        }
       }
     }
-    
+
     return (
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
         <div className="content" style={{
