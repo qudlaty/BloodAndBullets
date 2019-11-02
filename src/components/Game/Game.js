@@ -131,7 +131,7 @@ export default class Game extends React.PureComponent {
             return potentialTargetEntity.position.x === entity.targetPosition.x &&
             potentialTargetEntity.position.y === entity.targetPosition.y
           });
-          console.log(targetEntities);
+          //console.log(targetEntities);
           targetEntities.forEach((targetEntity) => {
             targetEntity.hp -= entity.damage;
             if(targetEntity.hp <= 0) {
@@ -161,7 +161,7 @@ export default class Game extends React.PureComponent {
 
   findEntityById(entities, id) {
     let result = entities.filter((entity) => entity.name === id)[0];
-    console.log("found entity:", result);
+    //console.log("found entity:", result);
     return result;
   }
 
@@ -191,7 +191,7 @@ export default class Game extends React.PureComponent {
         selected = squares[i];
         let id = this.getEntityId(selected);
         let selectedInEntities = this.findEntityById(entities, id);
-        console.log("SIE ",selectedInEntities)
+        //console.log("SIE ",selectedInEntities)
         selected.active = true;
         selectedInEntities.active = true;
 
@@ -201,8 +201,7 @@ export default class Game extends React.PureComponent {
         })
         selected = null;
       }
-      console.log(entities);
-      console.log(squares);
+
       return {entities, squares, selected}
     });
 
