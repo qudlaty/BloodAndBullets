@@ -40,6 +40,7 @@ class EntityView extends React.Component {
         {` `}{lifeSigns}
         <br />
         <span>HP: {this.props.entity.hp}/{this.props.entity.maxHp}</span>
+        <span> Rounds: {this.props.entity.rounds} / {this.props.entity.maxRounds}</span>
         <progress
           title="HP"
           max={this.props.entity.maxHp}
