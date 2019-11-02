@@ -130,6 +130,13 @@ export default class Game extends React.PureComponent {
           entity.targetPosition.x !== entity.position.x ||
           entity.targetPosition.y !== entity.position.y
         )) {
+          if(entity.rounds-- === 0) {
+            entity.isShooting = false;
+            entity.rounds = entity.maxRounds;
+          }
+          /*
+          Searching for such an entity that its position is equal to our target position.
+          */
           let targetEntities = localCopyOfEntities.filter((potentialTargetEntity) => {
             return potentialTargetEntity.position.x === entity.targetPosition.x &&
             potentialTargetEntity.position.y === entity.targetPosition.y
@@ -168,37 +175,46 @@ export default class Game extends React.PureComponent {
     return result;
   }
 
+  setSelected(entities, selected, value) {
+    let selectedInEntities = this.findEntityById(entities, this.getEntityId(selected));
+    if(value) {
+      selected.active = value;
+    } else {
+      selected = null;
+      console.log("Nullified:", selected);
+    }
+    selectedInEntities.active = value;
+    return selected;
+  }
+
   handleBoardClick(i) {
     //console.log("CLICKED ", i);
     this.setState((previousState) => {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares, selected } = localCopyOfPreviousState;
 
-      entities.forEach((entity) => {
-        entity.active = false;
-      });
-
       if(squares[i]) {
         if(selected) {
-          entities.forEach(entity => {
-              entity.targetPosition = previousState.squares[i].position;
-              if(entity.name === "John Rambo" ||
-                 entity.name === "Lazer" ) {
-                entity.isShooting = true;
-              }// FIXME: find the selected entity within entities array and modify it there.
-          })
-          //this.selected.target
-          console.log("TARGET CHOSEN", selected.target)
+          if(selected.name === previousState.squares[i].name) {
+            selected = this.setSelected(entities, selected, false);
+            console.log(selected);
+          } else {
+            let selectedEntity = this.findEntityById(entities, this.getEntityId(selected));
+            selectedEntity.targetPosition = previousState.squares[i].position;
+            if(selectedEntity.hasWeapon ) {
+              selectedEntity.isShooting = true;
+            }
+          }
+        } else {
+          selected = squares[i];
+          this.setSelected(entities, selected, true);
         }
-        // console.log("Clicked:", this.squares[i]);
-        selected = squares[i];
-        let id = this.getEntityId(selected);
-        let selectedInEntities = this.findEntityById(entities, id);
-        //console.log("SIE ",selectedInEntities)
-        selected.active = true;
-        selectedInEntities.active = true;
 
       } else {
+        /* Deselecting and stopping fire on all entities */
+        entities.forEach((entity) => {
+          entity.active = false;
+        });
         entities.forEach(entity => {
           entity.isShooting = false;
         })
@@ -256,7 +272,7 @@ export default class Game extends React.PureComponent {
           <div className="step-counter">{this.stepNumber}</div>
         </div>
         <div className="game-info">
-          <span className="selected">Selected: {this.selected && this.selected.name}</span>
+          <span className="selected">Selected: {this.state.selected && this.state.selected.name}</span>
           <button
             onClick={
               ()=>{
