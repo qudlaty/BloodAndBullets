@@ -117,11 +117,9 @@ class Square extends React.PureComponent {
               height: 100%;
               line-height: 34px;
               font-size: 17px;
-
               animation: shooting${localId} 0.5s linear infinite;
               animation-delay: ${projectileNumber  * 0.5}s;
               color: white;
-              border: 0px solid red;
             }`;
           };
           let projectile = this.props.isShooting ? "*" : "";
