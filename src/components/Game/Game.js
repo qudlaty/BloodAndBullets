@@ -126,7 +126,10 @@ export default class Game extends React.PureComponent {
       let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
       localCopyOfEntities.forEach(entity => {
 
-        if(entity.isShooting && entity.targetPosition) {
+        if(entity.isShooting && entity.targetPosition && (
+          entity.targetPosition.x !== entity.position.x ||
+          entity.targetPosition.y !== entity.position.y
+        )) {
           let targetEntities = localCopyOfEntities.filter((potentialTargetEntity) => {
             return potentialTargetEntity.position.x === entity.targetPosition.x &&
             potentialTargetEntity.position.y === entity.targetPosition.y
@@ -179,7 +182,7 @@ export default class Game extends React.PureComponent {
         if(selected) {
           entities.forEach(entity => {
               entity.targetPosition = previousState.squares[i].position;
-              if(entity.name === "Ellen Ripley" ||
+              if(entity.name === "Johny Rambo" ||
                  entity.name === "Lazer" ) {
                 entity.isShooting = true;
               }// FIXME: find the selected entity within entities array and modify it there.
