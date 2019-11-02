@@ -69,7 +69,6 @@ class Square extends React.PureComponent {
           let className=`projectile${localId}_beam`;
           let projectile= "";
           let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
-          console.log(angle);
           customStyle = `
             @keyframes pulsing${localId} {
               0%  {opacity: 0.1;}
