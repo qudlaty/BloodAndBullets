@@ -222,6 +222,8 @@ export default class Game extends React.PureComponent {
       }
 
       return {entities, squares, selected}
+    }, ()=> {
+      this.processEntities();
     });
 
   }
