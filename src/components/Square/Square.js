@@ -7,8 +7,11 @@ class Square extends React.PureComponent {
     and only re-renders when props changed.
    */
   render() {
+
     // console.log("Rendering Square");
     let className = "square";
+    let localId = `Sq${this.props.squareId}`;
+    
     if(this.props.active) {
       className += " active";
     }
@@ -31,40 +34,98 @@ class Square extends React.PureComponent {
     let projectileNumber = 5;
     let projectiles = [];
     let customStyle = "";
-
-    if(targetCoords) {
-      customStyle = `
-        @keyframes shooting {
-          0%   {transform: scale(1);}
-          100% {transform: translate(
-            ${35*(targetCoords.x)}px,
-            ${36*(targetCoords.y-1)}px
-          )}
-        }
-
-        `;
-
-      while(projectileNumber--) {
-        customStyle += `
-        .projectile${projectileNumber} {
-          position: absolute;
-          top: 16px;
-          left: 16px;
-          animation: shooting 0.5s linear infinite;
-          animation-delay: ${projectileNumber  * 0.5}s;
-          color: white;
-        }`;
-      };
-      let projectile = this.props.isShooting ? "*" : "";
-
-      projectileNumber = 5;
-
-      while(projectileNumber--) {
-        let className=`projectile projectile${projectileNumber}`
-        projectiles.push(<div key={className} className={className}>{projectile}</div>);
-      };
+    
+    let calcNewAangle = function(x, y){
+      let angle;
+      if(y >= 0) {
+        angle = - Math.atan(
+          x/y
+        ) * (180/Math.PI);     
+      }else if(y < 0) {
+        angle = (180/Math.PI) * 
+          (
+            Math.atan(
+              x/-y
+            ) + Math.PI
+          )
+      }
+      return angle;
     }
+    
+    if((this.props.targetPosition && this.props.position && this.props.isShooting) &&
+      (this.props.targetPosition.x !== this.props.position.x ||
+      this.props.targetPosition.y !== this.props.position.y)) {
+      
+      if(targetCoords) {
+        
+        let distanceToTargetX = 35*(targetCoords.x-this.props.position.x);
+        let distanceToTargetY = 35*(targetCoords.y-this.props.position.y);
+        let actualDistance = Math.sqrt(Math.pow(distanceToTargetX, 2) + Math.pow(distanceToTargetY, 2));
+        //console.log(actualDistance);
+        
+        if(this.props.weaponType == 'Lazer') {
+          
+          let className=`projectile${localId}_beam`;
+          let projectile= "";
+          let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
+          console.log(angle);
+          customStyle = `
+            @keyframes pulsing${localId} {
+              0%  {opacity: 0;}
+              100%  {opacity: 1;}
+            }
 
+            .${className} {
+              width: ${actualDistance}px;
+              height: 3px;
+              border: 1px solid red;
+              position: absolute;
+              top: 16px;
+              left: 16px;
+              transform: rotate(${angle + 90}deg);
+              transform-origin: left 0px;
+              animation: pulsing${localId} 0.5s linear infinite;    
+            }
+
+            `;
+          
+          projectiles.push(<div key={className} className={className}>{projectile}</div>);
+        }else {
+          
+          customStyle = `
+            @keyframes shooting${localId} {
+              0%   {transform: scale(1);}
+              100% {transform: translate(
+                ${35*(targetCoords.x-this.props.position.x)}px,
+                ${36*(targetCoords.y-this.props.position.y)}px
+              )}
+            }
+
+            `;
+
+          while(projectileNumber--) {
+            customStyle += `
+            .projectile${localId}_${projectileNumber} {
+              position: absolute;
+              top: 16px;
+              left: 16px;
+              animation: shooting${localId} 0.5s linear infinite;
+              animation-delay: ${projectileNumber  * 0.5}s;
+              color: white;
+            }`;
+          };
+          let projectile = this.props.isShooting ? "*" : "";
+
+          projectileNumber = 5;
+
+          while(projectileNumber--) {
+            let className=`projectile projectile${localId}_${projectileNumber}`
+            projectiles.push(<div key={className} className={className}>{projectile}</div>);
+          };
+        } 
+      }
+    }
+    
     return (
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
         <div className="content" style={{
