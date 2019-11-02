@@ -100,7 +100,7 @@ class Square extends React.PureComponent {
             @keyframes shooting${localId} {
               0%   {transform: scale(1);}
               100% {transform: translate(
-                ${35*(targetCoords.x-this.props.position.x)}px,
+                ${36*(targetCoords.x-this.props.position.x)}px,
                 ${36*(targetCoords.y-this.props.position.y)}px
               )}
             }
@@ -111,11 +111,17 @@ class Square extends React.PureComponent {
             customStyle += `
             .projectile${localId}_${projectileNumber} {
               position: absolute;
-              top: 16px;
-              left: 16px;
+              top: 5px;
+              left: 0px;
+              width: 100%;
+              height: 100%;
+              line-height: 34px;
+              font-size: 17px;
+
               animation: shooting${localId} 0.5s linear infinite;
               animation-delay: ${projectileNumber  * 0.5}s;
               color: white;
+              border: 0px solid red;
             }`;
           };
           let projectile = this.props.isShooting ? "*" : "";
