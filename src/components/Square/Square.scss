@@ -22,6 +22,9 @@
   &.active {
     border: 1px solid #eee;
     background: green;
+    &.shooting{
+      border: 1px dashed white;
+    }
   }
   &.dead {
     background-color: red;
