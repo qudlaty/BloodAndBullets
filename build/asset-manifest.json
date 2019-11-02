@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/BloodAndBulllets/build/static/css/main.aa9cf7b7.chunk.css",
+    "main.js": "/BloodAndBulllets/build/static/js/main.0049e85d.chunk.js",
+    "main.js.map": "/BloodAndBulllets/build/static/js/main.0049e85d.chunk.js.map",
+    "runtime-main.js": "/BloodAndBulllets/build/static/js/runtime-main.75db0f46.js",
+    "runtime-main.js.map": "/BloodAndBulllets/build/static/js/runtime-main.75db0f46.js.map",
+    "static/js/2.0441643b.chunk.js": "/BloodAndBulllets/build/static/js/2.0441643b.chunk.js",
+    "static/js/2.0441643b.chunk.js.map": "/BloodAndBulllets/build/static/js/2.0441643b.chunk.js.map",
+    "index.html": "/BloodAndBulllets/build/index.html",
+    "precache-manifest.b620da7aef751e056ac06a552beb5d1d.js": "/BloodAndBulllets/build/precache-manifest.b620da7aef751e056ac06a552beb5d1d.js",
+    "service-worker.js": "/BloodAndBulllets/build/service-worker.js",
+    "static/css/main.aa9cf7b7.chunk.css.map": "/BloodAndBulllets/build/static/css/main.aa9cf7b7.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.75db0f46.js",
+    "static/js/2.0441643b.chunk.js",
+    "static/css/main.aa9cf7b7.chunk.css",
+    "static/js/main.0049e85d.chunk.js"
+  ]
+}
