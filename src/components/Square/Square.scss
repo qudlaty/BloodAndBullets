@@ -1,4 +1,4 @@
-@keyframes sXhoot {
+@keyframes shoot-and-rotate {
   0%  {border-width: 1px;}
   100%  {border-width: 4px; transform: rotate(900deg);}
 }
@@ -29,7 +29,6 @@
     &.shooting{
       border: 1px dotted white;
       animation: shoot 1s infinite alternate;
-
     }
   }
   &.dead {
@@ -39,7 +38,7 @@
     &::before {
       content: "X";
       font-weight: 100;
-      color: rgba(0,0,0,0.7);
+      color: rgba(0,0,0,0.5);
       position: absolute;
       font-size: 43px;
       top: 0;
