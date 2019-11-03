@@ -1,15 +1,25 @@
 import React from 'react';
 import "./Square.scss";
 
-class Square extends React.PureComponent {
+class Square extends React.Component {
   /*
     We use PureComponent, so it compares new props with previous props,
     and only re-renders when props changed.
    */
-  counter = 0
-  render() {
+  renderCounter = 0
 
-    // console.log("Rendering Square");
+  shouldComponentUpdate(nextProps, nextState) {
+    if(JSON.stringify(nextProps) === JSON.stringify(this.props)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  render() {
+    this.renderCounter++;
+    //console.log("Rendering Square", this.renderCounter, this.props);
+
     let className = "square";
     let localId = `Sq${this.props.squareId}`;
 
@@ -59,15 +69,9 @@ class Square extends React.PureComponent {
 
       if(targetCoords) {
 
-        let distanceToTargetX = 35*(targetCoords.x-this.props.position.x);
-        let distanceToTargetY = 35*(targetCoords.y-this.props.position.y);
+        let distanceToTargetX = 38*(targetCoords.x-this.props.position.x);
+        let distanceToTargetY = 38*(targetCoords.y-this.props.position.y);
         let actualDistance = Math.sqrt(Math.pow(distanceToTargetX, 2) + Math.pow(distanceToTargetY, 2));
-        actualDistance = actualDistance -16 + 16 * this.counter++;
-        if (this.counter == 5) {
-          this.counter = 0;
-        }
-        //console.log(actualDistance);
-
         if(this.props.weaponType === 'Lazer') {
 
           let className=`projectile${localId}_beam`;
@@ -77,6 +81,11 @@ class Square extends React.PureComponent {
             @keyframes pulsing${localId} {
               0%  {opacity: 0.1;}
               100%  {opacity: 1;}
+            }
+
+            @keyframes elongating${localId} {
+              0%  {width: ${actualDistance - 20};}
+              100%  {width: ${actualDistance + 20};}
             }
 
             .${className} {
@@ -90,7 +99,8 @@ class Square extends React.PureComponent {
 
               transform: rotate(${angle + 90}deg);
               transform-origin: left 0px;
-              animation: pulsing${localId} 0.1s linear infinite;
+              animation: pulsing${localId} 0.1s linear infinite,
+              elongating${localId} 1s linear alternate infinite;
               box-shadow: 0 0 5px 5px white;
               z-index: 10;
             }

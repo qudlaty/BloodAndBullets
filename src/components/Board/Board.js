@@ -27,19 +27,22 @@ export default class Board extends React.PureComponent {
 
     return (
       <Square
+        key={i}
         squareId={i}
-        //position={this.props.squares[i] && this.props.squares[i].position}
+        rowNumber={rowId}
+        colNumber={colId}
+
+        onClick={this.handleClick}
+
         icon={this.props.squares[i] && this.props.squares[i].icon}
         active={this.props.squares[i] && this.props.squares[i].active}
         isBreathing={this.props.squares[i] && this.props.squares[i].isBreathing}
-        isShooting={this.props.squares[i] && this.props.squares[i].isShooting}
-        targetPosition={this.props.squares[i] && this.props.squares[i].targetPosition}
-        onClick={this.handleClick}
-        weaponType={this.props.squares[i] && this.props.squares[i].inventory && this.props.squares[i].inventory[0]}
-        key={i}
 
-        rowNumber={rowId}
-        colNumber={colId}
+        isShooting={this.props.squares[i] && this.props.squares[i].isShooting}
+        weaponType={this.props.squares[i] && this.props.squares[i].inventory && this.props.squares[i].inventory[0]}
+
+        position={this.props.squares[i] && this.props.squares[i].position}
+        targetPosition={this.props.squares[i] && this.props.squares[i].targetPosition}
       />
     );
   }
