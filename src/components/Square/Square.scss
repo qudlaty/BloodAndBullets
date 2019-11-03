@@ -33,9 +33,9 @@
   }
   &.dead {
     background-color: red;
-    transform: rotate(180deg);
-    transition: all 1s;
-    &::before {
+    //transform: rotate(180deg);
+    //transition: all 1s;
+    &::Xbefore {
       content: "X";
       font-weight: 100;
       color: rgba(0,0,0,0.5);
@@ -43,7 +43,6 @@
       font-size: 43px;
       top: 0;
       left: 2px;
-
       z-index: 1700;
     }
   }
@@ -61,10 +60,9 @@
 }
 
 @keyframes breathing {
-  0%   {transform: scale(0.9);}
-  20%  {transform: rotate(10deg);}
-  70%  {transform: rotate(-10deg);}
-  100% {transform: scale(1.1);}
+  0%     {transform: translate(0,1px) scale(0.95);}
+  50%     {transform: translate(0,0) scale(1);}
+  100%   {transform: translate(0,-1px) scale(1.05);}
 }
 
 @keyframes tilting {
