@@ -143,10 +143,10 @@ export default class Game extends React.PureComponent {
           });
           //console.log(targetEntities);
           targetEntities.forEach((targetEntity) => {
-            targetEntity.hp -= entity.damage;
             if(targetEntity.hp <= 0) {
               entity.isShooting = false;
             }
+            targetEntity.hp -= entity.damage;
           });
         }
 
