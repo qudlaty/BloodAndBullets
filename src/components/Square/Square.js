@@ -16,7 +16,7 @@ class Square extends React.PureComponent {
     if(this.props.active) {
       className += " active";
     }
-    if(this.props.value){
+    if(this.props.icon){
       if(this.props.isBreathing) {
         className += " breathing";
       } else {
@@ -142,7 +142,7 @@ class Square extends React.PureComponent {
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
         <div className="content" style={{
           animation: animationBreathing
-        }}>{this.props.value}</div>
+        }}>{this.props.icon}</div>
         <style>
             {customStyle}
         </style>

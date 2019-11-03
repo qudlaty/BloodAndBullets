@@ -28,7 +28,7 @@ export default class Board extends React.PureComponent {
       <Square
         squareId={i}
         position={this.props.squares[i] && this.props.squares[i].position}
-        value={this.props.squares[i] && this.props.squares[i].value}
+        icon={this.props.squares[i] && this.props.squares[i].icon}
         active={this.props.squares[i] && this.props.squares[i].active}
         isBreathing={this.props.squares[i] && this.props.squares[i].isBreathing}
         isShooting={this.props.squares[i] && this.props.squares[i].isShooting}

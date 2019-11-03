@@ -33,7 +33,7 @@ class EntityView extends React.Component {
           <span>[{entity.position.x}, {this.props.entity.position.y}]</span>
         </div>
         <div className="portrait">
-          {this.props.entity.value}
+          {this.props.entity.icon}
         </div>
         <strong title="Name">{this.props.entity.name}</strong>
         <em title="Age"> ({this.props.entity.age})</em>
