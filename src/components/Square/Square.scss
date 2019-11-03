@@ -2,6 +2,7 @@
   0%  {border-width: 1px;}
   100%  {border-width: 4px; transform: rotate(900deg);}
 }
+
 .square {
   height: 34px;
   width: 34px;
@@ -24,12 +25,15 @@
     outline: none;
   }
   &.active {
-    border: 1px solid #eee;
-    background: green;
+    box-shadow:
+      0 0 10px 3px inset white,
+      0 0 10px 3px  white;
     &.shooting{
-      border: 1px dotted white;
-      animation: shoot 1s infinite alternate;
+      // nothing here
     }
+  }
+  &.breathing {
+    //box-shadow: 0 0 3px 3px inset green;
   }
   &.dead {
     background-color: red;
