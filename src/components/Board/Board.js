@@ -22,12 +22,13 @@ export default class Board extends React.PureComponent {
 
     This is CRUCIAL to only rerender squares with changed values.
 
-     */
+    Additionally, we need to ensure that Unchanged squares have the same values of objects passed down here.
+    */
 
     return (
       <Square
         squareId={i}
-        position={this.props.squares[i] && this.props.squares[i].position}
+        //position={this.props.squares[i] && this.props.squares[i].position}
         icon={this.props.squares[i] && this.props.squares[i].icon}
         active={this.props.squares[i] && this.props.squares[i].active}
         isBreathing={this.props.squares[i] && this.props.squares[i].isBreathing}
