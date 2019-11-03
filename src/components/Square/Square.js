@@ -39,7 +39,7 @@ class Square extends React.Component {
 
     let randomTime = `${(Math.random()+0.5).toFixed(2)}s`
     let animationBreathing = this.props.isBreathing ?
-        `breathing ${randomTime} alternate infinite` : 'none';
+        `breathing ${randomTime} alternate infinite linear` : 'none';
 
     let targetCoords = this.props.targetPosition;
     let projectileNumber = 5;
