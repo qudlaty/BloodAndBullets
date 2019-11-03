@@ -189,12 +189,17 @@ export default class Game extends React.PureComponent {
 
   handleBoardClick(i) {
     //console.log("CLICKED ", i);
+    const deselectAllEntities = (entities) => {
+      entities.forEach((entity) => {
+        entity.active = false;
+      });
+    };
     this.setState((previousState) => {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares, selected } = localCopyOfPreviousState;
 
       if(squares[i]) {
-        if(selected) {
+        if(selected && !squares[i].isFriendly) {
           if(selected.name === previousState.squares[i].name) {
             selected = this.setSelected(entities, selected, false);
             console.log(selected);
@@ -206,15 +211,14 @@ export default class Game extends React.PureComponent {
             }
           }
         } else {
+          deselectAllEntities(entities);
           selected = squares[i];
           this.setSelected(entities, selected, true);
         }
 
       } else {
         /* Deselecting and stopping fire on all entities */
-        entities.forEach((entity) => {
-          entity.active = false;
-        });
+        deselectAllEntities(entities);
         entities.forEach(entity => {
           entity.isShooting = false;
         })
