@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/BloodAndBulllets/build/static/css/main.aa9cf7b7.chunk.css",
-    "main.js": "/BloodAndBulllets/build/static/js/main.0049e85d.chunk.js",
-    "main.js.map": "/BloodAndBulllets/build/static/js/main.0049e85d.chunk.js.map",
+    "main.css": "/BloodAndBulllets/build/static/css/main.890d4331.chunk.css",
+    "main.js": "/BloodAndBulllets/build/static/js/main.edf8d842.chunk.js",
+    "main.js.map": "/BloodAndBulllets/build/static/js/main.edf8d842.chunk.js.map",
     "runtime-main.js": "/BloodAndBulllets/build/static/js/runtime-main.75db0f46.js",
     "runtime-main.js.map": "/BloodAndBulllets/build/static/js/runtime-main.75db0f46.js.map",
     "static/js/2.0441643b.chunk.js": "/BloodAndBulllets/build/static/js/2.0441643b.chunk.js",
     "static/js/2.0441643b.chunk.js.map": "/BloodAndBulllets/build/static/js/2.0441643b.chunk.js.map",
     "index.html": "/BloodAndBulllets/build/index.html",
-    "precache-manifest.b620da7aef751e056ac06a552beb5d1d.js": "/BloodAndBulllets/build/precache-manifest.b620da7aef751e056ac06a552beb5d1d.js",
+    "precache-manifest.e6a50681d9c80eff074b7621cfb0fd32.js": "/BloodAndBulllets/build/precache-manifest.e6a50681d9c80eff074b7621cfb0fd32.js",
     "service-worker.js": "/BloodAndBulllets/build/service-worker.js",
-    "static/css/main.aa9cf7b7.chunk.css.map": "/BloodAndBulllets/build/static/css/main.aa9cf7b7.chunk.css.map"
+    "static/css/main.890d4331.chunk.css.map": "/BloodAndBulllets/build/static/css/main.890d4331.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.75db0f46.js",
     "static/js/2.0441643b.chunk.js",
-    "static/css/main.aa9cf7b7.chunk.css",
-    "static/js/main.0049e85d.chunk.js"
+    "static/css/main.890d4331.chunk.css",
+    "static/js/main.edf8d842.chunk.js"
   ]
 }
