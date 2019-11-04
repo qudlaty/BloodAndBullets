@@ -52,7 +52,7 @@ class Square extends React.Component {
         angle = - Math.atan(
           x/y
         ) * (180/Math.PI);
-      }else if(y < 0) {
+      } else if(y < 0) {
         angle = (180/Math.PI) *
           (
             Math.atan(
