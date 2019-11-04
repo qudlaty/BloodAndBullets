@@ -84,7 +84,10 @@ export default class Game extends React.PureComponent {
       setTimeout(this.loop, 1000);
     }
   }
-
+  nextTurn = () => {
+    this.setState({autoLoop: false});
+    this.loop();
+  }
   moveEntityRandomly(squares, entity) {
     // modifies entity in-place
     let oldPositionX = entity.position.x;
@@ -275,9 +278,9 @@ export default class Game extends React.PureComponent {
           <EntitiesList
             entities={this.state.entities}
           />
-          <div className="step-counter">{this.stepNumber}</div>
         </div>
         <div className="game-info">
+
           <span className="selected">Selected: {this.state.selected && this.state.selected.name}</span>
           <button
             onClick={
@@ -288,8 +291,12 @@ export default class Game extends React.PureComponent {
             className="button button-nuke"
           >Nuke All</button>
           <button onClick={this.toggleRotateBoard} className="button">Rotate Board</button>
-          <button onClick={this.loop} className="button">Next Step</button>
-          <label><input type="checkbox" onChange={this.switchAutoLoop}/> Auto </label>
+          <button onClick={this.nextTurn} className="button">Next Step</button>
+          <span className="step-counter">Turn: {this.stepNumber}</span>
+          <label className="auto-cycle button">
+            <input type="checkbox" checked={this.state.autoLoop ? 'checked' : ''} onChange={this.switchAutoLoop}/>
+            <span>Auto Cycle</span>
+          </label>
           <ul>
             <li>Click Ellen Ripley on the board, to select her.</li>
             <li>Click a target to shoot it.</li>

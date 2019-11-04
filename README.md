@@ -10,8 +10,9 @@ It introduces multiple mechanics making the deadly game of on-board spaceship co
 - You can start fires to burn your enemies or deny them access to certain area.
 - Motion tracker, detecting micro-changes in air density, allowing you to detect objects that are moving or even just breathing outside of your field of view.
 - Nightvision to see in darkness.
-- Long range scans and fire support from your mothership - MF-42 "Thunder".
-- Grenades to throw around corners.
+- Long range scans and precision fire support from your mothership - MF-42 "Ishikawa".
+- Grenades to throw around corners - HE, Shrapnel, Thermobaric, White Phosphorus, Chemical
+- Smoke grenades to cover your advance.
 - And many more for you to discover...
 
 ## History
