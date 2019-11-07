@@ -6,16 +6,29 @@ export default class ListOfEntities extends React.Component {
   renderCounter = 0
   render() {
     // console.log("Rendering EntitiesList #", this.renderCounter++);
-    var entities = this.props.entities.map(obj => {
+    
+    let entitiesFriendly =
+    this.props.entities.filter(entity=>entity.isFriendly).map(obj => {
       return (
         <EntityCard entity={obj} key={obj.name}/>
       )
     });
+
+    let entitiesUnfriendly =
+    this.props.entities.filter(entity=>!entity.isFriendly).map(obj => {
+      return (
+        <EntityCard entity={obj} key={obj.name}/>
+      )
+    });
+
     return (
       <>
         <h4 className="list-of-entities__header">List of Entities:</h4>
         <div className="list-of-entities">
-            {entities}
+            {entitiesFriendly}
+        </div>
+        <div className="list-of-entities">
+            {entitiesUnfriendly}
         </div>
       </>
     );
