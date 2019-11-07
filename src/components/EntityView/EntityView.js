@@ -1,7 +1,7 @@
 import React from 'react';
-import './ProgressBar.scss';
-import './EntityView.scss';
+import LinearDisplay from './LinearDisplay';
 
+import './EntityView.scss';
 
 class EntityView extends React.Component {
   renderCount = 0
@@ -35,13 +35,7 @@ class EntityView extends React.Component {
         <br />
         <span>HP: {entity.hp}/{entity.maxHp}</span>
         <span> Rounds: {entity.rounds} / {entity.maxRounds}</span>
-        <progress
-          title="HP"
-          max={entity.maxHp}
-          value={entity.hp}
-          percent={~~(entity.hp * 100 / entity.maxHp)}
-        >
-        </progress>
+        <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} />
       </div>
     );
   }
