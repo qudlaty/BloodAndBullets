@@ -1,5 +1,5 @@
 import React from 'react';
-import EntityView from '../EntityView';
+import EntityCard from '../EntityCard';
 import './EntitiesList.scss';
 
 export default class ListOfEntities extends React.Component {
@@ -8,7 +8,7 @@ export default class ListOfEntities extends React.Component {
     // console.log("Rendering EntitiesList #", this.renderCounter++);
     var entities = this.props.entities.map(obj => {
       return (
-        <EntityView entity={obj} key={obj.name}/>
+        <EntityCard entity={obj} key={obj.name}/>
       )
     });
     return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import LinearDisplay from './LinearDisplay';
 
-import './EntityView.scss';
+import './EntityCard.scss';
 
-class EntityView extends React.Component {
+class EntityCard extends React.Component {
   renderCount = 0
 
   render() {
@@ -52,4 +52,4 @@ class EntityView extends React.Component {
   }
 }
 
-export default EntityView;
+export default EntityCard;
