@@ -1,0 +1,37 @@
+$progressColor: #666;
+$backgroundColor: #222;
+$foregroundColor: #AAA;
+$fontColor: #EEE;
+$font-size: 1em;
+
+.linear-display {
+  margin-top: 10px;
+
+  color: $foregroundColor;
+  & * {
+    display: inline-block;
+  }
+  &__label{
+  }
+  &__bar-container {
+    background: $backgroundColor;
+    border: 1px solid;
+    height: $font-size;
+    line-height: 100%;
+
+    font-size: $font-size;
+    width: 100%;
+    width: 200px;
+  }
+  &__bar-progress {
+    background: $progressColor;
+    color: $fontColor;
+    box-sizing: border-box;
+    height: 100%;
+    text-align: right;
+    transition: all 1s;
+    &-text{
+      
+    }
+  }
+}
