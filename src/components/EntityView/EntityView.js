@@ -23,19 +23,30 @@ class EntityView extends React.Component {
     return (
 
       <div className={className}>
-        <div className="position" title="Position">
-          <span>[{entity.position.x}, {entity.position.y}]</span>
-        </div>
-        <div className="portrait">
-          {entity.icon}
+        <div>
+          <div className="portrait">
+            {entity.icon}
+          </div>
+          <div className="position" title="Position">
+            <span>[{entity.position.x}, {entity.position.y}]</span>
+          </div>
+
         </div>
         <strong title="Name">{entity.name}</strong>
         <em title="Age"> ({entity.age})</em>
+        <br />
         {` `}{lifeSigns}
         <br />
-        <span>HP: {entity.hp}/{entity.maxHp}</span>
-        <span> Rounds: {entity.rounds} / {entity.maxRounds}</span>
-        <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} />
+
+        <div style={{
+          clear: "both",
+          display: "inline-block",
+          textAlign: "right",
+        }}>
+          <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} /><br/>
+          <LinearDisplay label="Rounds" current={entity.rounds} max={entity.maxRounds} />
+        </div>
+
       </div>
     );
   }
