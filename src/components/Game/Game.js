@@ -70,10 +70,12 @@ export default class Game extends React.PureComponent {
       let { entities, squares } = localCopyOfPreviousState;
 
       let JR = entities[0];// a reference to JR
+      let OP = this.findEntityById(entities, "Squid");
       if(JR.isBreathing){
         // John Rambo AI
         // changing the original JR entity within entities array
         this.moveEntityRandomly(squares, JR);
+        this.moveEntityRandomly(squares, OP);
       }
       //console.log(entities);
       return {entities: entities, squares: squares};
@@ -84,10 +86,12 @@ export default class Game extends React.PureComponent {
       setTimeout(this.loop, 1000);
     }
   }
+
   nextTurn = () => {
     this.setState({autoLoop: false});
     this.loop();
   }
+
   moveEntityRandomly(squares, entity) {
     // modifies entity in-place
     let oldPositionX = entity.position.x;
@@ -132,25 +136,49 @@ export default class Game extends React.PureComponent {
         if(entity.isShooting && entity.targetPosition && (
           entity.targetPosition.x !== entity.position.x ||
           entity.targetPosition.y !== entity.position.y
-        )) {
-          if(entity.rounds-- === 0) {
+        )) {// We are shooting and not targetting ourselves
+
+          // should probably call a "calculateDamageApplied" method
+          let damageApplied = 0;
+          if(entity.rounds !== "empty" && entity.rounds > 0) {// if we still have ammo
+            // spending ammo
+            console.log("firing");
+            entity.rounds--;
+            damageApplied = entity.damage;
+          } else if(entity.rounds === 0) {
+            // stop shooting when magazine is empty
+            entity.rounds = "empty";
             entity.isShooting = false;
+            entity.damageApplied = 0;
+          } else if(entity.rounds === "empty") {
+            // when ordered to shoot with "empty" magazine state, load ammo instead
             entity.rounds = entity.maxRounds;
+            entity.isShooting = false;
+            entity.damageApplied = 0;
           }
+
           /*
           Searching for such an entity that its position is equal to our target position.
           */
           let targetEntities = localCopyOfEntities.filter((potentialTargetEntity) => {
-            return potentialTargetEntity.position.x === entity.targetPosition.x &&
-            potentialTargetEntity.position.y === entity.targetPosition.y
+            return (
+              potentialTargetEntity.position.x === entity.targetPosition.x &&
+              potentialTargetEntity.position.y === entity.targetPosition.y
+            );
           });
-          //console.log(targetEntities);
+          // console.log(targetEntities);
+          // Processing found target entities
           targetEntities.forEach((targetEntity) => {
+            // should probably call a "shoot" method
+            // console.log("applying damage");
+            targetEntity.hp -= damageApplied;
             if(targetEntity.hp <= 0) {
               entity.isShooting = false;
+              console.log("target eliminated");
+              return;
             }
-            targetEntity.hp -= entity.damage;
           });
+
         }
 
         if(entity.hp <= 0){
