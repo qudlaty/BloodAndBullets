@@ -13,27 +13,29 @@ class EntityCard extends React.Component {
       FIXME: Below should be separated into several sub-components
       Each sub-component should receive flat data (position, hp, ...)
      */
-    let className = "entity";
+    let className = " entity ";
     if(entity.active) {
-      className+=" active";
+      className+=" active ";
     }
 
-    let { isBreathing } = entity;
+    let { isBreathing, isFriendly } = entity;
+    let fof = isFriendly ? ' friendly ' : ' unfriendly ';
     let lifeSigns = isBreathing ? "ALIVE" : "DEAD";
+    className += fof;
     return (
 
       <div className={className}>
         <div>
+          <div className="position" title="Position">
+            <span> {entity.position.x} {entity.position.y} </span>
+          </div>
+
           <div className="portrait">
             {entity.icon}
-          </div>
-          <div className="position" title="Position">
-            <span>[{entity.position.x}, {entity.position.y}]</span>
           </div>
 
         </div>
         <strong title="Name">{entity.name}</strong>
-        <em title="Age"> ({entity.age})</em>
         <br />
         {` `}{lifeSigns}
         <br />
