@@ -20,8 +20,9 @@ class EntityCard extends React.Component {
 
     let { isBreathing, isFriendly } = entity;
     let fof = isFriendly ? ' friendly ' : ' unfriendly ';
-    let lifeSigns = isBreathing ? "ALIVE" : "DEAD";
+    let lifeSigns = isBreathing ? " ALIVE " : " DEAD ";
     className += fof;
+    className += lifeSigns;
     return (
 
       <div className={className}>
@@ -33,7 +34,6 @@ class EntityCard extends React.Component {
           <div className="portrait">
             {entity.icon}
           </div>
-
         </div>
         <strong title="Name">{entity.name}</strong>
         <br />

@@ -21,6 +21,12 @@
     background: #334040;
   }
 
+  &.dead {
+    background: #442020;
+    opacity: 0.4;
+    border: 2px solid #700;
+  }
+
   .position {
     position: absolute;
     top: 0;
