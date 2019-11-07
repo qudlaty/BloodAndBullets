@@ -1,7 +1,7 @@
 import React from 'react';
 import './LinearDisplay.scss';
 export default function LinearDisplay(props) {
-  let className=`linear-display ${props.className}`
+  let className=`linear-display ${props.className || ''}`
   let percentage = ~~(props.current * 100 / props.max);
   let progressStyle = {
     width: `${percentage}%`,
@@ -17,6 +17,7 @@ export default function LinearDisplay(props) {
           <span className="linear-display__bar-progress-text">{props.current}&nbsp;</span>
         </div>
       </div>
+      <div>&nbsp;</div>
     </div>
   );
 }
