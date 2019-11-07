@@ -12,9 +12,12 @@ export default class ListOfEntities extends React.Component {
       )
     });
     return (
-      <div className="listOfEntities">
-        List of Entities: {entities}
-      </div>
+      <>
+        <h4 className="list-of-entities__header">List of Entities:</h4>
+        <div className="list-of-entities">
+            {entities}
+        </div>
+      </>
     );
   }
 }

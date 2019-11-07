@@ -275,10 +275,8 @@ export default class Game extends React.PureComponent {
             size={this.state.arenaSize}
             className={boardClassName}
           />
-          <EntitiesList
-            entities={this.state.entities}
-          />
         </div>
+
         <div className="game-info">
 
           <span className="selected">Selected: {this.state.selected && this.state.selected.name}</span>
@@ -301,6 +299,11 @@ export default class Game extends React.PureComponent {
             <li>Click Ellen Ripley on the board, to select her.</li>
             <li>Click a target to shoot it.</li>
           </ul>
+        </div>
+        <div className="game-list">
+          <EntitiesList
+            entities={this.state.entities}
+          />
         </div>
       </div>
     );
