@@ -150,6 +150,7 @@ class Square extends React.Component {
 
     return (
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
+        <div className="blood">{this.props.blood}</div>
         <div className="content" style={{
           animation: animationBreathing
         }}>{this.props.icon}</div>

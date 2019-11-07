@@ -140,6 +140,7 @@ export default class Game extends React.PureComponent {
     //console.log("Processing entities");
     this.setState((state) => {
       let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
+      let localCopyOfSquares = JSON.parse(JSON.stringify(state.squares));
       localCopyOfEntities.forEach(entity => {
 
         if(entity.isShooting && entity.targetPosition && (
@@ -196,6 +197,8 @@ export default class Game extends React.PureComponent {
         if(entity.isBleeding){
           if(entity.hp > 0){
             entity.hp -= 1;
+            let square = this.getSquare(localCopyOfSquares, entity.position.x, entity.position.y);
+            this.addBlood(square, 1);
           }
           console.log(entity.position.x, entity.position.y);
         }
@@ -206,13 +209,22 @@ export default class Game extends React.PureComponent {
         }
 
       });
-      return {entities: localCopyOfEntities}
+      return {entities: localCopyOfEntities, squares: localCopyOfSquares}
     },
       () => {
         this.setSquaresAccordingToEntities();
       }
     );
 
+  }
+
+  addBlood = (square, amount) => {
+    if(!square) return;
+    if(!square.blood) {
+      square.blood = 1;
+    } else {
+      square.blood++;
+    }
   }
 
   getEntityId(entity) {
