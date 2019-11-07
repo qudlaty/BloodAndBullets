@@ -102,6 +102,7 @@ export default class Game extends React.PureComponent {
   }
 
   moveEntityRandomly(squares, entity) {
+    if(!entity.isBreathing) return;
     // modifies entity in-place
     let oldPositionX = entity.position.x;
     let oldPositionY = entity.position.y;
