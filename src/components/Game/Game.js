@@ -2,17 +2,15 @@ import React from 'react';
 import Board from '../Board';
 import EntitiesList from '../EntitiesList';
 import EntitiesValues from './EntitiesValues';
+
+import { moveEntityRandomly } from './ProcessingEntities';
+import { getSquare, setEntityWithinASquare } from './ProcessingSquares';
+
 import './Game.scss';
 
 export default class Game extends React.PureComponent {
-  /*
-    We have `state.entities` and we have `squares`,
-    both of which are representing the actual state of the game.
-    Perhaps we should keep squares within the state.
-  */
   renderCounter = 0
   stepNumber = 0
-  //squares = Array(5*5).fill(null)
 
   constructor(props) {
     super(props);
@@ -28,9 +26,6 @@ export default class Game extends React.PureComponent {
     }
 
     this.loop = this.loop.bind(this);
-    this.getSquare = this.getSquare.bind(this);
-    this.setSquare = this.setSquare.bind(this);
-    this.setEntityWithinASquare = this.setEntityWithinASquare.bind(this);
     this.toggleRotateBoard = this.toggleRotateBoard.bind(this);
   }
 
@@ -41,34 +36,12 @@ export default class Game extends React.PureComponent {
   setSquaresAccordingToEntities() {
     this.setState((previousState)=>{
       let squares = JSON.parse(JSON.stringify(previousState.squares));
-      //let squares = previousState.squares;
-
       previousState.entities.forEach((entity)=>{
-        this.setEntityWithinASquare(squares, entity.position.x, entity.position.y, entity);
+        setEntityWithinASquare(squares, entity.position.x, entity.position.y, entity);
       });
 
       return {squares};
     });
-  }
-
-  getSquare(squares, x, y) {
-    return squares[this.targetSquareIndex(x, y)];
-  }
-
-  setSquare(squares, x, y, value) {
-    squares[this.targetSquareIndex(x, y)] = value;
-  }
-
-  setEntityWithinASquare(squares, x, y, entity) {
-    let targetSquareIndex = this.targetSquareIndex(x, y);
-    if(!squares[targetSquareIndex]) {
-      squares[targetSquareIndex] = {};
-    }
-    squares[targetSquareIndex].entity = entity;
-  }
-
-  targetSquareIndex(x, y) {
-    return y * this.state.arenaSize + x;
   }
 
   loop() {
@@ -83,8 +56,8 @@ export default class Game extends React.PureComponent {
       if(JR.isBreathing){
         // John Rambo AI
         // changing the original JR entity within entities array
-        this.moveEntityRandomly(squares, JR);
-        this.moveEntityRandomly(squares, OP);
+        moveEntityRandomly(squares, JR);
+        moveEntityRandomly(squares, OP);
       }
       //console.log(entities);
       return {entities: entities, squares: squares};
@@ -99,42 +72,6 @@ export default class Game extends React.PureComponent {
   nextTurn = () => {
     this.setState({autoLoop: false});
     this.loop();
-  }
-
-  moveEntityRandomly(squares, entity) {
-    if(!entity.isBreathing) return;
-    // modifies entity in-place
-    let oldPositionX = entity.position.x;
-    let oldPositionY = entity.position.y;
-
-    entity.position.x = entity.position.x +
-      (Math.floor(Math.random()*2)) -
-      (Math.floor(Math.random()*2));
-    entity.position.y = entity.position.y +
-      (Math.floor(Math.random()*2)) -
-      (Math.floor(Math.random()*2));
-
-    if(entity.position.x < 0) entity.position.x = 0;
-    if(entity.position.y < 0) entity.position.y = 0;
-    if(entity.position.x > this.state.arenaSize - 1) entity.position.x = this.state.arenaSize - 1;
-    if(entity.position.y > this.state.arenaSize - 1) entity.position.y = this.state.arenaSize - 1;
-
-    let newSquare = this.getSquare(squares, entity.position.x, entity.position.y);
-
-    if (newSquare) {
-      entity.position.x = oldPositionX;
-      entity.position.y = oldPositionY;
-    }
-
-    if(
-      oldPositionX !== entity.position.x ||
-      oldPositionY !== entity.position.y
-    ) {
-      this.setEntityWithinASquare(squares, oldPositionX, oldPositionY, null);
-    }
-
-    // NO RETURN AS IT'S MODIFIED IN-PLACE return entity;
-    // WHICH IS A BAD HABIT, BUT OH SO COMFY.
   }
 
   processEntities(){
@@ -198,7 +135,7 @@ export default class Game extends React.PureComponent {
         if(entity.isBleeding){
           if(entity.hp > 0){
             entity.hp -= 1;
-            let square = this.getSquare(localCopyOfSquares, entity.position.x, entity.position.y);
+            let square = getSquare(localCopyOfSquares, entity.position.x, entity.position.y);
             this.addBlood(square, 1);
           }
           console.log(entity.position.x, entity.position.y);
