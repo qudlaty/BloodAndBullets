@@ -30,6 +30,7 @@ export default class Game extends React.PureComponent {
     this.loop = this.loop.bind(this);
     this.getSquare = this.getSquare.bind(this);
     this.setSquare = this.setSquare.bind(this);
+    this.setEntityWithinASquare = this.setEntityWithinASquare.bind(this);
     this.toggleRotateBoard = this.toggleRotateBoard.bind(this);
   }
 
@@ -43,7 +44,7 @@ export default class Game extends React.PureComponent {
       //let squares = previousState.squares;
 
       previousState.entities.forEach((entity)=>{
-        this.setSquare(squares, entity.position.x, entity.position.y, entity);
+        this.setEntityWithinASquare(squares, entity.position.x, entity.position.y, entity);
       });
 
       return {squares};
@@ -56,6 +57,14 @@ export default class Game extends React.PureComponent {
 
   setSquare(squares, x, y, value) {
     squares[this.targetSquareIndex(x, y)] = value;
+  }
+
+  setEntityWithinASquare(squares, x, y, entity) {
+    let targetSquareIndex = this.targetSquareIndex(x, y);
+    if(!squares[targetSquareIndex]) {
+      squares[targetSquareIndex] = {};
+    }
+    squares[targetSquareIndex].entity = entity;
   }
 
   targetSquareIndex(x, y) {
@@ -120,7 +129,7 @@ export default class Game extends React.PureComponent {
       oldPositionX !== entity.position.x ||
       oldPositionY !== entity.position.y
     ) {
-      this.setSquare(squares, oldPositionX, oldPositionY, null);
+      this.setEntityWithinASquare(squares, oldPositionX, oldPositionY, null);
     }
 
     // NO RETURN AS IT'S MODIFIED IN-PLACE return entity;
@@ -170,7 +179,10 @@ export default class Game extends React.PureComponent {
           // Processing found target entities
           targetEntities.forEach((targetEntity) => {
             // should probably call a "shoot" method
-            // console.log("applying damage");
+            // console.log("applying damage")
+            if(damageApplied) {
+              targetEntity.isBleeding = true;
+            };
             targetEntity.hp -= damageApplied;
             if(targetEntity.hp <= 0) {
               entity.isShooting = false;
@@ -179,6 +191,13 @@ export default class Game extends React.PureComponent {
             }
           });
 
+        }
+
+        if(entity.isBleeding){
+          if(entity.hp > 0){
+            entity.hp -= 1;
+          }
+          console.log(entity.position.x, entity.position.y);
         }
 
         if(entity.hp <= 0){
@@ -229,21 +248,21 @@ export default class Game extends React.PureComponent {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares, selected } = localCopyOfPreviousState;
 
-      if(squares[i]) {
-        if(selected && !squares[i].isFriendly) {
-          if(selected.name === previousState.squares[i].name) {
+      if(squares[i] && squares[i].entity) {
+        if(selected && !squares[i].entity.isFriendly) {
+          if(selected.name === previousState.squares[i].entity.name) {
             selected = this.setSelected(entities, selected, false);
             console.log(selected);
           } else {
             let selectedEntity = this.findEntityById(entities, this.getEntityId(selected));
-            selectedEntity.targetPosition = previousState.squares[i].position;
+            selectedEntity.targetPosition = previousState.squares[i].entity.position;
             if(selectedEntity.hasWeapon ) {
               selectedEntity.isShooting = true;
             }
           }
         } else {
           deselectAllEntities(entities);
-          selected = squares[i];
+          selected = squares[i].entity;
           this.setSelected(entities, selected, true);
         }
 
