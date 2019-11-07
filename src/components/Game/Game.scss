@@ -8,13 +8,26 @@
 }
 
 .game {
-  display: flex;
-  flex-direction: row;
+  // display: flex;
+  // flex-direction: row;
+  // align-items: flex-start;
+  float: left;
   .rotated-board{
     transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
   }
+
+  &> * {
+    margin: 5px;
+  }
   &-info {
-    margin-left: 20px;
+    float: left;
+  }
+  &-board {
+    float: left;
+  }
+  &-list {
+    float: left;
+    clear: both;
   }
 }
 

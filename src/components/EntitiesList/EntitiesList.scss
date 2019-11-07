@@ -1,5 +1,13 @@
-.listOfEntities {
-  margin-top: 20px;
+// margin: 10px;
+
+.list-of-entities {
+  &__header {
+    margin: 10px;
+  }
+  float: left;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 ol, ul {
   padding-left: 30px;
