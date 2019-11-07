@@ -34,7 +34,9 @@ export default class Game extends React.PureComponent {
     this.setState((previousState)=>{
       let squares = JSON.parse(JSON.stringify(previousState.squares));
       previousState.entities.forEach((entity)=>{
-        ProcessingSquares.setEntityWithinASquare(squares, entity.position.x, entity.position.y, entity);
+        ProcessingSquares.setEntityWithinASquare(
+          squares, entity.position.x, entity.position.y, entity
+        );
       });
 
       return {squares};
@@ -170,33 +172,39 @@ export default class Game extends React.PureComponent {
       entities.forEach((entity) => { entity.active = false; });
     };
 
+
+    /* this should contain mostly function calls */
+
+
     this.setState((previousState) => {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares, selected } = localCopyOfPreviousState;
 
-      if(squares[i] && squares[i].entity) {
+      if(squares[i] && squares[i].entity) {// clicked an entity
         if(selected && !squares[i].entity.isFriendly) {
+          // that is hostile, while we already have one selected
           if(selected.name === previousState.squares[i].entity.name) {
+            // second click on a hostile entity deselects it
             selected = this.setSelected(entities, selected, false);
             console.log(selected);
-          } else {
+          } else {// clicked a non-selected hostile entity - attack
             let selectedEntity = ProcessingEntities.findEntityById(
               entities,
               ProcessingEntities.getEntityId(selected)
             );
             selectedEntity.targetPosition =
               previousState.squares[i].entity.position;
-            if(selectedEntity.hasWeapon ) {
-              selectedEntity.isShooting = true;
-            }
+
+            selectedEntity.isShooting = true;
           }
-        } else {
+
+        } else {// clicked entity is friendly - select it
           deselectAllEntities(entities);
           selected = squares[i].entity;
           this.setSelected(entities, selected, true);
         }
 
-      } else {
+      } else {// clicked an empty square
         /* Deselecting and stopping fire on all entities */
         deselectAllEntities(entities);
         entities.forEach(entity => {
