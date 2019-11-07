@@ -3,8 +3,8 @@ import Board from '../Board';
 import EntitiesList from '../EntitiesList';
 import EntitiesValues from './EntitiesValues';
 
-import { moveEntityRandomly } from './ProcessingEntities';
-import { getSquare, setEntityWithinASquare } from './ProcessingSquares';
+import * as ProcessingEntities from './ProcessingEntities';
+import * as ProcessingSquares from './ProcessingSquares';
 
 import './Game.scss';
 
@@ -24,9 +24,6 @@ export default class Game extends React.PureComponent {
       squares: [],
       autoLoop: true,
     }
-
-    this.loop = this.loop.bind(this);
-    this.toggleRotateBoard = this.toggleRotateBoard.bind(this);
   }
 
   componentDidMount(){
@@ -37,29 +34,25 @@ export default class Game extends React.PureComponent {
     this.setState((previousState)=>{
       let squares = JSON.parse(JSON.stringify(previousState.squares));
       previousState.entities.forEach((entity)=>{
-        setEntityWithinASquare(squares, entity.position.x, entity.position.y, entity);
+        ProcessingSquares.setEntityWithinASquare(squares, entity.position.x, entity.position.y, entity);
       });
 
       return {squares};
     });
   }
 
-  loop() {
+  loop = () => {
     this.stepNumber++;
     this.setState( (previousState) => {
       // new copy of entities based on up-to-date state
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares } = localCopyOfPreviousState;
 
-      let JR = entities[0];// a reference to JR
-      let OP = this.findEntityById(entities, "Squid");
-      if(JR.isBreathing){
-        // John Rambo AI
-        // changing the original JR entity within entities array
-        moveEntityRandomly(squares, JR);
-        moveEntityRandomly(squares, OP);
-      }
-      //console.log(entities);
+      let JR = ProcessingEntities.findEntityById(entities, "John Rambo");
+      let OP = ProcessingEntities.findEntityById(entities, "Squid");
+      ProcessingEntities.moveEntityRandomly(squares, JR);
+      ProcessingEntities.moveEntityRandomly(squares, OP);
+
       return {entities: entities, squares: squares};
     });
 
@@ -135,8 +128,8 @@ export default class Game extends React.PureComponent {
         if(entity.isBleeding){
           if(entity.hp > 0){
             entity.hp -= 1;
-            let square = getSquare(localCopyOfSquares, entity.position.x, entity.position.y);
-            this.addBlood(square, 1);
+            let square = ProcessingSquares.getSquare(localCopyOfSquares, entity.position.x, entity.position.y);
+            ProcessingSquares.addBlood(square, 1);
           }
           console.log(entity.position.x, entity.position.y);
         }
@@ -156,27 +149,11 @@ export default class Game extends React.PureComponent {
 
   }
 
-  addBlood = (square, amount) => {
-    if(!square) return;
-    if(!square.blood) {
-      square.blood = 1;
-    } else {
-      square.blood++;
-    }
-  }
-
-  getEntityId(entity) {
-    return entity.name;
-  }
-
-  findEntityById(entities, id) {
-    let result = entities.filter((entity) => entity.name === id)[0];
-    //console.log("found entity:", result);
-    return result;
-  }
-
   setSelected(entities, selected, value) {
-    let selectedInEntities = this.findEntityById(entities, this.getEntityId(selected));
+    let selectedInEntities = ProcessingEntities.findEntityById(
+      entities,
+      ProcessingEntities.getEntityId(selected)
+    );
     if(value) {
       selected.active = value;
     } else {
@@ -187,13 +164,12 @@ export default class Game extends React.PureComponent {
     return selected;
   }
 
-  handleBoardClick(i) {
+  handleBoardClick = (i) => {
     //console.log("CLICKED ", i);
     const deselectAllEntities = (entities) => {
-      entities.forEach((entity) => {
-        entity.active = false;
-      });
+      entities.forEach((entity) => { entity.active = false; });
     };
+
     this.setState((previousState) => {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares, selected } = localCopyOfPreviousState;
@@ -204,8 +180,12 @@ export default class Game extends React.PureComponent {
             selected = this.setSelected(entities, selected, false);
             console.log(selected);
           } else {
-            let selectedEntity = this.findEntityById(entities, this.getEntityId(selected));
-            selectedEntity.targetPosition = previousState.squares[i].entity.position;
+            let selectedEntity = ProcessingEntities.findEntityById(
+              entities,
+              ProcessingEntities.getEntityId(selected)
+            );
+            selectedEntity.targetPosition =
+              previousState.squares[i].entity.position;
             if(selectedEntity.hasWeapon ) {
               selectedEntity.isShooting = true;
             }
@@ -232,7 +212,7 @@ export default class Game extends React.PureComponent {
 
   }
 
-  nuke(dmg){
+  nuke = (dmg) => {
     //console.log("Nuking")
     this.setState( (state) => {
       let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
@@ -245,8 +225,7 @@ export default class Game extends React.PureComponent {
     });
   }
 
-
-  toggleRotateBoard(){
+  toggleRotateBoard = () => {
     this.setState({isBoardRotated: !this.state.isBoardRotated});
   }
 
@@ -293,7 +272,7 @@ export default class Game extends React.PureComponent {
             <span>Auto Cycle</span>
           </label>
           <ul>
-            <li>Click Ellen Ripley on the board, to select her.</li>
+            <li>Click Ellen Replay on the board, to select her.</li>
             <li>Click a target to shoot it.</li>
           </ul>
         </div>

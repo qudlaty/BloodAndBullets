@@ -9,7 +9,17 @@ function getNumberWithinBoundaries(value, min, max) {
 }
 
 function getRandomIntInclusive(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function getEntityId(entity) {
+  return entity.name;
+}
+
+export function findEntityById(entities, id) {
+  let result = entities.filter((entity) => entity.name === id)[0];
+  //console.log("found entity:", result);
+  return result;
 }
 
 export function moveEntityRandomly(squares, entity) {
