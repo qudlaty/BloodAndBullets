@@ -24,7 +24,8 @@ export default class Board extends React.PureComponent {
 
     Additionally, we need to ensure that Unchanged squares have the same values of objects passed down here.
     */
-
+    let square = this.props.squares[i];
+    let entity = this.props.squares[i] && this.props.squares[i].entity;
     return (
       <Square
         key={i}
@@ -34,15 +35,15 @@ export default class Board extends React.PureComponent {
 
         onClick={this.handleClick}
 
-        icon={this.props.squares[i] && this.props.squares[i].icon}
-        active={this.props.squares[i] && this.props.squares[i].active}
-        isBreathing={this.props.squares[i] && this.props.squares[i].isBreathing}
+        icon={entity && entity.icon}
+        active={entity && entity.active}
+        isBreathing={entity && entity.isBreathing}
 
-        isShooting={this.props.squares[i] && this.props.squares[i].isShooting}
-        weaponType={this.props.squares[i] && this.props.squares[i].inventory && this.props.squares[i].inventory[0]}
+        isShooting={entity && entity.isShooting}
+        weaponType={entity && entity.inventory && entity.inventory[0]}
 
-        position={this.props.squares[i] && this.props.squares[i].position}
-        targetPosition={this.props.squares[i] && this.props.squares[i].targetPosition}
+        position={entity && entity.position}
+        targetPosition={entity && entity.targetPosition}
       />
     );
   }
