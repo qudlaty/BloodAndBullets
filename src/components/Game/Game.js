@@ -100,7 +100,7 @@ export default class Game extends React.PureComponent {
   moveEntities(entities, squares, selected) {
 		entities.forEach(
 			entity => this.moveEntityIntoChosenDestinations(
-				squares, entities, selected, entity
+				selected, entity
 			)
 		);
     let JR = ProcessingEntities.findEntityById(entities, "John Rambo");
@@ -109,15 +109,12 @@ export default class Game extends React.PureComponent {
     ProcessingEntities.moveEntityRandomly(squares, OP);
 
   }
-	moveEntityIntoChosenDestinations(squares, entities, selected, entity){
-		if(entity.moveDestination) {
-			
-			console.log("dupa", entity);
+	moveEntityIntoChosenDestinations(selected, entity){
+		if(entity.isBreathing && entity.moveDestination) {
 			entity.position = entity.moveDestination;
 			selected.position = entity.position;
 			delete entity.moveDestination;
 		}
-		
 	}
 
   stopBreathingForKilledEntities(entity) {
@@ -284,9 +281,6 @@ export default class Game extends React.PureComponent {
 					let entitiesAtGivenPosition = this.getEntitiesAtGivenPosition(entities, selected.position);
 					let entity = entitiesAtGivenPosition[0];
 					entity && (entity.moveDestination = position);
-					
-					console.log("dupa", entity,position,entitiesAtGivenPosition, entities);
-					
 					this.resetGivenFieldOnACollection(squares, 'isChosenDestination');
 					squares[i].isChosenDestination = true;
 				} else {
