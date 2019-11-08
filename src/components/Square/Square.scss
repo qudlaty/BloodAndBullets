@@ -40,6 +40,9 @@
       // nothing here
     }
   }
+	&.is-available-destination {
+		background-color: olive;
+	}
   &.breathing {
     //box-shadow: 0 0 3px 3px inset green;
   }
