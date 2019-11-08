@@ -55,7 +55,7 @@ export default class Game extends React.PureComponent {
 
     entities.forEach(entity => {
       // this check should probably occur upon target verification
-      if(this.entityIsShootingProperly(entity)) {
+      if(this.isEntityShootingProperly(entity)) {
         // We are shooting and not targetting ourselves
         this.fireAShot(entities, entity);
       }
@@ -134,7 +134,7 @@ export default class Game extends React.PureComponent {
     return entity;
   }
 
-  entityIsShootingProperly(entity) {
+  isEntityShootingProperly(entity) {
     return entity.isShooting && entity.targetPosition && (
       entity.targetPosition.x !== entity.position.x ||
       entity.targetPosition.y !== entity.position.y
