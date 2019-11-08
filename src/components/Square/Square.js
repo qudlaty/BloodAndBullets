@@ -29,6 +29,9 @@ class Square extends React.Component {
 		if(this.props.isAvailableDestination) {
 			className += " is-available-destination "
 		}
+		if(this.props.isChosenDestination) {
+			className += " is-chosen-destination "
+		}
     if(this.props.icon){
       if(this.props.isBreathing) {
         className += " breathing";
