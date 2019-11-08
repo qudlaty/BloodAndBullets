@@ -45,7 +45,6 @@ export function moveEntityRandomly(squares, entity) {
     oldPositionX !== entity.position.x ||
     oldPositionY !== entity.position.y
   ) {
-    console.log("MOVED");
     setEntityWithinASquare(squares, oldPositionX, oldPositionY, null);
   }
 
