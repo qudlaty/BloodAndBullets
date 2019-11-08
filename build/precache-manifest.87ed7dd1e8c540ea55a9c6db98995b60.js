@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "406128d7521962f9698460d0082a0979",
+    "revision": "b86fa0d025fee4455f6eabfb655c58d0",
     "url": "/BloodAndBulllets/build/index.html"
   },
   {
-    "revision": "3ac75b86cdf7915d26a8",
+    "revision": "e1283f829fb3ff42ccb6",
     "url": "/BloodAndBulllets/build/static/css/main.d1828058.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/BloodAndBulllets/build/static/js/2.0441643b.chunk.js"
   },
   {
-    "revision": "3ac75b86cdf7915d26a8",
-    "url": "/BloodAndBulllets/build/static/js/main.749759dc.chunk.js"
+    "revision": "e1283f829fb3ff42ccb6",
+    "url": "/BloodAndBulllets/build/static/js/main.aa1d4e3e.chunk.js"
   },
   {
     "revision": "5606cf87970be9941543",
