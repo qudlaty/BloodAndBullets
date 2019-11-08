@@ -48,10 +48,11 @@ const entities = [
     position: {x:7, y:6},
   },
   {
-    name: "Spider", age: 1, hp: 60, maxHp: 50,
+    name: "Spider", age: 1, hp: 160, maxHp: 150,
     icon: "🕷️",
     isBreathing: true,
     position: {x:9, y:3},
+    bleedingReductionPerTurn: 1,
   },
   {
     name: "Mosquito", age: 1, hp: 12, maxHp: 20,

@@ -126,10 +126,11 @@ export default class Game extends React.PureComponent {
   }
 
   applyEffectsOfBleeding(entity, squares) {
-    if(entity.isBleeding && entity.hp > 0) {
-      entity.hp -= 1;
+    if(entity.bleeding && entity.hp > 0) {
+      entity.hp -= entity.bleeding ;
       let square = ProcessingSquares.getSquare(squares, entity.position.x, entity.position.y);
-      ProcessingSquares.addBlood(square, 1);
+      ProcessingSquares.addBlood(square, entity.bleeding);
+      entity.bleeding -= entity.bleedingReductionPerTurn || 1;
     }
     return entity;
   }
@@ -153,7 +154,7 @@ export default class Game extends React.PureComponent {
   applyDamageToTargetEntity(targetEntity, damage) {
     if(damage) {
       targetEntity.hp -= damage;
-      targetEntity.isBleeding = true;
+      targetEntity.bleeding = 5;
     }
   }
 
