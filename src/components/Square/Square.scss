@@ -43,6 +43,9 @@
 	&.is-available-destination {
 		background-color: olive;
 	}
+	&.is-chosen-destination {
+		border: 1px dotted white;
+	}
   &.breathing {
     //box-shadow: 0 0 3px 3px inset green;
   }

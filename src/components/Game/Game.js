@@ -61,24 +61,40 @@ export default class Game extends React.PureComponent {
 
       entity = this.applyEffectsOfBleeding(entity, squares);
       entity = this.stopBreathingForKilledEntities(entity);
-			
-			if(entity.active) {
-				let{x,y} = entity.position;
-				
-				for(let j = y - 1; j <= y + 1; j++){	
-					for(let i = x - 1; i <= x + 1; i++){
-						let square = ProcessingSquares.getSquare(squares, i, j );
-						/*debugger;*/
-						if(!square) {square={}}
-						square.isAvailableDestination = true;
-						ProcessingSquares.setSquare(squares, i, j, square);
-					}
-				}
-			}
+			this.markAvailableDestinationsForSelectedEntity(entity, squares)
     });
 		
     return nextState;
   }
+	resetGivenFieldOnACollection(collection, fieldName) {
+		collection.forEach(item => item &&
+											(item[fieldName] = false));
+	}
+
+	markAvailableDestinationsForSelectedEntity(entity, squares, ) {
+		
+		if(entity.active) {
+			let {x,y} = entity.position;
+			
+			this.resetGivenFieldOnACollection(squares, 'isAvailableDestination');
+
+			for(let j = y - 1; j <= y + 1; j++){
+				if( j < 0 || j >= this.state.arenaSize){
+					continue
+				}
+				for(let i = x - 1; i <= x + 1; i++){
+					if( i < 0 || i >= this.state.arenaSize || (i == x && j == y)){
+						continue 
+					}
+					
+					let square = ProcessingSquares.getSquare(squares, i, j );
+					if(!square) {square={}}
+					square.isAvailableDestination = true;
+					ProcessingSquares.setSquare(squares, i, j, square);
+				}
+			}
+		}
+	}
 
   moveEntities(entities, squares) {
     let JR = ProcessingEntities.findEntityById(entities, "John Rambo");
@@ -205,6 +221,7 @@ export default class Game extends React.PureComponent {
 
   handleBoardClick = (i) => {
     //console.log("CLICKED ", i);
+
     const deselectAllEntities = (entities) => {
       entities.forEach((entity) => { entity.active = false; });
     };
@@ -216,7 +233,7 @@ export default class Game extends React.PureComponent {
     this.setState((previousState) => {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares, selected } = localCopyOfPreviousState;
-
+			
       if(squares[i] && squares[i].entity) {// clicked an entity
         if(selected && !squares[i].entity.isFriendly) {
           // that is hostile, while we already have one selected
@@ -239,15 +256,27 @@ export default class Game extends React.PureComponent {
           deselectAllEntities(entities);
           selected = squares[i].entity;
           this.setSelected(entities, selected, true);
+					this.resetGivenFieldOnACollection(squares, 'isChosenDestination');
         }
 
       } else {// clicked an empty square
         /* Deselecting and stopping fire on all entities */
-        deselectAllEntities(entities);
-        entities.forEach(entity => {
-          entity.isShooting = false;
-        })
-        selected = null;
+				if(squares[i] && squares[i].isAvailableDestination) {
+					
+					let position = ProcessingSquares.targetSquarePosition(i);
+					let entitiesAtGivenPosition = this.getEntitiesAtGivenPosition(entities, position);
+					let entity = entitiesAtGivenPosition[0];
+					entity && (entity.moveDestination = position);
+					this.resetGivenFieldOnACollection(squares, 'isChosenDestination');
+					squares[i].isChosenDestination = true;
+				} else {
+					this.resetGivenFieldOnACollection(entities, 'active');
+					this.resetGivenFieldOnACollection(entities, 'isShooting');
+					
+					selected = null;
+					this.resetGivenFieldOnACollection(squares, 'isChosenDestination');
+					this.resetGivenFieldOnACollection(squares, 'isAvailableDestination');
+				} 
       }
 
       return {entities, squares, selected}
