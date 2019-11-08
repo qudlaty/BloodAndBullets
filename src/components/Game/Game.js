@@ -61,9 +61,22 @@ export default class Game extends React.PureComponent {
 
       entity = this.applyEffectsOfBleeding(entity, squares);
       entity = this.stopBreathingForKilledEntities(entity);
-
+			
+			if(entity.active) {
+				let{x,y} = entity.position;
+				
+				for(let j = y - 1; j <= y + 1; j++){	
+					for(let i = x - 1; i <= x + 1; i++){
+						let square = ProcessingSquares.getSquare(squares, i, j );
+						/*debugger;*/
+						if(!square) {square={}}
+						square.isAvailableDestination = true;
+						ProcessingSquares.setSquare(squares, i, j, square);
+					}
+				}
+			}
     });
-
+		
     return nextState;
   }
 

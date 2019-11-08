@@ -24,8 +24,11 @@ class Square extends React.Component {
     let localId = `Sq${this.props.squareId}`;
 
     if(this.props.active) {
-      className += " active";
+      className += " active ";
     }
+		if(this.props.isAvailableDestination) {
+			className += " is-available-destination "
+		}
     if(this.props.icon){
       if(this.props.isBreathing) {
         className += " breathing";
