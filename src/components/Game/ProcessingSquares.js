@@ -28,10 +28,10 @@ export function setEntityWithinASquare(squares, x, y, entity) {
 }
 
 export function addBlood(square, amount) {
-  if(!square) return;
+  if(!square) {square = {}};
   if(!square.blood) {
-    square.blood = 1;
+    square.blood = amount;
   } else {
-    square.blood++;
+    square.blood += amount;
   }
 }
