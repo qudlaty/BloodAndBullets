@@ -32,6 +32,7 @@ export default class Game extends React.PureComponent {
 
   setSquaresAccordingToEntities() {
     this.setState((previousState)=>{
+
       let squares = JSON.parse(JSON.stringify(previousState.squares));
       previousState.entities.forEach((entity)=>{
         ProcessingSquares.setEntityWithinASquare(
@@ -40,25 +41,130 @@ export default class Game extends React.PureComponent {
       });
 
       return {squares};
+
     });
+  }
+
+
+  calculateNextGameState(previousState) {
+    let nextState = JSON.parse(JSON.stringify(previousState));
+    let { entities, squares } = nextState;
+
+    this.moveEntities(entities, squares);
+
+    entities.forEach(entity => {
+      // this check should probably occur upon target verification
+      if(this.entityIsShootingProperly(entity)) {
+        // We are shooting and not targetting ourselves
+        this.fireAShot(entities, entity);
+      }
+
+      entity = this.applyEffectsOfBleeding(entity, squares);
+      entity = this.stopBreathingForKilledEntities(entity);
+
+    });
+
+    return nextState;
+  }
+
+  moveEntities(entities, squares) {
+    let JR = ProcessingEntities.findEntityById(entities, "John Rambo");
+    let OP = ProcessingEntities.findEntityById(entities, "Squid");
+    ProcessingEntities.moveEntityRandomly(squares, JR);
+    ProcessingEntities.moveEntityRandomly(squares, OP);
+  }
+
+  stopBreathingForKilledEntities(entity) {
+    if(entity && entity.hp <= 0){
+      entity.isBreathing = false;
+      entity.hp = 0;
+    }
+    return entity;
+  }
+
+  applyEffectsOfBleeding(entity, squares) {
+    if(entity.isBleeding && entity.hp > 0) {
+      entity.hp -= 1;
+      let square = ProcessingSquares.getSquare(squares, entity.position.x, entity.position.y);
+      ProcessingSquares.addBlood(square, 1);
+    }
+    return entity;
+  }
+
+  entityIsShootingProperly(entity) {
+    return entity.isShooting && entity.targetPosition && (
+      entity.targetPosition.x !== entity.position.x ||
+      entity.targetPosition.y !== entity.position.y
+    );
+  }
+
+  getEntitiesAtGivenPosition(entities, targetPosition) {
+    return entities.filter((potentialTargetEntity) => {
+      return (
+        potentialTargetEntity.position.x === targetPosition.x &&
+        potentialTargetEntity.position.y === targetPosition.y
+      );
+    });
+  }
+
+  applyDamageToTargetEntity(targetEntity, damage) {
+    if(damage) {
+      targetEntity.hp -= damage;
+      targetEntity.isBleeding = true;
+    }
+  }
+
+  ceaseFireNextTurnIfTargetIsKilled(entity, targetEntity) {
+    if(targetEntity.hp < 0) {
+      //entity.isShooting = false;
+      entity.ceaseFire = true;
+    }
+  }
+
+  checkAmmoAndCalculateDamageApplied(entity) {
+    let damageApplied = 0;
+    if(entity.rounds !== "empty" && entity.rounds > 0) {// if we still have ammo
+      entity.rounds--;
+      damageApplied = entity.damage;
+    }
+    if(entity.rounds === 0) {
+      entity.rounds = "empty";
+    } else if(entity.rounds === "empty") {
+      // when ordered to shoot with "empty" magazine state, load ammo instead
+      entity.rounds = entity.maxRounds;
+      entity.isShooting = false;
+      entity.damageApplied = 0;
+    }
+    return damageApplied;
+  }
+
+  fireAShot(entities, entity) {
+    if(entity.ceaseFire) {
+      entity.isShooting = false;
+      entity.ceaseFire = false;
+      return;
+    }
+    let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
+    let targetEntities =
+      this.getEntitiesAtGivenPosition(entities, entity.targetPosition);
+    targetEntities.forEach((targetEntity) => {
+      this.applyDamageToTargetEntity(targetEntity, damageApplied);
+      this.ceaseFireNextTurnIfTargetIsKilled(entity, targetEntity);
+    });
+  }
+
+  processEntities() {
+    this.setState(
+      prevState => this.calculateNextGameState(prevState),
+      () => this.setSquaresAccordingToEntities()
+    );
   }
 
   loop = () => {
     this.stepNumber++;
-    this.setState( (previousState) => {
-      // new copy of entities based on up-to-date state
-      let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
-      let { entities, squares } = localCopyOfPreviousState;
-
-      let JR = ProcessingEntities.findEntityById(entities, "John Rambo");
-      let OP = ProcessingEntities.findEntityById(entities, "Squid");
-      ProcessingEntities.moveEntityRandomly(squares, JR);
-      ProcessingEntities.moveEntityRandomly(squares, OP);
-
-      return {entities: entities, squares: squares};
-    });
 
     this.processEntities();
+
     if(this.state.autoLoop) {
       setTimeout(this.loop, 1000);
     }
@@ -67,88 +173,6 @@ export default class Game extends React.PureComponent {
   nextTurn = () => {
     this.setState({autoLoop: false});
     this.loop();
-  }
-
-  processEntities(){
-    //console.log("Processing entities");
-    this.setState((state) => {
-      let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
-      let localCopyOfSquares = JSON.parse(JSON.stringify(state.squares));
-      localCopyOfEntities.forEach(entity => {
-
-        if(entity.isShooting && entity.targetPosition && (
-          entity.targetPosition.x !== entity.position.x ||
-          entity.targetPosition.y !== entity.position.y
-        )) {// We are shooting and not targetting ourselves
-
-          // should probably call a "calculateDamageApplied" method
-          let damageApplied = 0;
-          if(entity.rounds !== "empty" && entity.rounds > 0) {// if we still have ammo
-            // spending ammo
-            console.log("firing");
-            entity.rounds--;
-            damageApplied = entity.damage;
-          } else if(entity.rounds === 0) {
-            // stop shooting when magazine is empty
-            entity.rounds = "empty";
-            entity.isShooting = false;
-            entity.damageApplied = 0;
-          } else if(entity.rounds === "empty") {
-            // when ordered to shoot with "empty" magazine state, load ammo instead
-            entity.rounds = entity.maxRounds;
-            entity.isShooting = false;
-            entity.damageApplied = 0;
-          }
-
-          /*
-          Searching for such an entity that its position is equal to our target position.
-          */
-          let targetEntities = localCopyOfEntities.filter((potentialTargetEntity) => {
-            return (
-              potentialTargetEntity.position.x === entity.targetPosition.x &&
-              potentialTargetEntity.position.y === entity.targetPosition.y
-            );
-          });
-          // console.log(targetEntities);
-          // Processing found target entities
-          targetEntities.forEach((targetEntity) => {
-            // should probably call a "shoot" method
-            // console.log("applying damage")
-            if(damageApplied) {
-              targetEntity.isBleeding = true;
-            };
-            targetEntity.hp -= damageApplied;
-            if(targetEntity.hp <= 0) {
-              entity.isShooting = false;
-              console.log("target eliminated");
-              return;
-            }
-          });
-
-        }
-
-        if(entity.isBleeding){
-          if(entity.hp > 0){
-            entity.hp -= 1;
-            let square = ProcessingSquares.getSquare(localCopyOfSquares, entity.position.x, entity.position.y);
-            ProcessingSquares.addBlood(square, 1);
-          }
-          console.log(entity.position.x, entity.position.y);
-        }
-
-        if(entity.hp <= 0){
-          entity.hp = 0;
-          entity.isBreathing = false;
-        }
-
-      });
-      return {entities: localCopyOfEntities, squares: localCopyOfSquares}
-    },
-      () => {
-        this.setSquaresAccordingToEntities();
-      }
-    );
-
   }
 
   setSelected(entities, selected, value) {
