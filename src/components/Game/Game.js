@@ -34,6 +34,7 @@ export default class Game extends React.PureComponent {
     this.setState((previousState)=>{
 
       let squares = JSON.parse(JSON.stringify(previousState.squares));
+			this.resetGivenFieldOnACollection(squares, 'entity');
       previousState.entities.forEach((entity)=>{
         ProcessingSquares.setEntityWithinASquare(
           squares, entity.position.x, entity.position.y, entity
@@ -48,9 +49,9 @@ export default class Game extends React.PureComponent {
 
   calculateNextGameState(previousState) {
     let nextState = JSON.parse(JSON.stringify(previousState));
-    let { entities, squares } = nextState;
+    let { entities, squares, selected } = nextState;
 
-    this.moveEntities(entities, squares);
+    this.moveEntities(entities, squares, selected);
 
     entities.forEach(entity => {
       // this check should probably occur upon target verification
@@ -61,18 +62,63 @@ export default class Game extends React.PureComponent {
 
       entity = this.applyEffectsOfBleeding(entity, squares);
       entity = this.stopBreathingForKilledEntities(entity);
-
+			this.markAvailableDestinationsForSelectedEntity(entity, squares)
     });
-
+		
     return nextState;
   }
+	resetGivenFieldOnACollection(collection, fieldName) {
+		collection.forEach(item => item &&
+											(item[fieldName] = false));
+	}
 
-  moveEntities(entities, squares) {
+	markAvailableDestinationsForSelectedEntity(entity, squares, ) {
+		
+		if(entity.active) {
+			let {x,y} = entity.position;
+			
+			this.resetGivenFieldOnACollection(squares, 'isAvailableDestination');
+
+			for(let j = y - 1; j <= y + 1; j++){
+				if( j < 0 || j >= this.state.arenaSize){
+					continue
+				}
+				for(let i = x - 1; i <= x + 1; i++){
+					if( i < 0 || i >= this.state.arenaSize || (i == x && j == y)){
+						continue 
+					}
+					
+					let square = ProcessingSquares.getSquare(squares, i, j );
+					if(!square) {square={}}
+					square.isAvailableDestination = true;
+					ProcessingSquares.setSquare(squares, i, j, square);
+				}
+			}
+		}
+	}
+
+  moveEntities(entities, squares, selected) {
+		entities.forEach(
+			entity => this.moveEntityIntoChosenDestinations(
+				squares, entities, selected, entity
+			)
+		);
     let JR = ProcessingEntities.findEntityById(entities, "John Rambo");
     let OP = ProcessingEntities.findEntityById(entities, "Squid");
     ProcessingEntities.moveEntityRandomly(squares, JR);
     ProcessingEntities.moveEntityRandomly(squares, OP);
+
   }
+	moveEntityIntoChosenDestinations(squares, entities, selected, entity){
+		if(entity.moveDestination) {
+			
+			console.log("dupa", entity);
+			entity.position = entity.moveDestination;
+			selected.position = entity.position;
+			delete entity.moveDestination;
+		}
+		
+	}
 
   stopBreathingForKilledEntities(entity) {
     if(entity && entity.hp <= 0){
@@ -192,6 +238,7 @@ export default class Game extends React.PureComponent {
 
   handleBoardClick = (i) => {
     //console.log("CLICKED ", i);
+
     const deselectAllEntities = (entities) => {
       entities.forEach((entity) => { entity.active = false; });
     };
@@ -203,7 +250,7 @@ export default class Game extends React.PureComponent {
     this.setState((previousState) => {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares, selected } = localCopyOfPreviousState;
-
+			
       if(squares[i] && squares[i].entity) {// clicked an entity
         if(selected && !squares[i].entity.isFriendly) {
           // that is hostile, while we already have one selected
@@ -226,15 +273,30 @@ export default class Game extends React.PureComponent {
           deselectAllEntities(entities);
           selected = squares[i].entity;
           this.setSelected(entities, selected, true);
+					this.resetGivenFieldOnACollection(squares, 'isChosenDestination');
         }
 
       } else {// clicked an empty square
         /* Deselecting and stopping fire on all entities */
-        deselectAllEntities(entities);
-        entities.forEach(entity => {
-          entity.isShooting = false;
-        })
-        selected = null;
+				if(squares[i] && squares[i].isAvailableDestination) {
+					
+					let position = ProcessingSquares.targetSquarePosition(i);
+					let entitiesAtGivenPosition = this.getEntitiesAtGivenPosition(entities, selected.position);
+					let entity = entitiesAtGivenPosition[0];
+					entity && (entity.moveDestination = position);
+					
+					console.log("dupa", entity,position,entitiesAtGivenPosition, entities);
+					
+					this.resetGivenFieldOnACollection(squares, 'isChosenDestination');
+					squares[i].isChosenDestination = true;
+				} else {
+					this.resetGivenFieldOnACollection(entities, 'active');
+					this.resetGivenFieldOnACollection(entities, 'isShooting');
+					
+					selected = null;
+					this.resetGivenFieldOnACollection(squares, 'isChosenDestination');
+					this.resetGivenFieldOnACollection(squares, 'isAvailableDestination');
+				} 
       }
 
       return {entities, squares, selected}
