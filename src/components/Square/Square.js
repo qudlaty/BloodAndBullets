@@ -78,7 +78,7 @@ class Square extends React.Component {
         let distanceToTargetX = 38*(targetCoords.x-this.props.position.x);
         let distanceToTargetY = 38*(targetCoords.y-this.props.position.y);
         let actualDistance = Math.sqrt(Math.pow(distanceToTargetX, 2) + Math.pow(distanceToTargetY, 2));
-        if(this.props.weaponType === 'Lazer') {
+        if(this.props.weaponType === 'lazer') {
 
           let className=`projectile${localId}_beam`;
           let projectile= "";
