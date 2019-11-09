@@ -1,10 +1,13 @@
 import React from 'react';
 import LinearDisplay from './LinearDisplay';
-
+import InventoryList from './InventoryList';
 import './EntityCard.scss';
 
 class EntityCard extends React.Component {
   renderCount = 0
+  handleInventoryClick = (itemName) => {
+    this.props.onInventoryClick(this.props.entity, itemName);
+  } 
 
   render() {
     // console.log("Rendering EntityView. #", this.renderCount++);
@@ -48,6 +51,10 @@ class EntityCard extends React.Component {
           <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} /><br/>
           <LinearDisplay label="Rounds" current={entity.rounds} max={entity.maxRounds} />
         </div>
+        <div>
+          inHands: {entity.equipment && entity.equipment.hands && entity.equipment.hands.name || entity.equipment && entity.equipment.hands }
+        </div>
+        <InventoryList label="Inventory" title="Inny niż dupa" onClick={this.handleInventoryClick} inventory={entity.inventory} />
 
       </div>
     );

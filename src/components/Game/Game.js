@@ -328,6 +328,23 @@ export default class Game extends React.PureComponent {
     });
   }
 
+  onInventoryClick = (entity, itemName) => {
+    this.setState((prevState) => {
+      let nextState = JSON.parse(JSON.stringify(prevState));
+      let {entities} = nextState;
+
+      let entityId = ProcessingEntities.getEntityId(entity);
+      let actualEntity = ProcessingEntities.findEntityById(entities, entityId);
+      let actualItem = ProcessingEntities.findEntityById(actualEntity.inventory, itemName);
+
+      actualEntity.equipment.hands = actualItem;
+
+      return nextState
+    });
+
+    console.log(entity, itemName);
+  }
+
   render() {
     let boardClassName = this.state.isBoardRotated ? "rotated-board" : "";
     //console.log("Rendering Game. #", this.renderCounter++);
@@ -368,6 +385,7 @@ export default class Game extends React.PureComponent {
         <div className="game-list">
           <EntitiesList
             entities={this.state.entities}
+            onInventoryClick= {this.onInventoryClick}
           />
         </div>
       </div>
