@@ -10,7 +10,7 @@ export default class ListOfEntities extends React.Component {
     let entitiesFriendly =
     this.props.entities.filter(entity=>entity.isFriendly).map(obj => {
       return (
-        <EntityCard entity={obj} key={obj.name}/>
+        <EntityCard onInventoryClick={this.props.onInventoryClick} entity={obj} key={obj.name}/>
       )
     });
 

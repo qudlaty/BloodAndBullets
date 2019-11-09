@@ -1,3 +1,32 @@
+class Rifle {
+  causesBleeding =  2
+  type = 'projectile' 
+};
+
+class M16 extends Rifle {
+  name = 'M16'
+  rounds = 15
+  maxRounds = 20
+  damage = 1
+}
+
+class Lazer {
+  type = 'lazer'
+}
+
+class L30 extends Lazer {
+  name = 'Assault Lazer Rifle'
+  rounds = 3
+  maxRounds = 3
+  damage = 10
+}
+class M40 extends Rifle {
+  name = 'M41A Pulse Rifle'
+  rounds = 40
+  maxRounds = 40
+  damage = 1
+}
+
 const entities = [
   {
     name: "John Rambo", age: 40, hp: 95, maxHp: 100,
@@ -5,8 +34,8 @@ const entities = [
     isBreathing: true,
     isFriendly: true,
     position: {x:8, y:8},
-    inventory: ['KA-BAR', 'M16'],
-    equipment: {head: 'Red Bandana'},
+    inventory: [{name:'KA-BAR'}, new M16],
+    equipment: {head: 'Red Bandana', hands: null},
     damage: 1, rounds: 10, maxRounds: 15, hasWeapon: true,
   },
   {
@@ -15,7 +44,7 @@ const entities = [
     isBreathing: true,
     isFriendly: true,
     position: {x:1, y:8},
-    inventory: ['Lazer', 'Motion Detector'],
+    inventory: [new M40, {name:'Motion Detector'}],
     equipment: {head: 'Afro'},
     damage: 1, rounds: 10, maxRounds: 10, hasWeapon: true,
   },
@@ -25,7 +54,7 @@ const entities = [
     isBreathing: true,
     isFriendly: true,
     position: {x:4, y:8},
-    inventory: ['Lazer'],
+    inventory: [new L30],
     equipment: {},
     damage: 10, rounds: 3, maxRounds: 3, hasWeapon: true,
   },

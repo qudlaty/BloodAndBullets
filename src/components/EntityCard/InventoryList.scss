@@ -1,0 +1,15 @@
+.inventory-list {
+    margin-top: 3vh ;
+    &__label {
+
+    }
+    &__container {
+        
+    }
+    &__item {
+        background-color: #222;
+        border: 1px solid #666;
+        padding: 5px;
+        margin: 5px;
+    }
+}
