@@ -7,7 +7,7 @@ class EntityCard extends React.Component {
   renderCount = 0
   handleInventoryClick = (itemName) => {
     this.props.onInventoryClick(this.props.entity, itemName);
-  } 
+  }
 
   render() {
     // console.log("Rendering EntityView. #", this.renderCount++);
@@ -26,6 +26,16 @@ class EntityCard extends React.Component {
     let lifeSigns = isBreathing ? " ALIVE " : " DEAD ";
     className += fof;
     className += lifeSigns;
+    let inHands = entity.equipment && entity.equipment.hands && entity.equipment.hands.name || entity.equipment && entity.equipment.hands;
+    let equipped = inHands && (
+      <>
+        <span>inHands: </span>
+        <div className="inventory-list__item">
+          {inHands}
+        </div>
+      </>
+    );
+
     return (
 
       <div className={className}>
@@ -52,7 +62,10 @@ class EntityCard extends React.Component {
           <LinearDisplay label="Rounds" current={entity.rounds} max={entity.maxRounds} />
         </div>
         <div>
-          inHands: {entity.equipment && entity.equipment.hands && entity.equipment.hands.name || entity.equipment && entity.equipment.hands }
+          <div className="inventory-list__container">
+            {equipped}
+          </div>
+
         </div>
         <InventoryList label="Inventory" title="Inny niż dupa" onClick={this.handleInventoryClick} inventory={entity.inventory} />
 
