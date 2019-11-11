@@ -1,7 +1,7 @@
 import React from 'react';
 import './InventoryList.scss';
 export default function InventoryList(props) {
-    
+
 let className=`inventory-list ${props.className || ''}`
 if(!props.inventory) {return null}
 let inventoryItems = props.inventory.map(item => {
@@ -20,7 +20,6 @@ let inventoryItems = props.inventory.map(item => {
       >
        {inventoryItems}
       </div>
-      <div>&nbsp;</div>
     </div>
   );
 }
