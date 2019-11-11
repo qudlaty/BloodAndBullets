@@ -103,7 +103,7 @@ class Square extends React.Component {
             @keyframes swiping${localId} {
               0%  {transform: rotate(${angle + 90 + -3}deg);}
               50%  {transform: rotate(${angle + 90 + 3}deg);}
-              100%  {transform: rotate(${angle + 90 - 3}deg);}              
+              100%  {transform: rotate(${angle + 90 - 3}deg);}
             }
 
             .${className} {
@@ -127,7 +127,7 @@ class Square extends React.Component {
             `;
 
           projectiles.push(<div key={className} className={className}>{projectile}</div>);
-        }else {
+        } else {
 
           customStyle = `
             @keyframes shooting${localId} {
@@ -144,20 +144,20 @@ class Square extends React.Component {
             customStyle += `
             .projectile${localId}_${projectileNumber} {
               position: absolute;
-              top: 5px;
+              top: -5px;
               left: 0px;
               width: 100%;
               height: 100%;
               line-height: 34px;
-              font-size: 17px;
+              font-size: 30px;
               animation: shooting${localId} 0.5s linear infinite;
-              animation-delay: ${projectileNumber  * 0.5}s;
+              animation-delay: ${projectileNumber - 1 * 0.3}s;
               color: white;
             }`;
           };
-          let projectile = this.props.isShooting ? "*" : "";
+          let projectile = this.props.isShooting ? "." : "";
 
-          projectileNumber = 5;
+          projectileNumber = 3;
 
           while(projectileNumber--) {
             let className=`projectile projectile${localId}_${projectileNumber}`
