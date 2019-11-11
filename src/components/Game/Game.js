@@ -165,7 +165,7 @@ export default class Game extends React.PureComponent {
     }
   }
 
-  ceaseFireNextTurnIfTargetIsKilled(entity, targetEntity) {
+  ceaseFireNextTickIfTargetIsKilled(entity, targetEntity) {
     if(targetEntity.hp < 0) {
       //entity.isShooting = false;
       entity.ceaseFire = true;
@@ -200,7 +200,7 @@ export default class Game extends React.PureComponent {
       this.getEntitiesAtGivenPosition(entities, entity.targetPosition);
     targetEntities.forEach((targetEntity) => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
-      this.ceaseFireNextTurnIfTargetIsKilled(entity, targetEntity);
+      this.ceaseFireNextTickIfTargetIsKilled(entity, targetEntity);
     });
   }
 
@@ -221,7 +221,7 @@ export default class Game extends React.PureComponent {
     }
   }
 
-  nextTurn = () => {
+  nextTick = () => {
     this.setState({autoLoop: false});
     this.loop();
   }
@@ -375,8 +375,8 @@ export default class Game extends React.PureComponent {
             className="button button-nuke"
           >Nuke All</button>
           <button onClick={this.toggleRotateBoard} className="button">Rotate Board</button>
-          <button onClick={this.nextTurn} className="button">Next Step</button>
-          <span className="step-counter">Turn: {this.stepNumber}</span>
+          <button onClick={this.nextTick} className="button">Next Tick</button>
+          <span className="step-counter">Tick: {this.stepNumber}</span>
           <label className="auto-cycle button">
             <input type="checkbox" checked={this.state.autoLoop ? 'checked' : ''} onChange={this.switchAutoLoop}/>
             <span>Auto Cycle</span>
