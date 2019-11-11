@@ -27,6 +27,7 @@ class EntityCard extends React.Component {
     className += fof;
     className += lifeSigns;
     let inHands = entity.equipment && entity.equipment.hands && entity.equipment.hands.name || entity.equipment && entity.equipment.hands;
+    let inHandsArray = inHands && [inHands] || [];
     let equipped = inHands && (
       <>
         <span>inHands: </span>
@@ -61,13 +62,8 @@ class EntityCard extends React.Component {
           <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} /><br/>
           <LinearDisplay label="Rounds" current={entity.rounds} max={entity.maxRounds} />
         </div>
-        <div>
-          <div className="inventory-list__container">
-            {equipped}
-          </div>
-
-        </div>
-        <InventoryList label="Inventory" title="Inny niż dupa" onClick={this.handleInventoryClick} inventory={entity.inventory} />
+        <InventoryList label="Equipped" title="In hands" onClick={()=>{}} inventory={inHandsArray} />
+        <InventoryList label="Inventory" title="In backpack" onClick={this.handleInventoryClick} inventory={entity.inventory} />
 
       </div>
     );
