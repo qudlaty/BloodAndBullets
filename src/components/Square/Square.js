@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Square.scss";
 
+const DISTANCE_BETWEEN_TILES = 38;
 class Square extends React.Component {
   /*
     We use PureComponent, so it compares new props with previous props,
@@ -69,17 +70,22 @@ class Square extends React.Component {
       return angle;
     }
 
-    if((this.props.targetPosition && this.props.position && this.props.isShooting) &&
+    if((this.props.targetPosition && this.props.position &&
+      this.props.isShooting) &&
       (this.props.targetPosition.x !== this.props.position.x ||
       this.props.targetPosition.y !== this.props.position.y)) {
 
       if(targetCoords) {
 
-        let distanceToTargetX = 38*(targetCoords.x-this.props.position.x);
-        let distanceToTargetY = 38*(targetCoords.y-this.props.position.y);
-        let actualDistance = Math.sqrt(Math.pow(distanceToTargetX, 2) + Math.pow(distanceToTargetY, 2));
-        if(this.props.weaponType === 'lazer') {
+        let distanceToTargetX =
+          DISTANCE_BETWEEN_TILES*(targetCoords.x-this.props.position.x);
+        let distanceToTargetY =
+          DISTANCE_BETWEEN_TILES*(targetCoords.y-this.props.position.y);
+        let actualDistance = Math.sqrt(
+          Math.pow(distanceToTargetX, 2) + Math.pow(distanceToTargetY, 2)
+        );
 
+        if(this.props.weaponType === 'lazer') {
           let className=`projectile${localId}_beam`;
           let projectile= "";
           let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
@@ -94,6 +100,12 @@ class Square extends React.Component {
               100%  {width: ${actualDistance + 20};}
             }
 
+            @keyframes swiping${localId} {
+              0%  {transform: rotate(${angle + 90 + -3}deg);}
+              50%  {transform: rotate(${angle + 90 + 3}deg);}
+              100%  {transform: rotate(${angle + 90 - 3}deg);}              
+            }
+
             .${className} {
               width: ${actualDistance}px;
               height: 3px;
@@ -106,7 +118,8 @@ class Square extends React.Component {
               transform: rotate(${angle + 90}deg);
               transform-origin: left 0px;
               animation: pulsing${localId} 0.1s linear infinite,
-              elongating${localId} 1s linear alternate infinite;
+              elongating${localId} 1s linear alternate infinite,
+              swiping${localId} 1s linear alternate infinite;
               box-shadow: 0 0 5px 5px white;
               z-index: 10;
             }
