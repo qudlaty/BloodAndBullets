@@ -1,7 +1,21 @@
-class Rifle {
-  causesBleeding =  2
-  type = 'projectile' 
+class Weapon {
+  causesBleeding = 0
+  range: 0
+  damage: 0
 };
+
+class Rifle extends Weapon{
+  type = 'projectile'
+  causesBleeding =  2
+  range = 4
+};
+
+class Lazer extends Weapon{
+  type = 'lazer'
+  causesBleeding = 0
+  range = 6
+}
+
 
 class M16 extends Rifle {
   name = 'M16'
@@ -10,16 +24,13 @@ class M16 extends Rifle {
   damage = 1
 }
 
-class Lazer {
-  type = 'lazer'
-}
-
 class L30 extends Lazer {
   name = 'Assault Lazer Rifle'
   rounds = 3
   maxRounds = 3
   damage = 10
 }
+
 class M40 extends Rifle {
   name = 'M41A Pulse Rifle'
   rounds = 40
