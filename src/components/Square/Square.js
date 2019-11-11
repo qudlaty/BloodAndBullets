@@ -101,9 +101,9 @@ class Square extends React.Component {
             }
 
             @keyframes swiping${localId} {
-              0%  {transform: rotate(${angle + 90 + -3}deg);}
-              50%  {transform: rotate(${angle + 90 + 3}deg);}
-              100%  {transform: rotate(${angle + 90 - 3}deg);}
+              0%  {transform: rotate(${angle + 90 + -1}deg);}
+              50%  {transform: rotate(${angle + 90 + 1}deg);}
+              100%  {transform: rotate(${angle + 90 - 1}deg);}
             }
 
             .${className} {
