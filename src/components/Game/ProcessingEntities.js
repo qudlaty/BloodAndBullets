@@ -41,14 +41,6 @@ export function moveEntityRandomly(squares, entity) {
     entity.position.y = oldPositionY;
   }
 
-  if(
-    oldPositionX !== entity.position.x ||
-    oldPositionY !== entity.position.y
-  ) {
-    setEntityWithinASquare(squares, oldPositionX, oldPositionY, null);
-    setEntityWithinASquare(squares, entity.position.x, entity.position.y, entity);
-  }
-
   // NO RETURN AS IT'S MODIFIED IN-PLACE return entity;
   // WHICH IS A BAD HABIT, BUT OH SO COMFY.
 }
