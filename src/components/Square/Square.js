@@ -2,27 +2,20 @@ import React from 'react';
 import "./Square.scss";
 
 const DISTANCE_BETWEEN_TILES = 38;
+
 class Square extends React.Component {
-  /*
-    We use PureComponent, so it compares new props with previous props,
-    and only re-renders when props changed.
-   */
+
   renderCounter = 0
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if(JSON.stringify(nextProps) === JSON.stringify(this.props)) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  shouldComponentUpdate = (nextProps) => // only update if props differ
+    (JSON.stringify(nextProps) !== JSON.stringify(this.props));
 
   render() {
-    this.renderCounter++;
+    //this.renderCounter++;
     //console.log("Rendering Square", this.renderCounter, this.props);
 
     let className = "square";
-    let localId = `Sq${this.props.squareId}`;
+    let localId = `Square${this.props.squareId}`;
 
     if(this.props.active) {
       className += " active ";
@@ -35,16 +28,16 @@ class Square extends React.Component {
 		}
     if(this.props.icon){
       if(this.props.isBreathing) {
-        className += " breathing";
+        className += " breathing ";
       } else {
-        className += " dead";
+        className += " dead ";
       }
       if(this.props.isShooting) {
-        className += " shooting";
+        className += " shooting ";
       }
     }
 
-    let randomTime = `${(Math.random()+0.5).toFixed(2)}s`
+    let randomTime = `${(Math.random()+0.5).toFixed(2)}s`// 0.50 - 1.50s
     let animationBreathing = this.props.isBreathing ?
         `breathing ${randomTime} alternate infinite linear` : 'none';
 
@@ -70,13 +63,16 @@ class Square extends React.Component {
       return angle;
     }
 
-    if((this.props.targetPosition && this.props.position &&
-      this.props.isShooting) &&
-      (this.props.targetPosition.x !== this.props.position.x ||
-      this.props.targetPosition.y !== this.props.position.y)) {
+    if(
+      (targetCoords && this.props.position && this.props.isShooting)
+      &&
+      (
+        this.props.targetPosition.x !== this.props.position.x ||
+        this.props.targetPosition.y !== this.props.position.y
+      )
+    ) {
 
       if(targetCoords) {
-
         let distanceToTargetX =
           DISTANCE_BETWEEN_TILES*(targetCoords.x-this.props.position.x);
         let distanceToTargetY =
@@ -86,6 +82,7 @@ class Square extends React.Component {
         );
 
         if(this.props.weaponType === 'lazer') {
+          // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
           let className=`projectile${localId}_beam`;
           let projectile= "";
           let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
@@ -123,9 +120,7 @@ class Square extends React.Component {
               box-shadow: 0 0 5px 5px white;
               z-index: 10;
             }
-
             `;
-
           projectiles.push(<div key={className} className={className}>{projectile}</div>);
         } else {
 
@@ -137,7 +132,6 @@ class Square extends React.Component {
                 ${36*(targetCoords.y-this.props.position.y)}px
               )}
             }
-
             `;
 
           while(projectileNumber--) {
