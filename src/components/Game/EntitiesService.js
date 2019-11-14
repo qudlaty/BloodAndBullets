@@ -1,5 +1,5 @@
-import { getSquare, setEntityWithinASquare } from './ProcessingSquares';
-import * as ProcessingSquares from './ProcessingSquares';
+import { getSquare, setEntityWithinASquare } from './SquaresService';
+import * as SquaresService from './SquaresService';
 const arenaSize = 10;
 let EntitiesService = this;
 
@@ -134,8 +134,8 @@ export function isEntityShootingProperly(entity) {
 export function applyEffectsOfBleeding(entity, squares) {
   if(entity.bleeding && entity.hp > 0) {
     entity.hp -= entity.bleeding ;
-    let square = ProcessingSquares.getSquare(squares, entity.position.x, entity.position.y);
-    ProcessingSquares.addBlood(square, entity.bleeding);
+    let square = SquaresService.getSquare(squares, entity.position.x, entity.position.y);
+    SquaresService.addBlood(square, entity.bleeding);
     entity.bleeding -= entity.bleedingReductionPerTurn || 1;
   }
   return entity;
