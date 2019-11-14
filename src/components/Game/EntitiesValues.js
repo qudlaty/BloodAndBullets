@@ -1,3 +1,4 @@
+//TODO: Move this out of the component
 class Weapon {
   causesBleeding = 0
   range: 0
