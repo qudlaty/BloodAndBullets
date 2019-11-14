@@ -5,7 +5,7 @@ import EntitiesValues from './EntitiesValues';
 
 import * as EntitiesService from './EntitiesService';
 import * as ProcessingSquares from './ProcessingSquares';
-
+import * as Helpers from './Helpers';
 import './Game.scss';
 
 export default class Game extends React.PureComponent {
@@ -32,9 +32,8 @@ export default class Game extends React.PureComponent {
 
   setSquaresAccordingToEntities() {
     this.setState((previousState)=>{
-
       let squares = JSON.parse(JSON.stringify(previousState.squares));
-			this.resetGivenFieldsOnACollection(squares, 'entity');
+			Helpers.resetGivenFieldsOnACollection(squares, 'entity');
       previousState.entities.forEach((entity)=>{
         ProcessingSquares.setEntityWithinASquare(
           squares, entity.position.x, entity.position.y, entity
@@ -42,131 +41,23 @@ export default class Game extends React.PureComponent {
       });
 
       return {squares};
-
     });
   }
-
 
   calculateNextGameState(previousState) {
     let nextState = JSON.parse(JSON.stringify(previousState));
     let { entities, squares, selected } = nextState;
-
-    this.moveEntities(entities, squares, selected);
-
+    EntitiesService.moveEntities(entities, squares, selected);
     entities.forEach(entity => {
-      // this check should probably occur upon target verification
-      if(this.isEntityShootingProperly(entity)) {
-        // We are shooting and not targetting ourselves
-        this.fireAShot(entities, entity);
+      if(EntitiesService.isEntityShootingProperly(entity)) {
+        EntitiesService.fireAShot(entities, entity);
       }
-
-      entity = this.applyEffectsOfBleeding(entity, squares);
+      entity = EntitiesService.applyEffectsOfBleeding(entity, squares);
       entity = EntitiesService.stopBreathingForKilledEntities(entity);
-			this.markAvailableDestinationsForSelectedEntity(entity, squares)
+      ProcessingSquares.markAvailableDestinationsForSelectedEntity(entity, squares)
     });
 
     return nextState;
-  }
-
-	resetGivenFieldsOnACollection(collection, ...fieldNames) {
-		collection.forEach(
-      item => {
-        fieldNames.forEach(fieldName => {
-          item && (item[fieldName] = false)
-        });
-      }
-    );
-	}
-
-	markAvailableDestinationsForSelectedEntity(entity, squares, ) {
-
-		if(entity.active) {
-			let {x,y} = entity.position;
-
-			this.resetGivenFieldsOnACollection(squares, 'isAvailableDestination');
-
-			for(let j = y - 1; j <= y + 1; j++){
-				if( j < 0 || j >= this.state.arenaSize){
-					continue
-				}
-				for(let i = x - 1; i <= x + 1; i++){
-					if( i < 0 || i >= this.state.arenaSize || (i == x && j == y)){
-						continue
-					}
-
-					let square = ProcessingSquares.getSquare(squares, i, j );
-					if(!square) {square={}}
-					square.isAvailableDestination = true;
-					ProcessingSquares.setSquare(squares, i, j, square);
-				}
-			}
-		}
-	}
-
-  moveEntities(entities, squares, selected) {
-		entities.forEach(
-			entity => this.moveEntityIntoChosenDestinations(
-				selected, entity
-			)
-		);
-    let JR = EntitiesService.findEntityById(entities, "John Rambo");
-    let OP = EntitiesService.findEntityById(entities, "Squid");
-    EntitiesService.moveEntityRandomly(squares, JR);
-    EntitiesService.moveEntityRandomly(squares, OP);
-
-  }
-	moveEntityIntoChosenDestinations(selected, entity){
-		if(entity.isBreathing && entity.moveDestination) {
-			entity.position = entity.moveDestination;
-			selected.position = entity.position;
-			delete entity.moveDestination;
-		}
-	}
-
-  applyEffectsOfBleeding(entity, squares) {
-    if(entity.bleeding && entity.hp > 0) {
-      entity.hp -= entity.bleeding ;
-      let square = ProcessingSquares.getSquare(squares, entity.position.x, entity.position.y);
-      ProcessingSquares.addBlood(square, entity.bleeding);
-      entity.bleeding -= entity.bleedingReductionPerTurn || 1;
-    }
-    return entity;
-  }
-
-  isEntityShootingProperly(entity) {
-    return entity.isShooting && entity.targetPosition && (
-      entity.targetPosition.x !== entity.position.x ||
-      entity.targetPosition.y !== entity.position.y
-    );
-  }
-
-  applyDamageToTargetEntity(targetEntity, damage) {
-    if(damage) {
-      targetEntity.hp -= damage;
-      targetEntity.bleeding = 5;
-    }
-  }
-
-  ceaseFireNextTickIfTargetIsKilled(entity, targetEntity) {
-    if(targetEntity.hp < 0) {
-      //entity.isShooting = false;
-      entity.ceaseFire = true;
-    }
-  }
-
-  fireAShot(entities, entity) {
-    if(entity.ceaseFire) {
-      entity.isShooting = false;
-      entity.ceaseFire = false;
-      return;
-    }
-    let damageApplied = EntitiesService.checkAmmoAndCalculateDamageApplied(entity);
-    let targetEntities =
-      EntitiesService.getEntitiesAtGivenPosition(entities, entity.targetPosition);
-    targetEntities.forEach((targetEntity) => {
-      this.applyDamageToTargetEntity(targetEntity, damageApplied);
-      this.ceaseFireNextTickIfTargetIsKilled(entity, targetEntity);
-    });
   }
 
   processEntities() {
@@ -228,7 +119,7 @@ export default class Game extends React.PureComponent {
           deselectAllEntities(entities);
           selected = clickedEntity;
           EntitiesService.setSelected(entities, selected, true);
-					this.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
+					Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
         }
 
       } else {// clicked an empty square
@@ -238,12 +129,12 @@ export default class Game extends React.PureComponent {
 					let entitiesAtGivenPosition = EntitiesService.getEntitiesAtGivenPosition(entities, selected.position);
 					let entity = entitiesAtGivenPosition[0];
 					entity && (entity.moveDestination = position);
-					this.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
+					Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
 					squares[i].isChosenDestination = true;
 				} else {
 					selected = null;
-					this.resetGivenFieldsOnACollection(entities, 'active', 'isShooting');
-					this.resetGivenFieldsOnACollection(squares, 'isChosenDestination', 'isAvailableDestination');
+					Helpers.resetGivenFieldsOnACollection(entities, 'active', 'isShooting');
+					Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination', 'isAvailableDestination');
 				}
       }
 

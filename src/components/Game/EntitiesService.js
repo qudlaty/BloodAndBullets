@@ -1,6 +1,7 @@
 import { getSquare, setEntityWithinASquare } from './ProcessingSquares';
-
+import * as ProcessingSquares from './ProcessingSquares';
 const arenaSize = 10;
+let EntitiesService = this;
 
 function getNumberWithinBoundaries(value, min, max) {
   if( value < min) value = min;
@@ -92,4 +93,70 @@ export function checkAmmoAndCalculateDamageApplied(entity) {
     entity.damageApplied = 0;
   }
   return damageApplied;
+}
+
+export function fireAShot(entities, entity) {
+  if(entity.ceaseFire) {
+    entity.isShooting = false;
+    entity.ceaseFire = false;
+    return;
+  }
+  let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
+  let targetEntities =
+    this.getEntitiesAtGivenPosition(entities, entity.targetPosition);
+  targetEntities.forEach((targetEntity) => {
+    this.applyDamageToTargetEntity(targetEntity, damageApplied);
+    this.ceaseFireNextTickIfTargetIsKilled(entity, targetEntity);
+  });
+}
+
+export function applyDamageToTargetEntity(targetEntity, damage) {
+  if(damage) {
+    targetEntity.hp -= damage;
+    targetEntity.bleeding = 5;
+  }
+}
+
+export function ceaseFireNextTickIfTargetIsKilled(entity, targetEntity) {
+  if(targetEntity.hp < 0) {
+    //entity.isShooting = false;
+    entity.ceaseFire = true;
+  }
+}
+
+export function isEntityShootingProperly(entity) {
+  return entity.isShooting && entity.targetPosition && (
+    entity.targetPosition.x !== entity.position.x ||
+    entity.targetPosition.y !== entity.position.y
+  );
+}
+
+export function applyEffectsOfBleeding(entity, squares) {
+  if(entity.bleeding && entity.hp > 0) {
+    entity.hp -= entity.bleeding ;
+    let square = ProcessingSquares.getSquare(squares, entity.position.x, entity.position.y);
+    ProcessingSquares.addBlood(square, entity.bleeding);
+    entity.bleeding -= entity.bleedingReductionPerTurn || 1;
+  }
+  return entity;
+}
+
+export function moveEntityIntoChosenDestinations(selected, entity){
+  if(entity.isBreathing && entity.moveDestination) {
+    entity.position = entity.moveDestination;
+    selected.position = entity.position;
+    delete entity.moveDestination;
+  }
+}
+
+export function moveEntities(entities, squares, selected) {
+  entities.forEach(
+    entity => this.moveEntityIntoChosenDestinations(
+      selected, entity
+    )
+  );
+  let JR = this.findEntityById(entities, "John Rambo");
+  let OP = this.findEntityById(entities, "Squid");
+  this.moveEntityRandomly(squares, JR);
+  this.moveEntityRandomly(squares, OP);
 }

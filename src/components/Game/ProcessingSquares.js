@@ -1,3 +1,4 @@
+import * as Helpers from './Helpers';
 const arenaSize = 10;
 
 export function getSquare (squares, x, y) {
@@ -33,5 +34,30 @@ export function addBlood(square, amount) {
     square.blood = amount;
   } else {
     square.blood += amount;
+  }
+}
+
+export function markAvailableDestinationsForSelectedEntity(entity, squares) {
+
+  if(entity.active) {
+    let {x,y} = entity.position;
+
+    Helpers.resetGivenFieldsOnACollection(squares, 'isAvailableDestination');
+
+    for(let j = y - 1; j <= y + 1; j++){
+      if( j < 0 || j >= arenaSize){
+        continue
+      }
+      for(let i = x - 1; i <= x + 1; i++){
+        if( i < 0 || i >= arenaSize || (i == x && j == y)){
+          continue
+        }
+
+        let square = this.getSquare(squares, i, j );
+        if(!square) {square={}}
+        square.isAvailableDestination = true;
+        this.setSquare(squares, i, j, square);
+      }
+    }
   }
 }
