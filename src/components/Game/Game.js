@@ -3,7 +3,7 @@ import Board from '../Board';
 import EntitiesList from '../EntitiesList';
 import EntitiesValues from './EntitiesValues';
 
-import * as ProcessingEntities from './ProcessingEntities';
+import * as EntitiesService from './EntitiesService';
 import * as ProcessingSquares from './ProcessingSquares';
 
 import './Game.scss';
@@ -61,7 +61,7 @@ export default class Game extends React.PureComponent {
       }
 
       entity = this.applyEffectsOfBleeding(entity, squares);
-      entity = this.stopBreathingForKilledEntities(entity);
+      entity = EntitiesService.stopBreathingForKilledEntities(entity);
 			this.markAvailableDestinationsForSelectedEntity(entity, squares)
     });
 
@@ -74,7 +74,6 @@ export default class Game extends React.PureComponent {
         fieldNames.forEach(fieldName => {
           item && (item[fieldName] = false)
         });
-
       }
     );
 	}
@@ -110,10 +109,10 @@ export default class Game extends React.PureComponent {
 				selected, entity
 			)
 		);
-    let JR = ProcessingEntities.findEntityById(entities, "John Rambo");
-    let OP = ProcessingEntities.findEntityById(entities, "Squid");
-    ProcessingEntities.moveEntityRandomly(squares, JR);
-    ProcessingEntities.moveEntityRandomly(squares, OP);
+    let JR = EntitiesService.findEntityById(entities, "John Rambo");
+    let OP = EntitiesService.findEntityById(entities, "Squid");
+    EntitiesService.moveEntityRandomly(squares, JR);
+    EntitiesService.moveEntityRandomly(squares, OP);
 
   }
 	moveEntityIntoChosenDestinations(selected, entity){
@@ -123,14 +122,6 @@ export default class Game extends React.PureComponent {
 			delete entity.moveDestination;
 		}
 	}
-
-  stopBreathingForKilledEntities(entity) {
-    if(entity && entity.hp <= 0){
-      entity.isBreathing = false;
-      entity.hp = 0;
-    }
-    return entity;
-  }
 
   applyEffectsOfBleeding(entity, squares) {
     if(entity.bleeding && entity.hp > 0) {
@@ -149,15 +140,6 @@ export default class Game extends React.PureComponent {
     );
   }
 
-  getEntitiesAtGivenPosition(entities, targetPosition) {
-    return entities.filter((potentialTargetEntity) => {
-      return (
-        potentialTargetEntity.position.x === targetPosition.x &&
-        potentialTargetEntity.position.y === targetPosition.y
-      );
-    });
-  }
-
   applyDamageToTargetEntity(targetEntity, damage) {
     if(damage) {
       targetEntity.hp -= damage;
@@ -172,32 +154,15 @@ export default class Game extends React.PureComponent {
     }
   }
 
-  checkAmmoAndCalculateDamageApplied(entity) {
-    let damageApplied = 0;
-    if(entity.rounds !== "empty" && entity.rounds > 0) {// if we still have ammo
-      entity.rounds--;
-      damageApplied = entity.damage;
-    }
-    if(entity.rounds === 0) {
-      entity.rounds = "empty";
-    } else if(entity.rounds === "empty") {
-      // when ordered to shoot with "empty" magazine state, load ammo instead
-      entity.rounds = entity.maxRounds;
-      entity.isShooting = false;
-      entity.damageApplied = 0;
-    }
-    return damageApplied;
-  }
-
   fireAShot(entities, entity) {
     if(entity.ceaseFire) {
       entity.isShooting = false;
       entity.ceaseFire = false;
       return;
     }
-    let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
+    let damageApplied = EntitiesService.checkAmmoAndCalculateDamageApplied(entity);
     let targetEntities =
-      this.getEntitiesAtGivenPosition(entities, entity.targetPosition);
+      EntitiesService.getEntitiesAtGivenPosition(entities, entity.targetPosition);
     targetEntities.forEach((targetEntity) => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
       this.ceaseFireNextTickIfTargetIsKilled(entity, targetEntity);
@@ -226,21 +191,6 @@ export default class Game extends React.PureComponent {
     this.loop();
   }
 
-  setSelected(entities, selected, value) {
-    let selectedInEntities = ProcessingEntities.findEntityById(
-      entities,
-      ProcessingEntities.getEntityId(selected)
-    );
-    if(value) {
-      selected.active = value;
-    } else {
-      selected = null;
-      console.log("Nullified:", selected);
-    }
-    selectedInEntities.active = value;
-    return selected;
-  }
-
   handleBoardClick = (i) => {
     //console.log("CLICKED ", i);
 
@@ -248,45 +198,44 @@ export default class Game extends React.PureComponent {
       entities.forEach((entity) => { entity.active = false; });
     };
 
-
     /* this should contain mostly function calls */
-
 
     this.setState((previousState) => {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
       let { entities, squares, selected } = localCopyOfPreviousState;
 
       if(squares[i] && squares[i].entity) {// clicked an entity
-        if(selected && !squares[i].entity.isFriendly) {
+        let clickedEntity = squares[i].entity;
+        if(selected && !clickedEntity.isFriendly) {
+
+
           // that is hostile, while we already have one selected
-          if(selected.name === previousState.squares[i].entity.name) {
+          if(selected.name === clickedEntity.name) {
             // second click on a hostile entity deselects it
-            selected = this.setSelected(entities, selected, false);
+            selected = EntitiesService.setSelected(entities, selected, false);
             console.log(selected);
           } else {// clicked a non-selected hostile entity - attack
-            let selectedEntity = ProcessingEntities.findEntityById(
+            let selectedEntity = EntitiesService.findEntityById(
               entities,
-              ProcessingEntities.getEntityId(selected)
+              EntitiesService.getEntityId(selected)
             );
-            selectedEntity.targetPosition =
-              previousState.squares[i].entity.position;
-
+            selectedEntity.targetPosition = clickedEntity.position;
             selectedEntity.isShooting = true;
           }
 
+
         } else {// clicked entity is friendly - select it
           deselectAllEntities(entities);
-          selected = squares[i].entity;
-          this.setSelected(entities, selected, true);
+          selected = clickedEntity;
+          EntitiesService.setSelected(entities, selected, true);
 					this.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
         }
 
       } else {// clicked an empty square
-        /* Deselecting and stopping fire on all entities */
 				if(squares[i] && squares[i].isAvailableDestination) {
 
 					let position = ProcessingSquares.targetSquarePosition(i);
-					let entitiesAtGivenPosition = this.getEntitiesAtGivenPosition(entities, selected.position);
+					let entitiesAtGivenPosition = EntitiesService.getEntitiesAtGivenPosition(entities, selected.position);
 					let entity = entitiesAtGivenPosition[0];
 					entity && (entity.moveDestination = position);
 					this.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
@@ -337,9 +286,9 @@ export default class Game extends React.PureComponent {
       let nextState = JSON.parse(JSON.stringify(prevState));
       let {entities} = nextState;
 
-      let entityId = ProcessingEntities.getEntityId(entity);
-      let actualEntity = ProcessingEntities.findEntityById(entities, entityId);
-      let actualItem = ProcessingEntities.findEntityById(actualEntity.inventory, itemName);
+      let entityId = EntitiesService.getEntityId(entity);
+      let actualEntity = EntitiesService.findEntityById(entities, entityId);
+      let actualItem = EntitiesService.findEntityById(actualEntity.inventory, itemName);
 
       actualEntity.equipment.hands = actualItem;
 

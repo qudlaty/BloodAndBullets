@@ -19,7 +19,7 @@ class Lazer extends Weapon{
 
 class M16 extends Rifle {
   name = 'M16'
-  rounds = 15
+  rounds = 20
   maxRounds = 20
   damage = 1
 }
