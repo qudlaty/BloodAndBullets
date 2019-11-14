@@ -59,6 +59,7 @@ class Square extends React.Component {
     ) {
 
       if(targetCoords) {
+        // TODO: Move this into a helper
         let distanceToTargetX =
           DISTANCE_BETWEEN_TILES*(targetCoords.x-this.props.position.x);
         let distanceToTargetY =
