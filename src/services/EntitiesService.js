@@ -1,17 +1,8 @@
 import { getSquare, setEntityWithinASquare } from './SquaresService';
 import * as SquaresService from './SquaresService';
+import * as Helpers from '../helpers/Helpers';
 const arenaSize = 10;
 let EntitiesService = this;
-
-function getNumberWithinBoundaries(value, min, max) {
-  if( value < min) value = min;
-  if( value > max) value = max;
-  return value;
-}
-
-function getRandomIntInclusive(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 export function getEntityId(entity) {
   return entity.name;
@@ -29,11 +20,11 @@ export function moveEntityRandomly(squares, entity) {
   let oldPositionX = entity.position.x;
   let oldPositionY = entity.position.y;
 
-  entity.position.x = entity.position.x + getRandomIntInclusive(-1,1);
-  entity.position.y = entity.position.y + getRandomIntInclusive(-1,1);
+  entity.position.x = entity.position.x + Helpers.getRandomIntInclusive(-1,1);
+  entity.position.y = entity.position.y + Helpers.getRandomIntInclusive(-1,1);
 
-  entity.position.x = getNumberWithinBoundaries(entity.position.x, 0, arenaSize-1);
-  entity.position.y = getNumberWithinBoundaries(entity.position.y, 0, arenaSize-1);
+  entity.position.x = Helpers.getNumberWithinBoundaries(entity.position.x, 0, arenaSize-1);
+  entity.position.y = Helpers.getNumberWithinBoundaries(entity.position.y, 0, arenaSize-1);
 
   let newSquare = getSquare(squares, entity.position.x, entity.position.y);
 
