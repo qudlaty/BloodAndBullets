@@ -29,4 +29,4 @@ There will be bullets and there will be blood.
 
 ## Dev documentation
 
-Check the file :[DEVDOC.md](DEVDOC.md)
+Check the file: [DEVDOC.md](DEVDOC.md)
