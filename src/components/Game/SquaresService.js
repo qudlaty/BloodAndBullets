@@ -1,4 +1,4 @@
-import * as Helpers from './Helpers';
+import * as Helpers from '../../helpers/Helpers';
 const arenaSize = 10;
 
 export function getSquare (squares, x, y) {

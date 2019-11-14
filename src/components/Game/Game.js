@@ -5,7 +5,7 @@ import EntitiesValues from './EntitiesValues';
 
 import * as EntitiesService from './EntitiesService';
 import * as SquaresService from './SquaresService';
-import * as Helpers from './Helpers';
+import * as Helpers from '../../helpers';
 import './Game.scss';
 
 export default class Game extends React.PureComponent {
