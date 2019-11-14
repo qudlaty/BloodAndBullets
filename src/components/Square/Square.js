@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Helpers from '../../helpers'
 import "./Square.scss";
 
 const DISTANCE_BETWEEN_TILES = 38;
@@ -46,22 +47,7 @@ class Square extends React.Component {
     let projectiles = [];
     let customStyle = "";
 
-    let calcNewAangle = function(x, y){
-      let angle;
-      if(y >= 0) {
-        angle = - Math.atan(
-          x/y
-        ) * (180/Math.PI);
-      } else if(y < 0) {
-        angle = (180/Math.PI) *
-          (
-            Math.atan(
-              x/-y
-            ) + Math.PI
-          )
-      }
-      return angle;
-    }
+    let calcNewAangle = Helpers.calculateAngle;
 
     if(
       (targetCoords && this.props.position && this.props.isShooting)

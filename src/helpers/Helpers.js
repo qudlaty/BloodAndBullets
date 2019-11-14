@@ -17,3 +17,20 @@ export function getNumberWithinBoundaries(value, min, max) {
 export function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function calculateAngle(x, y){
+  let angle;
+  if(y >= 0) {
+    angle = - Math.atan(
+      x/y
+    ) * (180/Math.PI);
+  } else if(y < 0) {
+    angle = (180/Math.PI) *
+      (
+        Math.atan(
+          x/-y
+        ) + Math.PI
+      )
+  }
+  return angle;
+}
