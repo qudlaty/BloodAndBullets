@@ -44,3 +44,52 @@ export function moveEntityRandomly(squares, entity) {
   // NO RETURN AS IT'S MODIFIED IN-PLACE return entity;
   // WHICH IS A BAD HABIT, BUT OH SO COMFY.
 }
+
+export function stopBreathingForKilledEntities(entity) {
+  if(entity && entity.hp <= 0){
+    entity.isBreathing = false;
+    entity.hp = 0;
+  }
+  return entity;
+}
+
+export function getEntitiesAtGivenPosition(entities, targetPosition) {
+  return entities.filter((potentialTargetEntity) => {
+    return (
+      potentialTargetEntity.position.x === targetPosition.x &&
+      potentialTargetEntity.position.y === targetPosition.y
+    );
+  });
+}
+
+export function setSelected(entities, selected, value) {
+  let selectedInEntities = this.findEntityById(
+    entities,
+    this.getEntityId(selected)
+  );
+  if(value) {
+    selected.active = value;
+  } else {
+    selected = null;
+    console.log("Nullified:", selected);
+  }
+  selectedInEntities.active = value;
+  return selected;
+}
+
+export function checkAmmoAndCalculateDamageApplied(entity) {
+  let damageApplied = 0;
+  if(entity.rounds !== "empty" && entity.rounds > 0) {// if we still have ammo
+    entity.rounds--;
+    damageApplied = entity.damage;
+  }
+  if(entity.rounds === 0) {
+    entity.rounds = "empty";
+  } else if(entity.rounds === "empty") {
+    // when ordered to shoot with "empty" magazine state, load ammo instead
+    entity.rounds = entity.maxRounds;
+    entity.isShooting = false;
+    entity.damageApplied = 0;
+  }
+  return damageApplied;
+}
