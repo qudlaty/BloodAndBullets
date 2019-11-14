@@ -3,8 +3,8 @@ import Board from '../Board';
 import EntitiesList from '../EntitiesList';
 import EntitiesValues from './EntitiesValues';
 
-import * as EntitiesService from './EntitiesService';
-import * as SquaresService from './SquaresService';
+import { EntitiesService, SquaresService } from '../../services';
+
 import * as Helpers from '../../helpers';
 import './Game.scss';
 
