@@ -4,7 +4,7 @@ import EntitiesList from '../EntitiesList';
 import EntitiesValues from './EntitiesValues';
 
 import * as EntitiesService from './EntitiesService';
-import * as ProcessingSquares from './ProcessingSquares';
+import * as SquaresService from './SquaresService';
 import * as Helpers from './Helpers';
 import './Game.scss';
 
@@ -35,7 +35,7 @@ export default class Game extends React.PureComponent {
       let squares = JSON.parse(JSON.stringify(previousState.squares));
 			Helpers.resetGivenFieldsOnACollection(squares, 'entity');
       previousState.entities.forEach((entity)=>{
-        ProcessingSquares.setEntityWithinASquare(
+        SquaresService.setEntityWithinASquare(
           squares, entity.position.x, entity.position.y, entity
         );
       });
@@ -54,7 +54,7 @@ export default class Game extends React.PureComponent {
       }
       entity = EntitiesService.applyEffectsOfBleeding(entity, squares);
       entity = EntitiesService.stopBreathingForKilledEntities(entity);
-      ProcessingSquares.markAvailableDestinationsForSelectedEntity(entity, squares)
+      SquaresService.markAvailableDestinationsForSelectedEntity(entity, squares)
     });
 
     return nextState;
@@ -125,7 +125,7 @@ export default class Game extends React.PureComponent {
       } else {// clicked an empty square
 				if(squares[i] && squares[i].isAvailableDestination) {
 
-					let position = ProcessingSquares.targetSquarePosition(i);
+					let position = SquaresService.targetSquarePosition(i);
 					let entitiesAtGivenPosition = EntitiesService.getEntitiesAtGivenPosition(entities, selected.position);
 					let entity = entitiesAtGivenPosition[0];
 					entity && (entity.moveDestination = position);
