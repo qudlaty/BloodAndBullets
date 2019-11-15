@@ -60,12 +60,14 @@ class Square extends React.Component {
 
       if(targetCoords) {
         // TODO: Move this into a helper
+        
         let distanceToTargetX =
           DISTANCE_BETWEEN_TILES*(targetCoords.x-this.props.position.x);
         let distanceToTargetY =
           DISTANCE_BETWEEN_TILES*(targetCoords.y-this.props.position.y);
-        let actualDistance = Math.sqrt(
-          Math.pow(distanceToTargetX, 2) + Math.pow(distanceToTargetY, 2)
+
+        let actualDistance = Helpers.calculateDistance(
+          distanceToTargetX, distanceToTargetY
         );
 
         if(this.props.weaponType === 'lazer') {
