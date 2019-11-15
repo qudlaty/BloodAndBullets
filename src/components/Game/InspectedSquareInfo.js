@@ -1,5 +1,6 @@
 import React from 'react';
-
+import * as Helpers from '../../helpers'
+import {SquaresService} from '../../services'
 
 export default class InspectedSquareInfo extends React.Component {
 
@@ -9,13 +10,15 @@ export default class InspectedSquareInfo extends React.Component {
         if(!inspectedSquare) {
             return <span>Nothing</span>
         }
+        let squarePosition = SquaresService.targetSquarePosition(this.props.squareNumber);
+        let distanceToSelected = Helpers.calculateDistance(squarePosition.x, squarePosition.y);
 
         return (
         <div>
             <h3>Square Info</h3>
             <ul>
                 <li>
-                    Distance to selected: 
+                    Distance to selected: {~~distanceToSelected}
                 </li>
                 <li>
                     Blood amount:{inspectedSquare.blood}
