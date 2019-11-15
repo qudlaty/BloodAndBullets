@@ -2,6 +2,7 @@ import React from 'react';
 import Board from '../Board';
 import EntitiesList from '../EntitiesList';
 import EntitiesValues from './EntitiesValues';
+import InspectedSquareInfo from './InspectedSquareInfo'
 
 import { EntitiesService, SquaresService } from '../../services';
 
@@ -23,6 +24,7 @@ export default class Game extends React.PureComponent {
       entities: EntitiesValues,
       squares: [],
       autoLoop: true,
+      selectedSquareNumber: null,
     }
   }
 
@@ -111,7 +113,8 @@ export default class Game extends React.PureComponent {
 
     this.setState((previousState) => {
       let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
-      let { entities, squares, selected } = localCopyOfPreviousState;
+      let { entities, squares, selected, selectedSquareNumber } = localCopyOfPreviousState;
+      selectedSquareNumber = i;
 
       if(squares[i] && squares[i].entity) {// clicked an entity
         let clickedEntity = squares[i].entity;
@@ -156,7 +159,7 @@ export default class Game extends React.PureComponent {
 				}
       }
 
-      return {entities, squares, selected}
+      return {entities, squares, selected, selectedSquareNumber}
     }, ()=> {
       this.processInterface();
     });
@@ -243,6 +246,11 @@ export default class Game extends React.PureComponent {
             <li>Click Ellen Replay on the board, to select her.</li>
             <li>Click a target to shoot it.</li>
           </ul>
+
+          <InspectedSquareInfo 
+            squareNumber = {this.state.selectedSquareNumber}
+            squares = {this.state.squares} />
+
         </div>
         <div className="game-list">
           <EntitiesList
