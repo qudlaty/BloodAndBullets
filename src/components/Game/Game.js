@@ -59,6 +59,17 @@ export default class Game extends React.PureComponent {
 
     return nextState;
   }
+  calculateNextInterfaceState(previousState) {
+    let nextState = JSON.parse(JSON.stringify(previousState));
+    let { entities, squares, selected } = nextState;
+ 
+    entities.forEach(entity => {
+      
+      SquaresService.markAvailableDestinationsForSelectedEntity(entity, squares)
+    });
+
+    return nextState;
+  }
 
   processEntities() {
     this.setState(
@@ -66,7 +77,14 @@ export default class Game extends React.PureComponent {
       () => this.setSquaresAccordingToEntities()
     );
   }
-
+  
+  processInterface() {
+    this.setState(
+      prevState => this.calculateNextInterfaceState(prevState),
+      () => this.setSquaresAccordingToEntities()
+    )
+  }
+  
   loop = () => {
     this.stepNumber++;
 
@@ -140,7 +158,7 @@ export default class Game extends React.PureComponent {
 
       return {entities, squares, selected}
     }, ()=> {
-      this.processEntities();
+      this.processInterface();
     });
 
   }
