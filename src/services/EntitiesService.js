@@ -133,7 +133,7 @@ export function applyEffectsOfBleeding(entity, squares) {
 }
 
 export function moveEntityIntoChosenDestinations(selected, entity){
-  if(entity.isBreathing && entity.moveDestination) {
+  if(entity.isBreathing && entity.moveDestination && selected) {
     entity.position = entity.moveDestination;
     selected.position = entity.position;
     delete entity.moveDestination;
