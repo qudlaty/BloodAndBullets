@@ -1,8 +1,7 @@
-import { getSquare, setEntityWithinASquare } from './SquaresService';
+import { getSquare } from './SquaresService';
 import * as SquaresService from './SquaresService';
 import * as Helpers from '../helpers/Helpers';
 const arenaSize = 10;
-let EntitiesService = this;
 
 export function getEntityId(entity) {
   return entity.name;
@@ -75,7 +74,7 @@ export function checkAmmoAndCalculateDamageApplied(entity) {
 
   if(!weapon){return 0}
   if(weapon.isAbleToFire) {// if we still have ammo
-    damageApplied = weapon.fire(); 
+    damageApplied = weapon.fire();
   }
   if(weapon.rounds === 0) {
     weapon.rounds = "empty";
