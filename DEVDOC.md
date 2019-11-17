@@ -32,3 +32,12 @@ Initially, we have a new tick every 1 second.
  - Changes hp on all entities
 
 Question: So actions change state within a tick, how should that be related to the tick calculating next game state?
+
+### Keeping game state in a component state?
+
+#### Pros:
+ - setState updater ensures previous state change is completed
+ - one data model for logic and for display (this might actually be a bad thing)
+
+#### Cons:
+ - recommended immutability of react.state stops us from doing OOP fully

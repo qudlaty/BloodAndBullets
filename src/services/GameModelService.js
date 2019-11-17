@@ -1,7 +1,7 @@
 import Entities from './EntitiesValues';
 
 class GameModelClass {
-  constructor( { Entities = [] } = {} ) {
+  constructor(Entities) {
     this.entities = Entities;
   }
   access() {
@@ -10,5 +10,6 @@ class GameModelClass {
   }
 }
 
-let GameModel = new GameModelClass({Entities});
+let GameModel = new GameModelClass(Entities);
+
 export default GameModel;
