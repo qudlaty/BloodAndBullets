@@ -9,15 +9,17 @@ class RangedWeapon extends Weapon{
   rounds = 0
   maxRounds = 5
 
-  fire = () => {
+  fire() {
     this.rounds--;
-    console.log('firing rifle', this.damage);
+    console.log('Firing ranged weapon. Damage: ', this.damage);
     return this.damage
   }
+
   get isAbleToFire() {
     return this.rounds > 0;
   }
-  reload = () => {
+
+  reload() {
     this.rounds = this.maxRounds;
   }
 }
@@ -26,7 +28,6 @@ class Rifle extends RangedWeapon{
   type = 'projectile'
   causesBleeding =  2
   range = 4
-
 }
 
 class Lazer extends RangedWeapon{
@@ -40,11 +41,11 @@ class M16 extends Rifle {
   name = 'M16'
   rounds = 20
   maxRounds = 20
-  damage = 1
+  damage = 2
 }
 
 class L30 extends Lazer {
-  name = 'Assault Lazer Rifle'
+  name = 'Assault Lazer Cannon'
   rounds = 3
   maxRounds = 3
   damage = 10
@@ -57,7 +58,36 @@ class M40 extends Rifle {
   damage = 1
 }
 
-const entities = [
+class BasicEntity {
+  name = "An Entity"
+  icon = "E"
+  position = {x: undefined, y: undefined}
+  hp = 100
+  maxHp = 100
+}
+
+const ExtendableMixin = superClass => class extends superClass {
+  constructor(...props) {
+    super(...props);
+    Object.assign(this, ...props);
+  }
+}
+
+const BreathingMixin = superClass => class extends superClass {
+  isSupposedToBeBreathing = true;
+  get isBreathing() {
+    return this.hp > 0 && this.isSupposedToBeBreathing;
+  }
+  set isBreathing(value) {
+    this.isSupposedToBeBreathing = value;
+  }
+}
+
+class Entity extends BreathingMixin(ExtendableMixin(BasicEntity)) {
+
+}
+
+const entitiesInitialValues = [
   {
     name: "John Rambo", age: 40, hp: 95, maxHp: 100,
     icon: "😠",
@@ -137,5 +167,7 @@ const entities = [
   },
 
 ];
+
+const entities = entitiesInitialValues.map(entry => new Entity(entry));
 
 export default entities;
