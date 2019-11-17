@@ -9,6 +9,13 @@ class EntityCard extends React.Component {
     this.props.onInventoryClick(this.props.entity, itemName);
   }
 
+  renderAmmo = (inHands)=> {
+    if(inHands) {
+      console.log(inHands);
+     return <LinearDisplay label="Rounds" current={inHands.rounds} max={inHands.maxRounds} />
+    }
+  }
+
   render() {
     // console.log("Rendering EntityView. #", this.renderCount++);
     let { entity } = this.props;
@@ -26,16 +33,9 @@ class EntityCard extends React.Component {
     let lifeSigns = isBreathing ? " ALIVE " : " DEAD ";
     className += fof;
     className += lifeSigns;
-    let inHands = entity.equipment && entity.equipment.hands && entity.equipment.hands.name || entity.equipment && entity.equipment.hands;
+    let inHands = entity.equipment && entity.equipment.hands;
     let inHandsArray = inHands && [inHands] || [];
-    let equipped = inHands && (
-      <>
-        <span>inHands: </span>
-        <div className="inventory-list__item">
-          {inHands}
-        </div>
-      </>
-    );
+
 
     return (
 
@@ -60,7 +60,7 @@ class EntityCard extends React.Component {
           textAlign: "right",
         }}>
           <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} /><br/>
-          <LinearDisplay label="Rounds" current={entity.rounds} max={entity.maxRounds} />
+          {this.renderAmmo(inHands)}
         </div>
         <InventoryList label="Equipped" title="In hands" onClick={()=>{}} inventory={inHandsArray} />
         <InventoryList label="Inventory" title="In backpack" onClick={this.handleInventoryClick} inventory={entity.inventory} />
