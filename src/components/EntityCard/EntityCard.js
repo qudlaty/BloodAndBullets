@@ -11,7 +11,6 @@ class EntityCard extends React.Component {
 
   renderAmmo = (inHands)=> {
     if(inHands) {
-      console.log(inHands);
      return <LinearDisplay label="Rounds" current={inHands.rounds} max={inHands.maxRounds} />
     }
   }
