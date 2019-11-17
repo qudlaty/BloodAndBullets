@@ -20,5 +20,17 @@
     padding: 5px;
     margin: 5px;
     margin-top: -6px;
+    &--partial {
+      color: #999;
+    }
+    &--empty {
+      color: #EEE;
+      animation: blink_softly 1.5s alternate infinite;
+    }
   }
+}
+
+@keyframes blink_softly {
+  0%    {color: rgba(255,255,255,1)}
+  0%    {color: rgba(100,100,100,1)}
 }
