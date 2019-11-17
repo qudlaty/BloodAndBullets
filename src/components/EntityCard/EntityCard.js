@@ -61,7 +61,7 @@ class EntityCard extends React.Component {
           <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} /><br/>
           {this.renderAmmo(inHands)}
         </div>
-        <InventoryList label="Equipped" title="In hands" onClick={()=>{}} inventory={inHandsArray} />
+        <InventoryList label="Equipped" title="In hands" onClick={this.handleInventoryClick} inventory={inHandsArray} />
         <InventoryList label="Inventory" title="In backpack" onClick={this.handleInventoryClick} inventory={entity.inventory} />
 
       </div>
