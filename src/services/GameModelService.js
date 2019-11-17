@@ -1,4 +1,4 @@
-import Entities from '../components/Game/EntitiesValues';
+import Entities from './EntitiesValues';
 
 class GameModelClass {
   constructor( { Entities = [] } = {} ) {

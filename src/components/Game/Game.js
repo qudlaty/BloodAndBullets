@@ -1,7 +1,6 @@
 import React from 'react';
 import Board from '../Board';
 import EntitiesList from '../EntitiesList';
-import EntitiesValues from './EntitiesValues';
 import InspectedSquareInfo from './InspectedSquareInfo'
 
 import { EntitiesService, SquaresService } from '../../services';
@@ -66,9 +65,9 @@ export default class Game extends React.PureComponent {
   calculateNextInterfaceState(previousState) {
     let nextState = JSON.parse(JSON.stringify(previousState));
     let { entities, squares, selected } = nextState;
- 
+
     entities.forEach(entity => {
-      
+
       SquaresService.markAvailableDestinationsForSelectedEntity(entity, squares)
     });
 
@@ -81,14 +80,14 @@ export default class Game extends React.PureComponent {
       () => this.setSquaresAccordingToEntities()
     );
   }
-  
+
   processInterface() {
     this.setState(
       prevState => this.calculateNextInterfaceState(prevState),
       () => this.setSquaresAccordingToEntities()
     )
   }
-  
+
   loop = () => {
     this.stepNumber++;
 
