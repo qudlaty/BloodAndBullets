@@ -1,17 +1,35 @@
 //TODO: Move this out of the component
 class Weapon {
   causesBleeding = 0
-  range: 0
-  damage: 0
-};
+  range = 0
+  damage =  0
+}
 
-class Rifle extends Weapon{
+class RangedWeapon extends Weapon{
+  rounds = 0
+  maxRounds = 5
+
+  fire = () => {
+    this.rounds--;
+    console.log('firing rifle', this.damage);
+    return this.damage
+  }
+  get isAbleToFire() {
+    return this.rounds > 0;
+  }
+  reload = () => {
+    this.rounds = this.maxRounds;
+  }
+}
+
+class Rifle extends RangedWeapon{
   type = 'projectile'
   causesBleeding =  2
   range = 4
-};
 
-class Lazer extends Weapon{
+}
+
+class Lazer extends RangedWeapon{
   type = 'lazer'
   causesBleeding = 0
   range = 6
@@ -66,7 +84,7 @@ const entities = [
     isBreathing: true,
     isFriendly: true,
     position: {x:4, y:8},
-    inventory: [new L30],
+    inventory: [new L30, new M16],
     equipment: {},
     damage: 10, rounds: 3, maxRounds: 3, hasWeapon: true,
   },

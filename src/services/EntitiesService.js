@@ -71,18 +71,21 @@ export function setSelected(entities, selected, value) {
 
 export function checkAmmoAndCalculateDamageApplied(entity) {
   let damageApplied = 0;
-  if(entity.rounds !== "empty" && entity.rounds > 0) {// if we still have ammo
-    entity.rounds--;
-    damageApplied = entity.damage;
+  let weapon = entity.equipment.hands;
+
+  if(!weapon){return 0}
+  if(weapon.isAbleToFire) {// if we still have ammo
+    damageApplied = weapon.fire(); 
   }
-  if(entity.rounds === 0) {
-    entity.rounds = "empty";
-  } else if(entity.rounds === "empty") {
+  if(weapon.rounds === 0) {
+    weapon.rounds = "empty";
+  } else if(weapon.rounds === "empty") {
     // when ordered to shoot with "empty" magazine state, load ammo instead
-    entity.rounds = entity.maxRounds;
+    weapon.reload();
     entity.isShooting = false;
-    entity.damageApplied = 0;
+    //entity.damageApplied = 0;
   }
+
   return damageApplied;
 }
 
