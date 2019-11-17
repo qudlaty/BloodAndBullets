@@ -73,14 +73,11 @@ export function checkAmmoAndCalculateDamageApplied(entity) {
   let weapon = entity.equipment && entity.equipment.hands;
 
   if(!weapon) return 0;
-
   if(weapon.isAbleToFire) {
     damageApplied = weapon.fire();
   }
-  if(weapon.rounds === 0) {
+  if(weapon.rounds === 0 || weapon.rounds === "empty") {
     weapon.rounds = "empty";
-    entity.isShooting = false;
-  } else if(weapon.rounds === "empty") {
     entity.isShooting = false;
   }
 
@@ -111,7 +108,6 @@ export function applyDamageToTargetEntity(targetEntity, damage) {
 
 export function ceaseFireNextTickIfTargetIsKilled(entity, targetEntity) {
   if(targetEntity.hp < 0) {
-    //entity.isShooting = false;
     entity.ceaseFire = true;
   }
 }
