@@ -247,9 +247,11 @@ export default class Game extends React.PureComponent {
             <li>Click a target to shoot it.</li>
           </ul>
 
-          <InspectedSquareInfo 
+          <InspectedSquareInfo
             squareNumber = {this.state.selectedSquareNumber}
-            squares = {this.state.squares} />
+            squares = {this.state.squares}
+            selected = {this.state.selected}
+          />
 
         </div>
         <div className="game-list">
