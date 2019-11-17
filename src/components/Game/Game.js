@@ -35,7 +35,8 @@ export default class Game extends React.PureComponent {
 
   setSquaresAccordingToEntities() {
     this.setState((previousState)=>{
-      let squares = JSON.parse(JSON.stringify(previousState.squares));
+      let squares = [].concat(previousState.squares);
+
 			Helpers.resetGivenFieldsOnACollection(squares, 'entity');
       previousState.entities.forEach((entity)=>{
         SquaresService.setEntityWithinASquare(
@@ -48,8 +49,9 @@ export default class Game extends React.PureComponent {
   }
 
   calculateNextGameState(previousState) {
-    let nextState = JSON.parse(JSON.stringify(previousState));
+    let nextState = previousState;
     let { entities, squares, selected } = nextState;
+
     EntitiesService.moveEntities(entities, squares, selected);
     entities.forEach(entity => {
       if(EntitiesService.isEntityShootingProperly(entity)) {
@@ -63,7 +65,7 @@ export default class Game extends React.PureComponent {
     return nextState;
   }
   calculateNextInterfaceState(previousState) {
-    let nextState = JSON.parse(JSON.stringify(previousState));
+    let nextState = previousState;
     let { entities, squares, selected } = nextState;
 
     entities.forEach(entity => {
@@ -107,13 +109,13 @@ export default class Game extends React.PureComponent {
     //console.log("CLICKED ", i);
     GameLogic.run();
     const deselectAllEntities = (entities) => {
-      entities.forEach((entity) => { entity.active = false; });
+      entities.forEach((entity) => { entity.active = undefined; });
     };
 
     /* this should contain mostly function calls */
 
     this.setState((previousState) => {
-      let localCopyOfPreviousState = JSON.parse(JSON.stringify(previousState));
+      let localCopyOfPreviousState = previousState;
       let { entities, squares, selected, selectedSquareNumber } = localCopyOfPreviousState;
       selectedSquareNumber = i;
 
@@ -170,7 +172,7 @@ export default class Game extends React.PureComponent {
   nuke = (dmg) => {
     //console.log("Nuking")
     this.setState( (state) => {
-      let localCopyOfEntities = JSON.parse(JSON.stringify(state.entities));
+      let localCopyOfEntities = state.entities;
       localCopyOfEntities.forEach(entity => {
         entity.hp = entity.hp - dmg;
       });
@@ -196,8 +198,7 @@ export default class Game extends React.PureComponent {
 
   onInventoryClick = (entity, itemName) => {
     this.setState((prevState) => {
-      let nextState = JSON.parse(JSON.stringify(prevState));
-      let {entities} = nextState;
+      let entities = [].concat(prevState.entities);
 
       let entityId = EntitiesService.getEntityId(entity);
       let actualEntity = EntitiesService.findEntityById(entities, entityId);
@@ -205,7 +206,7 @@ export default class Game extends React.PureComponent {
 
       actualEntity.equipment.hands = actualItem;
 
-      return nextState
+      return {entities};
     });
 
     console.log(entity, itemName);
@@ -213,7 +214,7 @@ export default class Game extends React.PureComponent {
 
   render() {
     let boardClassName = this.state.isBoardRotated ? "rotated-board" : "";
-    //console.log("Rendering Game. #", this.renderCounter++);
+    console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className="game">
         <div className="game-board">
