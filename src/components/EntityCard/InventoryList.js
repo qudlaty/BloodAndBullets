@@ -8,7 +8,9 @@ if(!props.inventory) {return null}
 let reloadButton;
 let inventoryItems = props.inventory.map(item => {
   if(item.reload) {
-    reloadButton = <button onClick={item.reload}>Reload</button>
+    reloadButton = <button className="inventory-list__reload-button" onClick={item.reload}>Reload</button>
+  } else {
+    reloadButton = null;
   }
   return (
     <div key={item.name}>
