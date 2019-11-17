@@ -49,7 +49,7 @@ export function markAvailableDestinationsForSelectedEntity(entity, squares) {
         continue
       }
       for(let i = x - 1; i <= x + 1; i++){
-        if( i < 0 || i >= arenaSize || (i == x && j == y)){
+        if( i < 0 || i >= arenaSize || (i === x && j === y)){
           continue
         }
 

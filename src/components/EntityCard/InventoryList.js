@@ -11,7 +11,7 @@ let inventoryItems = props.inventory.map(item => {
     reloadButton = <button onClick={item.reload}>Reload</button>
   }
   return (
-    <div>
+    <div key={item.name}>
       <div onClick={() => props.onClick(item.name || item)} key={item.name} className="inventory-list__item">
         <span>{item.name || item}</span>
       </div>
