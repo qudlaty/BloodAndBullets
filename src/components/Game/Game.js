@@ -154,9 +154,9 @@ export default class Game extends React.PureComponent {
 					Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
 					squares[i].isChosenDestination = true;
 				} else {
-					selected = null;
-					Helpers.resetGivenFieldsOnACollection(entities, 'active', 'isShooting');
-					Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination', 'isAvailableDestination');
+					// selected = null;
+					// Helpers.resetGivenFieldsOnACollection(entities, 'active', 'isShooting');
+					// Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination', 'isAvailableDestination');
 				}
       }
 
