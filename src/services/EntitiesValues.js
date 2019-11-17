@@ -71,6 +71,16 @@ const entities = [
     damage: 10, rounds: 3, maxRounds: 3, hasWeapon: true,
   },
   {
+    name: "Lux Aeterna", age: 20, hp: 50, maxHp: 50,
+    icon: "👱‍♀️",
+    isBreathing: true,
+    isFriendly: true,
+    position: {x:1, y:1},
+    inventory: [new L30],
+    equipment: {},
+    damage: 4, rounds: 1, maxRounds: 1, hasWeapon: true,
+  },
+  {
     name: "Octo", age: 8, hp: 288, maxHp: 300,
     icon: "🐙",
     isBreathing: true,
