@@ -70,7 +70,7 @@ export function setSelected(entities, selected, value) {
 
 export function checkAmmoAndCalculateDamageApplied(entity) {
   let damageApplied = 0;
-  let weapon = entity.equipment.hands;
+  let weapon = entity.equipment && entity.equipment.hands;
 
   if(!weapon){return 0}
   if(weapon.isAbleToFire) {// if we still have ammo
