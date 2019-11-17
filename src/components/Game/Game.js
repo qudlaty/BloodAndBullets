@@ -5,6 +5,8 @@ import EntitiesValues from './EntitiesValues';
 import InspectedSquareInfo from './InspectedSquareInfo'
 
 import { EntitiesService, SquaresService } from '../../services';
+import GameLogic from '../../services/GameLogicService'
+import GameModel from '../../services/GameModelService'
 
 import * as Helpers from '../../helpers';
 import './Game.scss';
@@ -21,7 +23,7 @@ export default class Game extends React.PureComponent {
       selected: null,
       arenaSize: 10,
       isBoardRotated: false,
-      entities: EntitiesValues,
+      entities: GameModel.entities,
       squares: [],
       autoLoop: true,
       selectedSquareNumber: null,
@@ -104,7 +106,7 @@ export default class Game extends React.PureComponent {
 
   handleBoardClick = (i) => {
     //console.log("CLICKED ", i);
-
+    GameLogic.run();
     const deselectAllEntities = (entities) => {
       entities.forEach((entity) => { entity.active = false; });
     };
