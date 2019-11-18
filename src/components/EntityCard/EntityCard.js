@@ -27,9 +27,9 @@ class EntityCard extends React.Component {
       className+=" active ";
     }
 
-    let { isBreathing, isFriendly } = entity;
+    let { isDead, isFriendly } = entity;
     let fof = isFriendly ? ' friendly ' : ' unfriendly ';
-    let lifeSigns = isBreathing ? " ALIVE " : " DEAD ";
+    let lifeSigns = isDead ? " DEAD " : " ALIVE ";
     className += fof;
     className += lifeSigns;
     let inHands = entity.equipment && entity.equipment.hands;
