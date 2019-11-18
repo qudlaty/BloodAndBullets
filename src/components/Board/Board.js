@@ -38,6 +38,7 @@ export default class Board extends React.PureComponent {
         icon={entity && entity.icon}
         active={entity && entity.active}
         isBreathing={entity && entity.isBreathing}
+        isDead={entity && entity.isDead}
 
         isShooting={entity && entity.isShooting}
         weaponType={entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type}

@@ -30,7 +30,8 @@ class Square extends React.Component {
     if(this.props.icon){
       if(this.props.isBreathing) {
         className += " breathing ";
-      } else {
+      }
+      if(this.props.isDead) {
         className += " dead ";
       }
       if(this.props.isShooting) {
@@ -60,7 +61,7 @@ class Square extends React.Component {
 
       if(targetCoords) {
         // TODO: Move this into a helper
-        
+
         let distanceToTargetX =
           DISTANCE_BETWEEN_TILES*(targetCoords.x-this.props.position.x);
         let distanceToTargetY =
