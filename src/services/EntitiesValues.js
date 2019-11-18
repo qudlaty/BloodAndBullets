@@ -64,6 +64,9 @@ class BasicEntity {
   position = {x: undefined, y: undefined}
   hp = 100
   maxHp = 100
+  get isDead() {
+    return this.hp <=0;
+  }
 }
 
 const ExtendableMixin = superClass => class extends superClass {
@@ -74,7 +77,7 @@ const ExtendableMixin = superClass => class extends superClass {
 }
 
 const BreathingMixin = superClass => class extends superClass {
-  isSupposedToBeBreathing = true;
+  isSupposedToBeBreathing = undefined;
   get isBreathing() {
     return this.hp > 0 && this.isSupposedToBeBreathing;
   }
@@ -83,8 +86,22 @@ const BreathingMixin = superClass => class extends superClass {
   }
 }
 
-class Entity extends BreathingMixin(ExtendableMixin(BasicEntity)) {
+const MobilityMixin = superClass => class extends superClass {
+  get canMove() {
 
+  }
+  move() {
+
+  }
+}
+
+const MortalMixin = superClass => class extends superClass {
+
+}
+
+class Entity extends ExtendableMixin(BreathingMixin(BasicEntity)) {
+  // extendable must be on the left, so what is given in constructor props
+  // can overwrite what was defined within classess
 }
 
 const entitiesInitialValues = [
@@ -129,7 +146,13 @@ const entitiesInitialValues = [
     damage: 4, rounds: 1, maxRounds: 1, hasWeapon: true,
   },
   {
-    name: "Octo", age: 8, hp: 288, maxHp: 300,
+    name: "Robot", age: 1, hp: 50, maxHp: 50,
+    icon: "🤖",
+    isBreathing: false,
+    position: {x:4, y:5},
+  },
+  {
+    name: "Octo", age: 8, hp: 200, maxHp: 200,
     icon: "🐙",
     isBreathing: true,
     position: {x:8, y:2},
@@ -147,7 +170,7 @@ const entitiesInitialValues = [
     position: {x:7, y:6},
   },
   {
-    name: "Spider", age: 1, hp: 160, maxHp: 150,
+    name: "Spider", age: 1, hp: 100, maxHp: 100,
     icon: "🕷️",
     isBreathing: true,
     position: {x:9, y:3},
