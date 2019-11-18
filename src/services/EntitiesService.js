@@ -14,7 +14,7 @@ export function findEntityById(entities, id) {
 }
 
 export function moveEntityRandomly(squares, entity) {
-  if(!entity.isBreathing) return;
+  if(entity.isDead) return;
   // modifies entity in-place
   let oldPositionX = entity.position.x;
   let oldPositionY = entity.position.y;
@@ -130,7 +130,7 @@ export function applyEffectsOfBleeding(entity, squares) {
 }
 
 export function moveEntityIntoChosenDestinations(selected, entity){
-  if(entity.isBreathing && entity.moveDestination && selected) {
+  if(!entity.isDead && entity.moveDestination && selected) {
     entity.position = entity.moveDestination;
     selected.position = entity.position;
     delete entity.moveDestination;
