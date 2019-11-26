@@ -53,6 +53,18 @@ export function getEntitiesAtGivenPosition(entities, targetPosition) {
   });
 }
 
+export function selectEntityFromGivenSquare(entities, squares, selected, targeted) {
+  if(selected && targeted && targeted.entity){
+    selected.active = false;
+  }
+  if(targeted && targeted.entity){
+    selected = targeted.entity;
+    selected.active = true;
+  }
+
+  return selected;
+} 
+
 export function setSelected(entities, selected, value) {
   let selectedInEntities = this.findEntityById(
     entities,

@@ -37,6 +37,13 @@ export function addBlood(square, amount) {
   }
 }
 
+export function markSquareAsTargeted (squares, squareIndex){
+  if(!squares[squareIndex]) {
+    squares[squareIndex] = {};
+  }
+  squares[squareIndex].isTargeted = true;
+}
+
 export function markAvailableDestinationsForSelectedEntity(entity, squares) {
 
   if(entity.active) {
