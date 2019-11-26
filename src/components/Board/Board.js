@@ -50,6 +50,7 @@ export default class Board extends React.PureComponent {
 
         isAvailableDestination={square && square.isAvailableDestination}
         isChosenDestination={square && square.isChosenDestination}
+        isTargeted={square && square.isTargeted}
       />
     );
   }

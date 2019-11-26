@@ -38,6 +38,9 @@ class Square extends React.Component {
         className += " shooting ";
       }
     }
+    if(this.props.isTargeted) {
+      className += " targeted ";
+    }
 
     let randomTime = `${(Math.random()+0.5).toFixed(2)}s`// 0.50 - 1.50s
     let animationBreathing = this.props.isBreathing ?

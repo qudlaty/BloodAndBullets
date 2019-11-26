@@ -19,6 +19,7 @@ export default class Game extends React.PureComponent {
 
     // Initial value of game state
     this.state = {
+      targeted: null,
       selected: null,
       arenaSize: 10,
       isBoardRotated: false,
@@ -169,6 +170,24 @@ export default class Game extends React.PureComponent {
 
   }
 
+  newHandleClick = (squareIndex) => {
+    
+    this.setState( (state) => {
+
+      let {squares, entities, selected, targeted, selectedSquareNumber} = state;
+      
+      targeted = squares[squareIndex];
+      Helpers.resetGivenFieldsOnACollection(squares, 'isTargeted');
+      SquaresService.markSquareAsTargeted (squares, squareIndex);
+      selected = EntitiesService.selectEntityFromGivenSquare(entities, squares, selected, targeted);
+      selectedSquareNumber = squareIndex;
+
+      console.log(selected, entities);
+      return {squares, entities, selected, targeted, selectedSquareNumber};
+    }, this.processEntities ); 
+  }
+
+
   nuke = (dmg) => {
     //console.log("Nuking")
     this.setState( (state) => {
@@ -248,7 +267,7 @@ export default class Game extends React.PureComponent {
         <div className="game-board">
           <Board
             squares={this.state.squares}
-            onClick={(i) => this.handleBoardClick(i)}
+            onClick={(i) => this.newHandleClick(i)}
             size={this.state.arenaSize}
             className={boardClassName}
           />
@@ -281,6 +300,8 @@ export default class Game extends React.PureComponent {
             squareNumber = {this.state.selectedSquareNumber}
             squares = {this.state.squares}
             selected = {this.state.selected}
+            targeted = {this.state.targeted}
+            onInventoryClick= {this.onInventoryClick}
           />
 
         </div>
