@@ -208,9 +208,37 @@ export default class Game extends React.PureComponent {
 
       return {entities};
     });
-
     console.log(entity, itemName);
   }
+
+  deselectAllEntities = () => {
+    this.setState( (state) => {
+
+      let {squares, entities, selected} = state;
+      
+      Helpers.resetGivenFieldsOnACollection(entities, 'active');
+      Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
+      Helpers.resetGivenFieldsOnACollection(squares, 'isAvailableDestination');
+      selected = undefined;
+
+      return {squares, entities, selected}
+    }, () => {
+      //this.processEntities();
+    });
+  }
+
+  ceaseFire = () => {
+    this.setState( (state) => {
+      let {squares, entities, selected} = state;
+
+      Helpers.resetGivenFieldsOnACollection(entities, 'isShooting');
+      
+      return {squares, entities, selected}
+    }, () => {
+      this.processInterface();
+    });
+  }
+
 
   render() {
     let boardClassName = this.state.isBoardRotated ? "rotated-board" : "";
@@ -228,15 +256,15 @@ export default class Game extends React.PureComponent {
 
         <div className="game-info">
 
-          <span className="selected">Selected: {this.state.selected && this.state.selected.name}</span>
-          <button
-            onClick={
-              ()=>{
-                this.nuke(40);
-              }
-            }
-            className="button button-nuke"
-          >Nuke All</button>
+          <div className="selected">
+            Selected: {this.state.selected && this.state.selected.name}
+            <button onClick={this.deselectAllEntities} className="button"> Deselect</button>
+          </div>
+          <div>
+            <button onClick={()=>{this.nuke(40);}} className="button button-nuke">Nuke All</button>
+            <button onClick={this.ceaseFire} className="button">Cease Fire</button>
+          </div>
+
           <button onClick={this.toggleRotateBoard} className="button">Rotate Board</button>
           <button onClick={this.nextTick} className="button">Next Tick</button>
           <span className="step-counter">Tick: {this.stepNumber}</span>
