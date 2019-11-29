@@ -15,6 +15,8 @@ export default class InspectedSquareInfo extends React.Component {
 
         let entityInfo = '';
         let distanceInfo = '';
+        let positionInfo = '';
+        let bloodInfo = '';
 
         if(targeted && targeted.entity) {
           entityInfo = <EntityCard onInventoryClick={this.props.onInventoryClick} entity={targeted.entity} />
@@ -33,14 +35,21 @@ export default class InspectedSquareInfo extends React.Component {
           );
         }
 
+        if(squarePosition) {
+          positionInfo = <li>Position: [ {squarePosition.x}, {squarePosition.y} ] </li>
+        }
+
+        if(inspectedSquare && inspectedSquare.blood) {
+          bloodInfo = <li>Blood amount: {inspectedSquare.blood}</li>
+        }
+
         return (
         <div className="inspected-square-info" >
             <h3>Square Info</h3>
             <ul>
+                {positionInfo}
                 {distanceInfo}
-                <li>
-                    Blood amount: {~~ inspectedSquare && inspectedSquare.blood}
-                </li>
+                {bloodInfo}
             </ul>
             {entityInfo}
         </div>
