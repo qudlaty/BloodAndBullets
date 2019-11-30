@@ -1,70 +1,75 @@
 import * as Helpers from '../helpers/Helpers';
+
 const arenaSize = 10;
 
-export function getSquare (squares, x, y) {
-  return squares[targetSquareIndex(x, y, arenaSize)];
-}
+class SquaresServiceClass {
+  squares
 
-export function setSquare(squares, x, y, value) {
-  squares[targetSquareIndex(x, y)] = value;
-}
-
-export function targetSquareIndex(x, y) {
-  return y * arenaSize + x;
-}
-
-export function targetSquarePosition(squareIndex) {
-  let x,y;
-	y = Math.floor(squareIndex / arenaSize);
-	x = (squareIndex % arenaSize);
-	return {x, y};
-}
-
-export function setEntityWithinASquare(squares, x, y, entity) {
-  let target = targetSquareIndex(x, y);
-  if(!squares[target]) {
-    squares[target] = {};
+  getSquare (x, y) {
+    return this.squares[this.targetSquareIndex(x, y, arenaSize)];
   }
-  squares[target].entity = entity;
-}
 
-export function addBlood(square, amount) {
-  if(!square) {square = {}};
-  if(!square.blood) {
-    square.blood = amount;
-  } else {
-    square.blood += amount;
+  setSquare(x, y, value) {
+    this.squares[this.targetSquareIndex(x, y)] = value;
   }
-}
 
-export function markSquareAsTargeted (squares, squareIndex){
-  if(!squares[squareIndex]) {
-    squares[squareIndex] = {};
+  targetSquareIndex(x, y) {
+    return y * arenaSize + x;
   }
-  squares[squareIndex].isTargeted = true;
-}
 
-export function markAvailableDestinationsForSelectedEntity(entity, squares) {
+  targetSquarePosition(squareIndex) {
+    let x,y;
+    y = Math.floor(squareIndex / arenaSize);
+    x = (squareIndex % arenaSize);
+    return {x, y};
+  }
 
-  if(entity.active) {
-    let {x,y} = entity.position;
+  setEntityWithinASquare(x, y, entity) {
+    let target = this.targetSquareIndex(x, y);
+    if(!this.squares[target]) {
+      this.squares[target] = {};
+    }
+    this.squares[target].entity = entity;
+  }
+  addBlood(square, amount) {
+    if(!square) {square = {}};
+    if(!square.blood) {
+      square.blood = amount;
+    } else {
+      square.blood += amount;
+    }
+  }
+  markSquareAsTargeted (squareIndex){
+    if(!this.squares[squareIndex]) {
+      this.squares[squareIndex] = {};
+    }
+    this.squares[squareIndex].isTargeted = true;
+  }
+  markAvailableDestinationsForSelectedEntity(entity) {
 
-    Helpers.resetGivenFieldsOnACollection(squares, 'isAvailableDestination');
-
-    for(let j = y - 1; j <= y + 1; j++){
-      if( j < 0 || j >= arenaSize){
-        continue
-      }
-      for(let i = x - 1; i <= x + 1; i++){
-        if( i < 0 || i >= arenaSize || (i === x && j === y)){
+    if(entity.active) {
+      let {x,y} = entity.position;
+  
+      Helpers.resetGivenFieldsOnACollection(this.squares, 'isAvailableDestination');
+  
+      for(let j = y - 1; j <= y + 1; j++){
+        if( j < 0 || j >= arenaSize){
           continue
         }
-
-        let square = this.getSquare(squares, i, j );
-        if(!square) {square={}}
-        square.isAvailableDestination = true;
-        this.setSquare(squares, i, j, square);
+        for(let i = x - 1; i <= x + 1; i++){
+          if( i < 0 || i >= arenaSize || (i === x && j === y)){
+            continue
+          }
+  
+          let square = this.getSquare(i, j );
+          if(!square) {square={}}
+          square.isAvailableDestination = true;
+          this.setSquare(i, j, square);
+        }
       }
     }
   }
 }
+
+let SquaresService = new SquaresServiceClass();
+export default SquaresService;

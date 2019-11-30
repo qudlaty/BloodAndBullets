@@ -1,9 +1,21 @@
 import React from 'react';
 import * as Helpers from '../../helpers/Helpers';
-import {SquaresService} from '../../services';
+import {SquaresService, EntitiesService} from '../../services';
 import EntityCard from '../EntityCard/EntityCard';
 
 export default class TargetedSquareInfo extends React.Component {
+
+  onMoveClick(selected, targetedSquarePosition){
+    EntitiesService.setMoveDestinationOnASelectedEntity(selected, targetedSquarePosition);
+    
+    let targetedSquare = SquaresService.getSquare(
+      targetedSquarePosition.x,
+      targetedSquarePosition.y
+    );
+
+    targetedSquare.isChosenDestination = true;
+    this.props.processInterface();
+  }
 
     render(){
         //this.props.squareNumber
@@ -11,7 +23,7 @@ export default class TargetedSquareInfo extends React.Component {
         let selected = this.props.selected;
         let targeted = this.props.targeted;
 
-        let squarePosition = SquaresService.targetSquarePosition(this.props.squareNumber);
+        let targetedSquarePosition = SquaresService.targetSquarePosition(this.props.squareNumber);
 
         let entityInfo = '';
         let distanceInfo = '';
@@ -25,8 +37,8 @@ export default class TargetedSquareInfo extends React.Component {
 
         if(selected) {
           let distanceToSelected = Helpers.calculateDistance(
-            squarePosition.x - selected.position.x,
-            squarePosition.y - selected.position.y
+            targetedSquarePosition.x - selected.position.x,
+            targetedSquarePosition.y - selected.position.y
           );
           
           distanceInfo = (
@@ -36,19 +48,19 @@ export default class TargetedSquareInfo extends React.Component {
           );
           
           if(distanceToSelected !== 0){
-            availableActions[0] = <div><button>Action</button></div>
+            availableActions[0] = <div><button className='button'>Action</button></div>
             if(targeted && targeted.isAvailableDestination){
-              availableActions[1] = <div><button>Move</button></div>
+              availableActions[1] = <div><button onClick={()=> this.onMoveClick(selected, targetedSquarePosition)} className='button'>Move</button></div>
             }
             if(targeted && targeted.entity){
-              availableActions[2] = <div><button>Attack</button></div>
+              availableActions[2] = <div><button className='button'>Attack</button></div>
             }
             
             }
         }
 
-        if(squarePosition) {
-          positionInfo = <li>Position: [ {squarePosition.x}, {squarePosition.y} ] </li>
+        if(targetedSquarePosition) {
+          positionInfo = <li>Position: [ {targetedSquarePosition.x}, {targetedSquarePosition.y} ] </li>
         }
 
         if(inspectedSquare && inspectedSquare.blood) {

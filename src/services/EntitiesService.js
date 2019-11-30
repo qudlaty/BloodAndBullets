@@ -1,5 +1,4 @@
-import { getSquare } from './SquaresService';
-import * as SquaresService from './SquaresService';
+import SquaresService from './SquaresService';
 import * as Helpers from '../helpers/Helpers';
 const arenaSize = 10;
 
@@ -25,7 +24,7 @@ export function moveEntityRandomly(squares, entity) {
   entity.position.x = Helpers.getNumberWithinBoundaries(entity.position.x, 0, arenaSize-1);
   entity.position.y = Helpers.getNumberWithinBoundaries(entity.position.y, 0, arenaSize-1);
 
-  let newSquare = getSquare(squares, entity.position.x, entity.position.y);
+  let newSquare = SquaresService.getSquare(squares, entity.position.x, entity.position.y);
 
   if (newSquare && newSquare.entity) {
     entity.position.x = oldPositionX;
@@ -134,7 +133,7 @@ export function isEntityShootingProperly(entity) {
 export function applyEffectsOfBleeding(entity, squares) {
   if(entity.bleeding && entity.hp > 0) {
     entity.hp -= entity.bleeding ;
-    let square = SquaresService.getSquare(squares, entity.position.x, entity.position.y);
+    let square = SquaresService.getSquare( entity.position.x, entity.position.y);
     SquaresService.addBlood(square, entity.bleeding);
     entity.bleeding -= entity.bleedingReductionPerTurn || 1;
   }
@@ -142,11 +141,20 @@ export function applyEffectsOfBleeding(entity, squares) {
 }
 
 export function moveEntityIntoChosenDestinations(selected, entity){
+
   if(!entity.isDead && entity.moveDestination && selected) {
+    let chosenDestinationSquare = 
+      SquaresService.getSquare(entity.moveDestination.x, entity.moveDestination.y);
+
     entity.position = entity.moveDestination;
     selected.position = entity.position;
     delete entity.moveDestination;
+    chosenDestinationSquare.isChosenDestination = undefined;
   }
+}
+
+export function setMoveDestinationOnASelectedEntity(selected, targetedSquarePosition){
+  selected.moveDestination = targetedSquarePosition;
 }
 
 export function moveEntities(entities, squares, selected) {
