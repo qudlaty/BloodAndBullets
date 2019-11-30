@@ -1,7 +1,7 @@
 import React from 'react';
 import Board from '../Board';
 import EntitiesList from '../EntitiesList';
-import InspectedSquareInfo from './InspectedSquareInfo'
+import TargetedSquareInfo from './TargetedSquareInfo'
 
 import { EntitiesService, SquaresService } from '../../services';
 import GameLogic from '../../services/GameLogicService'
@@ -106,69 +106,6 @@ export default class Game extends React.PureComponent {
     this.loop();
   }
 
-  handleBoardClick = (i) => {
-    //console.log("CLICKED ", i);
-    GameLogic.run();
-    const deselectAllEntities = (entities) => {
-      entities.forEach((entity) => { entity.active = undefined; });
-    };
-
-    /* this should contain mostly function calls */
-
-    this.setState((previousState) => {
-      let localCopyOfPreviousState = previousState;
-      let { entities, squares, selected, selectedSquareNumber } = localCopyOfPreviousState;
-      selectedSquareNumber = i;
-
-      if(squares[i] && squares[i].entity) {// clicked an entity
-        let clickedEntity = squares[i].entity;
-        if(selected && !clickedEntity.isFriendly) {
-
-
-          // that is hostile, while we already have one selected
-          if(selected.name === clickedEntity.name) {
-            // second click on a hostile entity deselects it
-            selected = EntitiesService.setSelected(entities, selected, false);
-            console.log(selected);
-          } else {// clicked a non-selected hostile entity - attack
-            let selectedEntity = EntitiesService.findEntityById(
-              entities,
-              EntitiesService.getEntityId(selected)
-            );
-            selectedEntity.targetPosition = clickedEntity.position;
-            selectedEntity.isShooting = true;
-          }
-
-
-        } else {// clicked entity is friendly - select it
-          deselectAllEntities(entities);
-          selected = clickedEntity;
-          EntitiesService.setSelected(entities, selected, true);
-					Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
-        }
-
-      } else {// clicked an empty square
-				if(squares[i] && squares[i].isAvailableDestination) {
-
-					let position = SquaresService.targetSquarePosition(i);
-					let entitiesAtGivenPosition = EntitiesService.getEntitiesAtGivenPosition(entities, selected.position);
-					let entity = entitiesAtGivenPosition[0];
-					entity && (entity.moveDestination = position);
-					Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
-					squares[i].isChosenDestination = true;
-				} else {
-					// selected = null;
-					// Helpers.resetGivenFieldsOnACollection(entities, 'active', 'isShooting');
-					// Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination', 'isAvailableDestination');
-				}
-      }
-
-      return {entities, squares, selected, selectedSquareNumber}
-    }, ()=> {
-      this.processInterface();
-    });
-
-  }
 
   newHandleClick = (squareIndex) => {
     
@@ -179,8 +116,12 @@ export default class Game extends React.PureComponent {
       targeted = squares[squareIndex];
       Helpers.resetGivenFieldsOnACollection(squares, 'isTargeted');
       SquaresService.markSquareAsTargeted (squares, squareIndex);
-      selected = EntitiesService.selectEntityFromGivenSquare(entities, squares, selected, targeted);
+      if(!selected) {
+        selected = EntitiesService.selectEntityFromGivenSquare(entities, squares, selected, targeted);
+      }
       selectedSquareNumber = squareIndex;
+
+      
 
       console.log(selected, entities);
       return {squares, entities, selected, targeted, selectedSquareNumber};
@@ -296,7 +237,7 @@ export default class Game extends React.PureComponent {
             <li>Click a target to shoot it.</li>
           </ul>
 
-          <InspectedSquareInfo
+          <TargetedSquareInfo
             squareNumber = {this.state.selectedSquareNumber}
             squares = {this.state.squares}
             selected = {this.state.selected}
