@@ -1,9 +1,9 @@
 import React from 'react';
-import * as Helpers from '../../helpers';
+import * as Helpers from '../../helpers/Helpers';
 import {SquaresService} from '../../services';
-import EntityCard from '../EntityCard';
+import EntityCard from '../EntityCard/EntityCard';
 
-export default class InspectedSquareInfo extends React.Component {
+export default class TargetedSquareInfo extends React.Component {
 
     render(){
         //this.props.squareNumber
@@ -17,6 +17,7 @@ export default class InspectedSquareInfo extends React.Component {
         let distanceInfo = '';
         let positionInfo = '';
         let bloodInfo = '';
+        let availableActions = [];
 
         if(targeted && targeted.entity) {
           entityInfo = <EntityCard onInventoryClick={this.props.onInventoryClick} entity={targeted.entity} />
@@ -33,6 +34,17 @@ export default class InspectedSquareInfo extends React.Component {
               Distance to selected: {~~distanceToSelected}
             </li>
           );
+          
+          if(distanceToSelected !== 0){
+            availableActions[0] = <div><button>Action</button></div>
+            if(targeted && targeted.isAvailableDestination){
+              availableActions[1] = <div><button>Move</button></div>
+            }
+            if(targeted && targeted.entity){
+              availableActions[2] = <div><button>Attack</button></div>
+            }
+            
+            }
         }
 
         if(squarePosition) {
@@ -45,13 +57,15 @@ export default class InspectedSquareInfo extends React.Component {
 
         return (
         <div className="inspected-square-info" >
-            <h3>Square Info</h3>
+          <h3>Target square Info</h3>
             <ul>
                 {positionInfo}
                 {distanceInfo}
                 {bloodInfo}
             </ul>
+            {availableActions}
             {entityInfo}
+            
         </div>
         );
     }
