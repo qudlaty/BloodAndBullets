@@ -9,6 +9,7 @@ import GameModel from '../../services/GameModelService'
 
 import * as Helpers from '../../helpers';
 import './Game.scss';
+import Square from '../Square/Square';
 
 export default class Game extends React.PureComponent {
   renderCounter = 0
@@ -31,20 +32,22 @@ export default class Game extends React.PureComponent {
   }
 
   componentDidMount(){
+    SquaresService.squares = this.state.squares; 
     this.loop();
   }
 
   setSquaresAccordingToEntities() {
     this.setState((previousState)=>{
       let squares = [].concat(previousState.squares);
-
+      SquaresService.squares = squares;
+      console.log('a', squares);
 			Helpers.resetGivenFieldsOnACollection(squares, 'entity');
       previousState.entities.forEach((entity)=>{
         SquaresService.setEntityWithinASquare(
-          squares, entity.position.x, entity.position.y, entity
+          entity.position.x, entity.position.y, entity
         );
       });
-
+      console.log('b', squares);
       return {squares};
     });
   }
@@ -60,7 +63,7 @@ export default class Game extends React.PureComponent {
       }
       entity = EntitiesService.applyEffectsOfBleeding(entity, squares);
       entity = EntitiesService.stopBreathingForKilledEntities(entity);
-      SquaresService.markAvailableDestinationsForSelectedEntity(entity, squares)
+      SquaresService.markAvailableDestinationsForSelectedEntity(entity)
     });
 
     return nextState;
@@ -71,7 +74,7 @@ export default class Game extends React.PureComponent {
 
     entities.forEach(entity => {
 
-      SquaresService.markAvailableDestinationsForSelectedEntity(entity, squares)
+      SquaresService.markAvailableDestinationsForSelectedEntity(entity)
     });
 
     return nextState;
@@ -115,7 +118,7 @@ export default class Game extends React.PureComponent {
       
       targeted = squares[squareIndex];
       Helpers.resetGivenFieldsOnACollection(squares, 'isTargeted');
-      SquaresService.markSquareAsTargeted (squares, squareIndex);
+      SquaresService.markSquareAsTargeted (squareIndex);
       if(!selected) {
         selected = EntitiesService.selectEntityFromGivenSquare(entities, squares, selected, targeted);
       }
@@ -242,7 +245,8 @@ export default class Game extends React.PureComponent {
             squares = {this.state.squares}
             selected = {this.state.selected}
             targeted = {this.state.targeted}
-            onInventoryClick= {this.onInventoryClick}
+            onInventoryClick = {this.onInventoryClick}
+            processInterface = {()=> this.processInterface()}
           />
 
         </div>
