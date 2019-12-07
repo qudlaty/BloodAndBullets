@@ -3,6 +3,7 @@ import * as Helpers from '../helpers/Helpers';
 const arenaSize = 10;
 
 class SquaresServiceClass {
+
   squares
 
   getSquare (x, y) {
@@ -40,6 +41,7 @@ class SquaresServiceClass {
     }
   }
   markSquareAsTargeted (squareIndex){
+    Helpers.resetGivenFieldsOnACollection(this.squares, 'isTargeted');
     if(!this.squares[squareIndex]) {
       this.squares[squareIndex] = {};
     }
@@ -49,9 +51,9 @@ class SquaresServiceClass {
 
     if(entity.active) {
       let {x,y} = entity.position;
-  
+
       Helpers.resetGivenFieldsOnACollection(this.squares, 'isAvailableDestination');
-  
+
       for(let j = y - 1; j <= y + 1; j++){
         if( j < 0 || j >= arenaSize){
           continue
@@ -60,7 +62,7 @@ class SquaresServiceClass {
           if( i < 0 || i >= arenaSize || (i === x && j === y)){
             continue
           }
-  
+
           let square = this.getSquare(i, j );
           if(!square) {square={}}
           square.isAvailableDestination = true;
