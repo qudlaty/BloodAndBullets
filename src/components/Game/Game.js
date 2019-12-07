@@ -32,7 +32,7 @@ export default class Game extends React.PureComponent {
   }
 
   componentDidMount(){
-    SquaresService.squares = this.state.squares; 
+    SquaresService.squares = this.state.squares;
     this.loop();
   }
 
@@ -111,24 +111,22 @@ export default class Game extends React.PureComponent {
 
 
   newHandleClick = (squareIndex) => {
-    
     this.setState( (state) => {
-
       let {squares, entities, selected, targeted, selectedSquareNumber} = state;
-      
+
       targeted = squares[squareIndex];
-      Helpers.resetGivenFieldsOnACollection(squares, 'isTargeted');
-      SquaresService.markSquareAsTargeted (squareIndex);
+      SquaresService.markSquareAsTargeted(squareIndex);
+
       if(!selected) {
         selected = EntitiesService.selectEntityFromGivenSquare(entities, squares, selected, targeted);
+      } else if(selected.name === targeted.name){
+
       }
       selectedSquareNumber = squareIndex;
 
-      
-
       console.log(selected, entities);
       return {squares, entities, selected, targeted, selectedSquareNumber};
-    }, this.processEntities ); 
+    }, this.processEntities );
   }
 
 
@@ -178,7 +176,7 @@ export default class Game extends React.PureComponent {
     this.setState( (state) => {
 
       let {squares, entities, selected} = state;
-      
+
       Helpers.resetGivenFieldsOnACollection(entities, 'active');
       Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
       Helpers.resetGivenFieldsOnACollection(squares, 'isAvailableDestination');
@@ -195,7 +193,7 @@ export default class Game extends React.PureComponent {
       let {squares, entities, selected} = state;
 
       Helpers.resetGivenFieldsOnACollection(entities, 'isShooting');
-      
+
       return {squares, entities, selected}
     }, () => {
       this.processInterface();
