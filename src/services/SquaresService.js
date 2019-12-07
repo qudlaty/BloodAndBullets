@@ -25,6 +25,12 @@ class SquaresServiceClass {
     return {x, y};
   }
 
+  setEntityWithinApropriateSquare(entity) {
+    this.setEntityWithinASquare(
+      entity.position.x, entity.position.y, entity
+    );
+  }
+
   setEntityWithinASquare(x, y, entity) {
     let target = this.targetSquareIndex(x, y);
     if(!this.squares[target]) {
@@ -32,6 +38,7 @@ class SquaresServiceClass {
     }
     this.squares[target].entity = entity;
   }
+
   addBlood(square, amount) {
     if(!square) {square = {}};
     if(!square.blood) {
