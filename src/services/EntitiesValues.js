@@ -26,20 +26,22 @@ class RangedWeapon extends Weapon{
 
 class Rifle extends RangedWeapon{
   type = 'projectile'
-  causesBleeding =  2
   range = 4
+  damage = 1
+  causesBleeding = 4
 }
 
 class Lazer extends RangedWeapon{
   type = 'lazer'
-  causesBleeding = 0
   range = 6
+  damage = 5
+  causesBleeding = 0
 }
 
 
 class M16 extends Rifle {
   name = 'M16'
-  rounds = 20
+  rounds = 15
   maxRounds = 20
   damage = 2
 }
@@ -65,7 +67,7 @@ class BasicEntity {
   hp = 100
   maxHp = 100
   get isDead() {
-    return this.hp <=0;
+    return this.hp <= 0;
   }
 }
 
@@ -158,19 +160,19 @@ const entitiesInitialValues = [
     position: {x:8, y:2},
   },
   {
-    name: "Squid", age: 5, hp: 55, maxHp: 55,
+    name: "Squid", age: 5, hp: 100, maxHp: 100,
     icon: "🦑",
     isBreathing: true,
     position: {x:5, y:5},
   },
   {
-    name: "Ant", age: 1, hp: 35, maxHp: 40,
+    name: "Ant", age: 1, hp: 45, maxHp: 50,
     icon: "🐜",
     isBreathing: true,
     position: {x:7, y:6},
   },
   {
-    name: "Spider", age: 1, hp: 100, maxHp: 100,
+    name: "Spider", age: 1, hp: 100, maxHp: 150,
     icon: "🕷️",
     isBreathing: true,
     position: {x:9, y:3},
