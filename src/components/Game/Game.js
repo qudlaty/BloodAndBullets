@@ -33,21 +33,21 @@ export default class Game extends React.PureComponent {
 
   componentDidMount(){
     SquaresService.squares = this.state.squares;
+    EntitiesService.entities = this.state.entities;
     this.loop();
   }
 
   setSquaresAccordingToEntities() {
     this.setState((previousState)=>{
       let squares = [].concat(previousState.squares);
+      let entities = previousState.entities;
+
       SquaresService.squares = squares;
-      console.log('a', squares);
-			Helpers.resetGivenFieldsOnACollection(squares, 'entity');
-      previousState.entities.forEach((entity)=>{
-        SquaresService.setEntityWithinASquare(
-          entity.position.x, entity.position.y, entity
-        );
+      Helpers.resetGivenFieldsOnACollection(squares, 'entity');
+      entities.forEach((entity)=>{
+        SquaresService.setEntityWithinApropriateSquare(entity);
       });
-      console.log('b', squares);
+
       return {squares};
     });
   }
@@ -56,24 +56,24 @@ export default class Game extends React.PureComponent {
     let nextState = previousState;
     let { entities, squares, selected } = nextState;
 
-    EntitiesService.moveEntities(entities, squares, selected);
+    EntitiesService.moveEntities();
     entities.forEach(entity => {
       if(EntitiesService.isEntityShootingProperly(entity)) {
-        EntitiesService.fireAShot(entities, entity);
+        EntitiesService.fireAShot(entity);
       }
-      entity = EntitiesService.applyEffectsOfBleeding(entity, squares);
-      entity = EntitiesService.stopBreathingForKilledEntities(entity);
+      EntitiesService.applyEffectsOfBleeding(entity);
+      EntitiesService.stopBreathingForKilledEntity(entity);
       SquaresService.markAvailableDestinationsForSelectedEntity(entity)
     });
 
     return nextState;
   }
+
   calculateNextInterfaceState(previousState) {
     let nextState = previousState;
-    let { entities, squares } = nextState;
+    let { entities } = nextState;
 
     entities.forEach(entity => {
-
       SquaresService.markAvailableDestinationsForSelectedEntity(entity)
     });
 
@@ -118,26 +118,26 @@ export default class Game extends React.PureComponent {
       SquaresService.markSquareAsTargeted(squareIndex);
 
       if(!selected) {
-        selected = EntitiesService.selectEntityFromGivenSquare(entities, squares, selected, targeted);
+        selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
       } else if(selected.name === targeted.name){
-
+        //TODO: DESELECT ON SECOND CLICK 
       }
       selectedSquareNumber = squareIndex;
 
-      console.log(selected, entities);
       return {squares, entities, selected, targeted, selectedSquareNumber};
-    }, this.processEntities );
+    }, this.processInterface );
   }
 
 
   nuke = (dmg) => {
-    //console.log("Nuking")
     this.setState( (state) => {
-      let localCopyOfEntities = state.entities;
-      localCopyOfEntities.forEach(entity => {
+      let { entities } = state;
+
+      entities.forEach(entity => {
         entity.hp = entity.hp - dmg;
       });
-      return {entities: localCopyOfEntities}
+
+      return {entities}
     }, () => {
       this.processEntities();
     });
@@ -150,7 +150,7 @@ export default class Game extends React.PureComponent {
   switchAutoLoop = () => {
     this.setState((previousState) => {
       return {autoLoop: !previousState.autoLoop};
-    },()=>{
+    }, ()=>{
       if(this.state.autoLoop) {
         this.loop();
       }
@@ -162,8 +162,8 @@ export default class Game extends React.PureComponent {
       let entities = [].concat(prevState.entities);
 
       let entityId = EntitiesService.getEntityId(entity);
-      let actualEntity = EntitiesService.findEntityById(entities, entityId);
-      let actualItem = EntitiesService.findEntityById(actualEntity.inventory, itemName);
+      let actualEntity = EntitiesService.findEntityById(entityId);
+      let actualItem = EntitiesService.findItemOnEntity(actualEntity, itemName);
 
       actualEntity.equipment.hands = actualItem;
 
