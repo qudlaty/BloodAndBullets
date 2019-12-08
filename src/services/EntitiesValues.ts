@@ -60,13 +60,15 @@ class M40 extends Rifle {
   damage = 1
 }
 
+interface Position{x: number, y: number}
+
 class BasicEntity {
-  name = "An Entity"
-  icon = "E"
-  position = {x: undefined, y: undefined}
-  hp = 100
-  maxHp = 100
-  get isDead() {
+  name: string = "An Entity"
+  icon: string = "E"
+  position: Position = {x: undefined, y: undefined}
+  hp: number = 100
+  maxHp: number = 100
+  get isDead(): boolean {
     return this.hp <= 0;
   }
 }
@@ -88,20 +90,20 @@ const BreathingMixin = superClass => class extends superClass {
   }
 }
 
-const MobilityMixin = superClass => class extends superClass {
-  get canMove() {
+// const MobilityMixin = superClass => class extends superClass {
+//   get canMove() {
 
-  }
-  move() {
+//   }
+//   move() {
 
-  }
-}
+//   }
+// }
 
 const MortalMixin = superClass => class extends superClass {
 
 }
 
-class Entity extends ExtendableMixin(BreathingMixin(BasicEntity)) {
+export class Entity extends ExtendableMixin(BreathingMixin(BasicEntity)) {
   // extendable must be on the left, so what is given in constructor props
   // can overwrite what was defined within classess
 }

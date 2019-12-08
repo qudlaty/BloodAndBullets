@@ -1,10 +1,11 @@
 import SquaresService from './SquaresService';
 import * as Helpers from '../helpers/Helpers';
+import {Entity} from '../services/EntitiesValues';
 const arenaSize = 10;
 
 class EntitiesServiceClass {
-  entities
-  selected
+  entities: Entity[]
+  selected: Entity
 
   getEntityId(entity) {
     return entity.name;
