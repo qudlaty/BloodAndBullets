@@ -109,7 +109,14 @@ export default class Game extends React.PureComponent {
     this.loop();
   }
 
-
+  isSelectedTargeted = (selected, targeted) => {
+    if(selected && targeted && targeted.entity && selected.name === targeted.entity.name) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+ 
   newHandleClick = (squareIndex) => {
     this.setState( (state) => {
       let {squares, entities, selected, targeted, selectedSquareNumber} = state;
@@ -119,8 +126,10 @@ export default class Game extends React.PureComponent {
 
       if(!selected) {
         selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
-      } else if(selected.name === targeted.name){
-        //TODO: DESELECT ON SECOND CLICK 
+      } else if(this.isSelectedTargeted(selected, targeted)){
+        console.log('deselecting ')
+        this.deselectAllEntities();
+        selected = undefined;
       }
       selectedSquareNumber = squareIndex;
 
@@ -172,20 +181,25 @@ export default class Game extends React.PureComponent {
     console.log(entity, itemName);
   }
 
-  deselectAllEntities = () => {
+  handleDeselectAllEntities = () => {
     this.setState( (state) => {
 
       let {squares, entities, selected} = state;
 
-      Helpers.resetGivenFieldsOnACollection(entities, 'active');
-      Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
-      Helpers.resetGivenFieldsOnACollection(squares, 'isAvailableDestination');
+      this.deselectAllEntities();
       selected = undefined;
 
       return {squares, entities, selected}
     }, () => {
       //this.processEntities();
     });
+  }
+
+  deselectAllEntities = ()=> {
+    
+    Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'active');
+    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isChosenDestination');
+    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAvailableDestination');
   }
 
   ceaseFire = () => {
@@ -219,7 +233,7 @@ export default class Game extends React.PureComponent {
 
           <div className="selected">
             Selected: {this.state.selected && this.state.selected.name}
-            <button onClick={this.deselectAllEntities} className="button"> Deselect</button>
+            <button onClick={this.handleDeselectAllEntities} className="button"> Deselect</button>
           </div>
           <div>
             <button onClick={()=>{this.nuke(40);}} className="button button-nuke">Nuke All</button>
