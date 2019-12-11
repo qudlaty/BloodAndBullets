@@ -1,28 +1,28 @@
-import SquaresService from './SquaresService';
+import { default as SquaresService, Square } from './SquaresService';
 import * as Helpers from '../helpers/Helpers';
-import {Entity} from '../services/EntitiesValues';
-const arenaSize = 10;
+import { Entity, Position, Weapon, RangedWeapon } from '../services/EntitiesValues';
+const arenaSize: number = 10;
 
 class EntitiesServiceClass {
   entities: Entity[]
   selected: Entity
 
-  getEntityId(entity) {
+  getEntityId(entity: Entity): string {
     return entity.name;
   }
 
-  findEntityById(id) {
-    let result = this.entities.filter((entity) => entity.name === id)[0];
+  findEntityById(id: string): Entity {
+    let result: Entity = this.entities.filter((entity) => entity.name === id)[0];
     return result;
   }
 
-  findItemOnEntity(entity, id) {
-    let result = entity.inventory.filter((entity) => entity.name === id)[0];
+  findItemOnEntity(entity: Entity, id: string) {
+    let result = entity.inventory.filter((item) => item.name === id)[0];
     return result;
   }
 
 
-  moveEntityRandomly(entity) {
+  moveEntityRandomly(entity: Entity) {
     if(entity.isDead) return;
 
     let oldPositionX = entity.position.x;
@@ -42,7 +42,7 @@ class EntitiesServiceClass {
     }
   }
 
-  stopBreathingForKilledEntity(entity) {
+  stopBreathingForKilledEntity(entity: Entity): Entity {
     if(entity && entity.hp <= 0){
       entity.isBreathing = false;
       entity.hp = 0;
@@ -50,8 +50,8 @@ class EntitiesServiceClass {
     return entity;
   }
 
-  getEntitiesAtGivenPosition(targetPosition) {
-    return this.entities.filter((potentialTargetEntity) => {
+  getEntitiesAtGivenPosition(targetPosition: Position): Entity[] {
+    return this.entities.filter((potentialTargetEntity: Entity): boolean => {
       return (
         potentialTargetEntity.position.x === targetPosition.x &&
         potentialTargetEntity.position.y === targetPosition.y
@@ -59,7 +59,7 @@ class EntitiesServiceClass {
     });
   }
 
-  selectEntityFromGivenSquare(selected, targeted) {
+  selectEntityFromGivenSquare(selected: Entity, targeted: Square): Entity {
     if(selected && targeted && targeted.entity){
       selected.active = false;
     }
@@ -71,7 +71,7 @@ class EntitiesServiceClass {
     return selected;
   }
 
-  setSelected(selected, value) {
+  setSelected(selected: Entity, value: boolean): Entity {
     let selectedInEntities = this.findEntityById(
       this.getEntityId(selected)
     );
@@ -85,9 +85,9 @@ class EntitiesServiceClass {
     return selected;
   }
 
-  checkAmmoAndCalculateDamageApplied(entity) {
-    let damageApplied = 0;
-    let weapon = entity.equipment && entity.equipment.hands;
+  checkAmmoAndCalculateDamageApplied(entity: Entity): number {
+    let damageApplied: number = 0;
+    let weapon: RangedWeapon = entity.equipment && entity.equipment.hands;
 
     if(!weapon) return 0;
 
@@ -102,7 +102,7 @@ class EntitiesServiceClass {
   }
 
 
-  fireAShot(entity) {
+  fireAShot(entity: Entity) {
     if(entity.ceaseFire) {
       entity.isShooting = false;
       entity.ceaseFire = false;
@@ -117,39 +117,40 @@ class EntitiesServiceClass {
     });
   }
 
-  applyDamageToTargetEntity(targetEntity, damage) {
+  applyDamageToTargetEntity(targetEntity: Entity, damage: number) {
     if(damage) {
       targetEntity.hp -= damage;
       targetEntity.bleeding = 5;
     }
   }
 
-  ceaseFireNextTickIfTargetIsKilled(entity, targetEntity) {
+  ceaseFireNextTickIfTargetIsKilled(entity: Entity, targetEntity: Entity): void {
     if(targetEntity.hp < 0) {
       entity.ceaseFire = true;
     }
   }
 
-  isEntityShootingProperly(entity) {
+  isEntityShootingProperly(entity: Entity): boolean {
     return entity.isShooting && entity.targetPosition && (
       entity.targetPosition.x !== entity.position.x ||
       entity.targetPosition.y !== entity.position.y
     );
   }
 
-  applyEffectsOfBleeding(entity) {
+  applyEffectsOfBleeding(entity: Entity): Entity {
+    // TODO: move to a "bleed" method
     if(entity.bleeding && entity.hp > 0) {
       entity.hp -= entity.bleeding ;
-      let square = SquaresService.getSquare(entity.position.x, entity.position.y);
+      let square: Square = SquaresService.getSquare(entity.position.x, entity.position.y);
       SquaresService.addBlood(square, entity.bleeding);
       entity.bleeding -= entity.bleedingReductionPerTurn || 1;
     }
     return entity;
   }
 
-  moveEntityIntoChosenDestination(entity) {
+  moveEntityIntoChosenDestination(entity: Entity): Entity {
     if(!entity.isDead && entity.moveDestination) {
-      let chosenDestinationSquare = SquaresService.getSquare(
+      let chosenDestinationSquare: Square = SquaresService.getSquare(
           entity.moveDestination.x, entity.moveDestination.y
       );
 
@@ -160,14 +161,17 @@ class EntitiesServiceClass {
     return entity;
   }
 
-  setMoveDestinationOnASelectedEntity(selected, targetedSquarePosition) {
+  setMoveDestinationOnASelectedEntity(
+      selected: Entity, 
+      targetedSquarePosition: Position
+    ): void {
     selected.moveDestination = targetedSquarePosition;
   }
 
-  moveEntities() {
+  moveEntities(): void {
     this.entities.forEach(entity => this.moveEntityIntoChosenDestination(entity));
-    let JR = this.findEntityById("John Rambo");
-    let OP = this.findEntityById("Squid");
+    let JR: Entity = this.findEntityById("John Rambo");
+    let OP: Entity = this.findEntityById("Squid");
     this.moveEntityRandomly(JR);
     this.moveEntityRandomly(OP);
   }
