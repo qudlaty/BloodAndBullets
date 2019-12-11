@@ -1,12 +1,13 @@
-//TODO: Move this out of the component
-class Weapon {
+import { applyMixins } from '../helpers';
+
+export class Weapon {
   causesBleeding = 0
   range = 0
   damage =  0
 }
 
-class RangedWeapon extends Weapon{
-  rounds = 0
+export class RangedWeapon extends Weapon{
+  rounds: number | any = 0
   maxRounds = 5
 
   fire() {
@@ -60,53 +61,70 @@ class M40 extends Rifle {
   damage = 1
 }
 
-interface Position{x: number, y: number}
+/** Position on a grid */
+export interface Position { x: number, y: number }
 
-class BasicEntity {
+class Identifiable {
   name: string = "An Entity"
   icon: string = "E"
+}
+
+class Positionable {
   position: Position = {x: undefined, y: undefined}
+}
+
+class Movable {
+  moveDestination: Position
+}
+
+class Mortal {
   hp: number = 100
   maxHp: number = 100
   get isDead(): boolean {
     return this.hp <= 0;
   }
+  bleeding: number
+  bleedingReductionPerTurn: number
 }
 
-const ExtendableMixin = superClass => class extends superClass {
-  constructor(...props) {
-    super(...props);
-    Object.assign(this, ...props);
-  }
-}
-
-const BreathingMixin = superClass => class extends superClass {
-  isSupposedToBeBreathing = undefined;
-  get isBreathing() {
+class Breathing extends Mortal {
+  isSupposedToBeBreathing: boolean = undefined;
+  get isBreathing(): boolean {
     return this.hp > 0 && this.isSupposedToBeBreathing;
   }
-  set isBreathing(value) {
+  set isBreathing(value: boolean) {
     this.isSupposedToBeBreathing = value;
   }
 }
 
-// const MobilityMixin = superClass => class extends superClass {
-//   get canMove() {
-
-//   }
-//   move() {
-
-//   }
-// }
-
-const MortalMixin = superClass => class extends superClass {
-
+class Combative {
+  targetPosition: Position
+  isShooting?: boolean
+  ceaseFire?: boolean  
 }
 
-export class Entity extends ExtendableMixin(BreathingMixin(BasicEntity)) {
-  // extendable must be on the left, so what is given in constructor props
-  // can overwrite what was defined within classess
+export class Entity {// Extended by mixins below
+  constructor(...props) {
+    Object.assign(this, ...props);
+  }
+
+  active?: boolean
+  inventory: any[]
+  equipment: any
+  hasWeapon: boolean
 }
+
+/************************************************************/
+/* Always update both lists */
+
+export interface Entity extends 
+  Identifiable, Positionable, Mortal, Movable, Breathing, Combative
+  {};
+applyMixins(Entity, [
+  Identifiable, Positionable, Mortal, Movable, Breathing, Combative
+]);
+
+/************************************************************/
 
 const entitiesInitialValues = [
   {
