@@ -142,10 +142,10 @@ export class Entity {// Extended by mixins below
 /* Always update both lists */
 
 export interface Entity extends 
-  Identifiable, Positionable, Bleedable, Movable, Breathing, Combative
+  Identifiable, Positionable, Mortal, Bleedable, Movable, Breathing, Combative
   {};
 applyMixins(Entity, [
-  Identifiable, Positionable, Bleedable, Movable, Breathing, Combative
+  Identifiable, Positionable, Mortal, Bleedable, Movable, Breathing, Combative
 ]);
 
 /************************************************************/

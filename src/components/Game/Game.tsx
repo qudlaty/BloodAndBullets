@@ -198,23 +198,20 @@ export default class Game extends React.PureComponent<void, GameState> {
 
   handleDeselectAllEntities = () => {
     this.setState( (state) => {
-
       let {squares, entities, selected} = state;
 
       this.deselectAllEntities();
       selected = undefined;
-
+      
       return {squares, entities, selected}
     }, () => {
       //this.processEntities();
     });
   }
 
-  deselectAllEntities = ()=> {
-
+  deselectAllEntities = () => {
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'active');
-    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isChosenDestination');
-    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAvailableDestination');
+    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isChosenDestination', 'isAvailableDestination');
   }
 
   ceaseFire = () => {
