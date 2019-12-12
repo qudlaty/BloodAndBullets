@@ -18,6 +18,7 @@ class EntityCard extends React.Component {
   render() {
     // console.log("Rendering EntityView. #", this.renderCount++);
     let { entity } = this.props;
+    if(!entity) return null;
     /*
       FIXME: Below should be separated into several sub-components
       Each sub-component should receive flat data (position, hp, ...)

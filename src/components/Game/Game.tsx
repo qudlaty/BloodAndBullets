@@ -12,6 +12,7 @@ import './Game.scss';
 
 import { Entity } from '../../services/EntitiesValues';
 import { Square } from '../../services/SquaresService';
+import EntityCard from '../EntityCard/EntityCard';
 
 interface GameState {
   targeted: Square,
@@ -25,13 +26,13 @@ interface GameState {
 }
 
 export default class Game extends React.PureComponent<void, GameState> {
-  renderCounter = 0
-  stepNumber = 0
+  renderCounter: number = 0
+  stepNumber: number = 0
 
   constructor(props) {
     super(props);
 
-    // Initial value of game state
+    // Initial VALUE of game state
     this.state = {
       targeted: null,
       selected: null,
@@ -52,8 +53,8 @@ export default class Game extends React.PureComponent<void, GameState> {
 
   setSquaresAccordingToEntities() {
     this.setState((previousState)=>{
-      let squares = [].concat(previousState.squares);
-      let entities = previousState.entities;
+      let squares: Square[] = [].concat(previousState.squares);
+      let entities: Entity[] = previousState.entities;
 
       SquaresService.squares = squares;
       Helpers.resetGivenFieldsOnACollection(squares, 'entity');
@@ -61,12 +62,12 @@ export default class Game extends React.PureComponent<void, GameState> {
         SquaresService.setEntityWithinApropriateSquare(entity);
       });
 
-      return {squares};
+      return { squares };
     });
   }
 
   calculateNextGameState(previousState: GameState) {
-    let nextState = previousState;
+    let nextState: GameState = previousState;
     let { entities, squares, selected } = nextState;
 
     EntitiesService.moveEntities();
@@ -245,43 +246,51 @@ export default class Game extends React.PureComponent<void, GameState> {
 
         <div className="game-info">
 
-          <div className="selected">
-            Selected: {this.state.selected && this.state.selected.name}
-            <button onClick={this.handleDeselectAllEntities} className="button"> Deselect</button>
-          </div>
-          <div>
+          <div className="actions">
             <button onClick={()=>{this.nuke(40);}} className="button button-nuke">Nuke All</button>
             <button onClick={this.ceaseFire} className="button">Cease Fire</button>
+
+            <button onClick={this.toggleRotateBoard} className="button">Rotate Board</button>
+            <button onClick={this.nextTick} className="button">Next Tick</button>
+
+            <span className="step-counter">Tick: {this.stepNumber}</span>
+            <label className="auto-cycle button">
+              <input type="checkbox" checked={this.state.autoLoop} onChange={this.switchAutoLoop}/>
+              <span>Auto Cycle</span>
+            </label>
           </div>
 
-          <button onClick={this.toggleRotateBoard} className="button">Rotate Board</button>
-          <button onClick={this.nextTick} className="button">Next Tick</button>
-          <span className="step-counter">Tick: {this.stepNumber}</span>
-          <label className="auto-cycle button">
-            <input type="checkbox" checked={this.state.autoLoop} onChange={this.switchAutoLoop}/>
-            <span>Auto Cycle</span>
-          </label>
-          <ul>
-            <li>Click Ellen Replay on the board, to select her.</li>
-            <li>Click a target to shoot it.</li>
-          </ul>
+          <div className="interaction-container">            
+            <div className="selected">
+              <strong>Selected entity </strong>
+              <div>
+                <EntityCard onInventoryClick={this.onInventoryClick} entity={this.state.selected} />
+              </div>
+              <button onClick={this.handleDeselectAllEntities} className="button"> Deselect</button>              
+            </div>
+            <TargetedSquareInfo
+              className="targeted"
+              squareNumber = {this.state.selectedSquareNumber}
+              squares = {this.state.squares}
+              selected = {this.state.selected}
+              targeted = {this.state.targeted}
+              onInventoryClick = {this.onInventoryClick}
+              processInterface = {()=> this.processInterface()}
+            />
+            <div>
+              
+            </div>
 
-          <TargetedSquareInfo
-            squareNumber = {this.state.selectedSquareNumber}
-            squares = {this.state.squares}
-            selected = {this.state.selected}
-            targeted = {this.state.targeted}
-            onInventoryClick = {this.onInventoryClick}
-            processInterface = {()=> this.processInterface()}
-          />
-
+          </div>
         </div>
+
         <div className="game-list">
           <EntitiesList
             entities={this.state.entities}
             onInventoryClick= {this.onInventoryClick}
           />
         </div>
+
       </div>
     );
   }

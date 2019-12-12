@@ -13,15 +13,7 @@
   // align-items: flex-start;
   float: left;
 
-  .board {
-    transform: perspective(0) rotateX(0) rotateY(0) rotateZ(0);
-    transition: all 1s;
-  }
-  .rotated-board{
-    transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
-  }
-
-  &> * {
+  & > * {
     margin: 5px;
   }
   &-info {
@@ -34,27 +26,54 @@
     float: left;
     clear: both;
   }
-  .inspected-square-info {
-    border: 1px solid #888;
-    padding: 10px;
-  }  
-}
 
-.selected {
-  display: block;
-  border: 1px solid #555;
-  padding: 10px;
-}
+  .game-board {
+    .board {
+      transform: perspective(0) rotateX(0) rotateY(0) rotateZ(0);
+      transition: all 1s;
+    }
+    .rotated-board{
+      transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
+    }  
+  }
 
-.button {
-  color: #999;
-  background: #444;
-  margin-top: 5px;
-  margin-right: 5px;
-  border: 2px solid #666;
-  padding: 5px;
-  &-nuke {
-    color: #E00;
+  .game-info {
+    .button {
+      color: #999;
+      background: #444;
+      margin-top: 5px;
+      margin-right: 5px;
+      border: 2px solid #666;
+      padding: 5px;
+      &-nuke {
+        color: #E00;
+      }
+    }      
+    .actions {
+      padding: 0 0 10px 0;
+    }
+
+    .interaction-container {
+      display: grid;
+      font-family: Verdana;      
+      border: 1px solid #555;      
+      grid-template-columns: 50% 50%;
+      .selected {
+        display: block;
+        padding: 10px;
+      }
+      .targeted {
+        display: block;
+        padding: 10px;
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          margin-top: 3px;
+        }
+      }    
+    }
+
   }
 }
 
