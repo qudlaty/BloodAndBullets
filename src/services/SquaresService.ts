@@ -1,17 +1,20 @@
 import * as Helpers from '../helpers/Helpers';
 import { Entity, Position } from './EntitiesValues';
 
-const arenaSize: number = 10;
-
 export interface Square {
   entity?: Entity
-  isChosenDestination?: boolean
-  isAvailableDestination?: boolean
-  isTargeted?: boolean
   blood?: number
+  isAvailableDestination?: boolean
+  isChosenDestination?: boolean
+  isTargeted?: boolean
+}
+
+export class Square implements Square {
+
 }
 
 class SquaresServiceClass {
+  arenaSize: number = 10;
 
   squares: Square[]
 
@@ -24,13 +27,13 @@ class SquaresServiceClass {
   }
 
   targetSquareIndex(x: number, y:number): number {
-    return y * arenaSize + x;
+    return y * this.arenaSize + x;
   }
 
   targetSquarePosition(squareIndex: number): Position {
     let x: number,y: number;
-    y = Math.floor(squareIndex / arenaSize);
-    x = (squareIndex % arenaSize);
+    y = Math.floor(squareIndex / this.arenaSize);
+    x = (squareIndex % this.arenaSize);
     return {x, y};
   }
 
@@ -41,11 +44,9 @@ class SquaresServiceClass {
   }
 
   setEntityWithinASquare(x: number, y: number, entity: Entity) {
-    let target: number = this.targetSquareIndex(x, y);
-    if(!this.squares[target]) {
-      this.squares[target] = {};
-    }
-    this.squares[target].entity = entity;
+    let squareIndex: number = this.targetSquareIndex(x, y);
+    this.initializeSquareIfEmpty(squareIndex);
+    this.squares[squareIndex].entity = entity;
   }
 
   addBlood(square: Square, amount: number) {
@@ -56,14 +57,17 @@ class SquaresServiceClass {
       square.blood += amount;
     }
   }
+
   markSquareAsTargeted(squareIndex: number): void{
     Helpers.resetGivenFieldsOnACollection(this.squares, 'isTargeted');
+    this.initializeSquareIfEmpty(squareIndex);
+    this.squares[squareIndex].isTargeted = true;
+  }
 
-    //TODO: Move initialization of a square into a method
+  initializeSquareIfEmpty(squareIndex: number) {
     if(!this.squares[squareIndex]) {
       this.squares[squareIndex] = {};
     }
-    this.squares[squareIndex].isTargeted = true;
   }
 
   markAvailableDestinationsForSelectedEntity(entity: Entity): void {
@@ -73,11 +77,11 @@ class SquaresServiceClass {
       Helpers.resetGivenFieldsOnACollection(this.squares, 'isAvailableDestination');
 
       for(let j = y - 1; j <= y + 1; j++){
-        if( j < 0 || j >= arenaSize){
+        if( j < 0 || j >= this.arenaSize){
           continue
         }
         for(let i = x - 1; i <= x + 1; i++){
-          if( i < 0 || i >= arenaSize || (i === x && j === y)){
+          if( i < 0 || i >= this.arenaSize || (i === x && j === y)){
             continue
           }
 

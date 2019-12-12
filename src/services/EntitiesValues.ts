@@ -1,4 +1,7 @@
 import { applyMixins } from '../helpers';
+import EntitiesService from './EntitiesService';
+import { SquaresService } from '.';
+import { Square } from './SquaresService';
 
 export class Weapon {
   causesBleeding = 0
@@ -69,7 +72,7 @@ class Identifiable {
   icon: string = "E"
 }
 
-class Positionable {
+export class Positionable {
   position: Position = {x: undefined, y: undefined}
 }
 
@@ -77,14 +80,35 @@ class Movable {
   moveDestination: Position
 }
 
-class Mortal {
+export class Mortal extends Positionable {
   hp: number = 100
   maxHp: number = 100
   get isDead(): boolean {
     return this.hp <= 0;
   }
+}
+
+export class Bleedable extends Mortal {
   bleeding: number
-  bleedingReductionPerTurn: number
+  bleedingReductionPerTurn: number = 1
+  bleed(): number {
+    let entity = this;
+    let bloodReleased = 0
+    if(entity.bleeding && entity.hp > 0) {
+      bloodReleased = entity.bleeding;
+      entity.hp -= bloodReleased ;
+      entity.bleeding -= entity.bleedingReductionPerTurn;
+    }
+    return bloodReleased;
+  }
+
+  bleedExternally() {
+    if(!this.bleeding) return;
+    let entity = this;
+    let bloodReleased = this.bleed();
+    let square: Square = SquaresService.getSquare(entity.position.x, entity.position.y);
+    SquaresService.addBlood(square, bloodReleased);
+  }
 }
 
 class Breathing extends Mortal {
@@ -118,10 +142,10 @@ export class Entity {// Extended by mixins below
 /* Always update both lists */
 
 export interface Entity extends 
-  Identifiable, Positionable, Mortal, Movable, Breathing, Combative
+  Identifiable, Positionable, Bleedable, Movable, Breathing, Combative
   {};
 applyMixins(Entity, [
-  Identifiable, Positionable, Mortal, Movable, Breathing, Combative
+  Identifiable, Positionable, Bleedable, Movable, Breathing, Combative
 ]);
 
 /************************************************************/
@@ -178,6 +202,8 @@ const entitiesInitialValues = [
     icon: "🐙",
     isBreathing: true,
     position: {x:8, y:2},
+    bleedingReductionPerTurn: 0,
+    bleeding: 1,
   },
   {
     name: "Squid", age: 5, hp: 100, maxHp: 100,
