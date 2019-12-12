@@ -1,6 +1,10 @@
-.inspected-square-info .entity {
-  transform: scale(0.7);
-  transform-origin: top left;
+.targeted,  
+.selected {
+  .entity {
+    display: inline-block;
+    transform: scale(1);
+    transform-origin: top left;
+  }
 }
 
 .entity {

@@ -6,6 +6,7 @@ import { Square } from '../../services/SquaresService';
 import { Entity, Position } from '../../services/EntitiesValues';
 
 interface TargetedSquareInfoProps {
+  className: string
   squareNumber: number
   squares: Square[]
   selected: Entity
@@ -65,12 +66,12 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       );
       
       if(distanceToSelected !== 0) {
-        availableActions[0] = <div><button className='button'>Action</button></div>
+        availableActions[0] = <button className='button'>Action</button>
         if(targeted && targeted.isAvailableDestination){
-          availableActions[1] = <div><button onClick={()=> this.onMoveClick(selected, targetedSquarePosition)} className='button'>Move</button></div>
+          availableActions[1] = <button onClick={()=> this.onMoveClick(selected, targetedSquarePosition)} className='button'>Move</button>
         }
         if(targeted && targeted.entity){
-          availableActions[2] = <div><button onClick={()=> this.onAttackClick(selected, targetedSquarePosition)} className='button'>Attack</button></div>
+          availableActions[2] = <button onClick={()=> this.onAttackClick(selected, targetedSquarePosition)} className='button'>Attack</button>
         }  
       }
     }
@@ -84,15 +85,15 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     }
 
     return (
-      <div className="inspected-square-info" >
-        <h3>Target square Info</h3>
-          <ul>
-            {positionInfo}
-            {distanceInfo}
-            {bloodInfo}
-          </ul>
-          {availableActions}
-          {entityInfo}          
+      <div className={this.props.className}>
+        <strong>Target square Info</strong>
+        <div>{entityInfo}</div>
+        <div>{availableActions}</div>
+        <ul>
+          {positionInfo}
+          {distanceInfo}
+          {bloodInfo}
+        </ul>
       </div>
     );
   }
