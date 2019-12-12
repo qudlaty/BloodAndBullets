@@ -9,9 +9,22 @@ import GameModel from '../../services/GameModelService'
 
 import * as Helpers from '../../helpers';
 import './Game.scss';
-import Square from '../Square/Square';
 
-export default class Game extends React.PureComponent {
+import { Entity } from '../../services/EntitiesValues';
+import { Square } from '../../services/SquaresService';
+
+interface GameState {
+  targeted: Square,
+  selected: Entity,
+  arenaSize: number,
+  isBoardRotated: boolean,
+  entities: Entity[]
+  squares: Square[],
+  autoLoop: boolean,
+  selectedSquareNumber: number,
+}
+
+export default class Game extends React.PureComponent<void, GameState> {
   renderCounter = 0
   stepNumber = 0
 
@@ -52,7 +65,7 @@ export default class Game extends React.PureComponent {
     });
   }
 
-  calculateNextGameState(previousState) {
+  calculateNextGameState(previousState: GameState) {
     let nextState = previousState;
     let { entities, squares, selected } = nextState;
 
@@ -61,7 +74,8 @@ export default class Game extends React.PureComponent {
       if(EntitiesService.isEntityShootingProperly(entity)) {
         EntitiesService.fireAShot(entity);
       }
-      EntitiesService.applyEffectsOfBleeding(entity);
+      entity.bleedExternally();
+
       EntitiesService.stopBreathingForKilledEntity(entity);
       SquaresService.markAvailableDestinationsForSelectedEntity(entity)
     });
@@ -69,7 +83,7 @@ export default class Game extends React.PureComponent {
     return nextState;
   }
 
-  calculateNextInterfaceState(previousState) {
+  calculateNextInterfaceState(previousState: GameState) {
     let nextState = previousState;
     let { entities } = nextState;
 
@@ -109,15 +123,15 @@ export default class Game extends React.PureComponent {
     this.loop();
   }
 
-  isSelectedTargeted = (selected, targeted) => {
+  isSelectedTargeted = (selected: Entity, targeted: Square): boolean => {
     if(selected && targeted && targeted.entity && selected.name === targeted.entity.name) {
       return true;
     }else {
       return false;
     }
   }
- 
-  newHandleClick = (squareIndex) => {
+
+  newHandleClick = (squareIndex: number) => {
     this.setState( (state) => {
       let {squares, entities, selected, targeted, selectedSquareNumber} = state;
 
@@ -138,7 +152,7 @@ export default class Game extends React.PureComponent {
   }
 
 
-  nuke = (dmg) => {
+  nuke = (dmg: number) => {
     this.setState( (state) => {
       let { entities } = state;
 
@@ -196,7 +210,7 @@ export default class Game extends React.PureComponent {
   }
 
   deselectAllEntities = ()=> {
-    
+
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'active');
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isChosenDestination');
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAvailableDestination');
@@ -244,7 +258,7 @@ export default class Game extends React.PureComponent {
           <button onClick={this.nextTick} className="button">Next Tick</button>
           <span className="step-counter">Tick: {this.stepNumber}</span>
           <label className="auto-cycle button">
-            <input type="checkbox" checked={this.state.autoLoop ? 'checked' : ''} onChange={this.switchAutoLoop}/>
+            <input type="checkbox" checked={this.state.autoLoop} onChange={this.switchAutoLoop}/>
             <span>Auto Cycle</span>
           </label>
           <ul>

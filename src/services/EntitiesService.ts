@@ -1,6 +1,6 @@
 import { default as SquaresService, Square } from './SquaresService';
 import * as Helpers from '../helpers/Helpers';
-import { Entity, Position, Weapon, RangedWeapon } from '../services/EntitiesValues';
+import { Entity, Position, Weapon, RangedWeapon, Mortal, Positionable, Bleedable } from '../services/EntitiesValues';
 const arenaSize: number = 10;
 
 class EntitiesServiceClass {
@@ -143,7 +143,7 @@ class EntitiesServiceClass {
       entity.hp -= entity.bleeding ;
       let square: Square = SquaresService.getSquare(entity.position.x, entity.position.y);
       SquaresService.addBlood(square, entity.bleeding);
-      entity.bleeding -= entity.bleedingReductionPerTurn || 1;
+      entity.bleeding -= entity.bleedingReductionPerTurn;
     }
     return entity;
   }
@@ -172,8 +172,10 @@ class EntitiesServiceClass {
     this.entities.forEach(entity => this.moveEntityIntoChosenDestination(entity));
     let JR: Entity = this.findEntityById("John Rambo");
     let OP: Entity = this.findEntityById("Squid");
+    let OC: Entity = this.findEntityById("Octo");
     this.moveEntityRandomly(JR);
     this.moveEntityRandomly(OP);
+    this.moveEntityRandomly(OC);
   }
 
 }
