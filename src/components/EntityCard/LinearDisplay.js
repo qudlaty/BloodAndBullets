@@ -13,6 +13,32 @@ export default function LinearDisplay(props) {
     width: `${percentage}%`,
   }
   let title = props.title || `${props.current}/${props.max}`;
+
+  let amount = props.current;
+
+  let divider = 1;
+  if ( props.max >= 50) {
+    divider = 5;  
+  } else if ( props.max >= 100) {
+    divider = 10;
+  }
+
+  amount = amount / divider;
+
+  let gridSize = 100/amount;
+  
+  let color = `rgba(200,200,200,0.4)`
+  color = `black`;
+  let progressGridStyle = {
+    backgroundSize: `${gridSize}% 100%`,
+    backgroundImage: `
+      linear-gradient(to left, ${color} 1px, transparent 1px)
+    `    
+  }
+  
+  Object.assign(progressStyle, progressGridStyle)
+
+
   return (
     <div className={className}>
       <div className="linear-display__label">{props.label}:&nbsp;</div>
