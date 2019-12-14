@@ -2,6 +2,7 @@ import { applyMixins } from '../helpers';
 import EntitiesService from './EntitiesService';
 import { SquaresService } from '.';
 import { Square } from './SquaresService';
+import * as Helpers from '../helpers'
 import Message from '../services/MessageService';
 
 export class Weapon {
@@ -81,14 +82,15 @@ class Movable {
   moveDestination: Position
 
 
-  moveIntoSquare(squareIndex) {
+  moveIntoSquare(squareIndex: number) {
     this.moveIntoPosition(SquaresService.targetSquarePosition(squareIndex));
   }
   
-  moveIntoPosition(targetPosition) {
+  moveIntoPosition(targetPosition: Position) {
     let targetSquare = SquaresService.getSquare(targetPosition.x, targetPosition.y);
     if(!targetSquare.entity) {
       this.moveDestination = targetPosition;
+      Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isChosenDestination');
       targetSquare.isChosenDestination = true;
     } else {
       Message.send(`Cannot move into square ${targetPosition.x} ${targetPosition.y}`);
