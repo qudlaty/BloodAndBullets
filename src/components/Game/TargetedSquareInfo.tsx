@@ -32,6 +32,9 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
   onAttackClick(selected: Entity, targetedSquarePosition: Position) {
     selected.targetPosition = targetedSquarePosition
     selected.isShooting = true;
+
+    //selected.attackPosition(targetedSquarePosition);
+    
     this.props.processInterface();
   }  
 
@@ -70,12 +73,11 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       );
       
       if(distanceToSelected !== 0) {
-        availableActions[0] = <button className='button'>Action</button>
         if(targeted && targeted.isAvailableDestination){
-          availableActions[1] = <button onClick={()=> this.onMoveClick(selected, targetedSquarePosition)} className='button'>Move</button>
+          availableActions[0] = <button onClick={()=> this.onMoveClick(selected, targetedSquarePosition)} className='button'>Move</button>
         }
         if(targeted && targeted.entity){
-          availableActions[2] = <button onClick={()=> this.onAttackClick(selected, targetedSquarePosition)} className='button'>Attack</button>
+          availableActions[1] = <button onClick={()=> this.onAttackClick(selected, targetedSquarePosition)} className='button'>Attack</button>
         }  
       }
     }
