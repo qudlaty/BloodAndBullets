@@ -139,7 +139,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       debugger;
 
       if(doubleClick() && targeted.isAvailableDestination) {
-        selected.moveIntoSquare(squareIndex);
+        selected.setMoveDestinationSquare(squareIndex);
       }
       
       /** To be able to deselect */

@@ -18,8 +18,8 @@ interface TargetedSquareInfoProps {
 export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps> {
 
   onMoveClick(selected: Entity, targetedSquarePosition: Position) {
-    EntitiesService.setMoveDestinationOnASelectedEntity(selected, targetedSquarePosition);
-    
+    //EntitiesService.setMoveDestinationOnASelectedEntity(selected, targetedSquarePosition);
+    selected.setMoveDestinationPosition(targetedSquarePosition);
     let targetedSquare: Square = SquaresService.getSquare(
       targetedSquarePosition.x,
       targetedSquarePosition.y
