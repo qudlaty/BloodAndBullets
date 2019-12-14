@@ -87,7 +87,7 @@ class Movable {
   
   moveIntoPosition(targetPosition) {
     let targetSquare = SquaresService.getSquare(targetPosition.x, targetPosition.y);
-    if(!targetSquare.entity) {
+    if(!targetSquare.entity || targetSquare.entity.isDead) {
       this.moveDestination = targetPosition;
       targetSquare.isChosenDestination = true;
     } else {
