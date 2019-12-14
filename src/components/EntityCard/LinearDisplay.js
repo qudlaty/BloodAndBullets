@@ -17,7 +17,7 @@ export default function LinearDisplay(props) {
   let amount = props.current;
 
   let divider = 1;
-  if ( props.max >= 50) {
+  if ( props.max >= 40 && props.max < 100) {
     divider = 5;  
   } else if ( props.max >= 100) {
     divider = 10;
