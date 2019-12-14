@@ -127,14 +127,6 @@ export default class Game extends React.PureComponent<void, GameState> {
     this.loop();
   }
 
-  isSelectedTargeted = (selected: Entity, targeted: Square): boolean => {
-    if(selected && targeted && targeted.entity && selected.name === targeted.entity.name) {
-      return true;
-    }else {
-      return false;
-    }
-  }
-
   newHandleClick = (squareIndex: number) => {
 
     this.setState( (state) => {
@@ -143,22 +135,29 @@ export default class Game extends React.PureComponent<void, GameState> {
       targeted = squares[squareIndex];
       const doubleClick = () => previousTargeted === targeted;
       SquaresService.markSquareAsTargeted(squareIndex);
+      
+      debugger;
+
       if(doubleClick() && targeted.isAvailableDestination) {
         selected.moveIntoSquare(squareIndex);
       }
+      
+      /** To be able to deselect */
       if(doubleClick() || selected) {
-        if(!selected) {
+        if(!selected && targeted.entity) {
           selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
           targeted = undefined;
-        } else if(this.isSelectedTargeted(selected, targeted)){
+        } else if(Helpers.isSelectedTargeted(selected, targeted)){
           this.deselectAllEntities();
           selected = undefined;
         }
         selectedSquareNumber = squareIndex;
       }
-      if(doubleClick() && targeted.entity) {
+
+      if(doubleClick() && selected && targeted.entity) {
         selected.attackPosition(SquaresService.targetSquarePosition(squareIndex));
       }
+
       return {squares, entities, selected, targeted, selectedSquareNumber};
     }, this.processInterface );
   }

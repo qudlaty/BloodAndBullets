@@ -1,3 +1,7 @@
+import { Entity } from "../services/EntitiesValues";
+import { Square } from "../services/SquaresService";
+
+
 export function resetGivenFieldsOnACollection(collection, ...fieldNames) {
   collection.forEach(
     item => {
@@ -51,4 +55,12 @@ export function applyMixins(derivedCtor: any, baseCtors: any[]) {
           Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
       });
   });
+}
+
+export function isSelectedTargeted (selected: Entity, targeted: Square): boolean {
+  if(selected && targeted && targeted.entity && selected.name === targeted.entity.name) {
+    return true;
+  }else {
+    return false;
+  }
 }
