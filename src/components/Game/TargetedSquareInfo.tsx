@@ -35,7 +35,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
   }  
 
   render(){
-    if(!this.props.targeted || this.props.targeted.entity === this.props.selected){
+    if(!this.props.targeted || Helpers.isSelectedTargeted(this.props.selected, this.props.targeted)){
       return null;
     }
 
