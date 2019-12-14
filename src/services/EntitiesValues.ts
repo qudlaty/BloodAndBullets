@@ -88,7 +88,7 @@ class Movable {
   
   moveIntoPosition(targetPosition: Position) {
     let targetSquare = SquaresService.getSquare(targetPosition.x, targetPosition.y);
-    if(!targetSquare.entity) {
+    if(!targetSquare.entity || targetSquare.entity.isDead) {
       this.moveDestination = targetPosition;
       Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isChosenDestination');
       targetSquare.isChosenDestination = true;
