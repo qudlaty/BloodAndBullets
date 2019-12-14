@@ -136,24 +136,29 @@ export default class Game extends React.PureComponent<void, GameState> {
   }
 
   newHandleClick = (squareIndex: number) => {
+
     this.setState( (state) => {
       let {squares, entities, selected, targeted, selectedSquareNumber} = state;
       let previousTargeted = targeted;
       targeted = squares[squareIndex];
+      const doubleClick = () => previousTargeted === targeted;
       SquaresService.markSquareAsTargeted(squareIndex);
-
-      if(previousTargeted === targeted || selected) {
+      if(doubleClick() && targeted.isAvailableDestination) {
+        selected.moveIntoSquare(squareIndex);
+      }
+      if(doubleClick() || selected) {
         if(!selected) {
           selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
           targeted = undefined;
         } else if(this.isSelectedTargeted(selected, targeted)){
-          console.log('deselecting ')
           this.deselectAllEntities();
           selected = undefined;
         }
         selectedSquareNumber = squareIndex;
       }
-
+      if(doubleClick() && targeted.entity) {
+        selected.attackPosition(SquaresService.targetSquarePosition(squareIndex));
+      }      
       return {squares, entities, selected, targeted, selectedSquareNumber};
     }, this.processInterface );
   }

@@ -79,6 +79,21 @@ export class Positionable {
 
 class Movable {
   moveDestination: Position
+
+
+  moveIntoSquare(squareIndex) {
+    this.moveIntoPosition(SquaresService.targetSquarePosition(squareIndex));
+  }
+  
+  moveIntoPosition(targetPosition) {
+    let targetSquare = SquaresService.getSquare(targetPosition.x, targetPosition.y);
+    if(!targetSquare.entity) {
+      this.moveDestination = targetPosition;
+      targetSquare.isChosenDestination = true;
+    } else {
+      Message.send(`Cannot move into square ${targetPosition.x} ${targetPosition.y}`);
+    }
+  }
 }
 
 export class Mortal extends Positionable {
