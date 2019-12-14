@@ -13,6 +13,7 @@ import './Game.scss';
 import { Entity } from '../../services/EntitiesValues';
 import { Square } from '../../services/SquaresService';
 import EntityCard from '../EntityCard/EntityCard';
+import SelectedEntityInfo from './SelectedEntityInfo';
 
 interface GameState {
   targeted: Square,
@@ -39,14 +40,15 @@ export default class Game extends React.PureComponent<void, GameState> {
       arenaSize: 10,
       isBoardRotated: false,
       entities: GameModel.entities,
-      squares: [],
+      squares: SquaresService.squares,
       autoLoop: true,
       selectedSquareNumber: null,
+      
     }
   }
 
   componentDidMount(){
-    SquaresService.squares = this.state.squares;
+    //this.state.squares =SquaresService.squares;
     EntitiesService.entities = this.state.entities;
     this.loop();
   }
@@ -257,14 +259,14 @@ export default class Game extends React.PureComponent<void, GameState> {
             </label>
           </div>
 
-          <div className="interaction-container">            
-            <div className="selected">
-              <strong>Selected entity </strong>
-              <div>
-                <EntityCard onInventoryClick={this.onInventoryClick} entity={this.state.selected} />
-              </div>
-              <button onClick={this.handleDeselectAllEntities} className="button"> Deselect</button>              
-            </div>
+          <div className="interaction-container">
+
+            <SelectedEntityInfo 
+              selected = {this.state.selected}
+              handleDeselectAllEntities = {this.handleDeselectAllEntities}
+              onInventoryClick = {this.onInventoryClick}            
+            />
+
             <TargetedSquareInfo
               className="targeted"
               squareNumber = {this.state.selectedSquareNumber}
