@@ -1,10 +1,64 @@
 import React from 'react';
 import * as Helpers from '../../helpers'
 import "./Square.scss";
+import { Position } from '../../services/EntitiesValues';
 
 const DISTANCE_BETWEEN_TILES = 38;
 
-class Square extends React.Component {
+interface SquareProps {
+  squareId: string
+  icon: string
+
+  active: boolean
+  isAvailableDestination: boolean
+  isChosenDestination: boolean  
+  isBreathing: boolean
+  isDead: boolean
+  isShooting: boolean
+  isTargeted: boolean
+  
+  position: Position
+  targetPosition: Position
+  blood: number
+
+  weaponType: string
+  onClick: (squareIndex: string) => void
+
+}
+
+const flagsToClassess = {
+  active: 'active',
+  isAvailableDestination: 'is-available-destination',
+  isChosenDestination: 'is-chosen-destination',
+  isBreathing: 'breathing',
+  isDead: 'dead',
+  isShooting: 'shooting',
+  isTargeted: 'targeted',
+}
+
+interface flagsToClassessInterface {
+  active: string;
+  isAvailableDestination: string;
+  isChosenDestination: string;
+  isBreathing: string;
+  isDead: string;
+  isShooting: string;
+  isTargeted: string;  
+}
+
+/** Adding classess apropriate to the flags passed in by props */
+function turnFlagsIntoClasses(props: SquareProps, flagsToClasses: flagsToClassessInterface) {
+  let className = ''
+  
+  Object.keys(flagsToClassess).forEach((key)=>{
+    if(props[key]) {
+      className += ` ${flagsToClassess[key]} `;
+    }
+  });
+  return className;
+}
+
+class Square extends React.Component<SquareProps> {
 
   renderCounter = 0
 
@@ -18,29 +72,7 @@ class Square extends React.Component {
     let className = "square";
     let localId = `Square${this.props.squareId}`;
 
-    if(this.props.active) {
-      className += " active ";
-    }
-		if(this.props.isAvailableDestination) {
-			className += " is-available-destination "
-		}
-		if(this.props.isChosenDestination) {
-			className += " is-chosen-destination "
-		}
-    if(this.props.icon){
-      if(this.props.isBreathing) {
-        className += " breathing ";
-      }
-      if(this.props.isDead) {
-        className += " dead ";
-      }
-      if(this.props.isShooting) {
-        className += " shooting ";
-      }
-    }
-    if(this.props.isTargeted) {
-      className += " targeted ";
-    }
+    className += turnFlagsIntoClasses(this.props, flagsToClassess);
 
     let randomTime = `${(Math.random()+0.5).toFixed(2)}s`// 0.50 - 1.50s
     let animationBreathing = this.props.isBreathing ?
@@ -50,6 +82,16 @@ class Square extends React.Component {
     let projectileNumber = 5;
     let projectiles = [];
     let customStyle = "";
+    let bloodClassName = `blood-${localId}`
+    let bloodStyle = `
+
+      .${bloodClassName} {
+        background: rgba(255,0,0, ${ (this.props.blood / 30).toFixed(2) })
+      }
+
+    `;
+    customStyle += bloodStyle;
+    bloodClassName += ' blood ';
 
     let calcNewAangle = Helpers.calculateAngle;
 
@@ -156,7 +198,7 @@ class Square extends React.Component {
 
     return (
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
-        <div className="blood">{this.props.blood}</div>
+        <div className={bloodClassName}>{this.props.blood}</div>
         <div className="content" style={{
           animation: animationBreathing
         }}>{this.props.icon}</div>
