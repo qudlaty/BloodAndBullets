@@ -78,22 +78,22 @@ export class Positionable {
   position: Position = {x: undefined, y: undefined}
 }
 
-class Movable {
+class Movable extends Identifiable {
   moveDestination: Position
 
 
-  moveIntoSquare(squareIndex: number) {
-    this.moveIntoPosition(SquaresService.targetSquarePosition(squareIndex));
+  setMoveDestinationSquare(squareIndex: number) {
+    this.setMoveDestinationPosition(SquaresService.targetSquarePosition(squareIndex));
   }
   
-  moveIntoPosition(targetPosition: Position) {
+  setMoveDestinationPosition(targetPosition: Position) {
     let targetSquare = SquaresService.getSquare(targetPosition.x, targetPosition.y);
     if(!targetSquare.entity || targetSquare.entity.isDead) {
       this.moveDestination = targetPosition;
       Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isChosenDestination');
       targetSquare.isChosenDestination = true;
     } else {
-      Message.send(`Cannot move into square ${targetPosition.x} ${targetPosition.y}`);
+      Message.send(`${this.name} cannot move into square ${targetPosition.x} ${targetPosition.y}`);
     }
   }
 }
