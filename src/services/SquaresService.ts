@@ -16,7 +16,14 @@ export class Square implements Square {
 class SquaresServiceClass {
   arenaSize: number = 10;
 
-  squares: Square[]
+  squares: Square[] = [];
+
+  constructor(){
+    let i = this.arenaSize* this.arenaSize;
+    while(i-- !== 0){
+      this.initializeSquareIfEmpty(i);
+    }
+  }
 
   getSquare(x: number, y: number): Square {
     return this.squares[this.targetSquareIndex(x, y)];
