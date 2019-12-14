@@ -158,7 +158,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       }
       if(doubleClick() && targeted.entity) {
         selected.attackPosition(SquaresService.targetSquarePosition(squareIndex));
-      }      
+      }
       return {squares, entities, selected, targeted, selectedSquareNumber};
     }, this.processInterface );
   }
