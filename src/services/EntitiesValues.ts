@@ -2,6 +2,7 @@ import { applyMixins } from '../helpers';
 import EntitiesService from './EntitiesService';
 import { SquaresService } from '.';
 import { Square } from './SquaresService';
+import Message from '../services/MessageService';
 
 export class Weapon {
   causesBleeding = 0
@@ -121,10 +122,19 @@ class Breathing extends Mortal {
   }
 }
 
-class Combative {
+class Combative extends Identifiable {
   targetPosition: Position
   isShooting?: boolean
-  ceaseFire?: boolean  
+  ceaseFire?: boolean
+  hasWeapon?: boolean
+  attackPosition(targetedSquarePosition: Position){
+    if(this.hasWeapon){
+      this.targetPosition = targetedSquarePosition;
+      this.isShooting = true;  
+    }else {
+      Message.send(`${this.name} no fkin weapon in hands`)
+    }
+  }
 }
 
 export class Entity {// Extended by mixins below
@@ -159,7 +169,6 @@ const entitiesInitialValues = [
     position: {x:8, y:8},
     inventory: [{name:'KA-BAR'}, new M16()],
     equipment: {head: 'Red Bandana', hands: null},
-    damage: 1, rounds: 10, maxRounds: 15, hasWeapon: true,
   },
   {
     name: "Ellen Replay", age: 30, hp: 50, maxHp: 65,
@@ -169,7 +178,6 @@ const entitiesInitialValues = [
     position: {x:1, y:8},
     inventory: [new M40(), {name:'Motion Detector'}],
     equipment: {head: 'Afro'},
-    damage: 1, rounds: 10, maxRounds: 10, hasWeapon: true,
   },
   {
     name: "Lazer Blady", age: 60, hp: 75, maxHp: 100,
@@ -179,7 +187,6 @@ const entitiesInitialValues = [
     position: {x:4, y:8},
     inventory: [new L30(), new M16()],
     equipment: {},
-    damage: 10, rounds: 3, maxRounds: 3, hasWeapon: true,
   },
   {
     name: "Lux Aeterna", age: 20, hp: 50, maxHp: 50,
@@ -189,7 +196,6 @@ const entitiesInitialValues = [
     position: {x:1, y:1},
     inventory: [new L30()],
     equipment: {},
-    damage: 4, rounds: 1, maxRounds: 1, hasWeapon: true,
   },
   {
     name: "Robot", age: 1, hp: 50, maxHp: 50,

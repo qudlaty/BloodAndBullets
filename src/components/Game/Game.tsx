@@ -10,10 +10,11 @@ import GameModel from '../../services/GameModelService'
 import * as Helpers from '../../helpers';
 import './Game.scss';
 
-import { Entity } from '../../services/EntitiesValues';
+import { Entity, Weapon } from '../../services/EntitiesValues';
 import { Square } from '../../services/SquaresService';
 import EntityCard from '../EntityCard/EntityCard';
 import SelectedEntityInfo from './SelectedEntityInfo';
+import { MessageBox } from './MessageBox';
 
 interface GameState {
   targeted: Square,
@@ -196,6 +197,9 @@ export default class Game extends React.PureComponent<void, GameState> {
 
       actualEntity.equipment.hands = actualItem;
 
+      if(actualItem instanceof Weapon){
+        actualEntity.hasWeapon = true;
+      }
       return {entities};
     });
     console.log(entity, itemName);
@@ -284,6 +288,7 @@ export default class Game extends React.PureComponent<void, GameState> {
             </div>
 
           </div>
+          <MessageBox />
         </div>
 
         <div className="game-list">

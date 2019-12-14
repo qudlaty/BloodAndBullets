@@ -30,11 +30,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
   }
 
   onAttackClick(selected: Entity, targetedSquarePosition: Position) {
-    selected.targetPosition = targetedSquarePosition
-    selected.isShooting = true;
-
-    //selected.attackPosition(targetedSquarePosition);
-    
+    selected.attackPosition(targetedSquarePosition);
     this.props.processInterface();
   }  
 
