@@ -5,7 +5,11 @@ import { Square } from './SquaresService';
 import * as Helpers from '../helpers'
 import Message from '../services/MessageService';
 
-export class Weapon {
+export class Item {
+
+}
+
+export class Weapon extends Item {
   causesBleeding = 0
   range = 0
   damage =  0
@@ -154,25 +158,60 @@ class Combative extends Identifiable {
   }
 }
 
+export class HavingInventory {
+  inventory: any[]
+  takeFromInventory(itemName) {
+    let actualItemIndex = this.inventory.findIndex(item => item.name == itemName);
+    let actualItem = this.inventory.splice(actualItemIndex, 1)[0];
+    //let newInventory = [].concat(this.inventory)
+    //this.inventory = newInventory
+    return actualItem;
+  }
+  addToInventory(item: Item) {
+    this.inventory.push(item);
+  }
+}
+
+class HavingEquipment extends HavingInventory {
+  equipment: any
+  hasWeapon?: boolean
+
+  equipInHands(itemName: string) {
+    this.unEquipFromHands();
+    let item = this.takeFromInventory(itemName);
+    this.equipment.hands = item;
+    if(item instanceof Weapon){
+      this.hasWeapon = true;
+    }
+  }
+
+  unEquipFromHands() {
+    if(this.equipment.hands) {
+      this.inventory.push(this.equipment.hands);
+      this.equipment.hands = null;
+    }
+  }
+}
+
 export class Entity {// Extended by mixins below
   constructor(...props) {
     Object.assign(this, ...props);
   }
 
   active?: boolean
-  inventory: any[]
-  equipment: any
-  hasWeapon: boolean
 }
+
 
 /************************************************************/
 /* Always update both lists */
 
 export interface Entity extends 
-  Identifiable, Positionable, Mortal, Bleedable, Movable, Breathing, Combative
+  Identifiable, Positionable, Mortal, Bleedable, Movable, Breathing, Combative, 
+  HavingInventory, HavingEquipment
   {};
 applyMixins(Entity, [
-  Identifiable, Positionable, Mortal, Bleedable, Movable, Breathing, Combative
+  Identifiable, Positionable, Mortal, Bleedable, Movable, Breathing, Combative, 
+  HavingInventory, HavingEquipment
 ]);
 
 /************************************************************/

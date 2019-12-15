@@ -135,8 +135,6 @@ export default class Game extends React.PureComponent<void, GameState> {
       targeted = squares[squareIndex];
       const doubleClick = () => previousTargeted === targeted;
       SquaresService.markSquareAsTargeted(squareIndex);
-      
-      debugger;
 
       if(doubleClick() && targeted.isAvailableDestination) {
         selected.setMoveDestinationSquare(squareIndex);
@@ -191,19 +189,19 @@ export default class Game extends React.PureComponent<void, GameState> {
     });
   }
 
-  onInventoryClick = (entity, itemName) => {
+  onInventoryClick = (entity: Entity, itemName: string) => {
     this.setState((prevState) => {
       let entities = [].concat(prevState.entities);
-
       let entityId = EntitiesService.getEntityId(entity);
       let actualEntity = EntitiesService.findEntityById(entityId);
       let actualItem = EntitiesService.findItemOnEntity(actualEntity, itemName);
 
-      actualEntity.equipment.hands = actualItem;
-
-      if(actualItem instanceof Weapon){
-        actualEntity.hasWeapon = true;
+      if(actualEntity.equipment.hands && actualEntity.equipment.hands.name == itemName) {
+        actualEntity.unEquipFromHands();  
+      } else {
+        actualEntity.equipInHands(itemName);
       }
+      
       return {entities};
     });
     console.log(entity, itemName);

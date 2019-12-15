@@ -1,5 +1,5 @@
 import * as Helpers from '../helpers/Helpers';
-import { Entity, Position } from './EntitiesValues';
+import { Entity, Position, Item } from './EntitiesValues';
 
 export interface Square {
   entity?: Entity
@@ -7,6 +7,7 @@ export interface Square {
   isAvailableDestination?: boolean
   isChosenDestination?: boolean
   isTargeted?: boolean
+  items?: Item[]
 }
 
 export class Square implements Square {

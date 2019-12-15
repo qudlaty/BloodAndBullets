@@ -1,6 +1,6 @@
 import { default as SquaresService, Square } from './SquaresService';
 import * as Helpers from '../helpers/Helpers';
-import { Entity, Position, Weapon, RangedWeapon, Mortal, Positionable, Bleedable } from '../services/EntitiesValues';
+import { Entity, Position, Weapon, RangedWeapon, Mortal, Positionable, Bleedable, HavingInventory } from '../services/EntitiesValues';
 const arenaSize: number = 10;
 
 class EntitiesServiceClass {
@@ -16,7 +16,7 @@ class EntitiesServiceClass {
     return result;
   }
 
-  findItemOnEntity(entity: Entity, id: string) {
+  findItemOnEntity(entity: HavingInventory, id: string) {
     let result = entity.inventory.filter((item) => item.name === id)[0];
     return result;
   }

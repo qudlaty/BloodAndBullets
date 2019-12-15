@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Helpers from '../../helpers'
 import "./Square.scss";
-import { Position } from '../../services/EntitiesValues';
+import { Position, Item } from '../../services/EntitiesValues';
 
 const DISTANCE_BETWEEN_TILES = 38;
 
@@ -20,6 +20,7 @@ interface SquareProps {
   position: Position
   targetPosition: Position
   blood: number
+  items: Item[]
 
   weaponType: string
   onClick: (squareIndex: string) => void
@@ -83,6 +84,8 @@ class Square extends React.Component<SquareProps> {
     let projectiles = [];
     let customStyle = "";
     let bloodClassName = `blood-${localId}`
+    let itemsClassName;
+    let itemsNumber;
     let bloodStyle = `
 
       .${bloodClassName} {
@@ -94,6 +97,11 @@ class Square extends React.Component<SquareProps> {
     bloodClassName += ' blood ';
 
     let calcNewAangle = Helpers.calculateAngle;
+
+    if(this.props.items && this.props.items.length) {
+      itemsClassName += ` has-items `;
+      itemsNumber = this.props.items.length;
+    }
 
     if(
       (targetCoords && this.props.position && this.props.isShooting)
@@ -199,6 +207,7 @@ class Square extends React.Component<SquareProps> {
     return (
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
         <div className={bloodClassName}>{this.props.blood}</div>
+        <div className={itemsClassName}>{itemsNumber}</div>
         <div className="content" style={{
           animation: animationBreathing
         }}>{this.props.icon}</div>

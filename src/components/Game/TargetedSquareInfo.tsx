@@ -4,6 +4,7 @@ import {SquaresService, EntitiesService} from '../../services';
 import EntityCard from '../EntityCard/EntityCard';
 import { Square } from '../../services/SquaresService';
 import { Entity, Position } from '../../services/EntitiesValues';
+import InventoryList from '../EntityCard/InventoryList';
 
 interface TargetedSquareInfoProps {
   className: string
@@ -51,11 +52,16 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let positionInfo;
     let bloodInfo;
     let availableActions = [];
+    let items;
 
     if(targeted && targeted.entity) {
       entityInfo = <EntityCard onInventoryClick={this.props.onInventoryClick} entity={targeted.entity} />
     }
 
+    if(targeted && targeted.items) {
+      items = <InventoryList label="Items in this location" title="On the floor" onClick={null} onDrop={null} inventory={targeted.items}  />
+    }
+    
     if(selected) {
       let distanceToSelected = Helpers.calculateDistance(
         targetedSquarePosition.x - selected.position.x,
@@ -95,6 +101,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
           {positionInfo}
           {distanceInfo}
           {bloodInfo}
+          {items}
         </ul>
       </div>
     );

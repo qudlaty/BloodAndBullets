@@ -5,7 +5,7 @@ export default function InventoryList(props) {
   let className = `inventory-list ${props.className || ''}`
 
   if(!props.inventory) {return null}
-  let reloadButton;
+  let reloadButton, dropButton;
   let inventoryItems = props.inventory.map(item => {
     if(item.reload) {// has reload capability
       let className = " inventory-list__reload-button ";
@@ -26,12 +26,21 @@ export default function InventoryList(props) {
     } else {
       reloadButton = null;
     }
+    dropButton =
+    <button
+      className={`inventory-list__drop-button`}
+      onClick={() => {
+        props.onDrop(item.name);
+      }}
+    >Drop</button>
+
     return (
       <div key={item.name}>
-        <div onClick={() => props.onClick(item.name || item)} key={item.name} className="inventory-list__item">
-          <span>{item.name || item}</span>
+        <div onClick={() => props.onClick(item.name)} key={item.name} className="inventory-list__item">
+          <span>{item.name}</span>
         </div>
         {reloadButton}
+        {dropButton}
       </div>
     )
   });
