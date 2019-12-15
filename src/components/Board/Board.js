@@ -47,6 +47,7 @@ export default class Board extends React.PureComponent {
         targetPosition={entity && entity.targetPosition}
 
         blood={square && square.blood}
+        items={square && square.items}
 
         isAvailableDestination={square && square.isAvailableDestination}
         isChosenDestination={square && square.isChosenDestination}

@@ -12,7 +12,9 @@
     padding: 5px;
     margin: 5px;
   }
-  &__reload-button {
+  &__reload-button,
+  &__drop-button
+  {
     background: #222;
     color: #666;
     border: 1px solid #666;
@@ -27,6 +29,9 @@
       color: #EEE;
       animation: blink_softly 1.5s alternate infinite;
     }
+  }
+  &__drop-button {
+    float: right;
   }
 }
 

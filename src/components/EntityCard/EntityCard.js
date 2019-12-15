@@ -2,6 +2,7 @@ import React from 'react';
 import LinearDisplay from './LinearDisplay';
 import InventoryList from './InventoryList';
 import './EntityCard.scss';
+import SquaresService from '../../services/SquaresService';
 
 class EntityCard extends React.Component {
   renderCount = 0
@@ -13,6 +14,18 @@ class EntityCard extends React.Component {
     if(inHands) {
      return <LinearDisplay label="Rounds" current={inHands.rounds} max={inHands.maxRounds} />
     }
+  }
+
+  onDrop = (itemName) => {
+    let { entity } = this.props;
+    entity.unEquipFromHands();
+    let item = entity.takeFromInventory(itemName);
+    let square = SquaresService.getSquare(entity.position.x, entity.position.y);
+    if(!square.items) {
+      square.items = []
+    }
+    square.items.push(item);
+    this.props.onInventoryClick(this.props.entity, '');// just to rerender
   }
 
   render() {
@@ -62,8 +75,8 @@ class EntityCard extends React.Component {
           <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} /><br/>
           {this.renderAmmo(inHands)}
         </div>
-        <InventoryList label="Equipped" title="In hands" onClick={this.handleInventoryClick} inventory={inHandsArray} />
-        <InventoryList label="Inventory" title="In backpack" onClick={this.handleInventoryClick} inventory={entity.inventory} />
+        <InventoryList label="Equipped" title="In hands" onClick={this.handleInventoryClick} onDrop={this.onDrop} inventory={inHandsArray} />
+        <InventoryList label="Inventory" title="In backpack" onClick={this.handleInventoryClick} onDrop={this.onDrop} inventory={entity.inventory} />
 
       </div>
     );

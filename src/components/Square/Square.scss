@@ -34,6 +34,18 @@
     padding-right: 3px;
     box-sizing: border-box;
   }
+  & .has-items {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color:#aaa;
+    font-size: 10px;
+    line-height: 50px;
+    text-align: left;
+    padding-left: 3px;
+    box-sizing: border-box;
+  }  
   &:focus {
     outline: none;
   }
