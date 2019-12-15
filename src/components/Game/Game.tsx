@@ -136,6 +136,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       const doubleClick = () => previousTargeted === targeted;
       SquaresService.markSquareAsTargeted(squareIndex);
 
+      /** Setting move destination while clicking on empty square */
       if(doubleClick() && targeted.isAvailableDestination) {
         selected.setMoveDestinationSquare(squareIndex);
       }
@@ -143,15 +144,18 @@ export default class Game extends React.PureComponent<void, GameState> {
       /** To be able to deselect */
       if(doubleClick() || selected) {
         if(!selected && targeted.entity) {
+          // Selecting
           selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
-          targeted = undefined;
+          //targeted = undefined;
         } else if(Helpers.isSelectedTargeted(selected, targeted)){
+          // Deselecting if not selecting
           this.deselectAllEntities();
           selected = undefined;
         }
         selectedSquareNumber = squareIndex;
       }
 
+      // setting attack
       if(doubleClick() && selected && targeted.entity) {
         selected.attackPosition(SquaresService.targetSquarePosition(squareIndex));
       }

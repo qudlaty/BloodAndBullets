@@ -36,7 +36,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
   }  
 
   render(){
-    if(!this.props.targeted || Helpers.isSelectedTargeted(this.props.selected, this.props.targeted)){
+    if(!this.props.targeted){
       return null;
     }
 
@@ -54,7 +54,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let availableActions = [];
     let items;
 
-    if(targeted && targeted.entity) {
+    if(targeted && targeted.entity && ! Helpers.isSelectedTargeted(this.props.selected, this.props.targeted)) {
       entityInfo = <EntityCard onInventoryClick={this.props.onInventoryClick} entity={targeted.entity} />
     }
 
