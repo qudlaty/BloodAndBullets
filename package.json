@@ -19,7 +19,12 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "node-sass": "^4.13.0",
+    "prettier": "^1.19.1",
     "react-scripts": "latest"
   },
   "browserslist": {
