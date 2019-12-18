@@ -1,38 +1,48 @@
-import React from 'react';
-import './InventoryList.scss';
+import React from "react";
+import "./InventoryList.scss";
+
 export default function InventoryList(props) {
+  const className = `inventory-list ${props.className || ""}`;
 
-  let className = `inventory-list ${props.className || ''}`
-
-  if(!props.inventory) {return null}
-  let reloadButton, dropButton;
-  let inventoryItems = props.inventory.map(item => {
-    if(item.reload) {// has reload capability
+  if (!props.inventory) {
+    return null;
+  }
+  let reloadButton;
+  let dropButton;
+  const inventoryItems = props.inventory.map((item) => {
+    if (item.reload) {
+      // has reload capability
       let className = " inventory-list__reload-button ";
 
-      if(item.rounds === 0 || item.rounds === 'empty') {
-        className += " inventory-list__reload-button--empty "
+      if (item.rounds === 0 || item.rounds === "empty") {
+        className += " inventory-list__reload-button--empty ";
       } else if (item.rounds < item.maxRounds) {
-        className += " inventory-list__reload-button--partial "
+        className += " inventory-list__reload-button--partial ";
       }
-      reloadButton =
+      reloadButton = (
         <button
           className={className}
           onClick={() => {
             item.reload();
-            props.onClick(item.name);// this only to trigger the render
+            props.onClick(item.name); // this only to trigger the render
           }}
-        >Reload</button>
+        >
+          Reload
+        </button>
+      );
     } else {
       reloadButton = null;
     }
-    dropButton =
-    <button
-      className={`inventory-list__drop-button`}
-      onClick={() => {
-        props.onDrop(item.name);
-      }}
-    >Drop</button>
+    dropButton = (
+      <button
+        className="inventory-list__drop-button"
+        onClick={() => {
+          props.onDrop(item.name);
+        }}
+      >
+        Drop
+      </button>
+    );
 
     return (
       <div key={item.name}>
@@ -42,16 +52,17 @@ export default function InventoryList(props) {
         {reloadButton}
         {dropButton}
       </div>
-    )
+    );
   });
 
   return (
     <div className={className}>
-      <div className="inventory-list__label">{props.label}:&nbsp;</div>
-      <div className="inventory-list__container"
-        title={props.title}
-      >
-       {inventoryItems}
+      <div className="inventory-list__label">
+        {props.label}
+        :&nbsp;
+      </div>
+      <div className="inventory-list__container" title={props.title}>
+        {inventoryItems}
       </div>
     </div>
   );

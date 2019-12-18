@@ -1,10 +1,8 @@
 .inventory-list {
-  margin-top: 1vh ;
+  margin-top: 1vh;
   &__label {
-
   }
   &__container {
-
   }
   &__item {
     background-color: #222;
@@ -13,8 +11,7 @@
     margin: 5px;
   }
   &__reload-button,
-  &__drop-button
-  {
+  &__drop-button {
     background: #222;
     color: #666;
     border: 1px solid #666;
@@ -26,7 +23,7 @@
       color: #999;
     }
     &--empty {
-      color: #EEE;
+      color: #eee;
       animation: blink_softly 1.5s alternate infinite;
     }
   }
@@ -36,6 +33,10 @@
 }
 
 @keyframes blink_softly {
-  0%    {color: rgba(255,255,255,1)}
-  0%    {color: rgba(100,100,100,1)}
+  0% {
+    color: rgba(255, 255, 255, 1);
+  }
+  0% {
+    color: rgba(100, 100, 100, 1);
+  }
 }

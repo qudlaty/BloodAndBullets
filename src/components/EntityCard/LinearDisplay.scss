@@ -1,7 +1,7 @@
 $progressColor: #666;
 $backgroundColor: #222;
-$foregroundColor: #AAA;
-$fontColor: #EEE;
+$foregroundColor: #aaa;
+$fontColor: #eee;
 $font-size: 1em;
 
 .linear-display {
@@ -12,7 +12,7 @@ $font-size: 1em;
   & * {
     display: inline-block;
   }
-  &__label{
+  &__label {
   }
   &__bar-container {
     background: $backgroundColor;
@@ -30,8 +30,7 @@ $font-size: 1em;
     height: 100%;
     text-align: right;
     transition: all 1s;
-    &-text{
-
+    &-text {
     }
   }
   &.overload {

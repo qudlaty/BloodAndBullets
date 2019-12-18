@@ -1,28 +1,26 @@
-import { applyMixins } from '../helpers';
-import EntitiesService from './EntitiesService';
-import { SquaresService } from '.';
-import { Square } from './SquaresService';
-import * as Helpers from '../helpers'
-import Message from '../services/MessageService';
+import { applyMixins } from "../helpers";
+import EntitiesService from "./EntitiesService";
+import { SquaresService } from ".";
+import { Square } from "./SquaresService";
+import * as Helpers from "../helpers";
+import Message from "../services/MessageService";
 
-export class Item {
-
-}
+export class Item {}
 
 export class Weapon extends Item {
-  causesBleeding = 0
-  range = 0
-  damage =  0
+  causesBleeding = 0;
+  range = 0;
+  damage = 0;
 }
 
-export class RangedWeapon extends Weapon{
-  rounds: number | any = 0
-  maxRounds = 5
+export class RangedWeapon extends Weapon {
+  rounds: number | any = 0;
+  maxRounds = 5;
 
   fire() {
     this.rounds--;
-    console.log('Firing ranged weapon. Damage: ', this.damage);
-    return this.damage
+    console.log("Firing ranged weapon. Damage: ", this.damage);
+    return this.damage;
   }
 
   get isAbleToFire() {
@@ -34,67 +32,68 @@ export class RangedWeapon extends Weapon{
   }
 }
 
-class Rifle extends RangedWeapon{
-  type = 'projectile'
-  range = 4
-  damage = 1
-  causesBleeding = 4
+class Rifle extends RangedWeapon {
+  type = "projectile";
+  range = 4;
+  damage = 1;
+  causesBleeding = 4;
 }
 
-class Lazer extends RangedWeapon{
-  type = 'lazer'
-  range = 6
-  damage = 5
-  causesBleeding = 0
+class Lazer extends RangedWeapon {
+  type = "lazer";
+  range = 6;
+  damage = 5;
+  causesBleeding = 0;
 }
-
 
 class M16 extends Rifle {
-  name = 'M16'
-  rounds = 15
-  maxRounds = 20
-  damage = 2
+  name = "M16";
+  rounds = 15;
+  maxRounds = 20;
+  damage = 2;
 }
 
 class L30 extends Lazer {
-  name = 'Assault Lazer Cannon'
-  rounds = 3
-  maxRounds = 3
-  damage = 10
+  name = "Assault Lazer Cannon";
+  rounds = 3;
+  maxRounds = 3;
+  damage = 10;
 }
 
 class M40 extends Rifle {
-  name = 'M41A Pulse Rifle'
-  rounds = 40
-  maxRounds = 40
-  damage = 1
+  name = "M41A Pulse Rifle";
+  rounds = 40;
+  maxRounds = 40;
+  damage = 1;
 }
 
 /** Position on a grid */
-export interface Position { x: number, y: number }
+export interface Position {
+  x: number;
+  y: number;
+}
 
 class Identifiable {
-  name: string = "An Entity"
-  icon: string = "E"
+  name: string = "An Entity";
+  icon: string = "E";
 }
 
 export class Positionable {
-  position: Position = {x: undefined, y: undefined}
+  position: Position = { x: undefined, y: undefined };
 }
 
 class Movable extends Identifiable {
-  moveDestination: Position
-
+  moveDestination: Position;
 
   setMoveDestinationSquare(squareIndex: number) {
     this.setMoveDestinationPosition(SquaresService.targetSquarePosition(squareIndex));
   }
-  
+
   setMoveDestinationPosition(targetPosition: Position) {
     let targetSquare = SquaresService.getSquare(targetPosition.x, targetPosition.y);
-    if(!targetSquare.entity || targetSquare.entity.isDead) {
+    if (!targetSquare.entity || targetSquare.entity.isDead) {
       this.moveDestination = targetPosition;
-      Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isChosenDestination');
+      Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination");
       targetSquare.isChosenDestination = true;
     } else {
       Message.send(`${this.name} cannot move into square ${targetPosition.x} ${targetPosition.y}`);
@@ -103,29 +102,29 @@ class Movable extends Identifiable {
 }
 
 export class Mortal extends Positionable {
-  hp: number = 100
-  maxHp: number = 100
+  hp: number = 100;
+  maxHp: number = 100;
   get isDead(): boolean {
     return this.hp <= 0;
   }
 }
 
 export class Bleedable extends Mortal {
-  bleeding: number
-  bleedingReductionPerTurn: number = 1
+  bleeding: number;
+  bleedingReductionPerTurn: number = 1;
   bleed(): number {
     let entity = this;
-    let bloodReleased = 0
-    if(entity.bleeding && entity.hp > 0) {
+    let bloodReleased = 0;
+    if (entity.bleeding && entity.hp > 0) {
       bloodReleased = entity.bleeding;
-      entity.hp -= bloodReleased ;
+      entity.hp -= bloodReleased;
       entity.bleeding -= entity.bleedingReductionPerTurn;
     }
     return bloodReleased;
   }
 
   bleedExternally() {
-    if(!this.bleeding) return;
+    if (!this.bleeding) return;
     let entity = this;
     let bloodReleased = this.bleed();
     let square: Square = SquaresService.getSquare(entity.position.x, entity.position.y);
@@ -144,24 +143,24 @@ class Breathing extends Mortal {
 }
 
 class Combative extends Identifiable {
-  targetPosition: Position
-  isShooting?: boolean
-  ceaseFire?: boolean
-  hasWeapon?: boolean
-  attackPosition(targetedSquarePosition: Position){
-    if(this.hasWeapon){
+  targetPosition: Position;
+  isShooting?: boolean;
+  ceaseFire?: boolean;
+  hasWeapon?: boolean;
+  attackPosition(targetedSquarePosition: Position) {
+    if (this.hasWeapon) {
       this.targetPosition = targetedSquarePosition;
-      this.isShooting = true;  
-    }else {
-      Message.send(`${this.name} no fkin weapon in hands`)
+      this.isShooting = true;
+    } else {
+      Message.send(`${this.name} no fkin weapon in hands`);
     }
   }
 }
 
 export class HavingInventory {
-  inventory: any[]
+  inventory: any[];
   takeFromInventory(itemName) {
-    let actualItemIndex = this.inventory.findIndex(item => item.name == itemName);
+    let actualItemIndex = this.inventory.findIndex((item) => item.name == itemName);
     let actualItem = this.inventory.splice(actualItemIndex, 1)[0];
     //let newInventory = [].concat(this.inventory)
     //this.inventory = newInventory
@@ -173,134 +172,179 @@ export class HavingInventory {
 }
 
 class HavingEquipment extends HavingInventory {
-  equipment: any
-  hasWeapon?: boolean
+  equipment: any;
+  hasWeapon?: boolean;
 
   equipInHands(itemName: string) {
     this.unEquipFromHands();
     let item = this.takeFromInventory(itemName);
     this.equipment.hands = item;
-    if(item instanceof Weapon){
+    if (item instanceof Weapon) {
       this.hasWeapon = true;
     }
   }
 
   unEquipFromHands() {
-    if(this.equipment.hands) {
+    if (this.equipment.hands) {
       this.inventory.push(this.equipment.hands);
       this.equipment.hands = null;
     }
   }
 }
 
-export class Entity {// Extended by mixins below
+export class Entity {
+  // Extended by mixins below
   constructor(...props) {
     Object.assign(this, ...props);
   }
 
-  active?: boolean
+  active?: boolean;
 }
-
 
 /************************************************************/
 /* Always update both lists */
 
-export interface Entity extends 
-  Identifiable, Positionable, Mortal, Bleedable, Movable, Breathing, Combative, 
-  HavingInventory, HavingEquipment
-  {};
+export interface Entity
+  extends Identifiable,
+    Positionable,
+    Mortal,
+    Bleedable,
+    Movable,
+    Breathing,
+    Combative,
+    HavingInventory,
+    HavingEquipment {}
 applyMixins(Entity, [
-  Identifiable, Positionable, Mortal, Bleedable, Movable, Breathing, Combative, 
-  HavingInventory, HavingEquipment
+  Identifiable,
+  Positionable,
+  Mortal,
+  Bleedable,
+  Movable,
+  Breathing,
+  Combative,
+  HavingInventory,
+  HavingEquipment,
 ]);
 
 /************************************************************/
 
 const entitiesInitialValues = [
   {
-    name: "John Rambo", age: 40, hp: 95, maxHp: 100,
+    name: "John Rambo",
+    age: 40,
+    hp: 95,
+    maxHp: 100,
     icon: "😠",
     isBreathing: true,
     isFriendly: true,
-    position: {x:8, y:8},
-    inventory: [{name:'KA-BAR'}, new M16()],
-    equipment: {head: 'Red Bandana', hands: null},
+    position: { x: 8, y: 8 },
+    inventory: [{ name: "KA-BAR" }, new M16()],
+    equipment: { head: "Red Bandana", hands: null },
   },
   {
-    name: "Ellen Replay", age: 30, hp: 50, maxHp: 65,
+    name: "Ellen Replay",
+    age: 30,
+    hp: 50,
+    maxHp: 65,
     icon: "👩",
     isBreathing: true,
     isFriendly: true,
-    position: {x:1, y:8},
-    inventory: [new M40(), {name:'Motion Detector'}],
-    equipment: {head: 'Afro'},
+    position: { x: 1, y: 8 },
+    inventory: [new M40(), { name: "Motion Detector" }],
+    equipment: { head: "Afro" },
   },
   {
-    name: "Lazer Blady", age: 60, hp: 75, maxHp: 100,
+    name: "Lazer Blady",
+    age: 60,
+    hp: 75,
+    maxHp: 100,
     icon: "🧑🏻",
     isBreathing: true,
     isFriendly: true,
-    position: {x:4, y:8},
+    position: { x: 4, y: 8 },
     inventory: [new L30(), new M16()],
     equipment: {},
   },
   {
-    name: "Lux Aeterna", age: 20, hp: 50, maxHp: 50,
+    name: "Lux Aeterna",
+    age: 20,
+    hp: 50,
+    maxHp: 50,
     icon: "👱‍♀️",
     isBreathing: true,
     isFriendly: true,
-    position: {x:1, y:1},
+    position: { x: 1, y: 1 },
     inventory: [new L30()],
     equipment: {},
   },
   {
-    name: "Robot", age: 1, hp: 50, maxHp: 50,
+    name: "Robot",
+    age: 1,
+    hp: 50,
+    maxHp: 50,
     icon: "🤖",
     isBreathing: false,
-    position: {x:4, y:5},
+    position: { x: 4, y: 5 },
   },
   {
-    name: "Octo", age: 8, hp: 200, maxHp: 200,
+    name: "Octo",
+    age: 8,
+    hp: 200,
+    maxHp: 200,
     icon: "🐙",
     isBreathing: true,
-    position: {x:8, y:2},
+    position: { x: 8, y: 2 },
     bleedingReductionPerTurn: 0,
     bleeding: 1,
   },
   {
-    name: "Squid", age: 5, hp: 100, maxHp: 100,
+    name: "Squid",
+    age: 5,
+    hp: 100,
+    maxHp: 100,
     icon: "🦑",
     isBreathing: true,
-    position: {x:5, y:5},
+    position: { x: 5, y: 5 },
   },
   {
-    name: "Ant", age: 1, hp: 45, maxHp: 50,
+    name: "Ant",
+    age: 1,
+    hp: 45,
+    maxHp: 50,
     icon: "🐜",
     isBreathing: true,
-    position: {x:7, y:6},
+    position: { x: 7, y: 6 },
   },
   {
-    name: "Spider", age: 1, hp: 100, maxHp: 150,
+    name: "Spider",
+    age: 1,
+    hp: 100,
+    maxHp: 150,
     icon: "🕷️",
     isBreathing: true,
-    position: {x:9, y:3},
+    position: { x: 9, y: 3 },
     bleedingReductionPerTurn: 1,
   },
   {
-    name: "Mosquito", age: 1, hp: 12, maxHp: 20,
+    name: "Mosquito",
+    age: 1,
+    hp: 12,
+    maxHp: 20,
     icon: "🦟",
     isBreathing: true,
-    position: {x:2, y:7},
+    position: { x: 2, y: 7 },
   },
   {
-    name: "Microbe", age: 1, hp: 1, maxHp: 5,
+    name: "Microbe",
+    age: 1,
+    hp: 1,
+    maxHp: 5,
     icon: "🦠",
     isBreathing: true,
-    position: {x:3, y:5},
+    position: { x: 3, y: 5 },
   },
-
 ];
 
-const entities = entitiesInitialValues.map(entry => new Entity(entry));
+const entities = entitiesInitialValues.map((entry) => new Entity(entry));
 
 export default entities;

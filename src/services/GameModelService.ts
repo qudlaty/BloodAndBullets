@@ -1,6 +1,7 @@
-import Entities from './EntitiesValues';
+import Entities from "./EntitiesValues";
 
 class GameModelClass {
+  entities;
   constructor(Entities) {
     this.entities = Entities;
   }
