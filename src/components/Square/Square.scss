@@ -1,6 +1,11 @@
 @keyframes shoot-and-rotate {
-  0%  {border-width: 1px;}
-  100%  {border-width: 4px; transform: rotate(900deg);}
+  0% {
+    border-width: 1px;
+  }
+  100% {
+    border-width: 4px;
+    transform: rotate(900deg);
+  }
 }
 
 .square {
@@ -20,14 +25,14 @@
   line-height: 34px;
 
   background: #333;
-  color: #AAA;
+  color: #aaa;
   position: relative;
   & .blood {
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
-    color:#900;
+    color: #900;
     font-size: 10px;
     line-height: 50px;
     text-align: right;
@@ -39,44 +44,43 @@
     top: 0;
     width: 100%;
     height: 100%;
-    color:#aaa;
+    color: #aaa;
     font-size: 10px;
     line-height: 50px;
     text-align: left;
     padding-left: 3px;
     box-sizing: border-box;
-  }  
+  }
   &:focus {
     outline: none;
   }
-  &.active, &.active.targeted {
-    box-shadow:
-      0 0 10px 3px inset white,
-      0 0 10px 3px  white;
-    &.shooting{
+  &.active,
+  &.active.targeted {
+    box-shadow: 0 0 10px 3px inset white, 0 0 10px 3px white;
+    &.shooting {
       // nothing here
     }
   }
-	&.is-available-destination {
+  &.is-available-destination {
     box-shadow: 0 0 4px 0px inset lightblue;
-	}
-	&.is-chosen-destination {
-		border: 1px dotted white;
-	}
+  }
+  &.is-chosen-destination {
+    border: 1px dotted white;
+  }
   &.breathing {
     //box-shadow: 0 0 3px 3px inset green;
   }
   &.dead {
     //background-color: red;
-    color: rgba(0,0,0,0.3);
+    color: rgba(0, 0, 0, 0.3);
     box-shadow: rgb(1, 1, 1) inset 0 0 3px 1px;
     // text-shadow: rgba(255, 255, 255, 0.8) 0 0 0;
     // transform: rotate(180deg);
     // transition: all 1s;
-    &::Xbefore {
+    &::xbefore {
       content: "X";
       font-weight: 100;
-      color: rgba(0,0,0,0.5);
+      color: rgba(0, 0, 0, 0.5);
       position: absolute;
       font-size: 43px;
       top: 0;
@@ -101,12 +105,22 @@
 }
 
 @keyframes breathing {
-  0%     {transform: translate(0,1px) scale(0.95);}
-  50%     {transform: translate(0,0) scale(1);}
-  100%   {transform: translate(0,-1px) scale(1.05);}
+  0% {
+    transform: translate(0, 1px) scale(0.95);
+  }
+  50% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(0, -1px) scale(1.05);
+  }
 }
 
 @keyframes tilting {
-  0%   {transform: rotate(-30deg);}
-  100% {transform: rotate(30deg);}
+  0% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
 }

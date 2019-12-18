@@ -1,11 +1,20 @@
-import { default as SquaresService, Square } from './SquaresService';
-import * as Helpers from '../helpers/Helpers';
-import { Entity, Position, Weapon, RangedWeapon, Mortal, Positionable, Bleedable, HavingInventory } from '../services/EntitiesValues';
+import { default as SquaresService, Square } from "./SquaresService";
+import * as Helpers from "../helpers/Helpers";
+import {
+  Entity,
+  Position,
+  Weapon,
+  RangedWeapon,
+  Mortal,
+  Positionable,
+  Bleedable,
+  HavingInventory,
+} from "../services/EntitiesValues";
 const arenaSize: number = 10;
 
 class EntitiesServiceClass {
-  entities: Entity[]
-  selected: Entity
+  entities: Entity[];
+  selected: Entity;
 
   getEntityId(entity: Entity): string {
     return entity.name;
@@ -21,29 +30,29 @@ class EntitiesServiceClass {
     return result;
   }
 
-
   moveEntityRandomly(entity: Entity) {
-    if(entity.isDead) return;
+    if (entity.isDead) return;
 
     let oldPositionX = entity.position.x;
     let oldPositionY = entity.position.y;
 
-    entity.position.x = entity.position.x + Helpers.getRandomIntInclusive(-1,1);
-    entity.position.y = entity.position.y + Helpers.getRandomIntInclusive(-1,1);
+    entity.position.x = entity.position.x + Helpers.getRandomIntInclusive(-1, 1);
+    entity.position.y = entity.position.y + Helpers.getRandomIntInclusive(-1, 1);
 
-    entity.position.x = Helpers.getNumberWithinBoundaries(entity.position.x, 0, arenaSize-1);
-    entity.position.y = Helpers.getNumberWithinBoundaries(entity.position.y, 0, arenaSize-1);
+    entity.position.x = Helpers.getNumberWithinBoundaries(entity.position.x, 0, arenaSize - 1);
+    entity.position.y = Helpers.getNumberWithinBoundaries(entity.position.y, 0, arenaSize - 1);
 
     let newSquare = SquaresService.getSquare(entity.position.x, entity.position.y);
 
-    if (newSquare && newSquare.entity) {// if square occupiec, reverse the move
+    if (newSquare && newSquare.entity) {
+      // if square occupiec, reverse the move
       entity.position.x = oldPositionX;
       entity.position.y = oldPositionY;
     }
   }
 
   stopBreathingForKilledEntity(entity: Entity): Entity {
-    if(entity && entity.hp <= 0){
+    if (entity && entity.hp <= 0) {
       entity.isBreathing = false;
       entity.hp = 0;
     }
@@ -53,17 +62,16 @@ class EntitiesServiceClass {
   getEntitiesAtGivenPosition(targetPosition: Position): Entity[] {
     return this.entities.filter((potentialTargetEntity: Entity): boolean => {
       return (
-        potentialTargetEntity.position.x === targetPosition.x &&
-        potentialTargetEntity.position.y === targetPosition.y
+        potentialTargetEntity.position.x === targetPosition.x && potentialTargetEntity.position.y === targetPosition.y
       );
     });
   }
 
   selectEntityFromGivenSquare(selected: Entity, targeted: Square): Entity {
-    if(selected && targeted && targeted.entity){
+    if (selected && targeted && targeted.entity) {
       selected.active = false;
     }
-    if(targeted && targeted.entity){
+    if (targeted && targeted.entity) {
       selected = targeted.entity;
       selected.active = true;
     }
@@ -72,10 +80,8 @@ class EntitiesServiceClass {
   }
 
   setSelected(selected: Entity, value: boolean): Entity {
-    let selectedInEntities = this.findEntityById(
-      this.getEntityId(selected)
-    );
-    if(value) {
+    let selectedInEntities = this.findEntityById(this.getEntityId(selected));
+    if (value) {
       selected.active = value;
     } else {
       selected = null;
@@ -89,9 +95,9 @@ class EntitiesServiceClass {
     let damageApplied: number = 0;
     let weapon: RangedWeapon = entity.equipment && entity.equipment.hands;
 
-    if(!weapon) return 0;
+    if (!weapon) return 0;
 
-    if(weapon.isAbleToFire) {
+    if (weapon.isAbleToFire) {
       damageApplied = weapon.fire();
     } else {
       weapon.rounds = "empty";
@@ -101,16 +107,14 @@ class EntitiesServiceClass {
     return damageApplied;
   }
 
-
   fireAShot(entity: Entity) {
-    if(entity.ceaseFire) {
+    if (entity.ceaseFire) {
       entity.isShooting = false;
       entity.ceaseFire = false;
       return;
     }
     let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
-    let targetEntities =
-      this.getEntitiesAtGivenPosition(entity.targetPosition);
+    let targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
     targetEntities.forEach((targetEntity) => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
       this.ceaseFireNextTickIfTargetIsKilled(entity, targetEntity);
@@ -118,29 +122,30 @@ class EntitiesServiceClass {
   }
 
   applyDamageToTargetEntity(targetEntity: Entity, damage: number) {
-    if(damage) {
+    if (damage) {
       targetEntity.hp -= damage;
       targetEntity.bleeding = 5;
     }
   }
 
   ceaseFireNextTickIfTargetIsKilled(entity: Entity, targetEntity: Entity): void {
-    if(targetEntity.hp < 0) {
+    if (targetEntity.hp < 0) {
       entity.ceaseFire = true;
     }
   }
 
   isEntityShootingProperly(entity: Entity): boolean {
-    return entity.isShooting && entity.targetPosition && (
-      entity.targetPosition.x !== entity.position.x ||
-      entity.targetPosition.y !== entity.position.y
+    return (
+      entity.isShooting &&
+      entity.targetPosition &&
+      (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y)
     );
   }
 
   applyEffectsOfBleeding(entity: Entity): Entity {
     // TODO: move to a "bleed" method
-    if(entity.bleeding && entity.hp > 0) {
-      entity.hp -= entity.bleeding ;
+    if (entity.bleeding && entity.hp > 0) {
+      entity.hp -= entity.bleeding;
       let square: Square = SquaresService.getSquare(entity.position.x, entity.position.y);
       SquaresService.addBlood(square, entity.bleeding);
       entity.bleeding -= entity.bleedingReductionPerTurn;
@@ -149,9 +154,10 @@ class EntitiesServiceClass {
   }
 
   moveEntityIntoChosenDestination(entity: Entity): Entity {
-    if(!entity.isDead && entity.moveDestination) {
+    if (!entity.isDead && entity.moveDestination) {
       let chosenDestinationSquare: Square = SquaresService.getSquare(
-          entity.moveDestination.x, entity.moveDestination.y
+        entity.moveDestination.x,
+        entity.moveDestination.y
       );
 
       entity.position = entity.moveDestination;
@@ -161,15 +167,12 @@ class EntitiesServiceClass {
     return entity;
   }
 
-  setMoveDestinationOnASelectedEntity(
-      selected: Entity, 
-      targetedSquarePosition: Position
-    ): void {
+  setMoveDestinationOnASelectedEntity(selected: Entity, targetedSquarePosition: Position): void {
     selected.moveDestination = targetedSquarePosition;
   }
 
   moveEntities(): void {
-    this.entities.forEach(entity => this.moveEntityIntoChosenDestination(entity));
+    this.entities.forEach((entity) => this.moveEntityIntoChosenDestination(entity));
     let JR: Entity = this.findEntityById("John Rambo");
     let OP: Entity = this.findEntityById("Squid");
     let OC: Entity = this.findEntityById("Octo");
@@ -177,7 +180,6 @@ class EntitiesServiceClass {
     this.moveEntityRandomly(OP);
     this.moveEntityRandomly(OC);
   }
-
 }
 
 let EntitiesService = new EntitiesServiceClass();

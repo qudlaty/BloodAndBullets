@@ -32,9 +32,9 @@
       transform: perspective(0) rotateX(0) rotateY(0) rotateZ(0);
       transition: all 1s;
     }
-    .rotated-board{
+    .rotated-board {
       transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
-    }  
+    }
   }
 
   .game-info {
@@ -46,17 +46,17 @@
       border: 2px solid #666;
       padding: 5px;
       &-nuke {
-        color: #E00;
+        color: #e00;
       }
-    }      
+    }
     .actions {
       padding: 0 0 10px 0;
     }
 
     .interaction-container {
       display: grid;
-      font-family: Verdana;      
-      border: 1px solid #555;      
+      font-family: Verdana;
+      border: 1px solid #555;
       grid-template-columns: 50% 50%;
       .selected {
         display: block;
@@ -71,14 +71,13 @@
           margin: 0;
           margin-top: 3px;
         }
-      }    
+      }
     }
-
   }
 }
 
 .auto-cycle {
-	white-space: pre;
+  white-space: pre;
   top: 1px;
   position: relative;
   color: #222;
@@ -89,12 +88,12 @@
     display: none;
     border: 1px solid #666;
     background: #222;
-    &:checked{
-      &~span{
+    &:checked {
+      & ~ span {
         color: white;
         position: relative;
 
-        &::before{
+        &::before {
           position: absolute;
           left: 1px;
           top: -1px;

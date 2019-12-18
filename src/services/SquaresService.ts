@@ -1,27 +1,25 @@
-import * as Helpers from '../helpers/Helpers';
-import { Entity, Position, Item } from './EntitiesValues';
+import * as Helpers from "../helpers/Helpers";
+import { Entity, Position, Item } from "./EntitiesValues";
 
 export interface Square {
-  entity?: Entity
-  blood?: number
-  isAvailableDestination?: boolean
-  isChosenDestination?: boolean
-  isTargeted?: boolean
-  items?: Item[]
+  entity?: Entity;
+  blood?: number;
+  isAvailableDestination?: boolean;
+  isChosenDestination?: boolean;
+  isTargeted?: boolean;
+  items?: Item[];
 }
 
-export class Square implements Square {
-
-}
+export class Square implements Square {}
 
 class SquaresServiceClass {
   arenaSize: number = 10;
 
   squares: Square[] = [];
 
-  constructor(){
-    let i = this.arenaSize* this.arenaSize;
-    while(i-- !== 0){
+  constructor() {
+    let i = this.arenaSize * this.arenaSize;
+    while (i-- !== 0) {
       this.initializeSquareIfEmpty(i);
     }
   }
@@ -34,21 +32,19 @@ class SquaresServiceClass {
     this.squares[this.targetSquareIndex(x, y)] = value;
   }
 
-  targetSquareIndex(x: number, y:number): number {
+  targetSquareIndex(x: number, y: number): number {
     return y * this.arenaSize + x;
   }
 
   targetSquarePosition(squareIndex: number): Position {
-    let x: number,y: number;
+    let x: number, y: number;
     y = Math.floor(squareIndex / this.arenaSize);
-    x = (squareIndex % this.arenaSize);
-    return {x, y};
+    x = squareIndex % this.arenaSize;
+    return { x, y };
   }
 
   setEntityWithinApropriateSquare(entity: Entity): void {
-    this.setEntityWithinASquare(
-      entity.position.x, entity.position.y, entity
-    );
+    this.setEntityWithinASquare(entity.position.x, entity.position.y, entity);
   }
 
   setEntityWithinASquare(x: number, y: number, entity: Entity) {
@@ -58,43 +54,47 @@ class SquaresServiceClass {
   }
 
   addBlood(square: Square, amount: number) {
-    if(!square) {square = {}};
-    if(!square.blood) {
+    if (!square) {
+      square = {};
+    }
+    if (!square.blood) {
       square.blood = amount;
     } else {
       square.blood += amount;
     }
   }
 
-  markSquareAsTargeted(squareIndex: number): void{
-    Helpers.resetGivenFieldsOnACollection(this.squares, 'isTargeted');
+  markSquareAsTargeted(squareIndex: number): void {
+    Helpers.resetGivenFieldsOnACollection(this.squares, "isTargeted");
     this.initializeSquareIfEmpty(squareIndex);
     this.squares[squareIndex].isTargeted = true;
   }
 
   initializeSquareIfEmpty(squareIndex: number) {
-    if(!this.squares[squareIndex]) {
+    if (!this.squares[squareIndex]) {
       this.squares[squareIndex] = {};
     }
   }
 
   markAvailableDestinationsForSelectedEntity(entity: Entity): void {
-    if(entity.active) {
-      let {x,y} = entity.position;
+    if (entity.active) {
+      let { x, y } = entity.position;
 
-      Helpers.resetGivenFieldsOnACollection(this.squares, 'isAvailableDestination');
+      Helpers.resetGivenFieldsOnACollection(this.squares, "isAvailableDestination");
 
-      for(let j = y - 1; j <= y + 1; j++){
-        if( j < 0 || j >= this.arenaSize){
-          continue
+      for (let j = y - 1; j <= y + 1; j++) {
+        if (j < 0 || j >= this.arenaSize) {
+          continue;
         }
-        for(let i = x - 1; i <= x + 1; i++){
-          if( i < 0 || i >= this.arenaSize || (i === x && j === y)){
-            continue
+        for (let i = x - 1; i <= x + 1; i++) {
+          if (i < 0 || i >= this.arenaSize || (i === x && j === y)) {
+            continue;
           }
 
           let square: Square = this.getSquare(i, j);
-          if(!square) {square={}}
+          if (!square) {
+            square = {};
+          }
           square.isAvailableDestination = true;
           this.setSquare(i, j, square);
         }
