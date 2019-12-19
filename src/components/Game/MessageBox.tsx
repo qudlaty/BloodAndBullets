@@ -3,7 +3,7 @@ import MessageService from "../../services/MessageService";
 
 export class MessageBox extends React.Component {
   messages = MessageService.messages;
-
+  
   renderMessage = (message, number) => {
     return (
       <li>
@@ -17,6 +17,9 @@ export class MessageBox extends React.Component {
       return this.renderMessage(message, number);
     });
 
-    return <ul>{RenderedMessages}</ul>;
+    return <ul className="messagesUl">{RenderedMessages}</ul>;
   }
 }
+
+
+ 

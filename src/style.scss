@@ -18,3 +18,16 @@ body {
 .kbd-navigation .square:focus {
   background: #ddd;
 }
+.messagesUl{
+  list-style: none;
+  height: 4.5em;
+  color: rgba(180, 84, 84, 0.644);
+  overflow-y: scroll;
+
+}
+.messagesUl::-webkit-scrollbar {
+  display: none;
+}
+.messagesUl:last-child {
+
+}
