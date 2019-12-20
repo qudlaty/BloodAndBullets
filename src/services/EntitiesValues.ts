@@ -174,7 +174,7 @@ export class HavingInventory {
     return actualItem;
   }
   addToInventory(item: Item) {
-    if(!this.inventory){
+    if (!this.inventory) {
       this.inventory = [];
     }
     this.inventory.push(item);
@@ -354,6 +354,17 @@ const entitiesInitialValues = [
     position: { x: 3, y: 5 },
   },
 ];
+
+export const structures = {
+  box: {
+    name: "box",
+    icon: "📦",
+    hp: 50,
+    maxHp: 70,
+    isBreathing: false,
+    position: { x: 4, y: 5 },
+  },
+};
 
 const entities = entitiesInitialValues.map((entry) => new Entity(entry));
 
