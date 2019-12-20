@@ -297,6 +297,7 @@ export default class Game extends React.PureComponent<void, GameState> {
               selected={this.state.selected}
               handleDeselectAllEntities={this.handleDeselectAllEntities}
               onInventoryClick={this.onInventoryClick}
+              processInterface={() => this.processInterface()}
             />
 
             <TargetedSquareInfo
@@ -314,7 +315,11 @@ export default class Game extends React.PureComponent<void, GameState> {
         </div>
 
         <div className="game-list">
-          <EntitiesList entities={this.state.entities} onInventoryClick={this.onInventoryClick} />
+          <EntitiesList
+            entities={this.state.entities}
+            onInventoryClick={this.onInventoryClick}
+            processInterface={() => this.processInterface()}
+          />
         </div>
       </div>
     );

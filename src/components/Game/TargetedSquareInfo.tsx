@@ -44,13 +44,13 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
   onAddStructureClick(targetedSquarePosition: Position) {
     let { targeted } = this.props;
-    
+
     let box = Object.assign({}, structures.box);
     let targetPosition = Object.assign({}, targetedSquarePosition);
     box.position = targetPosition;
     box.name += this.boxSerialNumber++;
     let newBox = new Entity(box);
-    
+
     entities.push(newBox);
     console.log(entities);
     this.props.processInterface();
@@ -83,7 +83,13 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     );
 
     if (targeted && targeted.entity && !Helpers.isSelectedTargeted(this.props.selected, this.props.targeted)) {
-      entityInfo = <EntityCard onInventoryClick={this.props.onInventoryClick} entity={targeted.entity} />;
+      entityInfo = (
+        <EntityCard
+          onInventoryClick={this.props.onInventoryClick}
+          entity={targeted.entity}
+          processInterface={() => this.props.processInterface()}
+        />
+      );
     }
 
     if (targeted && targeted.items) {
@@ -94,6 +100,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
           onClick={this.onItemClick}
           onDrop={null}
           inventory={targeted.items}
+          processInterface={() => this.props.processInterface()}
         />
       );
     }
