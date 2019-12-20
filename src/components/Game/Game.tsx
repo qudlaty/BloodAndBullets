@@ -131,6 +131,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       let { squares, entities, selected, targeted, selectedSquareNumber } = state;
       let previousTargeted = targeted;
       targeted = squares[squareIndex];
+      selectedSquareNumber = squareIndex;
       const doubleClick = () => previousTargeted === targeted;
       SquaresService.markSquareAsTargeted(squareIndex);
 
@@ -150,7 +151,6 @@ export default class Game extends React.PureComponent<void, GameState> {
           this.deselectAllEntities();
           selected = undefined;
         }
-        selectedSquareNumber = squareIndex;
       }
 
       // setting attack
