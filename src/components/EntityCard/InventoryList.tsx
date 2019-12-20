@@ -8,7 +8,8 @@ interface InventoryListProps {
   title: string;
   onClick(itemName: string);
   onDrop(itemName: string);
-  inventory: RangedWeapon[];//
+  inventory: RangedWeapon[]; //
+  processInterface: Function;
 }
 
 export default function InventoryList(props: InventoryListProps) {
@@ -34,7 +35,8 @@ export default function InventoryList(props: InventoryListProps) {
           className={className}
           onClick={() => {
             item.reload();
-            props.onClick(item.name); // this only to trigger the render
+            //props.onClick(item.name); // this only to trigger the render
+            props.processInterface();
           }}
         >
           Reload

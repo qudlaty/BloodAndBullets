@@ -9,6 +9,7 @@ interface SelectedEntityInfoProperties {
   selected: Entity;
   onInventoryClick(entity: Entity, itemName: string);
   handleDeselectAllEntities: () => void;
+  processInterface: Function;
 }
 
 export default class SelectedEntityInfo extends React.Component<SelectedEntityInfoProperties> {
@@ -21,7 +22,11 @@ export default class SelectedEntityInfo extends React.Component<SelectedEntityIn
       <div className="selected">
         <strong>Selected entity </strong>
         <div>
-          <EntityCard onInventoryClick={this.props.onInventoryClick} entity={this.props.selected} />
+          <EntityCard
+            onInventoryClick={this.props.onInventoryClick}
+            entity={this.props.selected}
+            processInterface={() => this.props.processInterface()}
+          />
         </div>
         <button onClick={this.props.handleDeselectAllEntities} className="button">
           {" "}

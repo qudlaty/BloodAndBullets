@@ -9,6 +9,7 @@ interface EntityCardProps {
   entity: Entity;
   key?: string;
   onInventoryClick(entity: Entity, itemName: string);
+  processInterface: Function;
 }
 
 class EntityCard extends React.Component<EntityCardProps> {
@@ -85,6 +86,7 @@ class EntityCard extends React.Component<EntityCardProps> {
           onClick={this.handleInventoryClick}
           onDrop={this.onDrop}
           inventory={inHandsArray}
+          processInterface={() => this.props.processInterface()}
         />
         <InventoryList
           label="Inventory"
@@ -92,6 +94,7 @@ class EntityCard extends React.Component<EntityCardProps> {
           onClick={this.handleInventoryClick}
           onDrop={this.onDrop}
           inventory={entity.inventory}
+          processInterface={() => this.props.processInterface()}
         />
       </div>
     );
