@@ -5,7 +5,9 @@ import { Square } from "./SquaresService";
 import * as Helpers from "../helpers";
 import Message from "../services/MessageService";
 
-export class Item {}
+export class Item {
+  name: string = "";
+}
 
 export class Weapon extends Item {
   causesBleeding = 0;
@@ -80,6 +82,11 @@ class Identifiable {
 
 export class Positionable {
   position: Position = { x: undefined, y: undefined };
+
+  get square(): Square {
+    let square = SquaresService.getSquare(this.position.x, this.position.y);
+    return square;
+  }
 }
 
 class Movable extends Identifiable {

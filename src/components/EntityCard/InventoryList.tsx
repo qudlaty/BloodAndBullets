@@ -1,7 +1,17 @@
 import React from "react";
 import "./InventoryList.scss";
+import { Item, Entity, RangedWeapon } from "../../services/EntitiesValues";
 
-export default function InventoryList(props) {
+interface InventoryListProps {
+  className?: string;
+  label: string;
+  title: string;
+  onClick(itemName: string);
+  onDrop(itemName: string);
+  inventory: RangedWeapon[];
+}
+
+export default function InventoryList(props: InventoryListProps) {
   const className = `inventory-list ${props.className || ""}`;
 
   if (!props.inventory) {

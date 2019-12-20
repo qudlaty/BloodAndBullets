@@ -3,28 +3,31 @@ import LinearDisplay from "./LinearDisplay";
 import InventoryList from "./InventoryList";
 import "./EntityCard.scss";
 import SquaresService from "../../services/SquaresService";
+import { Entity, RangedWeapon, Item } from "../../services/EntitiesValues";
 
-class EntityCard extends React.Component {
+interface EntityCardProps {
+  entity: Entity;
+  key?: string;
+  onInventoryClick(entity: Entity, itemName: string);
+}
+
+class EntityCard extends React.Component<EntityCardProps> {
   renderCount = 0;
-  handleInventoryClick = (itemName) => {
+  handleInventoryClick = (itemName: string): void => {
     this.props.onInventoryClick(this.props.entity, itemName);
   };
 
-  renderAmmo = (inHands) => {
+  renderAmmo = (inHands: RangedWeapon) => {
     if (inHands) {
       return <LinearDisplay label="Rounds" current={inHands.rounds} max={inHands.maxRounds} />;
     }
   };
 
-  onDrop = (itemName) => {
+  onDrop = (itemName: string) => {
     let { entity } = this.props;
     entity.unEquipFromHands();
-    let item = entity.takeFromInventory(itemName);
-    let square = SquaresService.getSquare(entity.position.x, entity.position.y);
-    if (!square.items) {
-      square.items = [];
-    }
-    square.items.push(item);
+    let item: Item = entity.takeFromInventory(itemName);
+    entity.square.addItem(item);
     this.props.onInventoryClick(this.props.entity, ""); // just to rerender
   };
 
@@ -41,10 +44,8 @@ class EntityCard extends React.Component {
       className += " active ";
     }
 
-    let { isDead, isFriendly } = entity;
-    let fof = isFriendly ? " friendly " : " unfriendly ";
+    let { isDead } = entity;
     let lifeSigns = isDead ? " DEAD " : " ALIVE ";
-    className += fof;
     className += lifeSigns;
     let inHands = entity.equipment && entity.equipment.hands;
     let inHandsArray = (inHands && [inHands]) || [];
