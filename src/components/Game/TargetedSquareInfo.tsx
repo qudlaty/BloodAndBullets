@@ -3,7 +3,7 @@ import * as Helpers from "../../helpers/Helpers";
 import { SquaresService, EntitiesService } from "../../services";
 import EntityCard from "../EntityCard/EntityCard";
 import { Square } from "../../services/SquaresService";
-import { Entity, Position } from "../../services/EntitiesValues";
+import entities, { Entity, Position, structures } from "../../services/EntitiesValues";
 import InventoryList from "../EntityCard/InventoryList";
 
 interface TargetedSquareInfoProps {
@@ -17,14 +17,16 @@ interface TargetedSquareInfoProps {
 }
 
 export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps> {
+  boxSerialNumber: number = 0;
 
-  onItemClick = (itemName: string)=> {
-    let {selected, targeted} =  this.props;
-    if(Helpers.isSelectedTargeted(selected, targeted)){
+  onItemClick = (itemName: string) => {
+    let { selected, targeted } = this.props;
+    if (Helpers.isSelectedTargeted(selected, targeted)) {
       let item = targeted.takeFromInventory(itemName);
       selected.addToInventory(item);
     }
-  }
+    this.props.processInterface();
+  };
 
   onMoveClick(selected: Entity, targetedSquarePosition: Position) {
     //EntitiesService.setMoveDestinationOnASelectedEntity(selected, targetedSquarePosition);
@@ -37,6 +39,20 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
   onAttackClick(selected: Entity, targetedSquarePosition: Position) {
     selected.attackPosition(targetedSquarePosition);
+    this.props.processInterface();
+  }
+
+  onAddStructureClick(targetedSquarePosition: Position) {
+    let { targeted } = this.props;
+    
+    let box = Object.assign({}, structures.box);
+    let targetPosition = Object.assign({}, targetedSquarePosition);
+    box.position = targetPosition;
+    box.name += this.boxSerialNumber++;
+    let newBox = new Entity(box);
+    
+    entities.push(newBox);
+    console.log(entities);
     this.props.processInterface();
   }
 
@@ -58,6 +74,13 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let bloodInfo;
     let availableActions = [];
     let items;
+    let editorButtons;
+
+    editorButtons = (
+      <button onClick={() => this.onAddStructureClick(targetedSquarePosition)} className="button">
+        Add structure
+      </button>
+    );
 
     if (targeted && targeted.entity && !Helpers.isSelectedTargeted(this.props.selected, this.props.targeted)) {
       entityInfo = <EntityCard onInventoryClick={this.props.onInventoryClick} entity={targeted.entity} />;
@@ -123,6 +146,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
           {distanceInfo}
           {bloodInfo}
           {items}
+          {editorButtons}
         </ul>
       </div>
     );
