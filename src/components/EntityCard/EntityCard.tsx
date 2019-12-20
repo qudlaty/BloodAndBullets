@@ -8,8 +8,8 @@ import { Entity, RangedWeapon, Item } from "../../services/EntitiesValues";
 interface EntityCardProps {
   entity: Entity;
   key?: string;
-  onInventoryClick(entity: Entity, itemName: string);
-  processInterface: Function;
+  onInventoryClick?(entity: Entity, itemName: string);
+  processInterface?: Function;
 }
 
 class EntityCard extends React.Component<EntityCardProps> {

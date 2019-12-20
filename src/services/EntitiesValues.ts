@@ -207,7 +207,7 @@ export class Entity {
   constructor(...props) {
     Object.assign(this, ...props);
   }
-
+  isFriendly?: boolean;
   active?: boolean;
 }
 

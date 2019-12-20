@@ -1,8 +1,15 @@
 import React from "react";
 import EntityCard from "../EntityCard";
 import "./EntitiesList.scss";
+import { Entity } from "../../services/EntitiesValues";
 
-export default class ListOfEntities extends React.Component {
+interface ListOfEntitiesProps {
+  entities: Entity[];
+  onInventoryClick: any;
+  processInterface: Function;
+}
+
+export default class ListOfEntities extends React.Component<ListOfEntitiesProps> {
   renderCounter = 0;
   render() {
     // console.log("Rendering EntitiesList #", this.renderCounter++);

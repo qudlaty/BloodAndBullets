@@ -1,7 +1,15 @@
 import React from "react";
 import "./LinearDisplay.scss";
 
-export default function LinearDisplay(props) {
+interface LinearDisplayProps {
+  className?: string;
+  current: number;
+  max: number;
+  title?: string;
+  label?: string;
+}
+
+export default function LinearDisplay(props: LinearDisplayProps) {
   let className = `linear-display ${props.className || ""}`;
   let percentage = ~~((props.current * 100) / props.max);
   let overload = percentage > 100;
