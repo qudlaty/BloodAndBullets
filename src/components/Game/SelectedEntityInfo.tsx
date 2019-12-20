@@ -7,7 +7,7 @@ import { Entity, Position } from "../../services/EntitiesValues";
 
 interface SelectedEntityInfoProperties {
   selected: Entity;
-  onInventoryClick: Function;
+  onInventoryClick(entity: Entity, itemName: string);
   handleDeselectAllEntities: () => void;
 }
 

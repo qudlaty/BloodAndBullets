@@ -12,7 +12,8 @@ interface TargetedSquareInfoProps {
   squares: Square[];
   selected: Entity;
   targeted: Square;
-  onInventoryClick: Function;
+  onInventoryClick(entity: Entity, itemName: string);
+
   processInterface: Function;
 }
 

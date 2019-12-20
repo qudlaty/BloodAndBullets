@@ -1,5 +1,5 @@
 import * as Helpers from "../helpers/Helpers";
-import { Entity, Position, Item } from "./EntitiesValues";
+import { Entity, Position, Item, RangedWeapon } from "./EntitiesValues";
 
 export interface Square {
   entity?: Entity;
@@ -7,10 +7,18 @@ export interface Square {
   isAvailableDestination?: boolean;
   isChosenDestination?: boolean;
   isTargeted?: boolean;
-  items?: Item[];
+  items?: RangedWeapon[];
+  addItem(item: Item): void;
 }
 
-export class Square implements Square {}
+export class Square implements Square {
+  addItem(item: RangedWeapon) {
+    if (!this.items) {
+      this.items = [];
+    }
+    this.items.push(item);
+  }
+}
 
 class SquaresServiceClass {
   arenaSize: number = 10;
@@ -54,9 +62,6 @@ class SquaresServiceClass {
   }
 
   addBlood(square: Square, amount: number) {
-    if (!square) {
-      square = {};
-    }
     if (!square.blood) {
       square.blood = amount;
     } else {
@@ -72,7 +77,7 @@ class SquaresServiceClass {
 
   initializeSquareIfEmpty(squareIndex: number) {
     if (!this.squares[squareIndex]) {
-      this.squares[squareIndex] = {};
+      this.squares[squareIndex] = new Square();
     }
   }
 
@@ -92,9 +97,7 @@ class SquaresServiceClass {
           }
 
           let square: Square = this.getSquare(i, j);
-          if (!square) {
-            square = {};
-          }
+
           square.isAvailableDestination = true;
           this.setSquare(i, j, square);
         }
