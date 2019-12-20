@@ -2,7 +2,13 @@ import React from "react";
 import Square from "../Square";
 import "./Board.scss";
 
-export default class Board extends React.PureComponent {
+interface BoardProps {
+  onClick(i: number);
+  squares: any;
+  className: string;
+  size: number;
+}
+export default class Board extends React.PureComponent<BoardProps> {
   renderCounter = 0;
 
   constructor(props) {
@@ -30,8 +36,6 @@ export default class Board extends React.PureComponent {
       <Square
         key={i}
         squareId={i}
-        rowNumber={rowId}
-        colNumber={colId}
         onClick={this.handleClick}
         icon={entity && entity.icon}
         active={entity && entity.active}
