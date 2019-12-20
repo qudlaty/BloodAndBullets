@@ -8,7 +8,7 @@ interface InventoryListProps {
   title: string;
   onClick(itemName: string);
   onDrop(itemName: string);
-  inventory: RangedWeapon[];
+  inventory: RangedWeapon[];//
 }
 
 export default function InventoryList(props: InventoryListProps) {
@@ -20,7 +20,7 @@ export default function InventoryList(props: InventoryListProps) {
   let reloadButton;
   let dropButton;
   const inventoryItems = props.inventory.map((item) => {
-    if (item.reload) {
+    if (item.reload && props.onClick) {
       // has reload capability
       let className = " inventory-list__reload-button ";
 
@@ -43,16 +43,18 @@ export default function InventoryList(props: InventoryListProps) {
     } else {
       reloadButton = null;
     }
-    dropButton = (
-      <button
-        className="inventory-list__drop-button"
-        onClick={() => {
-          props.onDrop(item.name);
-        }}
-      >
-        Drop
-      </button>
-    );
+    if (props.onDrop) {
+      dropButton = (
+        <button
+          className="inventory-list__drop-button"
+          onClick={() => {
+            props.onDrop(item.name);
+          }}
+        >
+          Drop
+        </button>
+      );
+    }
 
     return (
       <div key={item.name}>

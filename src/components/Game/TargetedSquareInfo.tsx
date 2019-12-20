@@ -13,11 +13,19 @@ interface TargetedSquareInfoProps {
   selected: Entity;
   targeted: Square;
   onInventoryClick(entity: Entity, itemName: string);
-
   processInterface: Function;
 }
 
 export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps> {
+
+  onItemClick = (itemName: string)=> {
+    let {selected, targeted} =  this.props;
+    if(Helpers.isSelectedTargeted(selected, targeted)){
+      let item = targeted.takeFromInventory(itemName);
+      selected.addToInventory(item);
+    }
+  }
+
   onMoveClick(selected: Entity, targetedSquarePosition: Position) {
     //EntitiesService.setMoveDestinationOnASelectedEntity(selected, targetedSquarePosition);
     selected.setMoveDestinationPosition(targetedSquarePosition);
@@ -60,7 +68,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         <InventoryList
           label="Items in this location"
           title="On the floor"
-          onClick={null}
+          onClick={this.onItemClick}
           onDrop={null}
           inventory={targeted.items}
         />

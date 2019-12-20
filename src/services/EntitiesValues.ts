@@ -166,7 +166,7 @@ class Combative extends Identifiable {
 
 export class HavingInventory {
   inventory: any[];
-  takeFromInventory(itemName) {
+  takeFromInventory(itemName: string): RangedWeapon {
     let actualItemIndex = this.inventory.findIndex((item) => item.name == itemName);
     let actualItem = this.inventory.splice(actualItemIndex, 1)[0];
     //let newInventory = [].concat(this.inventory)
@@ -174,6 +174,9 @@ export class HavingInventory {
     return actualItem;
   }
   addToInventory(item: Item) {
+    if(!this.inventory){
+      this.inventory = [];
+    }
     this.inventory.push(item);
   }
 }

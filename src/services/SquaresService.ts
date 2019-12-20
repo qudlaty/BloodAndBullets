@@ -1,5 +1,5 @@
 import * as Helpers from "../helpers/Helpers";
-import { Entity, Position, Item, RangedWeapon } from "./EntitiesValues";
+import { Entity, Position, Item, RangedWeapon, HavingInventory } from "./EntitiesValues";
 
 export interface Square {
   entity?: Entity;
@@ -7,16 +7,16 @@ export interface Square {
   isAvailableDestination?: boolean;
   isChosenDestination?: boolean;
   isTargeted?: boolean;
-  items?: RangedWeapon[];
+ // items?: RangedWeapon[];
   addItem(item: Item): void;
 }
 
-export class Square implements Square {
+export class Square  extends HavingInventory implements Square {
   addItem(item: RangedWeapon) {
-    if (!this.items) {
-      this.items = [];
-    }
-    this.items.push(item);
+    this.addToInventory(item);
+  }
+  get items(){
+    return this.inventory;
   }
 }
 
