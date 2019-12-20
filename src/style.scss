@@ -21,13 +21,12 @@ body {
 .messagesUl{
   list-style: none;
   height: 4.5em;
-  color: rgba(180, 84, 84, 0.644);
+  color: rgba(180, 84, 84, 0.6);
   overflow-y: scroll;
-
+  :last-child {
+    color: rgba(216, 15, 15, 0.7);
+  }
 }
 .messagesUl::-webkit-scrollbar {
   display: none;
-}
-.messagesUl:last-child {
-
 }
