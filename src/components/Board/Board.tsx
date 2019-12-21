@@ -1,10 +1,12 @@
 import React from "react";
 import Square from "../Square";
 import "./Board.scss";
+import { Entity } from "../../services/EntitiesValues";
 
 interface BoardProps {
   onClick(i: number);
   squares: any;
+  entities: Entity[];
   className: string;
   size: number;
 }
@@ -61,7 +63,23 @@ export default class Board extends React.PureComponent<BoardProps> {
     let cellId = 0;
     let rowId = 0;
     let colId;
-
+    let floatingEntities = this.props.entities.map((entity) => {
+      let squareDistance = 38;
+      return (
+        <div
+          style={{
+            left: squareDistance / 2 - 4 + squareDistance * entity.position.x,
+            top: squareDistance / 2 - 4 + squareDistance * entity.position.y,
+            position: "absolute",
+            opacity: 1,
+            fontSize: "1.5em",
+            transition: "all 0.5s",
+          }}
+        >
+          {entity.icon}
+        </div>
+      );
+    });
     let rows = Array(this.props.size)
       .fill(null)
       .map((row, number) => {
@@ -79,6 +97,11 @@ export default class Board extends React.PureComponent<BoardProps> {
       });
 
     let className = "board " + this.props.className;
-    return <div className={className}>{rows}</div>;
+    return (
+      <div className={className}>
+        {rows}
+        {floatingEntities}
+      </div>
+    );
   }
 }
