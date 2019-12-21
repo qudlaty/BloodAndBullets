@@ -258,6 +258,7 @@ export default class Game extends React.PureComponent<void, GameState> {
         <div className="game-board">
           <Board
             squares={this.state.squares}
+            entities={this.state.entities}
             onClick={(i) => this.newHandleClick(i)}
             size={this.state.arenaSize}
             className={boardClassName}
