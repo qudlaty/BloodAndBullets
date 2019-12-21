@@ -27,6 +27,14 @@
   background: #333;
   color: #aaa;
   position: relative;
+  &.is-in-twilight-zone {
+    background: #222;
+    border-color: #333;
+  }
+  &.dark {
+    background: #111;
+    border-color: #222;
+  }
   & .blood {
     position: absolute;
     top: 0;
