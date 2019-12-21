@@ -16,6 +16,8 @@ interface SquareProps {
   isDead: boolean;
   isShooting: boolean;
   isTargeted: boolean;
+  isLit: boolean;
+  isInTwilightZone: boolean;
 
   position: Position;
   targetPosition: Position;
@@ -202,9 +204,25 @@ class Square extends React.Component<SquareProps> {
       }
     }
 
+    let { blood, icon } = this.props;
+
+    if (!this.props.isLit) {
+    }
+
+    if (!this.props.isLit && this.props.isInTwilightZone) {
+      className += " is-in-twilight-zone ";
+    }
+
+    if (!this.props.isLit && !this.props.isInTwilightZone) {
+      className += " dark ";
+      blood = null;
+      itemsNumber = null;
+      bloodClassName = null;
+    }
+
     return (
       <button className={className} onClick={() => this.props.onClick(this.props.squareId)}>
-        <div className={bloodClassName}>{this.props.blood}</div>
+        <div className={bloodClassName}>{blood}</div>
         <div className={itemsClassName}>{itemsNumber}</div>
         <div
           className="content"
@@ -213,7 +231,7 @@ class Square extends React.Component<SquareProps> {
             color: "transparent",
           }}
         >
-          {this.props.icon}
+          {icon}
         </div>
         <style>{customStyle}</style>
         {projectiles}

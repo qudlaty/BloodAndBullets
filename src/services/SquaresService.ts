@@ -7,15 +7,17 @@ export interface Square {
   isAvailableDestination?: boolean;
   isChosenDestination?: boolean;
   isTargeted?: boolean;
- // items?: RangedWeapon[];
+  isLit?: boolean;
+  isInTwilightZone?: boolean;
+  // items?: RangedWeapon[];
   addItem(item: Item): void;
 }
 
-export class Square  extends HavingInventory implements Square {
+export class Square extends HavingInventory implements Square {
   addItem(item: RangedWeapon) {
     this.addToInventory(item);
   }
-  get items(){
+  get items() {
     return this.inventory;
   }
 }
@@ -99,6 +101,43 @@ class SquaresServiceClass {
           let square: Square = this.getSquare(i, j);
 
           square.isAvailableDestination = true;
+          this.setSquare(i, j, square);
+        }
+      }
+    }
+  }
+  castLightsFromFriendlyEntity(entity: Entity): void {
+    if (entity.isFriendly) {
+      let { x, y } = entity.position;
+
+      for (let j = y - 2; j <= y + 2; j++) {
+        if (j < 0 || j >= this.arenaSize) {
+          continue;
+        }
+        for (let i = x - 2; i <= x + 2; i++) {
+          if (i < 0 || i >= this.arenaSize) {
+            continue;
+          }
+
+          let square: Square = this.getSquare(i, j);
+
+          square.isInTwilightZone = true;
+          this.setSquare(i, j, square);
+        }
+      }
+
+      for (let j = y - 1; j <= y + 1; j++) {
+        if (j < 0 || j >= this.arenaSize) {
+          continue;
+        }
+        for (let i = x - 1; i <= x + 1; i++) {
+          if (i < 0 || i >= this.arenaSize) {
+            continue;
+          }
+
+          let square: Square = this.getSquare(i, j);
+
+          square.isLit = true;
           this.setSquare(i, j, square);
         }
       }

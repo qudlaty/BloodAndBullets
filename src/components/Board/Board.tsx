@@ -2,6 +2,7 @@ import React from "react";
 import Square from "../Square";
 import "./Board.scss";
 import { Entity } from "../../services/EntitiesValues";
+import { SquaresService } from "../../services";
 
 interface BoardProps {
   onClick(i: number);
@@ -52,6 +53,8 @@ export default class Board extends React.PureComponent<BoardProps> {
         isAvailableDestination={square && square.isAvailableDestination}
         isChosenDestination={square && square.isChosenDestination}
         isTargeted={square && square.isTargeted}
+        isLit={square.isLit}
+        isInTwilightZone={square.isInTwilightZone}
       />
     );
   }
@@ -65,13 +68,19 @@ export default class Board extends React.PureComponent<BoardProps> {
     let colId;
     let floatingEntities = this.props.entities.map((entity) => {
       let squareDistance = 38;
+      let className = " entity-piece ";
+      if (SquaresService.getSquare(entity.position.x, entity.position.y).isLit) className += " is-lit ";
+      if (SquaresService.getSquare(entity.position.x, entity.position.y).isInTwilightZone) {
+        className += " is-in-twilight-zone ";
+      }
       return (
         <div
+          key={entity.name}
+          className={className}
           style={{
             left: squareDistance / 2 - 4 + squareDistance * entity.position.x,
             top: squareDistance / 2 - 4 + squareDistance * entity.position.y,
             position: "absolute",
-            opacity: 1,
             fontSize: "1.5em",
             transition: "all 0.5s",
           }}
