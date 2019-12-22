@@ -1,6 +1,7 @@
 import React from "react";
 import "./InventoryList.scss";
 import { Item, Entity, RangedWeapon } from "../../services/EntitiesValues";
+import InventoryItem from "./InventoryItem";
 
 interface InventoryListProps {
   className?: string;
@@ -20,54 +21,15 @@ export default function InventoryList(props: InventoryListProps) {
   }
   let reloadButton;
   let dropButton;
-  const inventoryItems = props.inventory.map((item) => {
-    if (item.reload && props.onClick) {
-      // has reload capability
-      let className = " inventory-list__reload-button ";
-
-      if (item.rounds === 0 || item.rounds === "empty") {
-        className += " inventory-list__reload-button--empty ";
-      } else if (item.rounds < item.maxRounds) {
-        className += " inventory-list__reload-button--partial ";
-      }
-      reloadButton = (
-        <button
-          className={className}
-          onClick={() => {
-            item.reload();
-            //props.onClick(item.name); // this only to trigger the render
-            props.processInterface();
-          }}
-        >
-          Reload
-        </button>
-      );
-    } else {
-      reloadButton = null;
-    }
-    if (props.onDrop) {
-      dropButton = (
-        <button
-          className="inventory-list__drop-button"
-          onClick={() => {
-            props.onDrop(item.name);
-          }}
-        >
-          Drop
-        </button>
-      );
-    }
-
-    return (
-      <div key={item.name}>
-        <div onClick={() => props.onClick(item.name)} key={item.name} className="inventory-list__item">
-          <span>{item.name}</span>
-        </div>
-        {reloadButton}
-        {dropButton}
-      </div>
-    );
-  });
+  
+  const inventoryItems = props.inventory.map((item) => (
+    <InventoryItem
+      item={item}
+      onClick={props.onClick}
+      onDrop={props.onDrop}
+      processInterface={props.processInterface}
+    />
+  ));
 
   return (
     <div className={className}>

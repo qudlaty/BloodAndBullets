@@ -18,12 +18,6 @@ class EntityCard extends React.Component<EntityCardProps> {
     this.props.onInventoryClick(this.props.entity, itemName);
   };
 
-  renderAmmo = (inHands: RangedWeapon) => {
-    if (inHands) {
-      return <LinearDisplay label="Rounds" current={inHands.rounds} max={inHands.maxRounds} />;
-    }
-  };
-
   onDrop = (itemName: string) => {
     let { entity } = this.props;
     entity.unEquipFromHands();
@@ -78,7 +72,6 @@ class EntityCard extends React.Component<EntityCardProps> {
         >
           <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} />
           <br />
-          {this.renderAmmo(inHands)}
         </div>
         <InventoryList
           label="Equipped"
