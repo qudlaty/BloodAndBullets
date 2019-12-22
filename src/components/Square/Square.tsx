@@ -3,8 +3,6 @@ import * as Helpers from "../../helpers";
 import "./Square.scss";
 import { Position, Item } from "../../services/EntitiesValues";
 
-const DISTANCE_BETWEEN_TILES = 38;
-
 interface SquareProps {
   squareId: string;
   icon: string;
@@ -76,9 +74,6 @@ class Square extends React.Component<SquareProps> {
 
     className += turnFlagsIntoClasses(this.props, flagsToClassess);
 
-    let targetCoords = this.props.targetPosition;
-    let projectileNumber = 5;
-    let projectiles = [];
     let customStyle = "";
     let bloodClassName = `blood-${localId}`;
     let itemsClassName;
@@ -93,112 +88,9 @@ class Square extends React.Component<SquareProps> {
     customStyle += bloodStyle;
     bloodClassName += " blood ";
 
-    let calcNewAangle = Helpers.calculateAngle;
-
     if (this.props.items && this.props.items.length) {
       itemsClassName += ` has-items `;
       itemsNumber = this.props.items.length;
-    }
-
-    if (
-      targetCoords &&
-      this.props.position &&
-      this.props.isShooting &&
-      (this.props.targetPosition.x !== this.props.position.x || this.props.targetPosition.y !== this.props.position.y)
-    ) {
-      if (targetCoords) {
-        // TODO: Move this into a helper
-
-        let distanceToTargetX = DISTANCE_BETWEEN_TILES * (targetCoords.x - this.props.position.x);
-        let distanceToTargetY = DISTANCE_BETWEEN_TILES * (targetCoords.y - this.props.position.y);
-
-        let actualDistance = Helpers.calculateDistance(distanceToTargetX, distanceToTargetY);
-
-        if (this.props.weaponType === "lazer") {
-          // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
-          let className = `projectile${localId}_beam`;
-          let projectile = "";
-          let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
-          customStyle = `
-            @keyframes pulsing${localId} {
-              0%  {opacity: 0.1;}
-              100%  {opacity: 1;}
-            }
-
-            @keyframes elongating${localId} {
-              0%  {width: ${actualDistance - 20};}
-              100%  {width: ${actualDistance + 20};}
-            }
-
-            @keyframes swiping${localId} {
-              0%  {transform: rotate(${angle + 90 + -1}deg);}
-              50%  {transform: rotate(${angle + 90 + 1}deg);}
-              100%  {transform: rotate(${angle + 90 - 1}deg);}
-            }
-
-            .${className} {
-              width: ${actualDistance}px;
-              height: 3px;
-              border-radius: 5px;
-              background: #F00;
-              position: absolute;
-              top: 16px;
-              left: 16px;
-
-              transform: rotate(${angle + 90}deg);
-              transform-origin: left 0px;
-              animation: pulsing${localId} 0.1s linear infinite,
-              elongating${localId} 1s linear alternate infinite,
-              swiping${localId} 1s linear alternate infinite;
-              box-shadow: 0 0 5px 5px white;
-              z-index: 10;
-            }
-            `;
-          projectiles.push(
-            <div key={className} className={className}>
-              {projectile}
-            </div>
-          );
-        } else {
-          customStyle = `
-            @keyframes shooting${localId} {
-              0%   {transform: scale(1);}
-              100% {transform: translate(
-                ${36 * (targetCoords.x - this.props.position.x)}px,
-                ${36 * (targetCoords.y - this.props.position.y)}px
-              )}
-            }
-            `;
-
-          while (projectileNumber--) {
-            customStyle += `
-            .projectile${localId}_${projectileNumber} {
-              position: absolute;
-              top: -5px;
-              left: 0px;
-              width: 100%;
-              height: 100%;
-              line-height: 34px;
-              font-size: 30px;
-              animation: shooting${localId} 0.5s linear infinite;
-              animation-delay: ${projectileNumber - 1 * 0.3}s;
-              color: white;
-            }`;
-          }
-          let projectile = this.props.isShooting ? "." : "";
-
-          projectileNumber = 3;
-
-          while (projectileNumber--) {
-            let className = `projectile projectile${localId}_${projectileNumber}`;
-            projectiles.push(
-              <div key={className} className={className}>
-                {projectile}
-              </div>
-            );
-          }
-        }
-      }
     }
 
     let { blood, icon } = this.props;
@@ -230,7 +122,6 @@ class Square extends React.Component<SquareProps> {
           {icon}
         </div>
         <style>{customStyle}</style>
-        {projectiles}
       </button>
     );
   }

@@ -1,14 +1,24 @@
-.entity-pawn {
+.entity-pawn-container {
   position: absolute;
-  font-size: 1.5em;
   transition: top 0.5s, left 0.5s;
-  opacity: 0.1;
 
-  &.is-in-twilight-zone {
-    opacity: 0.5;
+  .entity-pawn {
+    position: relative;
+    font-size: 1.5em;
+    opacity: 0.1;
+    z-index: 2;
+    &.is-in-twilight-zone {
+      opacity: 0.5;
+    }
+    &.is-lit {
+      opacity: 1;
+    }
   }
-  &.is-lit {
-    opacity: 1;
+  .shooting-visualization {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
 }
 

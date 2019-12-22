@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import { SquaresService } from "../../services";
 import { Entity } from "../../services/EntitiesValues";
 import "./EntityPawn.scss";
+import ShootingVisualization from "./ShootingVisualization";
 
 interface EntityPawnProps {
   entity: Entity;
@@ -24,15 +25,22 @@ export default function EntityPawn(props: EntityPawnProps): ReactElement {
 
   return (
     <div
+      className="entity-pawn-container"
       key={entity.name}
-      className={className}
       style={{
-        animation: animationBreathing,
         left: squareDistance / 2 - 4 + squareDistance * entity.position.x,
         top: squareDistance / 2 - 4 + squareDistance * entity.position.y,
       }}
     >
-      {entity.icon}
+      <div
+        className={className}
+        style={{
+          animation: animationBreathing,
+        }}
+      >
+        {entity.icon}
+      </div>
+      <ShootingVisualization entity={entity} />
     </div>
   );
 }
