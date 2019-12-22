@@ -2,7 +2,7 @@ import React from "react";
 import Square from "../Square";
 import "./Board.scss";
 import { Entity } from "../../services/EntitiesValues";
-import { SquaresService } from "../../services";
+import EntityPawn from "./EntityPawn";
 
 interface BoardProps {
   onClick(i: number);
@@ -11,6 +11,7 @@ interface BoardProps {
   className: string;
   size: number;
 }
+
 export default class Board extends React.PureComponent<BoardProps> {
   renderCounter = 0;
 
@@ -59,6 +60,8 @@ export default class Board extends React.PureComponent<BoardProps> {
     );
   }
 
+  renderEntityPawns = () => this.props.entities.map((entity) => <EntityPawn entity={entity} />);
+
   render() {
     // console.log("Rendering Board. #", this.renderCounter++);
 
@@ -66,29 +69,7 @@ export default class Board extends React.PureComponent<BoardProps> {
     let cellId = 0;
     let rowId = 0;
     let colId;
-    let floatingEntities = this.props.entities.map((entity) => {
-      let squareDistance = 38;
-      let className = " entity-piece ";
-      if (SquaresService.getSquare(entity.position.x, entity.position.y).isLit) className += " is-lit ";
-      if (SquaresService.getSquare(entity.position.x, entity.position.y).isInTwilightZone) {
-        className += " is-in-twilight-zone ";
-      }
-      return (
-        <div
-          key={entity.name}
-          className={className}
-          style={{
-            left: squareDistance / 2 - 4 + squareDistance * entity.position.x,
-            top: squareDistance / 2 - 4 + squareDistance * entity.position.y,
-            position: "absolute",
-            fontSize: "1.5em",
-            transition: "all 0.5s",
-          }}
-        >
-          {entity.icon}
-        </div>
-      );
-    });
+
     let rows = Array(this.props.size)
       .fill(null)
       .map((row, number) => {
@@ -106,10 +87,12 @@ export default class Board extends React.PureComponent<BoardProps> {
       });
 
     let className = "board " + this.props.className;
+
+    let entityPawns = this.renderEntityPawns();
     return (
       <div className={className}>
         {rows}
-        {floatingEntities}
+        {entityPawns}
       </div>
     );
   }
