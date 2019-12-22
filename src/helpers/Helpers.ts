@@ -49,3 +49,35 @@ export function isSelectedTargeted(selected: Entity, targeted: Square): boolean 
     return false;
   }
 }
+
+interface flagsToClassessInterface {
+  active: string;
+  isAvailableDestination: string;
+  isChosenDestination: string;
+  isBreathing: string;
+  isDead: string;
+  isShooting: string;
+  isTargeted: string;
+}
+
+/** Adding classess apropriate to the flags passed in by props */
+export function turnFlagsIntoClasses(flags: object) {
+  const flagsToClassess: flagsToClassessInterface = {
+    active: "active",
+    isAvailableDestination: "is-available-destination",
+    isChosenDestination: "is-chosen-destination",
+    isBreathing: "breathing",
+    isDead: "dead",
+    isShooting: "shooting",
+    isTargeted: "targeted",
+  };
+
+  let className = "";
+
+  Object.keys(flagsToClassess).forEach((key) => {
+    if (flags[key]) {
+      className += ` ${flagsToClassess[key]} `;
+    }
+  });
+  return className;
+}
