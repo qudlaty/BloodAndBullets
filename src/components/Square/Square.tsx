@@ -76,9 +76,6 @@ class Square extends React.Component<SquareProps> {
 
     className += turnFlagsIntoClasses(this.props, flagsToClassess);
 
-    let randomTime = `${(Math.random() + 0.5).toFixed(2)}s`; // 0.50 - 1.50s
-    let animationBreathing = this.props.isBreathing ? `breathing ${randomTime} alternate infinite linear` : "none";
-
     let targetCoords = this.props.targetPosition;
     let projectileNumber = 5;
     let projectiles = [];
@@ -227,7 +224,6 @@ class Square extends React.Component<SquareProps> {
         <div
           className="content"
           style={{
-            //animation: animationBreathing,
             color: "transparent",
           }}
         >

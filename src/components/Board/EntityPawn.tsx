@@ -19,7 +19,7 @@ export default function EntityPawn(props: EntityPawnProps): ReactElement {
     className += " is-in-twilight-zone ";
   }
 
-  let randomTime = (Math.random() + 0.5).toFixed(2);
+  let randomTime = `${(Math.random() + 0.5).toFixed(2)}s`;
   let animationBreathing = props.entity.isBreathing ? `breathing ${randomTime} alternate infinite linear` : "none";
 
   return (
