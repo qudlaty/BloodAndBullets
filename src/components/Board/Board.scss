@@ -8,15 +8,3 @@
     display: table;
   }
 }
-
-.entity-piece {
-  opacity: 0.1;
-
-  &.is-in-twilight-zone {
-    opacity: 0.5;
-  }
-
-  &.is-lit {
-    opacity: 1;
-  }
-}

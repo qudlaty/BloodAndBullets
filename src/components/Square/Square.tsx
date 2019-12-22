@@ -227,7 +227,7 @@ class Square extends React.Component<SquareProps> {
         <div
           className="content"
           style={{
-            animation: animationBreathing,
+            //animation: animationBreathing,
             color: "transparent",
           }}
         >
