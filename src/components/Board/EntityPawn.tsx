@@ -3,6 +3,7 @@ import { SquaresService } from "../../services";
 import { Entity } from "../../services/EntitiesValues";
 import "./EntityPawn.scss";
 import ShootingVisualization from "./ShootingVisualization";
+import * as Helpers from "../../helpers";
 
 interface EntityPawnProps {
   entity: Entity;
@@ -22,6 +23,10 @@ export default function EntityPawn(props: EntityPawnProps): ReactElement {
 
   let randomTime = `${(Math.random() + 0.5).toFixed(2)}s`;
   let animationBreathing = props.entity.isBreathing ? `breathing ${randomTime} alternate infinite linear` : "none";
+
+  let classessFromFlags = Helpers.turnFlagsIntoClasses(entity);
+
+  className += ` ${classessFromFlags} `;
 
   return (
     <div

@@ -73,25 +73,6 @@
   &.is-chosen-destination {
     border: 1px dotted white;
   }
-
-  &.dead {
-    //background-color: red;
-    color: rgba(0, 0, 0, 0.3);
-    box-shadow: rgb(1, 1, 1) inset 0 0 3px 1px;
-    // text-shadow: rgba(255, 255, 255, 0.8) 0 0 0;
-    // transform: rotate(180deg);
-    // transition: all 1s;
-    &::xbefore {
-      content: "X";
-      font-weight: 100;
-      color: rgba(0, 0, 0, 0.5);
-      position: absolute;
-      font-size: 43px;
-      top: 0;
-      left: 2px;
-      z-index: 1700;
-    }
-  }
   &.targeted {
     box-shadow: 0 0 4px 1px inset rgb(164, 255, 176);
   }

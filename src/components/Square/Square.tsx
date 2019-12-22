@@ -26,38 +26,6 @@ interface SquareProps {
   onClick: (squareIndex: string) => void;
 }
 
-const flagsToClassess = {
-  active: "active",
-  isAvailableDestination: "is-available-destination",
-  isChosenDestination: "is-chosen-destination",
-  isBreathing: "breathing",
-  isDead: "dead",
-  isShooting: "shooting",
-  isTargeted: "targeted",
-};
-
-interface flagsToClassessInterface {
-  active: string;
-  isAvailableDestination: string;
-  isChosenDestination: string;
-  isBreathing: string;
-  isDead: string;
-  isShooting: string;
-  isTargeted: string;
-}
-
-/** Adding classess apropriate to the flags passed in by props */
-function turnFlagsIntoClasses(props: SquareProps, flagsToClasses: flagsToClassessInterface) {
-  let className = "";
-
-  Object.keys(flagsToClassess).forEach((key) => {
-    if (props[key]) {
-      className += ` ${flagsToClassess[key]} `;
-    }
-  });
-  return className;
-}
-
 class Square extends React.Component<SquareProps> {
   renderCounter = 0;
 
@@ -72,7 +40,7 @@ class Square extends React.Component<SquareProps> {
     let className = "square";
     let localId = `Square${this.props.squareId}`;
 
-    className += turnFlagsIntoClasses(this.props, flagsToClassess);
+    className += Helpers.turnFlagsIntoClasses(this.props);
 
     let customStyle = "";
     let bloodClassName = `blood-${localId}`;
