@@ -3,7 +3,8 @@ import * as Helpers from "../../helpers/Helpers";
 import { SquaresService, EntitiesService } from "../../services";
 import EntityCard from "../EntityCard/EntityCard";
 import { Square } from "../../services/SquaresService";
-import entities, { Entity, Position, structures } from "../../services/EntitiesValues";
+import { Entity, Position, structures } from "../../services/EntitiesValues";
+
 import InventoryList from "../EntityCard/InventoryList";
 
 interface TargetedSquareInfoProps {
@@ -51,8 +52,8 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     box.name += this.boxSerialNumber++;
     let newBox = new Entity(box);
 
-    entities.push(newBox);
-    console.log(entities);
+    EntitiesService.entities.push(newBox);
+    console.log(EntitiesService.entities);
     this.props.processInterface();
   }
 

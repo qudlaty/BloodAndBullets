@@ -16,6 +16,7 @@ import EntityCard from "../EntityCard/EntityCard";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 import { MessageBox } from "./MessageBox";
 
+/** Type of GameState */
 interface GameState {
   targeted: Square;
   selected: Entity;
@@ -27,6 +28,7 @@ interface GameState {
   selectedSquareNumber: number;
 }
 
+/** Game composes all the parts of the interface */
 export default class Game extends React.PureComponent<void, GameState> {
   renderCounter: number = 0;
   stepNumber: number = 0;
@@ -57,8 +59,8 @@ export default class Game extends React.PureComponent<void, GameState> {
     this.setState((previousState) => {
       let squares: Square[] = [].concat(previousState.squares);
       let entities: Entity[] = previousState.entities;
-
       SquaresService.squares = squares;
+
       Helpers.resetGivenFieldsOnACollection(squares, "entity");
       entities.forEach((entity) => {
         SquaresService.setEntityWithinApropriateSquare(entity);
@@ -202,6 +204,7 @@ export default class Game extends React.PureComponent<void, GameState> {
   onInventoryClick = (entity: Entity, itemName: string) => {
     this.setState((prevState) => {
       let entities = [].concat(prevState.entities);
+      EntitiesService.entities = entities;
       let entityId = EntitiesService.getEntityId(entity);
       let actualEntity = EntitiesService.findEntityById(entityId);
       let actualItem = EntitiesService.findItemOnEntity(actualEntity, itemName);
