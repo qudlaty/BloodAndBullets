@@ -14,7 +14,7 @@ export default function InventoryItem(props: InventoryItemProps) {
   let reloadButton;
   let dropButton;
 
-  if (item.reload && props.onClick) {
+  if (item.reload) {
     // has reload capability
     let className = " inventory-list__reload-button ";
 
@@ -28,7 +28,6 @@ export default function InventoryItem(props: InventoryItemProps) {
         className={className}
         onClick={() => {
           item.reload();
-          //props.onClick(item.name); // this only to trigger the render
           props.processInterface();
         }}
       >

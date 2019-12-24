@@ -1,21 +1,21 @@
 import React from "react";
-import Square from "../Square";
-import "./Board.scss";
-import { Entity } from "../../services/EntitiesValues";
+import BoardSquare from "../Square";
 import EntityPawn from "./EntityPawn";
+import { Entity } from "../../services/EntitiesValues";
+import { Square } from "../../services/SquaresService";
+
+import "./Board.scss";
 
 interface BoardProps {
-  onClick(i: number);
-  squares: any;
+  onClick(i: number): void;
+  squares: Square[];
   entities: Entity[];
   className: string;
   size: number;
 }
 
 export default class Board extends React.PureComponent<BoardProps> {
-  renderCounter = 0;
-
-  constructor(props) {
+  constructor(props: BoardProps) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -25,7 +25,7 @@ export default class Board extends React.PureComponent<BoardProps> {
     this.props.onClick(i);
   }
 
-  renderSquare(i, rowId, colId) {
+  renderSquare(i: number, rowId: number, colId: number) {
     /*
     We pass one and the same function to all the Squares when rendering,
     so they do not detect getting a new fat-arrow function as a change of props.
@@ -37,9 +37,9 @@ export default class Board extends React.PureComponent<BoardProps> {
     let square = this.props.squares[i];
     let entity = this.props.squares[i] && this.props.squares[i].entity;
     return (
-      <Square
+      <BoardSquare
         key={i}
-        squareId={i}
+        squareId={i + ""}
         onClick={this.handleClick}
         icon={entity && entity.icon}
         active={entity && entity.active}
@@ -63,14 +63,11 @@ export default class Board extends React.PureComponent<BoardProps> {
   renderEntityPawns = () => this.props.entities.map((entity) => <EntityPawn entity={entity} />);
 
   render() {
-    // console.log("Rendering Board. #", this.renderCounter++);
-
-    // Initial values for the Board
     let cellId = 0;
     let rowId = 0;
     let colId;
 
-    let rows = Array(this.props.size)
+    let rowsOfSquares = Array(this.props.size)
       .fill(null)
       .map((row, number) => {
         colId = 0;
@@ -85,13 +82,11 @@ export default class Board extends React.PureComponent<BoardProps> {
           </div>
         );
       });
-
-    let className = "board " + this.props.className;
-
     let entityPawns = this.renderEntityPawns();
+    let className = "board " + this.props.className;
     return (
       <div className={className}>
-        {rows}
+        {rowsOfSquares}
         {entityPawns}
       </div>
     );

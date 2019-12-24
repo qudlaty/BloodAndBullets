@@ -19,8 +19,6 @@ export default function ShootingVisualization(props): ReactElement {
     (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y)
   ) {
     if (targetCoords) {
-      // TODO: Move this into a helper
-
       let distanceToTargetX = DISTANCE_BETWEEN_TILES * (targetCoords.x - entity.position.x);
       let distanceToTargetY = DISTANCE_BETWEEN_TILES * (targetCoords.y - entity.position.y);
 
