@@ -50,19 +50,9 @@ export function isSelectedTargeted(selected: Entity, targeted: Square): boolean 
   }
 }
 
-interface flagsToClassessInterface {
-  active: string;
-  isAvailableDestination: string;
-  isChosenDestination: string;
-  isBreathing: string;
-  isDead: string;
-  isShooting: string;
-  isTargeted: string;
-}
-
 /** Adding classess apropriate to the flags passed in by props */
 export function turnFlagsIntoClasses(flags: object) {
-  const flagsToClassess: flagsToClassessInterface = {
+  const flagsToClassess = {
     active: "active",
     isAvailableDestination: "is-available-destination",
     isChosenDestination: "is-chosen-destination",
@@ -70,6 +60,8 @@ export function turnFlagsIntoClasses(flags: object) {
     isDead: "dead",
     isShooting: "shooting",
     isTargeted: "targeted",
+    isLit: "is-lit",
+    isInTwilightZone: "is-in-twilight-zone",
   };
 
   let className = "";

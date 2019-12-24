@@ -43,7 +43,7 @@ class EntityCard extends React.Component<EntityCardProps> {
     let lifeSigns = isDead ? " DEAD " : " ALIVE ";
     className += lifeSigns;
     let inHands = entity.equipment && entity.equipment.hands;
-    let inHandsArray = (inHands && [inHands]) || [];
+    let inHandsArray = inHands && [inHands];
 
     return (
       <div className={className}>
