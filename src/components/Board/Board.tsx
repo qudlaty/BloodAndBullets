@@ -1,6 +1,6 @@
 import React from "react";
 import BoardSquare from "../Square";
-import EntityPawn from "./EntityPawn";
+import EntityPawn from "../EntityPawn";
 import { Entity } from "../../services/EntitiesValues";
 import { Square } from "../../services/SquaresService";
 
