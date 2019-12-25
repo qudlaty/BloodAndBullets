@@ -1,24 +1,27 @@
-h1, p {
-  font-family: Lato;
-}
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
   background: #202525;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 .zero {
   margin: 0;
   padding: 0;
   border: 0;
 }
+
+h1,
+p {
+  font-family: Lato;
+}
+
 .status {
   margin-bottom: 10px;
 }
 .kbd-navigation .square:focus {
   background: #ddd;
 }
-.messagesUl{
+.messagesUl {
   list-style: none;
   height: 4.5em;
   color: rgba(180, 84, 84, 0.6);

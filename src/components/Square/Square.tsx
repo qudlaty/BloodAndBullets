@@ -1,28 +1,26 @@
 import React from "react";
 import * as Helpers from "../../helpers";
-import { Position, Item } from "../../services/EntitiesValues";
+import { Item } from "../../services/EntitiesValues";
 import "./Square.scss";
 
 interface SquareProps {
   squareId: string;
-  icon: string;
+  rowId: number;
+  colId: number;
 
   active: boolean;
-  isAvailableDestination: boolean;
-  isChosenDestination: boolean;
-  isBreathing: boolean;
   isDead: boolean;
-  isShooting: boolean;
-  isTargeted: boolean;
-  isLit: boolean;
-  isInTwilightZone: boolean;
 
-  position: Position;
-  targetPosition: Position;
   blood: number;
   items: Item[];
 
-  weaponType: string;
+  isLit: boolean;
+  isInTwilightZone: boolean;
+
+  isAvailableDestination: boolean;
+  isChosenDestination: boolean;
+  isTargeted: boolean;
+
   onClick: (squareIndex: string) => void;
 }
 
@@ -37,32 +35,32 @@ class Square extends React.Component<SquareProps> {
     // this.renderCounter++;
     // console.log("Rendering Square", this.renderCounter, this.props);
 
+    let localId = `square${this.props.squareId}`;
+
     let squareClassName = "square";
-    let localId = `Square${this.props.squareId}`;
     squareClassName += Helpers.turnFlagsIntoClasses(this.props);
 
     let customStyle = "";
     let itemsClassName: string;
     let itemsNumber: number;
 
-    let { blood } = this.props;
+    let { isLit, items, blood, rowId, colId } = this.props;
+
     let bloodClassName = `blood-${localId}`;
     let bloodStyle = `
-
       .${bloodClassName} {
         background: rgba(255,0,0, ${(this.props.blood / 30).toFixed(2)})
       }
-
     `;
     customStyle += bloodStyle;
     bloodClassName += " blood ";
 
-    if (this.props.items && this.props.items.length) {
+    if (items && items.length) {
       itemsClassName += ` has-items `;
       itemsNumber = this.props.items.length;
     }
 
-    if (!this.props.isLit) {
+    if (!isLit) {
       squareClassName += " dark ";
       blood = null;
       itemsNumber = null;
@@ -73,7 +71,12 @@ class Square extends React.Component<SquareProps> {
       <button className={squareClassName} onClick={() => this.props.onClick(this.props.squareId)}>
         <div className={bloodClassName}>{blood}</div>
         <div className={itemsClassName}>{itemsNumber}</div>
-        <div className="content">&nbsp;</div>
+        <div className="content">
+          &nbsp;
+          <small style={{ color: "transparent" }}>
+            {colId},{rowId /* This just here for debugging */}
+          </small>
+        </div>
         <style>{customStyle}</style>
       </button>
     );
