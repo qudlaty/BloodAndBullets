@@ -35,27 +35,26 @@ export default class Board extends React.PureComponent<BoardProps> {
     Additionally, we need to ensure that Unchanged squares have the same values of objects passed down here.
     */
     let square = this.props.squares[i];
-    let entity = this.props.squares[i] && this.props.squares[i].entity;
+    let entity = (this.props.squares[i] && this.props.squares[i].entity) || ({} as Entity);
     return (
       <BoardSquare
         key={i}
         squareId={i + ""}
+        rowId={rowId}
+        colId={colId}
         onClick={this.handleClick}
-        icon={entity && entity.icon}
-        active={entity && entity.active}
-        isBreathing={entity && entity.isBreathing}
-        isDead={entity && entity.isDead}
-        isShooting={entity && entity.isShooting}
-        weaponType={entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type}
-        position={entity && entity.position}
-        targetPosition={entity && entity.targetPosition}
-        blood={square && square.blood}
-        items={square && square.items}
-        isAvailableDestination={square && square.isAvailableDestination}
-        isChosenDestination={square && square.isChosenDestination}
-        isTargeted={square && square.isTargeted}
+        // Entity on this square
+        active={entity.active}
+        isDead={entity.isDead}
+        // Environment state fields
+        blood={square.blood}
+        items={square.items}
         isLit={square.isLit}
         isInTwilightZone={square.isInTwilightZone}
+        // Interface state fields
+        isAvailableDestination={square.isAvailableDestination}
+        isChosenDestination={square.isChosenDestination}
+        isTargeted={square.isTargeted}
       />
     );
   }
@@ -65,7 +64,7 @@ export default class Board extends React.PureComponent<BoardProps> {
   render() {
     let cellId = 0;
     let rowId = 0;
-    let colId;
+    let colId: number;
 
     let rowsOfSquares = Array(this.props.size)
       .fill(null)
