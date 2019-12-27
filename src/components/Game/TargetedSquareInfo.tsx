@@ -13,14 +13,18 @@ interface TargetedSquareInfoProps {
   squares: Square[];
   selected: Entity;
   targeted: Square;
-  onInventoryClick(entity: Entity, itemName: string);
+  onInventoryClick(entity: Entity, itemName: string): void;
   processInterface: Function;
 }
 
 export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps> {
   boxSerialNumber: number = 0;
 
-  onItemClick = (itemName: string) => {
+  constructor(props) {
+    super(props);
+  }
+
+  onItemClick = (itemName: string): void => {
     let { selected, targeted } = this.props;
     if (Helpers.isSelectedTargeted(selected, targeted)) {
       let item = targeted.takeFromInventory(itemName);
@@ -29,45 +33,36 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     this.props.processInterface();
   };
 
-  onMoveClick(selected: Entity, targetedSquarePosition: Position) {
-    //EntitiesService.setMoveDestinationOnASelectedEntity(selected, targetedSquarePosition);
-    selected.setMoveDestinationPosition(targetedSquarePosition);
+  onMoveClick(selected: Entity, targetedSquarePosition: Position): void {
     let targetedSquare: Square = SquaresService.getSquare(targetedSquarePosition.x, targetedSquarePosition.y);
-
+    selected.setMoveDestinationPosition(targetedSquarePosition);
     targetedSquare.isChosenDestination = true;
     this.props.processInterface();
   }
 
-  onAttackClick(selected: Entity, targetedSquarePosition: Position) {
+  onAttackClick(selected: Entity, targetedSquarePosition: Position): void {
     selected.attackPosition(targetedSquarePosition);
     this.props.processInterface();
   }
 
-  onAddStructureClick(targetedSquarePosition: Position) {
-    let { targeted } = this.props;
-
+  onAddStructureClick(targetedSquarePosition: Position): void {
     let box = Object.assign({}, structures.box);
     let targetPosition = Object.assign({}, targetedSquarePosition);
     box.position = targetPosition;
     box.name += this.boxSerialNumber++;
     let newBox = new Entity(box);
-
     EntitiesService.entities.push(newBox);
-    console.log(EntitiesService.entities);
     this.props.processInterface();
   }
 
   render() {
-    if (!this.props.targeted) {
+    let { targeted, selected, squareNumber } = this.props;
+
+    if (!targeted) {
       return null;
     }
 
-    //this.props.squareNumber
-    let inspectedSquare = this.props.targeted;
-    let selected: Entity = this.props.selected;
-    let targeted: Square = this.props.targeted;
-
-    let targetedSquarePosition = SquaresService.targetSquarePosition(this.props.squareNumber);
+    let targetedSquarePosition = SquaresService.targetSquarePosition(squareNumber);
 
     let entityInfo;
     let distanceInfo;
@@ -75,15 +70,14 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let bloodInfo;
     let availableActions = [];
     let items;
-    let editorButtons;
 
-    editorButtons = (
+    let editorButtons = (
       <button onClick={() => this.onAddStructureClick(targetedSquarePosition)} className="button">
         Add structure
       </button>
     );
 
-    if (targeted && targeted.entity && !Helpers.isSelectedTargeted(this.props.selected, this.props.targeted)) {
+    if (targeted.entity && !Helpers.isSelectedTargeted(selected, targeted)) {
       entityInfo = (
         <EntityCard
           onInventoryClick={this.props.onInventoryClick}
@@ -93,7 +87,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       );
     }
 
-    if (targeted && targeted.items) {
+    if (targeted.items) {
       items = (
         <InventoryList
           label="Items in this location"
@@ -112,17 +106,17 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         targetedSquarePosition.y - selected.position.y
       );
 
-      distanceInfo = <li>Distance to selected: {~~distanceToSelected}</li>;
+      distanceInfo = <li>Distance to selected: {distanceToSelected.toFixed(2)}</li>;
 
       if (distanceToSelected !== 0) {
-        if (targeted && targeted.isAvailableDestination) {
+        if (targeted.isAvailableDestination) {
           availableActions[0] = (
             <button onClick={() => this.onMoveClick(selected, targetedSquarePosition)} className="button">
               Move
             </button>
           );
         }
-        if (targeted && targeted.entity) {
+        if (targeted.entity) {
           availableActions[1] = (
             <button onClick={() => this.onAttackClick(selected, targetedSquarePosition)} className="button">
               Attack
@@ -140,8 +134,8 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       );
     }
 
-    if (inspectedSquare && inspectedSquare.blood) {
-      bloodInfo = <li>Blood amount: {inspectedSquare.blood}</li>;
+    if (targeted.blood) {
+      bloodInfo = <li>Blood amount: {targeted.blood}</li>;
     }
 
     return (

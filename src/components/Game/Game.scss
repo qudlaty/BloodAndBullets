@@ -16,10 +16,10 @@
   & > * {
     margin: 5px;
   }
-  &-info {
+  &-board {
     float: left;
   }
-  &-board {
+  &-info {
     float: left;
   }
   &-list {
@@ -52,19 +52,18 @@
     .actions {
       padding: 0 0 10px 0;
     }
-
     .interaction-container {
       display: grid;
       font-family: Verdana;
       border: 1px solid #555;
       grid-template-columns: 50% 50%;
-      .selected {
+
+      .selected,
+      .targeted {
         display: block;
         padding: 10px;
       }
       .targeted {
-        display: block;
-        padding: 10px;
         ul {
           list-style: none;
           padding: 0;

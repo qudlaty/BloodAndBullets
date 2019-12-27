@@ -80,3 +80,12 @@ export function turnFlagsIntoClasses(flags: object) {
   });
   return className;
 }
+
+/**
+ * Creates a new array containing all the elements from a given array
+ * @param array array to shallow-copy
+ * @yields a new copy of the array
+ */
+export function newCopyOfArray(array: any[]) {
+  return [].concat(array);
+}
