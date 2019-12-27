@@ -1,19 +1,16 @@
-import React, { ReactElement, DOMElement } from "react";
-import * as Helpers from "../../helpers/Helpers";
-import { SquaresService, EntitiesService } from "../../services";
+import React, { ReactElement } from "react";
 import EntityCard from "../EntityCard/EntityCard";
-import { Square } from "../../services/SquaresService";
-import { Entity, Position } from "../../services/EntitiesValues";
+import { Entity } from "../../services/EntitiesValues";
 
 interface SelectedEntityInfoProperties {
   selected: Entity;
-  onInventoryClick(entity: Entity, itemName: string);
+  onInventoryClick(entity: Entity, itemName: string): void;
   handleDeselectAllEntities: () => void;
   processInterface: Function;
 }
 
 export default class SelectedEntityInfo extends React.Component<SelectedEntityInfoProperties> {
-  render() {
+  render(): ReactElement {
     if (!this.props.selected) {
       return null;
     }

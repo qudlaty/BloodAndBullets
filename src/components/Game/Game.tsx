@@ -10,22 +10,23 @@ import GameModel from "../../services/GameModelService";
 import * as Helpers from "../../helpers";
 import "./Game.scss";
 
-import { Entity, Weapon } from "../../services/EntitiesValues";
+import { Entity } from "../../services/EntitiesValues";
 import { Square } from "../../services/SquaresService";
-import EntityCard from "../EntityCard/EntityCard";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 import { MessageBox } from "./MessageBox";
 
 /** Type of GameState */
 interface GameState {
-  targeted: Square;
-  selected: Entity;
-  arenaSize: number;
-  isBoardRotated: boolean;
   entities: Entity[];
   squares: Square[];
+
+  selected: Entity;
+  targeted: Square;
+  targetedSquareNumber: number;
+
+  arenaSize: number;
   autoLoop: boolean;
-  selectedSquareNumber: number;
+  isBoardRotated: boolean;
 }
 
 /** Game composes all the parts of the interface */
@@ -33,43 +34,48 @@ export default class Game extends React.PureComponent<void, GameState> {
   renderCounter: number = 0;
   stepNumber: number = 0;
 
-  constructor(props) {
+  constructor(props: void) {
     super(props);
 
     // Initial VALUE of game state
     this.state = {
-      targeted: null,
-      selected: null,
-      arenaSize: 10,
-      isBoardRotated: false,
       entities: GameModel.entities,
       squares: SquaresService.squares,
+
+      selected: null,
+      targeted: null,
+      targetedSquareNumber: null,
+
+      arenaSize: 10,
       autoLoop: true,
-      selectedSquareNumber: null,
+      isBoardRotated: false,
     };
   }
 
   componentDidMount() {
-    //this.state.squares =SquaresService.squares;
     EntitiesService.entities = this.state.entities;
     this.loop();
   }
 
-  setSquaresAccordingToEntities() {
-    this.setState((previousState) => {
-      let squares: Square[] = [].concat(previousState.squares);
-      let entities: Entity[] = previousState.entities;
-      SquaresService.squares = squares;
+  loop = () => {
+    this.stepNumber++;
+    this.processEntities();
+    if (this.state.autoLoop) {
+      setTimeout(this.loop, 1000);
+    }
+  };
 
-      Helpers.resetGivenFieldsOnACollection(squares, "entity");
-      entities.forEach((entity) => {
-        SquaresService.setEntityWithinApropriateSquare(entity);
-      });
-
-      return { squares };
-    });
+  processEntities() {
+    this.setState(
+      (prevState) => this.calculateNextGameState(prevState),
+      () => this.setSquaresAccordingToEntities()
+    );
   }
 
+  /**
+   * Calculate WHAT EXACTLY? This should probably go into GameLogic
+   * @param previousState
+   */
   calculateNextGameState(previousState: GameState) {
     let nextState: GameState = previousState;
     let { entities, squares, selected } = nextState;
@@ -84,29 +90,10 @@ export default class Game extends React.PureComponent<void, GameState> {
 
       EntitiesService.stopBreathingForKilledEntity(entity);
       SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-
       SquaresService.castLightsFromFriendlyEntity(entity);
     });
 
     return nextState;
-  }
-
-  calculateNextInterfaceState(previousState: GameState) {
-    let nextState = previousState;
-    let { entities } = nextState;
-
-    entities.forEach((entity) => {
-      SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-    });
-
-    return nextState;
-  }
-
-  processEntities() {
-    this.setState(
-      (prevState) => this.calculateNextGameState(prevState),
-      () => this.setSquaresAccordingToEntities()
-    );
   }
 
   processInterface() {
@@ -116,15 +103,40 @@ export default class Game extends React.PureComponent<void, GameState> {
     );
   }
 
-  loop = () => {
-    this.stepNumber++;
+  calculateNextInterfaceState(previousState: GameState) {
+    let nextState = previousState;
+    let { entities, selected } = nextState;
+    entities.forEach((entity) => {
+      if (entity == selected) SquaresService.markAvailableDestinationsForSelectedEntity(selected);
+    });
 
-    this.processEntities();
+    return nextState;
+  }
 
-    if (this.state.autoLoop) {
-      setTimeout(this.loop, 1000);
-    }
-  };
+  /** Sets entities within apropriate squares, based on the value of their `position` field
+   * This might actually be not-needed, if movement of entities is reflected in their respectable squares
+   * Also: entities are no longer rendered within `Square` component
+   */
+  setSquaresAccordingToEntities() {
+    this.setState((previousState) => {
+      let squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
+      /* 
+      Reattach new squares array to the SquaresService 
+      This might actually be not-needed, as elements of that array are objects 
+      and are referenced in both arrays, so unless we're adding new squares, 
+      everything should work without re-attaching
+      */
+      SquaresService.squares = squares;
+      let entities: Entity[] = previousState.entities;
+
+      Helpers.resetGivenFieldsOnACollection(squares, "entity");
+      entities.forEach((entity) => {
+        SquaresService.setEntityWithinApropriateSquare(entity);
+      });
+
+      return { squares };
+    });
+  }
 
   nextTick = () => {
     this.setState({ autoLoop: false });
@@ -133,7 +145,7 @@ export default class Game extends React.PureComponent<void, GameState> {
 
   newHandleClick = (squareIndex: number) => {
     this.setState((state) => {
-      let { squares, entities, selected, targeted, selectedSquareNumber } = state;
+      let { squares, entities, selected, targeted, targetedSquareNumber: selectedSquareNumber } = state;
       let previousTargeted = targeted;
       targeted = squares[squareIndex];
       selectedSquareNumber = squareIndex;
@@ -163,7 +175,7 @@ export default class Game extends React.PureComponent<void, GameState> {
         selected.attackPosition(SquaresService.targetSquarePosition(squareIndex));
       }
 
-      return { squares, entities, selected, targeted, selectedSquareNumber };
+      return { squares, entities, selected, targeted, targetedSquareNumber: selectedSquareNumber };
     }, this.processInterface);
   };
 
@@ -309,7 +321,7 @@ export default class Game extends React.PureComponent<void, GameState> {
 
             <TargetedSquareInfo
               className="targeted"
-              squareNumber={this.state.selectedSquareNumber}
+              squareNumber={this.state.targetedSquareNumber}
               squares={this.state.squares}
               selected={this.state.selected}
               targeted={this.state.targeted}
