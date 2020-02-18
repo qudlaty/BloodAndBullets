@@ -27,16 +27,6 @@
     clear: both;
   }
 
-  .game-board {
-    .board {
-      transform: perspective(0) rotateX(0) rotateY(0) rotateZ(0);
-      transition: all 1s;
-    }
-    .rotated-board {
-      transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
-    }
-  }
-
   .game-info {
     .button {
       color: #999;
