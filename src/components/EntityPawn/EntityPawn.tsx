@@ -16,9 +16,11 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
     let { entity } = this.props;
     let square = SquaresService.getSquare(entity.position.x, entity.position.y);
     const squareDistance = 38;
-    let className = " entity-pawn ";
-    let classessFromFlags = Helpers.turnFlagsIntoClasses(entity);
-    classessFromFlags += Helpers.turnFlagsIntoClasses(square);
+
+    let classNameBase = "entity-pawn";
+    let className = `${classNameBase}`;
+    let classessFromFlags = Helpers.turnFlagsIntoClasses(entity, classNameBase);
+    classessFromFlags += Helpers.turnFlagsIntoClasses(square, classNameBase);
     className += ` ${classessFromFlags} `;
 
     let animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
