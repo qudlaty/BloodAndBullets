@@ -1,15 +1,15 @@
-// margin: 10px;
-
-.list-of-entities {
-  &__header {
-    margin: 10px;
-  }
+.entities-list {
   float: left;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-}
-ol,
-ul {
-  padding-left: 30px;
+
+  &__header {
+    margin: 10px;
+  }
+
+  ol,
+  ul {
+    padding-left: 30px;
+  }
 }

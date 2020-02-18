@@ -35,9 +35,9 @@ export default class ListOfEntities extends React.Component<ListOfEntitiesProps>
 
     return (
       <>
-        <h4 className="list-of-entities__header">List of Entities:</h4>
-        <div className="list-of-entities">{entitiesFriendly}</div>
-        <div className="list-of-entities">{entitiesUnfriendly}</div>
+        <h4 className="entities-list__header">List of Entities:</h4>
+        <div className="entities-list">{entitiesFriendly}</div>
+        <div className="entities-list">{entitiesUnfriendly}</div>
       </>
     );
   }
