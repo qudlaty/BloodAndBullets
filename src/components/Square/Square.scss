@@ -29,20 +29,20 @@
   color: #aaa;
   background: #333;
 
-  &.dark {
+  &--dark {
     background: #111;
     border-color: #222;
   }
-  &.is-in-twilight-zone {
+  &--is-in-twilight-zone {
     background: #222;
     border-color: #333;
   }
-  &.is-lit {
+  &--is-lit {
     background: #333;
     border-color: #444;
   }
-  & .blood,
-  & .has-items {
+  &__blood,
+  &__items {
     position: absolute;
     box-sizing: border-box;
     width: 100%;
@@ -51,13 +51,13 @@
     font-size: 10px;
     line-height: 50px;
   }
-  & .blood {
+  &__blood {
     color: #900;
     text-align: right;
     text-shadow: 0px 0px 1px #000;
     padding-right: 3px;
   }
-  & .has-items {
+  &__items {
     color: #aaa;
     text-align: left;
     padding-left: 3px;
@@ -65,20 +65,19 @@
   &:focus {
     outline: none;
   }
-  &.active,
-  &.active.targeted {
-    box-shadow: 0 0 10px 3px inset white, 0 0 10px 3px white;
-  }
-  &.is-available-destination {
-    box-shadow: 0 0 4px 0px inset lightblue;
-  }
-  &.is-chosen-destination {
-    border: 1px dotted white;
-  }
-  &.targeted {
+  &--targeted {
     box-shadow: 0 0 4px 1px inset rgb(164, 255, 176);
   }
-  .content {
+  &--active {
+    box-shadow: 0 0 10px 3px inset white, 0 0 10px 3px white;
+  }
+  &--is-available-destination {
+    box-shadow: 0 0 4px 0px inset lightblue;
+  }
+  &--is-chosen-destination {
+    border: 1px dotted white;
+  }
+  &__content {
     // This is required, so the click event hits the Square, not the EntityPawn
     z-index: 1000;
     position: relative;
