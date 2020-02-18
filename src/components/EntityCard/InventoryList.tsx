@@ -21,7 +21,7 @@ export default function InventoryList(props: InventoryListProps) {
   }
   let reloadButton;
   let dropButton;
-  
+
   const inventoryItems = props.inventory.map((item) => (
     <InventoryItem
       item={item}
@@ -37,7 +37,7 @@ export default function InventoryList(props: InventoryListProps) {
         {props.label}
         :&nbsp;
       </div>
-      <div className="inventory-list__container" title={props.title}>
+      <div className="inventory-list__items" title={props.title}>
         {inventoryItems}
       </div>
     </div>
