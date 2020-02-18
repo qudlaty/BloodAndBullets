@@ -2,6 +2,8 @@ import React, { ReactElement } from "react";
 import EntityCard from "../EntityCard/EntityCard";
 import { Entity } from "../../services/EntitiesValues";
 
+import GameStyles from "./Game.module.scss";
+
 interface SelectedEntityInfoProperties {
   selected: Entity;
   onInventoryClick(entity: Entity, itemName: string): void;
@@ -16,7 +18,7 @@ export default class SelectedEntityInfo extends React.Component<SelectedEntityIn
     }
 
     return (
-      <div className="selected">
+      <div className={GameStyles.selected}>
         <strong>Selected entity </strong>
         <div>
           <EntityCard
@@ -25,7 +27,7 @@ export default class SelectedEntityInfo extends React.Component<SelectedEntityIn
             processInterface={() => this.props.processInterface()}
           />
         </div>
-        <button onClick={this.props.handleDeselectAllEntities} className="button">
+        <button onClick={this.props.handleDeselectAllEntities} className={GameStyles.button}>
           {" "}
           Deselect
         </button>

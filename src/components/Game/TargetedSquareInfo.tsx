@@ -7,6 +7,8 @@ import { Entity, Position, structures } from "../../services/EntitiesValues";
 
 import InventoryList from "../EntityCard/InventoryList";
 
+import GameStyles from "./Game.module.scss";
+
 interface TargetedSquareInfoProps {
   className: string;
   squareNumber: number;
@@ -72,7 +74,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let items;
 
     let editorButtons = (
-      <button onClick={() => this.onAddStructureClick(targetedSquarePosition)} className="button">
+      <button onClick={() => this.onAddStructureClick(targetedSquarePosition)} className={GameStyles.button}>
         Add structure
       </button>
     );
@@ -111,14 +113,14 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       if (distanceToSelected !== 0) {
         if (targeted.isAvailableDestination) {
           availableActions[0] = (
-            <button onClick={() => this.onMoveClick(selected, targetedSquarePosition)} className="button">
+            <button onClick={() => this.onMoveClick(selected, targetedSquarePosition)} className={GameStyles.button}>
               Move
             </button>
           );
         }
         if (targeted.entity) {
           availableActions[1] = (
-            <button onClick={() => this.onAttackClick(selected, targetedSquarePosition)} className="button">
+            <button onClick={() => this.onAttackClick(selected, targetedSquarePosition)} className={GameStyles.button}>
               Attack
             </button>
           );

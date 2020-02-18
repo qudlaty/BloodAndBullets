@@ -1,20 +1,22 @@
 import React from "react";
+
 import Board from "../Board";
-import boardStyles from "../Board/Board.module.scss";
 import EntitiesList from "../EntitiesList";
 import TargetedSquareInfo from "./TargetedSquareInfo";
-
-import { EntitiesService, SquaresService } from "../../services";
-import GameLogic from "../../services/GameLogicService";
-import GameModel from "../../services/GameModelService";
-
-import * as Helpers from "../../helpers";
-import "./Game.scss";
+import SelectedEntityInfo from "./SelectedEntityInfo";
+import { MessageBox } from "./MessageBox";
 
 import { Entity } from "../../services/EntitiesValues";
 import { Square } from "../../services/SquaresService";
-import SelectedEntityInfo from "./SelectedEntityInfo";
-import { MessageBox } from "./MessageBox";
+
+import { EntitiesService, SquaresService } from "../../services";
+
+import * as Helpers from "../../helpers";
+
+import GameLogic from "../../services/GameLogicService";
+import GameModel from "../../services/GameModelService";
+
+import styles from "./Game.module.scss";
 
 /** Type of GameState */
 interface GameState {
@@ -270,49 +272,49 @@ export default class Game extends React.PureComponent<void, GameState> {
   };
 
   render() {
-    let boardClassName = this.state.isBoardRotated ? `${boardStyles["rotated-board"]}` : "";
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className={styles.game}>
+        <div className={styles.game__board}>
           <Board
             squares={this.state.squares}
             entities={this.state.entities}
             onClick={(i) => this.newHandleClick(i)}
             size={this.state.arenaSize}
-            className={boardClassName}
+            isRotated={this.state.isBoardRotated}
           />
         </div>
 
-        <div className="game-info">
-          <div className="actions">
+        <div className={styles.game__info}>
+          <div className={styles.actions}>
             <button
               onClick={() => {
                 this.nuke(40);
               }}
-              className="button button-nuke"
+              className={`${styles.button} ${styles["button-nuke"]}`}
             >
               Nuke All
             </button>
-            <button onClick={this.ceaseFire} className="button">
+            <button onClick={this.ceaseFire} className={styles.button}>
               Cease Fire
             </button>
 
-            <button onClick={this.toggleRotateBoard} className="button">
+            <button onClick={this.toggleRotateBoard} className={styles.button}>
               Rotate Board
             </button>
-            <button onClick={this.nextTick} className="button">
+            <button onClick={this.nextTick} className={styles.button}>
               Next Tick
             </button>
 
-            <span className="step-counter">Tick: {this.stepNumber}</span>
-            <label className="auto-cycle button">
+            <span className={styles["step-counter"]}>Tick: {this.stepNumber}</span>
+
+            <label className={` ${styles.button} ${styles["auto-cycle"]}`}>
               <input type="checkbox" checked={this.state.autoLoop} onChange={this.switchAutoLoop} />
               <span>Auto Cycle</span>
             </label>
           </div>
 
-          <div className="interaction-container">
+          <div className={styles["interaction-container"]}>
             <SelectedEntityInfo
               selected={this.state.selected}
               handleDeselectAllEntities={this.handleDeselectAllEntities}
@@ -321,7 +323,7 @@ export default class Game extends React.PureComponent<void, GameState> {
             />
 
             <TargetedSquareInfo
-              className="targeted"
+              className={styles.targeted}
               squareNumber={this.state.targetedSquareNumber}
               squares={this.state.squares}
               selected={this.state.selected}
@@ -334,7 +336,7 @@ export default class Game extends React.PureComponent<void, GameState> {
           <MessageBox />
         </div>
 
-        <div className="game-list">
+        <div className={styles.game__list}>
           <EntitiesList
             entities={this.state.entities}
             onInventoryClick={this.onInventoryClick}
