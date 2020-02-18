@@ -1,5 +1,6 @@
 import React from "react";
 import Board from "../Board";
+import boardStyles from "../Board/Board.module.scss";
 import EntitiesList from "../EntitiesList";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 
@@ -269,7 +270,7 @@ export default class Game extends React.PureComponent<void, GameState> {
   };
 
   render() {
-    let boardClassName = this.state.isBoardRotated ? "rotated-board" : "";
+    let boardClassName = this.state.isBoardRotated ? `${boardStyles["rotated-board"]}` : "";
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className="game">

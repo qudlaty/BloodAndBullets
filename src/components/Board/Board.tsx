@@ -4,7 +4,7 @@ import EntityPawn from "../EntityPawn";
 import { Entity } from "../../services/EntitiesValues";
 import { Square } from "../../services/SquaresService";
 
-import "./Board.scss";
+import styles from "./Board.module.scss";
 
 interface BoardProps {
   onClick(i: number): void;
@@ -76,13 +76,13 @@ export default class Board extends React.PureComponent<BoardProps> {
             return this.renderSquare(cellId++, rowId, colId++);
           });
         return (
-          <div key={rowId++} className="board-row">
+          <div key={rowId++} className={styles["board-row"]}>
             {cells}
           </div>
         );
       });
     let entityPawns = this.renderEntityPawns();
-    let className = "board " + this.props.className;
+    let className = `${styles.board} ${this.props.className}`;
     return (
       <div className={className}>
         {rowsOfSquares}
