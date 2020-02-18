@@ -57,8 +57,11 @@ export function isSelectedTargeted(selected: Entity, targeted: Square): boolean 
   }
 }
 
-/** Adding classess apropriate to the flags passed in by props */
-export function turnFlagsIntoClasses(flags: object) {
+/** Adding classess apropriate to the flags passed in by props
+ * If @classNameBase is given, it is added in front of the classname with "--"
+ * Eg: classNameBase--class-from-flag
+ */
+export function turnFlagsIntoClasses(flags: object, classNameBase?: string) {
   const flagsToClassess = {
     active: "active",
     isAvailableDestination: "is-available-destination",
@@ -73,9 +76,15 @@ export function turnFlagsIntoClasses(flags: object) {
 
   let className = "";
 
+  if (classNameBase) {
+    classNameBase += "--";
+  } else {
+    classNameBase = "";
+  }
+
   Object.keys(flagsToClassess).forEach((key) => {
     if (flags[key]) {
-      className += ` ${flagsToClassess[key]} `;
+      className += ` ${classNameBase}${flagsToClassess[key]}`;
     }
   });
   return className;
