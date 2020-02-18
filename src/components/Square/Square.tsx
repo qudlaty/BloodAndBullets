@@ -36,32 +36,32 @@ class Square extends React.Component<SquareProps> {
     // console.log("Rendering Square", this.renderCounter, this.props);
 
     let localId = `square${this.props.squareId}`;
-
-    let squareClassName = "square";
-    squareClassName += Helpers.turnFlagsIntoClasses(this.props);
+    let classNameBase = "square";
+    let squareClassName = classNameBase;
+    squareClassName += Helpers.turnFlagsIntoClasses(this.props, classNameBase);
 
     let customStyle = "";
-    let itemsClassName: string;
     let itemsNumber: number;
 
     let { isLit, items, blood, rowId, colId } = this.props;
 
     let bloodClassName = `blood-${localId}`;
+    let itemsClassName = `items-${localId}`;
     let bloodStyle = `
       .${bloodClassName} {
         background: rgba(255,0,0, ${(this.props.blood / 30).toFixed(2)})
       }
     `;
     customStyle += bloodStyle;
-    bloodClassName += " blood ";
+    bloodClassName += " square__blood ";
 
     if (items && items.length) {
-      itemsClassName += ` has-items `;
+      itemsClassName += ` square__items `;
       itemsNumber = this.props.items.length;
     }
 
     if (!isLit) {
-      squareClassName += " dark ";
+      squareClassName += ` ${classNameBase}--dark`;
       blood = null;
       itemsNumber = null;
       bloodClassName = null;
@@ -71,7 +71,7 @@ class Square extends React.Component<SquareProps> {
       <button className={squareClassName} onClick={() => this.props.onClick(this.props.squareId)}>
         <div className={bloodClassName}>{blood}</div>
         <div className={itemsClassName}>{itemsNumber}</div>
-        <div className="content">
+        <div className="square__content">
           &nbsp;
           <small style={{ color: "transparent" }}>
             {colId},{rowId /* This just here for debugging */}
