@@ -15,7 +15,7 @@ export default function LinearDisplay(props: LinearDisplayProps) {
   let overload = percentage > 100;
   if (overload) {
     percentage = 100;
-    className += " overload ";
+    className += " linear-display--overloaded";
   }
 
   let progressStyle = {
