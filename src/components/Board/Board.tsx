@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import BoardSquare from "../Square";
 import EntityPawn from "../EntityPawn";
 import { Entity } from "../../services/EntitiesValues";
@@ -10,8 +10,8 @@ interface BoardProps {
   onClick(i: number): void;
   squares: Square[];
   entities: Entity[];
-  className: string;
   size: number;
+  isRotated: boolean;
 }
 
 export default class Board extends React.PureComponent<BoardProps> {
@@ -76,13 +76,19 @@ export default class Board extends React.PureComponent<BoardProps> {
             return this.renderSquare(cellId++, rowId, colId++);
           });
         return (
-          <div key={rowId++} className={styles["board-row"]}>
+          <div key={rowId++} className={styles["board__row"]}>
             {cells}
           </div>
         );
       });
-    let entityPawns = this.renderEntityPawns();
-    let className = `${styles.board} ${this.props.className}`;
+
+    let entityPawns: ReactElement[] = this.renderEntityPawns();
+
+    let className: string = styles.board;
+    const isBoardRotated: boolean = this.props.isRotated;
+    if (isBoardRotated) {
+      className += ` ${styles["board--rotated"]}`;
+    }
     return (
       <div className={className}>
         {rowsOfSquares}
