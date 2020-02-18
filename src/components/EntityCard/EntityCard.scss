@@ -1,13 +1,4 @@
-.targeted,
-.selected {
-  .entity {
-    display: inline-block;
-    transform: scale(1);
-    transform-origin: top left;
-  }
-}
-
-.entity {
+.entity-card {
   //float: left;
   min-width: 100px;
   border: 2px solid #888;
@@ -19,24 +10,24 @@
   strong {
     font-size: 12px;
   }
-  &.active {
+  &--active {
     border: 2px solid #eee;
     background: #222;
     strong {
       color: #eee;
     }
   }
-  &.friendly {
+  &--friendly {
     background: #202525;
   }
 
-  &.dead {
+  &--dead {
     background: #442020;
     opacity: 0.4;
     border: 2px solid #700;
   }
 
-  .position {
+  &__position {
     position: absolute;
     top: 0;
     right: 0;
@@ -49,7 +40,7 @@
     padding: 3px;
   }
 
-  .portrait {
+  &__portrait {
     float: left;
     text-align: center;
     font-size: 22px;

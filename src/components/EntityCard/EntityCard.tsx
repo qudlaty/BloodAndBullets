@@ -34,35 +34,37 @@ class EntityCard extends React.Component<EntityCardProps> {
       FIXME: Below should be separated into several sub-components
       Each sub-component should receive flat data (position, hp, ...)
      */
-    let className = " entity ";
+
+    let className = "entity-card";
     if (entity.active) {
-      className += " active ";
+      className += " entity-card--active";
     }
 
-    let { isDead } = entity;
-    let lifeSigns = isDead ? " DEAD " : " ALIVE ";
-    className += lifeSigns;
+    if (entity.isFriendly) {
+      className += " entity-card--friendly";
+    }
+
+    if (entity.isDead) {
+      className += " entity-card--dead";
+    }
+
     let inHands = entity.equipment && entity.equipment.hands;
     let inHandsArray = inHands && [inHands];
 
     return (
       <div className={className}>
         <div>
-          <div className="position" title="Position">
+          <div className="entity-card__position" title="Position">
             <span>
               {" "}
               {entity.position.x} {entity.position.y}{" "}
             </span>
           </div>
 
-          <div className="portrait">{entity.icon}</div>
+          <div className="entity-card__portrait">{entity.icon}</div>
         </div>
         <strong title="Name">{entity.name}</strong>
         <br />
-        {` `}
-        {lifeSigns}
-        <br />
-
         <div
           style={{
             clear: "both",
