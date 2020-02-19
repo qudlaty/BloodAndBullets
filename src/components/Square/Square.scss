@@ -65,18 +65,21 @@
   &:focus {
     outline: none;
   }
-  &--targeted {
-    box-shadow: 0 0 4px 1px inset rgb(164, 255, 176);
-  }
-  &--active {
-    box-shadow: 0 0 10px 3px inset white, 0 0 10px 3px white;
-  }
   &--is-available-destination {
     box-shadow: 0 0 4px 0px inset lightblue;
   }
   &--is-chosen-destination {
     border: 1px dotted white;
   }
+  &--targeted {
+    box-shadow: 0 0 4px 2px inset #ac7000;
+    border: 1px solid #d88c00;
+  }
+  &--active {
+    box-shadow: 0 0 10px 3px inset #095c09, 0 0 10px 3px #095c09;
+    border: 1px solid #13af13;
+  }
+
   &__content {
     // This is required, so the click event hits the Square, not the EntityPawn
     z-index: 1000;
