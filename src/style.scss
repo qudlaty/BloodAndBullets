@@ -21,15 +21,18 @@ p {
 .kbd-navigation .square:focus {
   background: #ddd;
 }
-.messagesUl {
+.messages {
+  border: 1px solid #eee;
   list-style: none;
   height: 4.5em;
   color: rgba(180, 84, 84, 0.6);
   overflow-y: scroll;
+  padding: 5px;
+  margin: 0;
   :last-child {
     color: rgba(216, 15, 15, 0.7);
   }
 }
-.messagesUl::-webkit-scrollbar {
+.messages::-webkit-scrollbar {
   display: none;
 }
