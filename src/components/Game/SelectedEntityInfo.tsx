@@ -19,7 +19,7 @@ export default class SelectedEntityInfo extends React.Component<SelectedEntityIn
 
     return (
       <div className={GameStyles.selected}>
-        <strong>Selected entity </strong>
+        <strong className={GameStyles.selected__label}>Selected entity </strong>
         <div>
           <EntityCard
             onInventoryClick={this.props.onInventoryClick}
