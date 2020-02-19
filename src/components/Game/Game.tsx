@@ -174,7 +174,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       }
 
       // setting attack
-      if (doubleClick() && selected && targeted.entity) {
+      if (doubleClick() && selected && targeted.entity && selected !== targeted.entity) {
         selected.attackPosition(SquaresService.targetSquarePosition(squareIndex));
       }
 
