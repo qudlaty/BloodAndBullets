@@ -50,14 +50,20 @@
           padding: 5px;
         }
       }
-      .selected__label {
-        background: #095c09;
-        border: 1px solid #13af13;
+      .selected {
+        border-color: #095c09;
+        &__label {
+          background: #095c09;
+          border: 1px solid #13af13;
+        }
       }
-      .targeted__label {
-        background: #ac7000;
-        border: 1px solid #d88c00;
-        color: black;
+      .targeted {
+        border-color: #ac7000;
+        &__label {
+          background: #ac7000;
+          border: 1px solid #d88c00;
+          color: black;
+        }
       }
       .targeted {
         ul {
