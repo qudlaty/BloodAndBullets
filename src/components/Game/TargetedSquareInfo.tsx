@@ -142,7 +142,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
     return (
       <div className={this.props.className}>
-        <strong>Target square Info</strong>
+        <strong className={GameStyles.targeted__label}>Target square Info</strong>
         <div>{entityInfo}</div>
         <div>{availableActions}</div>
         <ul>

@@ -43,6 +43,21 @@
       .targeted {
         display: block;
         padding: 10px;
+        border: 1px solid rgb(116, 98, 0);
+        &__label {
+          display: block;
+          text-align: center;
+          padding: 5px;
+        }
+      }
+      .selected__label {
+        background: #095c09;
+        border: 1px solid #13af13;
+      }
+      .targeted__label {
+        background: #ac7000;
+        border: 1px solid #d88c00;
+        color: black;
       }
       .targeted {
         ul {
