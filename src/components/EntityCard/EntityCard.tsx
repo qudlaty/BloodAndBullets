@@ -20,10 +20,12 @@ class EntityCard extends React.Component<EntityCardProps> {
 
   onDrop = (itemName: string) => {
     let { entity } = this.props;
-    entity.unEquipFromHands();
+    if (entity.equipment.hands && entity.equipment.hands.name == itemName) {
+      entity.unEquipFromHands();
+    }
     let item: Item = entity.takeFromInventory(itemName);
     entity.square.addItem(item);
-    this.props.onInventoryClick(this.props.entity, ""); // just to rerender
+    this.props.processInterface();
   };
 
   render() {
