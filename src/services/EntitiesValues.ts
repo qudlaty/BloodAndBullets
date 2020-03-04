@@ -103,7 +103,7 @@ class Movable extends Identifiable {
       Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination");
       targetSquare.isChosenDestination = true;
     } else {
-      Message.send(`${this.name} cannot move into square ${targetPosition.x} ${targetPosition.y}`);
+      Message.send(`${this.name} can't move into square (${targetPosition.x}, ${targetPosition.y})`);
     }
   }
 }
@@ -159,7 +159,7 @@ class Combative extends Identifiable {
       this.targetPosition = targetedSquarePosition;
       this.isShooting = true;
     } else {
-      Message.send(`${this.name} no fkin weapon in hands`);
+      Message.send(`${this.name} can't shoot - no weapon equipped`);
     }
   }
 }
