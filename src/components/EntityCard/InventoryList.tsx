@@ -9,7 +9,7 @@ interface InventoryListProps {
   title: string;
   onClick(itemName: string);
   onDrop(itemName: string);
-  inventory: RangedWeapon[]; //
+  inventory: Item[]; //
   processInterface: Function;
 }
 

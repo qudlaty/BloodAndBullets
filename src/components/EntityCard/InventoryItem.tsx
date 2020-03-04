@@ -1,9 +1,9 @@
 import React from "react";
-import { RangedWeapon } from "../../services/EntitiesValues";
+import { RangedWeapon, Item } from "../../services/EntitiesValues";
 import LinearDisplay from "./LinearDisplay";
 
 interface InventoryItemProps {
-  item: RangedWeapon;
+  item: Item;
   onDrop(itemName: string);
   onClick(itemName: string);
   processInterface: Function;
@@ -13,30 +13,8 @@ export default function InventoryItem(props: InventoryItemProps) {
   let { item } = props;
   let reloadButton;
   let dropButton;
+  let ammoCounter;
 
-  if (item.reload) {
-    // has reload capability
-    let className = " inventory-list__reload-button ";
-
-    if (item.rounds === 0 || item.rounds === "empty") {
-      className += " inventory-list__reload-button--empty ";
-    } else if (item.rounds < item.maxRounds) {
-      className += " inventory-list__reload-button--partial ";
-    }
-    reloadButton = (
-      <button
-        className={className}
-        onClick={() => {
-          item.reload();
-          props.processInterface();
-        }}
-      >
-        Reload
-      </button>
-    );
-  } else {
-    reloadButton = null;
-  }
   if (props.onDrop) {
     dropButton = (
       <button
@@ -50,13 +28,43 @@ export default function InventoryItem(props: InventoryItemProps) {
     );
   }
 
-  let renderAmmo = item.reload ? <LinearDisplay label="Rounds" current={item.rounds} max={item.maxRounds} /> : null;
+  if (item instanceof RangedWeapon) {
+    let weapon = item as RangedWeapon;
+
+    if (weapon.reload) {
+      // has reload capability
+      let className = " inventory-list__reload-button ";
+
+      if (weapon.rounds === 0 || weapon.rounds === "empty") {
+        className += " inventory-list__reload-button--empty ";
+      } else if (weapon.rounds < weapon.maxRounds) {
+        className += " inventory-list__reload-button--partial ";
+      }
+      reloadButton = (
+        <button
+          className={className}
+          onClick={() => {
+            weapon.reload();
+            props.processInterface();
+          }}
+        >
+          Reload
+        </button>
+      );
+    } else {
+      reloadButton = null;
+    }
+
+    ammoCounter = weapon.reload ? (
+      <LinearDisplay label="Rounds" current={weapon.rounds} max={weapon.maxRounds} />
+    ) : null;
+  }
 
   return (
     <div key={item.name}>
       <div onClick={() => props.onClick(item.name)} key={item.name} className="inventory-list__item">
         <span>{item.name}</span>
-        <div>{renderAmmo}</div>
+        <div>{ammoCounter}</div>
       </div>
       {reloadButton}
       {dropButton}

@@ -165,12 +165,11 @@ class Combative extends Identifiable {
 }
 
 export class HavingInventory {
-  inventory: any[];
-  takeFromInventory(itemName: string): RangedWeapon {
+  inventory: Item[];
+  takeFromInventory(itemName: string): Item {
     let actualItemIndex = this.inventory.findIndex((item) => item.name == itemName);
     let actualItem = this.inventory.splice(actualItemIndex, 1)[0];
-    //let newInventory = [].concat(this.inventory)
-    //this.inventory = newInventory
+
     return actualItem;
   }
   addToInventory(item: Item) {
@@ -191,6 +190,8 @@ class HavingEquipment extends HavingInventory {
     this.equipment.hands = item;
     if (item instanceof Weapon) {
       this.hasWeapon = true;
+    } else {
+      this.hasWeapon = false;
     }
   }
 
@@ -198,6 +199,7 @@ class HavingEquipment extends HavingInventory {
     if (this.equipment.hands) {
       this.inventory.push(this.equipment.hands);
       this.equipment.hands = null;
+      this.hasWeapon = false;
     }
   }
 }
