@@ -19,6 +19,8 @@
   }
 
   .game__info {
+    border: 1px solid #666;
+    padding: 10px;
     .button {
       color: #999;
       background: #444;
@@ -38,7 +40,8 @@
       font-family: Verdana;
       border: 1px solid #555;
       grid-template-columns: 50% 50%;
-
+      margin-bottom: 10px;
+      padding: 10px;
       .selected,
       .targeted {
         display: block;
@@ -56,6 +59,7 @@
           background: #095c09;
           border: 1px solid #13af13;
         }
+        margin-right: 10px;
       }
       .targeted {
         border-color: #ac7000;
