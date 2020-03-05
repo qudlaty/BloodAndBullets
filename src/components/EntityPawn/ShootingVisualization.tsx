@@ -15,6 +15,7 @@ export default function ShootingVisualization(props): ReactElement {
   if (
     targetCoords &&
     entity.position &&
+    entity.hasWeapon &&
     entity.isShooting &&
     (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y)
   ) {

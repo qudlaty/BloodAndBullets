@@ -22,6 +22,7 @@ class EntityCard extends React.Component<EntityCardProps> {
     let { entity } = this.props;
     if (entity.equipment.hands && entity.equipment.hands.name == itemName) {
       entity.unEquipFromHands();
+      entity.isShooting = false;
     }
     let item: Item = entity.takeFromInventory(itemName);
     entity.square.addItem(item);
