@@ -17,7 +17,7 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
     let square = SquaresService.getSquare(entity.position.x, entity.position.y);
     const squareDistance = 38;
 
-    let classNameBase = "entity-pawn";
+    let classNameBase = "entity-pawn__icon";
     let className = `${classNameBase}`;
     let classessFromFlags = Helpers.turnFlagsIntoClasses(entity, classNameBase);
     classessFromFlags += Helpers.turnFlagsIntoClasses(square, classNameBase);
@@ -27,7 +27,7 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
 
     return (
       <div
-        className="entity-pawn-container"
+        className="entity-pawn"
         key={entity.name}
         style={{
           left: squareDistance / 2 - 4 + squareDistance * entity.position.x,
