@@ -24,12 +24,13 @@ export default function ShootingVisualization(props): ReactElement {
 
       let actualDistance = Helpers.calculateDistance(distanceToTargetX, distanceToTargetY);
       let weaponType = entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type;
+      let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
 
       if (weaponType === "lazer") {
         // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
         let className = `projectile${localId}_beam`;
         let projectile = "";
-        let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
+
         customStyle = `
           @keyframes pulsing${localId} {
             0%  {opacity: 0.1;}
@@ -73,30 +74,23 @@ export default function ShootingVisualization(props): ReactElement {
       } else {
         customStyle = `
           @keyframes shooting${localId} {
-            0%   {transform: scale(1);}
+            0%   {transform: translate(0,0) rotate(${angle}deg) scaleY(0.3)}
             100% {transform: translate(
               ${36 * (targetCoords.x - entity.position.x)}px,
               ${36 * (targetCoords.y - entity.position.y)}px
-            )}
+            ) rotate(${angle}deg) scaleY(2)}
           }
           `;
 
         while (projectileNumber--) {
           customStyle += `
           .projectile${localId}_${projectileNumber} {
-            position: absolute;
-            top: -5px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            line-height: 34px;
-            font-size: 30px;
-            animation: shooting${localId} 0.5s linear infinite;
+            transform: rotate(${angle}deg);
+            animation: shooting${localId} 0.8s linear infinite;
             animation-delay: ${projectileNumber - 1 * 0.3}s;
-            color: white;
           }`;
         }
-        let projectile = entity.isShooting ? "." : "";
+        let projectile = entity.isShooting ? "|" : "";
 
         projectileNumber = 3;
 
