@@ -84,7 +84,8 @@ export default class Game extends React.PureComponent<void, GameState> {
     let { entities, squares, selected } = nextState;
 
     EntitiesService.moveEntities();
-    Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
+    //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
+    SquaresService.lightAllSquares();
     entities.forEach((entity) => {
       if (EntitiesService.isEntityShootingProperly(entity)) {
         EntitiesService.fireAShot(entity);

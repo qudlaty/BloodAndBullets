@@ -1,3 +1,7 @@
+.board--rotated .entity-pawn {
+  transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
+}
+
 .entity-pawn {
   position: absolute;
   transition: top 0.8s, left 0.8s;
