@@ -30,6 +30,7 @@ interface GameState {
   arenaSize: number;
   autoLoop: boolean;
   isBoardRotated: boolean;
+  isEditorOn: boolean;
 }
 
 /** Game composes all the parts of the interface */
@@ -52,6 +53,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       arenaSize: 10,
       autoLoop: true,
       isBoardRotated: false,
+      isEditorOn: false,
     };
   }
 
@@ -59,6 +61,18 @@ export default class Game extends React.PureComponent<void, GameState> {
     EntitiesService.entities = this.state.entities;
     this.loop();
   }
+
+  toggleEditorMode = () => {
+    if (!this.state.isEditorOn) {
+      this.setState((prevState) => {
+        return { entities: [], isEditorOn: true };
+      });
+    } else {
+      this.setState((prevState) => {
+        return { squares: SquaresService.squares, entities: EntitiesService.entities, isEditorOn: false };
+      });
+    }
+  };
 
   loop = () => {
     this.stepNumber++;
@@ -288,6 +302,7 @@ export default class Game extends React.PureComponent<void, GameState> {
 
         <div className={styles.game__info}>
           <div className={styles.actions}>
+            <button onClick={this.toggleEditorMode}>Editor Mode</button>
             <button
               onClick={() => {
                 this.nuke(40);
