@@ -48,6 +48,7 @@ export default class Board extends React.PureComponent<BoardProps> {
         blood={square.blood}
         items={square.items}
         isLit={square.isLit}
+        squareType={square.squareType}
         isInTwilightZone={square.isInTwilightZone}
         // Interface state fields
         isAvailableDestination={square.isAvailableDestination}
