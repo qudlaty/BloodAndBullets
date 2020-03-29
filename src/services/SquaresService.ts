@@ -4,6 +4,7 @@ import { Entity, Position, Item, RangedWeapon, HavingInventory } from "./Entitie
 export interface Square {
   entity?: Entity;
   blood?: number;
+  squareType: string;
   isAvailableDestination?: boolean;
   isChosenDestination?: boolean;
   isTargeted?: boolean;
@@ -14,6 +15,8 @@ export interface Square {
 }
 
 export class Square extends HavingInventory implements Square {
+  public squareType: string = "nothing";
+
   addItem(item: RangedWeapon) {
     this.addToInventory(item);
   }

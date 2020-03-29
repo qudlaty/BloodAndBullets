@@ -85,4 +85,16 @@
     z-index: 1000;
     position: relative;
   }
+  &.floor {
+    background: #666;
+    border: #333;
+  }
+  &.wall {
+    background: #222;
+    border: #444;
+  }
+  &.nothing {
+    background: black;
+    border: #222;
+  }
 }

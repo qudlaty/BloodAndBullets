@@ -164,12 +164,26 @@ export default class Game extends React.PureComponent<void, GameState> {
 
   newHandleClick = (squareIndex: number) => {
     this.setState((state) => {
-      let { squares, entities, selected, targeted, targetedSquareNumber: selectedSquareNumber } = state;
+      let { squares, entities, selected, targeted, isEditorOn, targetedSquareNumber: selectedSquareNumber } = state;
       let previousTargeted = targeted;
       targeted = squares[squareIndex];
       selectedSquareNumber = squareIndex;
       const doubleClick = () => previousTargeted === targeted;
       SquaresService.markSquareAsTargeted(squareIndex);
+
+      if (isEditorOn) {
+        switch (targeted.squareType) {
+          case "floor":
+            targeted.squareType = "wall";
+            break;
+          case "wall":
+            targeted.squareType = "nothing";
+            break;
+          case "nothing":
+          default:
+            targeted.squareType = "floor";
+        }
+      }
 
       /** Setting move destination while clicking on empty square */
       if (doubleClick() && targeted.isAvailableDestination) {

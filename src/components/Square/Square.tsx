@@ -8,6 +8,7 @@ import "./Square.scss";
 interface SquareProps {
   squareId: string;
 
+  squareType: string;
   active: boolean;
   isDead: boolean;
 
@@ -37,6 +38,15 @@ class Square extends React.Component<SquareProps> {
     let indicators = null;
 
     squareClassName += Helpers.turnFlagsIntoClasses(this.props, classNameBase);
+
+    // This hsould be a switch-case statement ran on enum, but it didn't work, O.o
+    if (this.props.squareType == "floor") {
+      squareClassName += " floor";
+    } else if (this.props.squareType == "wall") {
+      squareClassName += " wall";
+    } else if (this.props.squareType == "nothing") {
+      squareClassName += " nothing";
+    }
 
     if (isLit) {
       indicators = (
