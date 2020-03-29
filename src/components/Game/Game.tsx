@@ -64,7 +64,7 @@ export default class Game extends React.PureComponent<void, GameState> {
 
   toggleEditorMode = () => {
     if (!this.state.isEditorOn) {
-      Helpers.resetGivenFieldsOnACollection(this.state.squares, "blood");
+      Helpers.resetGivenFieldsOnACollection(this.state.squares, "blood", "entity");
       this.setState((prevState) => {
         return { entities: [], isEditorOn: true };
       });
@@ -147,8 +147,9 @@ export default class Game extends React.PureComponent<void, GameState> {
       */
       SquaresService.squares = squares;
       let entities: Entity[] = previousState.entities;
-
-      Helpers.resetGivenFieldsOnACollection(squares, "entity");
+      if (entities.length) {
+        Helpers.resetGivenFieldsOnACollection(squares, "entity");
+      }
       entities.forEach((entity) => {
         SquaresService.setEntityWithinApropriateSquare(entity);
       });
@@ -304,8 +305,9 @@ export default class Game extends React.PureComponent<void, GameState> {
   saveMap = () => {
     let squares: Square[] = JSON.parse(JSON.stringify(SquaresService.squares));
     let squaresProcessedForSave = squares.map((square) => {
-      let newSquare = { squareType: square.squareType };
-      return newSquare;
+      //let newSquare = { squareType: square.squareType, entity: square.entity };
+
+      return square;
     });
     let squaresStringified = JSON.stringify(squaresProcessedForSave);
     console.log(squaresStringified);
