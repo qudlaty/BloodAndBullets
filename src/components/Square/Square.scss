@@ -86,7 +86,7 @@
     position: relative;
   }
   &.floor {
-    background: #333;
+    background: #444;
     border: #505050;
   }
   &.wall {
@@ -94,7 +94,7 @@
     border: #aaa;
   }
   &.nothing {
-    background: black;
+    background: #222;
     border: #222;
   }
 }

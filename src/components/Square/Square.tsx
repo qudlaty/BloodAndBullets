@@ -48,7 +48,7 @@ class Square extends React.Component<SquareProps> {
       squareClassName += " nothing";
     }
 
-    if (isLit) {
+    if (true || isLit) {
       indicators = (
         <div>
           <Blood parentClassBase={localId} bloodAmount={blood} />
