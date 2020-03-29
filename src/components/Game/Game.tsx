@@ -64,10 +64,7 @@ export default class Game extends React.PureComponent<void, GameState> {
 
   toggleEditorMode = () => {
     if (!this.state.isEditorOn) {
-<<<<<<< Updated upstream
-=======
       Helpers.resetGivenFieldsOnACollection(this.state.squares, "blood");
->>>>>>> Stashed changes
       this.setState((prevState) => {
         return { entities: [], isEditorOn: true };
       });
