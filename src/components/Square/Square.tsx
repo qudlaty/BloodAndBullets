@@ -14,6 +14,7 @@ interface SquareProps {
 
   blood: number;
   items: Item[];
+  itemsLength: number;
 
   isLit: boolean;
   isInTwilightZone: boolean;
