@@ -44,7 +44,7 @@ class EntitiesServiceClass {
 
     let newSquare = SquaresService.getSquare(entity.position.x, entity.position.y);
 
-    if (newSquare && newSquare.entity) {
+    if ((newSquare && newSquare.entity) || (newSquare && newSquare.squareType !== "floor")) {
       // if square occupiec, reverse the move
       entity.position.x = oldPositionX;
       entity.position.y = oldPositionY;

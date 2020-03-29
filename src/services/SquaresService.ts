@@ -102,8 +102,10 @@ class SquaresServiceClass {
           }
 
           let square: Square = this.getSquare(i, j);
+          if (square.squareType === "floor") {
+            square.isAvailableDestination = true;
+          }
 
-          square.isAvailableDestination = true;
           this.setSquare(i, j, square);
         }
       }
