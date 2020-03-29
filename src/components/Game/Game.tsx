@@ -309,11 +309,21 @@ export default class Game extends React.PureComponent<void, GameState> {
     });
     let squaresStringified = JSON.stringify(squaresProcessedForSave);
     console.log(squaresStringified);
-    localStorage["BaBMap"] = squaresStringified;
+    let message = "Enter the name of saved map.";
+    let mapName = "map00";
+
+    let result = window.prompt(message, mapName);
+
+    localStorage[result] = squaresStringified;
   };
 
   loadMap = () => {
-    let squaresStringified = localStorage["BaBMap"];
+    let mapNames = Object.keys(localStorage);
+    let message = `Enter the name of map to load. ${mapNames}`;
+    let mapName = "map00";
+    let result = window.prompt(message, mapName);
+    let squaresStringified = localStorage[result];
+
     console.log(squaresStringified);
     let squaresLoaded = JSON.parse(squaresStringified);
     SquaresService.squares.forEach((square, index) => {
