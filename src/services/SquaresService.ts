@@ -106,6 +106,9 @@ class SquaresServiceClass {
       }
     }
   }
+  lightAllSquares(): void {
+    this.squares.forEach((square) => (square.isLit = true));
+  }
   castLightsFromFriendlyEntity(entity: Entity): void {
     if (entity.isFriendly) {
       let { x, y } = entity.position;

@@ -40,8 +40,6 @@ export default class Board extends React.PureComponent<BoardProps> {
       <BoardSquare
         key={i}
         squareId={i + ""}
-        rowId={rowId}
-        colId={colId}
         onClick={this.handleClick}
         // Entity on this square
         active={entity.active}
