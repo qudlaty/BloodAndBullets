@@ -85,6 +85,14 @@
     z-index: 1000;
     position: relative;
   }
+  &__item-icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+  }
   &.floor {
     background: #444;
     border: #505050;
