@@ -100,7 +100,7 @@ export default class Game extends React.PureComponent<void, GameState> {
 
     EntitiesService.moveEntities();
     //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
-    SquaresService.lightAllSquares();
+    //SquaresService.lightAllSquares();
     entities.forEach((entity) => {
       if (EntitiesService.isEntityShootingProperly(entity)) {
         EntitiesService.fireAShot(entity);
@@ -109,7 +109,7 @@ export default class Game extends React.PureComponent<void, GameState> {
 
       EntitiesService.stopBreathingForKilledEntity(entity);
       SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-      SquaresService.castLightsFromFriendlyEntity(entity);
+      // SquaresService.castLightsFromFriendlyEntity(entity);
     });
 
     return nextState;
@@ -301,6 +301,28 @@ export default class Game extends React.PureComponent<void, GameState> {
     );
   };
 
+  saveMap = () => {
+    let squares: Square[] = JSON.parse(JSON.stringify(SquaresService.squares));
+    let squaresProcessedForSave = squares.map((square) => {
+      let newSquare = { squareType: square.squareType };
+      return newSquare;
+    });
+    let squaresStringified = JSON.stringify(squaresProcessedForSave);
+    console.log(squaresStringified);
+    localStorage["BaBMap"] = squaresStringified;
+  };
+
+  loadMap = () => {
+    let squaresStringified = localStorage["BaBMap"];
+    console.log(squaresStringified);
+    let squaresLoaded = JSON.parse(squaresStringified);
+    SquaresService.squares.forEach((square, index) => {
+      let targetSquare = square;
+      let sourceSquare = squaresLoaded[index];
+      targetSquare.squareType = sourceSquare.squareType;
+    });
+  };
+
   render() {
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
@@ -319,6 +341,12 @@ export default class Game extends React.PureComponent<void, GameState> {
           <div className={styles.actions}>
             <button onClick={this.toggleEditorMode} className={styles.button}>
               Editor Mode
+            </button>
+            <button onClick={this.saveMap} className={styles.button}>
+              Save Map
+            </button>
+            <button onClick={this.loadMap} className={styles.button}>
+              Load Map
             </button>
             <button
               onClick={() => {
