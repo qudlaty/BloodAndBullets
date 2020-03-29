@@ -17,7 +17,7 @@ class Items extends React.Component<ItemsProps> {
       items.forEach((item) => {
         let entity = item as Entity;
         if (entity.icon) {
-          itemsIcons.push(entity.icon);
+          itemsIcons.push(<div className="square__item-icon">{entity.icon}</div>);
         }
       });
     }
