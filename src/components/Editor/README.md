@@ -9,7 +9,11 @@ Core tiles for the map editor:
 - Nothing
 - Wall
 
-* at least 2 types of boxes, closed
+- Saving and loading maps.
+
+======== DONE TO THIS POINT ========
+
+- at least 2 types of boxes, closed
 
 Add different structures icons:
 
@@ -46,5 +50,7 @@ Add different structures icons:
   - passive
   - aggressive:
 
+* Missions:
+  - Greenhouse mission
 * Missions:
   - Greenhouse mission

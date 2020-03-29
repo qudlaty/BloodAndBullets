@@ -3,7 +3,7 @@ import * as Helpers from "../../helpers/Helpers";
 import { SquaresService, EntitiesService } from "../../services";
 import EntityCard from "../EntityCard/EntityCard";
 import { Square } from "../../services/SquaresService";
-import { Entity, Position, structures } from "../../services/EntitiesValues";
+import { Entity, Position, structures, Item } from "../../services/EntitiesValues";
 
 import InventoryList from "../EntityCard/InventoryList";
 
@@ -47,13 +47,16 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     this.props.processInterface();
   }
 
-  onAddStructureClick(targetedSquarePosition: Position): void {
-    let box = Object.assign({}, structures.box);
+  onAddStructureClick(targetedSquarePosition: Position, structureType: string): void {
+    let box = Object.assign({}, structures[structureType]);
     let targetPosition = Object.assign({}, targetedSquarePosition);
     box.position = targetPosition;
     box.name += this.boxSerialNumber++;
-    let newBox = new Entity(box);
-    EntitiesService.entities.push(newBox);
+    let newStructure = new Entity(box);
+    let square = SquaresService.getSquare(targetedSquarePosition.x, targetedSquarePosition.y);
+    square.entity = newStructure;
+    square.addToInventory(newStructure as Item); // TODO: FIXME: Stop forcing types, make a new list for scenery items.
+    //EntitiesService.entities.push(newBox);
     this.props.processInterface();
   }
 
@@ -74,9 +77,17 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let items;
 
     let editorButtons = (
-      <button onClick={() => this.onAddStructureClick(targetedSquarePosition)} className={GameStyles.button}>
-        Add structure
-      </button>
+      <div>
+        <button onClick={() => this.onAddStructureClick(targetedSquarePosition, "box")} className={GameStyles.button}>
+          Add box
+        </button>
+        <button
+          onClick={() => this.onAddStructureClick(targetedSquarePosition, "redBarrel")}
+          className={GameStyles.button}
+        >
+          Add barrel
+        </button>
+      </div>
     );
 
     if (targeted.entity && !Helpers.isSelectedTargeted(selected, targeted)) {
