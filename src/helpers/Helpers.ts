@@ -98,3 +98,19 @@ export function turnFlagsIntoClasses(flags: object, classNameBase?: string) {
 export function newCopyOfArray(array: any[]) {
   return [].concat(array);
 }
+
+/**
+ * Returns a string with set of CSS classes
+ * based on the flags found in the given square.
+ * @param square a square to style
+ * @yields string with all classess applicable for the given square
+ */
+export function getCssClassesForAGivenSquare(square: Square): string {
+  let squareClassNameBase = "square";
+  let squareClassName = `${squareClassNameBase} ${square.squareType}`;
+  squareClassName += turnFlagsIntoClasses(square, squareClassNameBase);
+  if (square.entity) {
+    squareClassName += turnFlagsIntoClasses(square.entity, squareClassNameBase);
+  }
+  return squareClassName;
+}

@@ -1,6 +1,8 @@
 import React, { ReactElement } from "react";
-import BoardSquare from "../Square";
-import EntityPawn from "../EntityPawn";
+
+import SquareComponent from "../Square";
+import EntityPawnComponent from "../EntityPawn";
+import * as Helpers from "../../helpers";
 import { Entity } from "../../services/EntitiesValues";
 import { Square } from "../../services/SquaresService";
 
@@ -8,62 +10,43 @@ import styles from "./Board.module.scss";
 
 interface BoardProps {
   onClick(i: number): void;
-  squares: Square[];
-  entities: Entity[];
+  squares: Square[]; // updated every tick
+  entities: Entity[]; // updated every tick
   size: number;
   isRotated: boolean;
 }
 
-export default class Board extends React.PureComponent<BoardProps> {
+export default class Board extends React.Component<BoardProps> {
   constructor(props: BoardProps) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(i) {
+  handleClick = (i: number) => {
     console.log("Handles Click on Board", i);
     this.props.onClick(i);
-  }
+  };
 
   renderSquare(i: number, rowId: number, colId: number) {
-    /*
-    We pass one and the same function to all the Squares when rendering,
-    so they do not detect getting a new fat-arrow function as a change of props.
-
-    This is CRUCIAL to only rerender squares with changed values.
-
-    Additionally, we need to ensure that Unchanged squares have the same values of objects passed down here.
-    */
     let square = this.props.squares[i];
-    let entity = (this.props.squares[i] && this.props.squares[i].entity) || ({} as Entity);
+
     return (
-      <BoardSquare
+      <SquareComponent // is a pureComponent
         key={i}
-        squareId={i + ""}
+        squareId={i}
+        className={Helpers.getCssClassesForAGivenSquare(square)}
         onClick={this.handleClick}
-        // Entity on this square
-        active={entity.active}
-        isDead={entity.isDead}
-        // Environment state fields
         blood={square.blood}
-        items={square.items}
-        itemsLength={square.items && square.items.length}
-        isLit={square.isLit}
-        squareType={square.squareType}
-        isInTwilightZone={square.isInTwilightZone}
-        // Interface state fields
-        isAvailableDestination={square.isAvailableDestination}
-        isChosenDestination={square.isChosenDestination}
-        isTargeted={square.isTargeted}
-      />
+        items={square.items} // list of objects
+        itemsNumber={square.items && square.items.length}
+      ></SquareComponent>
     );
   }
 
-  renderEntityPawns = () => this.props.entities.map((entity) => <EntityPawn entity={entity} />);
+  EntityPawns = (): ReactElement[] => this.props.entities.map((entity) => <EntityPawnComponent entity={entity} />);
 
-  render() {
-    let cellId = 0;
-    let rowId = 0;
+  BoardSquares = () => {
+    let cellId: number = 0;
+    let rowId: number = 0;
     let colId: number;
 
     let rowsOfSquares = Array(this.props.size)
@@ -82,17 +65,18 @@ export default class Board extends React.PureComponent<BoardProps> {
         );
       });
 
-    let entityPawns: ReactElement[] = this.renderEntityPawns();
+    return rowsOfSquares;
+  }; // Board Squares
 
+  render() {
     let className: string = styles.board;
-    const isBoardRotated: boolean = this.props.isRotated;
-    if (isBoardRotated) {
+    if (this.props.isRotated) {
       className += ` ${styles["board--rotated"]}`;
     }
     return (
       <div className={className}>
-        {rowsOfSquares}
-        {entityPawns}
+        {this.BoardSquares()}
+        {this.EntityPawns()}
       </div>
     );
   }

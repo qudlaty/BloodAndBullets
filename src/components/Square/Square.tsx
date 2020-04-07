@@ -1,72 +1,33 @@
 import React from "react";
-import * as Helpers from "../../helpers";
+import Blood from "../Square/Blood";
+import Items from "../Square/Items";
 import { Item } from "../../services/EntitiesValues";
-import Blood from "./Blood";
-import Items from "./Items";
 import "./Square.scss";
 
 interface SquareProps {
-  squareId: string;
-
-  squareType: string;
-  active: boolean;
-  isDead: boolean;
-
+  squareId: number;
+  className?: string;
+  onClick: (squareIndex: number) => void;
   blood: number;
-  items: Item[];
-  itemsLength: number;
-
-  isLit: boolean;
-  isInTwilightZone: boolean;
-
-  isAvailableDestination: boolean;
-  isChosenDestination: boolean;
-  isTargeted: boolean;
-
-  onClick: (squareIndex: string) => void;
+  items: Item[]; // collection of objects
+  itemsNumber: number; // here to trigger update when list length changes
 }
 
-class Square extends React.Component<SquareProps> {
-  shouldComponentUpdate = (
-    nextProps: SquareProps // only update if props differ
-  ) => JSON.stringify(nextProps) !== JSON.stringify(this.props);
+class SquareComponent extends React.PureComponent<SquareProps> {
+  onClick = () => {
+    this.props.onClick(this.props.squareId);
+  };
 
   render() {
-    let { squareId, isLit, items, blood } = this.props;
-    let classNameBase = "square";
-    let squareClassName = classNameBase;
-    let localId = `${classNameBase}${squareId}`;
-    let indicators = null;
-
-    squareClassName += Helpers.turnFlagsIntoClasses(this.props, classNameBase);
-
-    // This hsould be a switch-case statement ran on enum, but it didn't work, O.o
-    if (this.props.squareType == "floor") {
-      squareClassName += " floor";
-    } else if (this.props.squareType == "wall") {
-      squareClassName += " wall";
-    } else if (this.props.squareType == "nothing") {
-      squareClassName += " nothing";
-    }
-
-    if (true || isLit) {
-      indicators = (
-        <div>
-          <Blood parentClassBase={localId} bloodAmount={blood} />
-          <Items items={items} />
-        </div>
-      );
-    } else {
-      squareClassName += ` ${classNameBase}--dark`;
-    }
-
+    console.log("Render Square", this.props.squareId);
     return (
-      <button className={squareClassName} onClick={() => this.props.onClick(this.props.squareId)}>
-        {indicators}
+      <button className={this.props.className} onClick={this.onClick}>
+        <Blood bloodAmount={this.props.blood} />
+        <Items items={this.props.items} itemsNumber={this.props.itemsNumber} />
         <div className="square__content">&nbsp;</div>
       </button>
     );
   }
 }
 
-export default Square;
+export default SquareComponent;
