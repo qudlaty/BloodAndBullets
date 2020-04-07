@@ -1,24 +1,21 @@
 import React from "react";
 
 interface BloodProps {
-  bloodAmount: number;
-  parentClassBase: string;
+  bloodAmount: number; // receives amount of blood ONLY
 }
 
-class Blood extends React.Component<BloodProps> {
+class Blood extends React.PureComponent<BloodProps> {
   render() {
-    let { parentClassBase, bloodAmount } = this.props;
-    let bloodClassName = `${parentClassBase}__blood`;
-    let style = `
-        .${bloodClassName} {
-            background: rgba(255,0,0, ${(bloodAmount / 30).toFixed(2)});
-        }
-    `;
+    let { bloodAmount } = this.props;
 
     return (
-      <div className={`square__blood ${bloodClassName}`}>
+      <div
+        className="square__blood"
+        style={{
+          background: `rgba(255, 0, 0, ${(bloodAmount / 50).toFixed(2)})`,
+        }}
+      >
         {bloodAmount}
-        <style>{style}</style>
       </div>
     );
   }
