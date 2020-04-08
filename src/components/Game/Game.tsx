@@ -10,16 +10,16 @@ import { Entity } from "../../services/EntitiesValues";
 import { Square } from "../../services/SquaresService";
 
 import { EntitiesService, SquaresService } from "../../services";
-
+import Entities from "../../services/EntitiesValues";
 import * as Helpers from "../../helpers";
 
-// import GameLogic from "../../services/GameLogicService";
+import GameLogic from "../../services/GameLogicService";
 import GameModel from "../../services/GameModelService";
 
 import styles from "./Game.module.scss";
 
 /** Type of GameState */
-interface GameState {
+export interface GameState {
   entities: Entity[];
   squares: Square[];
 
@@ -42,8 +42,10 @@ export default class Game extends React.PureComponent<void, GameState> {
     super(props);
 
     // Initial VALUE of game state
+    EntitiesService.entities = Entities;
+
     this.state = {
-      entities: GameModel.entities,
+      entities: EntitiesService.entities,
       squares: SquaresService.squares,
 
       selected: null,
@@ -58,7 +60,6 @@ export default class Game extends React.PureComponent<void, GameState> {
   }
 
   componentDidMount() {
-    EntitiesService.entities = this.state.entities;
     this.loop();
   }
 
@@ -85,51 +86,16 @@ export default class Game extends React.PureComponent<void, GameState> {
 
   processEntities() {
     this.setState(
-      (prevState) => this.calculateNextGameState(prevState),
+      (prevState) => GameLogic.calculateNextGameState(prevState),
       () => this.setSquaresAccordingToEntities()
     );
-  }
-
-  /**
-   * Calculate WHAT EXACTLY? This should probably go into GameLogic
-   * @param previousState
-   */
-  calculateNextGameState(previousState: GameState) {
-    let nextState: GameState = previousState;
-    let { entities } = nextState;
-
-    EntitiesService.moveEntities();
-    //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
-    //SquaresService.lightAllSquares();
-    entities.forEach((entity) => {
-      if (EntitiesService.isEntityShootingProperly(entity)) {
-        EntitiesService.fireAShot(entity);
-      }
-      entity.bleedExternally();
-
-      EntitiesService.stopBreathingForKilledEntity(entity);
-      SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-      // SquaresService.castLightsFromFriendlyEntity(entity);
-    });
-
-    return nextState;
   }
 
   processInterface() {
     this.setState(
-      (prevState) => this.calculateNextInterfaceState(prevState),
+      (prevState) => GameLogic.calculateNextInterfaceState(prevState),
       () => this.setSquaresAccordingToEntities()
     );
-  }
-
-  calculateNextInterfaceState(previousState: GameState) {
-    let nextState = previousState;
-    let { entities, selected } = nextState;
-    entities.forEach((entity) => {
-      if (entity === selected) SquaresService.markAvailableDestinationsForSelectedEntity(selected);
-    });
-
-    return nextState;
   }
 
   /** Sets entities within apropriate squares, based on the value of their `position` field
@@ -137,25 +103,7 @@ export default class Game extends React.PureComponent<void, GameState> {
    * Also: entities are no longer rendered within `Square` component
    */
   setSquaresAccordingToEntities() {
-    this.setState((previousState) => {
-      let squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
-      /* 
-      Reattach new squares array to the SquaresService 
-      This might actually be not-needed, as elements of that array are objects 
-      and are referenced in both arrays, so unless we're adding new squares, 
-      everything should work without re-attaching
-      */
-      SquaresService.squares = squares;
-      let entities: Entity[] = previousState.entities;
-      if (entities.length) {
-        Helpers.resetGivenFieldsOnACollection(squares, "entity");
-      }
-      entities.forEach((entity) => {
-        SquaresService.setEntityWithinApropriateSquare(entity);
-      });
-
-      return { squares };
-    });
+    this.setState((prevState) => GameLogic.syncSquaresWithEntities(prevState));
   }
 
   nextTick = () => {
@@ -199,7 +147,7 @@ export default class Game extends React.PureComponent<void, GameState> {
           //targeted = undefined;
         } else if (Helpers.isSelectedTargeted(selected, targeted)) {
           // Deselecting if not selecting
-          this.deselectAllEntities();
+          GameLogic.deselectAllEntities();
           selected = undefined;
         }
       }
@@ -271,7 +219,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       (state) => {
         let { squares, entities, selected } = state;
 
-        this.deselectAllEntities();
+        GameLogic.deselectAllEntities();
         selected = undefined;
 
         return { squares, entities, selected };
@@ -282,57 +230,9 @@ export default class Game extends React.PureComponent<void, GameState> {
     );
   };
 
-  deselectAllEntities = () => {
-    Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, "active");
-    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination", "isAvailableDestination");
-  };
-
   ceaseFire = () => {
-    this.setState(
-      (state) => {
-        let { squares, entities, selected } = state;
-
-        Helpers.resetGivenFieldsOnACollection(entities, "isShooting");
-
-        return { squares, entities, selected };
-      },
-      () => {
-        this.processInterface();
-      }
-    );
-  };
-
-  saveMap = () => {
-    let squares: Square[] = JSON.parse(JSON.stringify(SquaresService.squares));
-    let squaresProcessedForSave = squares.map((square) => {
-      //let newSquare = { squareType: square.squareType, entity: square.entity };
-
-      return square;
-    });
-    let squaresStringified = JSON.stringify(squaresProcessedForSave);
-    console.log(squaresStringified);
-    let message = "Enter the name of saved map.";
-    let mapName = "map00";
-
-    let result = window.prompt(message, mapName);
-
-    localStorage[result] = squaresStringified;
-  };
-
-  loadMap = () => {
-    let mapNames = Object.keys(localStorage);
-    let message = `Enter the name of map to load. ${mapNames}`;
-    let mapName = "map00";
-    let result = window.prompt(message, mapName);
-    let squaresStringified = localStorage[result];
-
-    console.log(squaresStringified);
-    let squaresLoaded = JSON.parse(squaresStringified);
-    SquaresService.squares.forEach((square, index) => {
-      let targetSquare = square;
-      let sourceSquare = squaresLoaded[index];
-      targetSquare.squareType = sourceSquare.squareType;
-    });
+    Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, "isShooting");
+    this.processInterface();
   };
 
   render() {
@@ -354,10 +254,10 @@ export default class Game extends React.PureComponent<void, GameState> {
             <button onClick={this.toggleEditorMode} className={styles.button}>
               Editor Mode
             </button>
-            <button onClick={this.saveMap} className={styles.button}>
+            <button onClick={GameModel.saveMap} className={styles.button}>
               Save Map
             </button>
-            <button onClick={this.loadMap} className={styles.button}>
+            <button onClick={GameModel.loadMap} className={styles.button}>
               Load Map
             </button>
             <button

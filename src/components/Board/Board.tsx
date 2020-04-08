@@ -15,7 +15,9 @@ interface BoardProps {
   size: number;
   isRotated: boolean;
 }
-
+/**
+ * @description Board component renders Squares and EntityPawns
+ */
 export default class Board extends React.Component<BoardProps> {
   handleClick = (i: number) => {
     console.log("Handles Click on Board", i);

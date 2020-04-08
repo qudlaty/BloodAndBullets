@@ -19,7 +19,7 @@ class SquareComponent extends React.PureComponent<SquareProps> {
   };
 
   render() {
-    console.log("Render Square", this.props.squareId);
+    // console.log("Render Square", this.props.squareId);
     return (
       <button className={this.props.className} onClick={this.onClick}>
         <Blood bloodAmount={this.props.blood} />

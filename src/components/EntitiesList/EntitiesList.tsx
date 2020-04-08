@@ -10,18 +10,15 @@ interface ListOfEntitiesProps {
 }
 
 export default class ListOfEntities extends React.Component<ListOfEntitiesProps> {
-  renderCounter = 0;
   render() {
-    // console.log("Rendering EntitiesList #", this.renderCounter++);
-
     let entitiesFriendly = this.props.entities
       .filter((entity) => entity.isFriendly)
       .map((obj) => {
         return (
           <EntityCard
-            onInventoryClick={this.props.onInventoryClick}
-            entity={obj}
             key={obj.name}
+            entity={obj}
+            onInventoryClick={this.props.onInventoryClick}
             processInterface={() => this.props.processInterface()}
           />
         );
@@ -30,7 +27,7 @@ export default class ListOfEntities extends React.Component<ListOfEntitiesProps>
     let entitiesUnfriendly = this.props.entities
       .filter((entity) => !entity.isFriendly)
       .map((obj) => {
-        return <EntityCard entity={obj} key={obj.name} processInterface={() => this.props.processInterface()} />;
+        return <EntityCard key={obj.name} entity={obj} processInterface={() => this.props.processInterface()} />;
       });
 
     return (
