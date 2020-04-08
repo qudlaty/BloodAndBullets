@@ -17,10 +17,6 @@ interface BoardProps {
 }
 
 export default class Board extends React.Component<BoardProps> {
-  constructor(props: BoardProps) {
-    super(props);
-  }
-
   handleClick = (i: number) => {
     console.log("Handles Click on Board", i);
     this.props.onClick(i);

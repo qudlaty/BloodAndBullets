@@ -1,6 +1,6 @@
-import React, { ReactElement, DOMElement } from "react";
+import React from "react";
 import * as Helpers from "../../helpers/Helpers";
-import { SquaresService, EntitiesService } from "../../services";
+import { SquaresService } from "../../services";
 import EntityCard from "../EntityCard/EntityCard";
 import { Square } from "../../services/SquaresService";
 import { Entity, Position, structures, Item } from "../../services/EntitiesValues";
@@ -21,10 +21,6 @@ interface TargetedSquareInfoProps {
 
 export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps> {
   boxSerialNumber: number = 0;
-
-  constructor(props) {
-    super(props);
-  }
 
   onItemClick = (itemName: string): void => {
     let { selected, targeted } = this.props;

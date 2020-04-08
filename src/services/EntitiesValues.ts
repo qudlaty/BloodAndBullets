@@ -1,5 +1,4 @@
 import { applyMixins } from "../helpers";
-import EntitiesService from "./EntitiesService";
 import { SquaresService } from ".";
 import { Square } from "./SquaresService";
 import * as Helpers from "../helpers";
@@ -167,7 +166,7 @@ class Combative extends Identifiable {
 export class HavingInventory {
   inventory: Item[];
   takeFromInventory(itemName: string): Item {
-    let actualItemIndex = this.inventory.findIndex((item) => item.name == itemName);
+    let actualItemIndex = this.inventory.findIndex((item) => item.name === itemName);
     let actualItem = this.inventory.splice(actualItemIndex, 1)[0];
 
     return actualItem;

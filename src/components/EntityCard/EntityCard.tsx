@@ -2,8 +2,7 @@ import React from "react";
 import LinearDisplay from "./LinearDisplay";
 import InventoryList from "./InventoryList";
 import "./EntityCard.scss";
-import SquaresService from "../../services/SquaresService";
-import { Entity, RangedWeapon, Item } from "../../services/EntitiesValues";
+import { Entity, Item } from "../../services/EntitiesValues";
 
 interface EntityCardProps {
   entity: Entity;
@@ -20,7 +19,7 @@ class EntityCard extends React.Component<EntityCardProps> {
 
   onDrop = (itemName: string) => {
     let { entity } = this.props;
-    if (entity.equipment.hands && entity.equipment.hands.name == itemName) {
+    if (entity.equipment.hands && entity.equipment.hands.name === itemName) {
       entity.unEquipFromHands();
       entity.isShooting = false;
     }

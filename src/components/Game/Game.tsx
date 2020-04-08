@@ -13,7 +13,7 @@ import { EntitiesService, SquaresService } from "../../services";
 
 import * as Helpers from "../../helpers";
 
-import GameLogic from "../../services/GameLogicService";
+// import GameLogic from "../../services/GameLogicService";
 import GameModel from "../../services/GameModelService";
 
 import styles from "./Game.module.scss";
@@ -96,7 +96,7 @@ export default class Game extends React.PureComponent<void, GameState> {
    */
   calculateNextGameState(previousState: GameState) {
     let nextState: GameState = previousState;
-    let { entities, squares, selected } = nextState;
+    let { entities } = nextState;
 
     EntitiesService.moveEntities();
     //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
@@ -126,7 +126,7 @@ export default class Game extends React.PureComponent<void, GameState> {
     let nextState = previousState;
     let { entities, selected } = nextState;
     entities.forEach((entity) => {
-      if (entity == selected) SquaresService.markAvailableDestinationsForSelectedEntity(selected);
+      if (entity === selected) SquaresService.markAvailableDestinationsForSelectedEntity(selected);
     });
 
     return nextState;
@@ -253,9 +253,9 @@ export default class Game extends React.PureComponent<void, GameState> {
       EntitiesService.entities = entities;
       let entityId = EntitiesService.getEntityId(entity);
       let actualEntity = EntitiesService.findEntityById(entityId);
-      let actualItem = EntitiesService.findItemOnEntity(actualEntity, itemName);
+      //let actualItem = EntitiesService.findItemOnEntity(actualEntity, itemName);
 
-      if (actualEntity.equipment.hands && actualEntity.equipment.hands.name == itemName) {
+      if (actualEntity.equipment.hands && actualEntity.equipment.hands.name === itemName) {
         actualEntity.unEquipFromHands();
       } else {
         actualEntity.equipInHands(itemName);

@@ -7,7 +7,7 @@ export class MessageBox extends React.Component {
 
   shouldComponentUpdate() {
     // don't update if there are no new messages since last render
-    return this.messages.length != this.messageNumber;
+    return this.messages.length !== this.messageNumber;
   }
 
   renderMessage = (message: string, number: number) => {

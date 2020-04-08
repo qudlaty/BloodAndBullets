@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { SquaresService } from "../../services";
 import { Entity } from "../../services/EntitiesValues";
 import ShootingVisualization from "./ShootingVisualization";
