@@ -6,7 +6,6 @@ import { Entity, Item } from "../../services/EntitiesValues";
 
 interface EntityCardProps {
   entity: Entity;
-  key?: string;
   onInventoryClick?(entity: Entity, itemName: string);
   processInterface?: Function;
 }
@@ -29,7 +28,6 @@ class EntityCard extends React.Component<EntityCardProps> {
   };
 
   render() {
-    // console.log("Rendering EntityView. #", this.renderCount++);
     let { entity } = this.props;
     if (!entity) return null;
     /*
