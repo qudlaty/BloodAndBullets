@@ -1,6 +1,6 @@
 import React from "react";
 import "./InventoryList.scss";
-import { Item, Entity, RangedWeapon } from "../../services/EntitiesValues";
+import { Item } from "../../services/EntitiesValues";
 import InventoryItem from "./InventoryItem";
 
 interface InventoryListProps {
@@ -19,8 +19,6 @@ export default function InventoryList(props: InventoryListProps) {
   if (!props.inventory) {
     return null;
   }
-  let reloadButton;
-  let dropButton;
 
   const inventoryItems = props.inventory.map((item) => (
     <InventoryItem
