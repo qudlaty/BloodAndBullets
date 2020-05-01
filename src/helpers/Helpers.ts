@@ -1,7 +1,10 @@
 import { Entity } from "../services/EntitiesValues";
 import { Square } from "../services/SquaresService";
 
-/** Takes a collection and a list of strings describing object keys. Sets all given fields on a collection to `undefined` */
+/** @description
+ * Takes a collection and a list of strings describing object keys.
+ * Sets all given fields on a collection to `undefined`
+ */
 export function resetGivenFieldsOnACollection(collection, ...fieldNames) {
   collection.forEach((item) => {
     fieldNames.forEach((fieldName) => {
@@ -10,19 +13,19 @@ export function resetGivenFieldsOnACollection(collection, ...fieldNames) {
   });
 }
 
-/** Takes a number and fits it within given boundaries, then returns it */
+/** @description Takes a number and fits it within given boundaries, then returns it */
 export function getNumberWithinBoundaries(value: number, min: number, max: number): number {
   if (value < min) value = min;
   if (value > max) value = max;
   return value;
 }
 
-/** Returns an integer between min and max */
+/** @description Returns a random integer between min and max */
 export function getRandomIntInclusive(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-/** Returns angle (in degrees) of a given vector */
+/** @description Returns angle (in degrees) of a given vector */
 export function calculateAngle(x: number, y: number): number {
   let angle: number;
   if (y >= 0) {
@@ -33,12 +36,12 @@ export function calculateAngle(x: number, y: number): number {
   return angle;
 }
 
-/** Pitagorean distance between 0,0 and given coords */
+/** @description Pitagorean distance between 0,0 and given coords */
 export function calculateDistance(x: number, y: number): number {
   return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 }
 
-/** Mixing classess together */
+/** @description Mixing classess together */
 export function applyMixins(derivedCtor: any, baseCtors: any[]) {
   // see https://www.typescriptlang.org/docs/handbook/mixins.html
   baseCtors.forEach((baseCtor) => {
@@ -48,7 +51,7 @@ export function applyMixins(derivedCtor: any, baseCtors: any[]) {
   });
 }
 
-/** Checking if selected entity is on a targeted square */
+/** @description Checking if selected entity is on a targeted square */
 export function isSelectedTargeted(selected: Entity, targeted: Square): boolean {
   if (selected && targeted && targeted.entity && selected.name === targeted.entity.name) {
     return true;
@@ -57,8 +60,10 @@ export function isSelectedTargeted(selected: Entity, targeted: Square): boolean 
   }
 }
 
-/** Adding classess apropriate to the flags passed in by props
- * If @classNameBase is given, it is added in front of the classname with "--"
+/**
+ * @description
+ * Adding classess apropriate to the flags passed in by props
+ * @param classNameBase - if given, it is added in front of the classname with "--"
  * Eg: classNameBase--class-from-flag
  */
 export function turnFlagsIntoClasses(flags: object, classNameBase?: string) {
@@ -91,6 +96,7 @@ export function turnFlagsIntoClasses(flags: object, classNameBase?: string) {
 }
 
 /**
+ * @description
  * Creates a new array containing all the elements from a given array
  * @param array array to shallow-copy
  * @yields a new copy of the array
@@ -100,6 +106,7 @@ export function newCopyOfArray(array: any[]) {
 }
 
 /**
+ * @description
  * Returns a string with set of CSS classes
  * based on the flags found in the given square.
  * @param square a square to style
