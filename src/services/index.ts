@@ -1,5 +1,4 @@
-import entitiesService from "./EntitiesService";
-import squaresService from "./SquaresService";
-
-export let EntitiesService = entitiesService;
-export let SquaresService = squaresService;
+export { SquaresService } from "./SquaresService";
+export { EntitiesService } from "./EntitiesService";
+export { Item, Weapon, RangedWeapon } from "./Items";
+export { Entity } from "./Entities";

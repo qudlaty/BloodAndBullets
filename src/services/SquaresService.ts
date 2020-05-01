@@ -155,5 +155,4 @@ class SquaresServiceClass {
   }
 }
 
-let SquaresService = new SquaresServiceClass();
-export default SquaresService;
+export const SquaresService = new SquaresServiceClass();
