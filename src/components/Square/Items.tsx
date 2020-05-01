@@ -6,6 +6,12 @@ interface ItemsProps {
   itemsNumber: number; // here to trigger update when list length changes
 }
 
+/**
+ * @description
+ * Displays icons of items on the square, as well as little number in the corner.
+ * @param itemsNumber - number of items on the square
+ * @param items - array of items on the square
+ */
 class Items extends React.PureComponent<ItemsProps> {
   itemsIcons = [];
 
