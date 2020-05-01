@@ -30,10 +30,8 @@ class EntityCard extends React.Component<EntityCardProps> {
   render() {
     let { entity } = this.props;
     if (!entity) return null;
-    /*
-      FIXME: Below should be separated into several sub-components
-      Each sub-component should receive flat data (position, hp, ...)
-     */
+    // FIXME: Below should be separated into several sub-components
+    // Each sub-component should receive flat data (position, hp, ...)
 
     let className = "entity-card";
     if (entity.active) {
