@@ -1,7 +1,7 @@
 import GameModel from "./GameModelService";
 import SquaresService, { Square } from "./SquaresService";
 import EntitiesService from "./EntitiesService";
-import { Entity } from "./EntitiesValues";
+import { Entity } from "./Entities";
 import * as Helpers from "../helpers";
 
 import { GameState } from "../components/Game";

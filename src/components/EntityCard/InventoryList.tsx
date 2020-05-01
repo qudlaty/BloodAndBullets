@@ -1,6 +1,6 @@
 import React from "react";
 import "./InventoryList.scss";
-import { Item } from "../../services/EntitiesValues";
+import { Item } from "../../services/Items";
 import InventoryItem from "./InventoryItem";
 
 interface InventoryListProps {

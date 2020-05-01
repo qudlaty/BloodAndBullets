@@ -6,7 +6,7 @@ import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 import { MessageBox } from "./MessageBox";
 
-import { Entity } from "../../services/EntitiesValues";
+import { Entity } from "../../services/Entities";
 import { Square } from "../../services/SquaresService";
 
 import { EntitiesService, SquaresService } from "../../services";

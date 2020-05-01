@@ -1,5 +1,7 @@
 import * as Helpers from "../helpers/Helpers";
-import { Entity, Position, Item, RangedWeapon, HavingInventory } from "./EntitiesValues";
+
+import { Item, RangedWeapon } from "./Items";
+import { Entity, Position, HavingInventory } from "./Entities";
 
 export interface Square {
   entity?: Entity;
