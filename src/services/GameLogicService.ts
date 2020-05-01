@@ -1,6 +1,6 @@
 import GameModel from "./GameModelService";
-import SquaresService, { Square } from "./SquaresService";
-import EntitiesService from "./EntitiesService";
+import { SquaresService, Square } from "./SquaresService";
+import { EntitiesService } from "./EntitiesService";
 import { Entity } from "./Entities";
 import * as Helpers from "../helpers";
 

@@ -1,5 +1,5 @@
-import SquaresService, { Square } from "./SquaresService";
-import EntitiesService from "./EntitiesService";
+import { SquaresService, Square } from "./SquaresService";
+import { EntitiesService } from "./EntitiesService";
 import tutorial_map_00 from "../resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
 
 class GameModelClass {
