@@ -1,6 +1,6 @@
 import React from "react";
 import { SquaresService } from "../../services";
-import { Entity } from "../../services/EntitiesValues";
+import { Entity } from "../../services/Entities";
 import ShootingVisualization from "./ShootingVisualization";
 import * as Helpers from "../../helpers";
 import "./EntityPawn.scss";

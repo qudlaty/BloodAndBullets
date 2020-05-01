@@ -1,7 +1,7 @@
 import React from "react";
 import EntityCard from "../EntityCard";
 import "./EntitiesList.scss";
-import { Entity } from "../../services/EntitiesValues";
+import { Entity } from "../../services/Entities";
 
 interface ListOfEntitiesProps {
   entities: Entity[];

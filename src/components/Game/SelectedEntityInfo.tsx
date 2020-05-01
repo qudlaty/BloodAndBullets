@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import EntityCard from "../EntityCard/EntityCard";
-import { Entity } from "../../services/EntitiesValues";
+import { Entity } from "../../services/Entities";
 
 import GameStyles from "./Game.module.scss";
 

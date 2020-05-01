@@ -2,7 +2,8 @@ import React from "react";
 import LinearDisplay from "./LinearDisplay";
 import InventoryList from "./InventoryList";
 import "./EntityCard.scss";
-import { Entity, Item } from "../../services/EntitiesValues";
+import { Entity } from "../../services/Entities";
+import { Item } from "../../services/Items";
 
 interface EntityCardProps {
   entity: Entity;

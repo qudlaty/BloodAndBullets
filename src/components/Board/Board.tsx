@@ -3,7 +3,7 @@ import React, { ReactElement } from "react";
 import SquareComponent from "../Square";
 import EntityPawnComponent from "../EntityPawn";
 import * as Helpers from "../../helpers";
-import { Entity } from "../../services/EntitiesValues";
+import { Entity } from "../../services/Entities";
 import { Square } from "../../services/SquaresService";
 
 import styles from "./Board.module.scss";
