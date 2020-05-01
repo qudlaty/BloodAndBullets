@@ -1,0 +1,290 @@
+[
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "nothing" },
+  { "squareType": "nothing" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "wall" },
+  { "squareType": "floor" },
+  { "squareType": "nothing" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "isFriendly": true,
+      "name": "Lux Aeterna",
+      "age": 20,
+      "hp": 50,
+      "maxHp": 50,
+      "icon": "👱‍♀️",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 1, "y": 1 },
+      "inventory": [
+        {
+          "name": "Assault Lazer Cannon",
+          "causesBleeding": 0,
+          "range": 6,
+          "damage": 10,
+          "rounds": 3,
+          "maxRounds": 3,
+          "type": "lazer"
+        }
+      ],
+      "equipment": {}
+    }
+  },
+  { "squareType": "nothing" },
+  { "squareType": "nothing" },
+  { "squareType": "nothing" },
+  { "squareType": "nothing" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "nothing" },
+  { "squareType": "nothing" },
+  { "squareType": "floor" },
+  { "squareType": "wall" },
+  { "squareType": "floor" },
+  { "squareType": "nothing" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "name": "Spider",
+      "age": 1,
+      "hp": 100,
+      "maxHp": 150,
+      "icon": "🕷️",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 9, "y": 3 },
+      "bleedingReductionPerTurn": 1
+    }
+  },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "name": "Octo",
+      "age": 8,
+      "hp": 167,
+      "maxHp": 200,
+      "icon": "🐙",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 8, "y": 4 },
+      "bleedingReductionPerTurn": 0,
+      "bleeding": 1
+    },
+    "blood": 4
+  },
+  {
+    "squareType": "floor",
+    "entity": {
+      "isFriendly": true,
+      "name": "John Rambo",
+      "age": 40,
+      "hp": 95,
+      "maxHp": 100,
+      "icon": "😠",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 9, "y": 4 },
+      "inventory": [
+        { "name": "KA-BAR" },
+        {
+          "name": "M16",
+          "causesBleeding": 4,
+          "range": 4,
+          "damage": 2,
+          "rounds": 15,
+          "maxRounds": 20,
+          "type": "projectile"
+        }
+      ],
+      "equipment": { "head": "Red Bandana", "hands": null }
+    }
+  },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "name": "Microbe",
+      "age": 1,
+      "hp": 1,
+      "maxHp": 5,
+      "icon": "🦠",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 3, "y": 5 }
+    }
+  },
+  {
+    "squareType": "floor",
+    "entity": {
+      "name": "Robot",
+      "age": 1,
+      "hp": 50,
+      "maxHp": 50,
+      "icon": "🤖",
+      "isSupposedToBeBreathing": false,
+      "position": { "x": 4, "y": 5 }
+    }
+  },
+  { "squareType": "floor" },
+  { "squareType": "wall" },
+  { "squareType": "wall" },
+  { "squareType": "wall" },
+  { "squareType": "floor", "blood": 2 },
+  { "squareType": "nothing" },
+  { "squareType": "floor" },
+  { "squareType": "nothing" },
+  { "squareType": "nothing" },
+  { "squareType": "nothing" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "name": "Ant",
+      "age": 1,
+      "hp": 45,
+      "maxHp": 50,
+      "icon": "🐜",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 7, "y": 6 }
+    }
+  },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "name": "Mosquito",
+      "age": 1,
+      "hp": 12,
+      "maxHp": 20,
+      "icon": "🦟",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 2, "y": 7 }
+    }
+  },
+  { "squareType": "nothing" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "wall" },
+  { "squareType": "wall" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "isFriendly": true,
+      "name": "Ellen Replay",
+      "age": 30,
+      "hp": 50,
+      "maxHp": 65,
+      "icon": "👩",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 1, "y": 8 },
+      "inventory": [
+        {
+          "name": "M41A Pulse Rifle",
+          "causesBleeding": 4,
+          "range": 4,
+          "damage": 1,
+          "rounds": 40,
+          "maxRounds": 40,
+          "type": "projectile"
+        },
+        { "name": "Motion Detector" }
+      ],
+      "equipment": { "head": "Afro" }
+    }
+  },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "isFriendly": true,
+      "name": "Lazer Blady",
+      "age": 60,
+      "hp": 75,
+      "maxHp": 100,
+      "icon": "🧑🏻",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 4, "y": 8 },
+      "inventory": [
+        {
+          "name": "Assault Lazer Cannon",
+          "causesBleeding": 0,
+          "range": 6,
+          "damage": 10,
+          "rounds": 3,
+          "maxRounds": 3,
+          "type": "lazer"
+        },
+        {
+          "name": "M16",
+          "causesBleeding": 4,
+          "range": 4,
+          "damage": 2,
+          "rounds": 15,
+          "maxRounds": 20,
+          "type": "projectile"
+        }
+      ],
+      "equipment": {}
+    }
+  },
+  { "squareType": "floor" },
+  { "squareType": "wall" },
+  { "squareType": "wall" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "nothing" },
+  { "squareType": "nothing", "isTargeted": true },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  { "squareType": "floor" },
+  {
+    "squareType": "floor",
+    "entity": {
+      "name": "Squid",
+      "age": 5,
+      "hp": 100,
+      "maxHp": 100,
+      "icon": "🦑",
+      "isSupposedToBeBreathing": true,
+      "position": { "x": 8, "y": 9 }
+    }
+  },
+  { "squareType": "floor" }
+]

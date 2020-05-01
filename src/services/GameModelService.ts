@@ -1,5 +1,6 @@
 import SquaresService, { Square } from "./SquaresService";
 import EntitiesService from "./EntitiesService";
+import tutorial_map_00 from "../resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
 
 class GameModelClass {
   entities;
@@ -36,11 +37,19 @@ class GameModelClass {
 
     console.log(squaresStringified);
     let squaresLoaded = JSON.parse(squaresStringified);
+    this.loadMapIntoBoard(squaresLoaded);
+  };
+
+  loadMapIntoBoard = (squaresLoaded) => {
     SquaresService.squares.forEach((square, index) => {
       let targetSquare = square;
       let sourceSquare = squaresLoaded[index];
       targetSquare.squareType = sourceSquare.squareType;
     });
+  };
+
+  loadBuiltInMap = () => {
+    this.loadMapIntoBoard(tutorial_map_00);
   };
 }
 

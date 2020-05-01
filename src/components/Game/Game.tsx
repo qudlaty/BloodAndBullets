@@ -60,6 +60,7 @@ export default class Game extends React.PureComponent<void, GameState> {
   }
 
   componentDidMount() {
+    GameModel.loadBuiltInMap();
     this.loop();
   }
 
