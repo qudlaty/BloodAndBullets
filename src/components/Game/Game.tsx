@@ -240,6 +240,9 @@ export default class Game extends React.PureComponent<void, GameState> {
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className={styles.game}>
+        <p>
+          L2P: Click friendly entity on the map, twice. Then click a target square to move, or target entity to attack.
+        </p>
         <div className={styles.game__board}>
           <Board
             squares={this.state.squares}
