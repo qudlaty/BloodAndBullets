@@ -1,7 +1,7 @@
-import { M16, M40, L30 } from "./Items";
-import { Entity } from "./Entities";
+import { M16, M40, L30 } from "../services/Items";
+import { Entity } from "../services/Entities";
 
-const entitiesInitialValues = [
+export const entitiesInitialValues = [
   {
     name: "John Rambo",
     age: 40,
@@ -118,25 +118,5 @@ const entitiesInitialValues = [
   },
 ];
 
-export const structures = {
-  box: {
-    name: "box",
-    icon: "📦",
-    hp: 50,
-    maxHp: 70,
-    isBreathing: false,
-    position: { x: 4, y: 5 },
-  },
-  redBarrel: {
-    name: "redBarrel",
-    icon: "🛢️",
-    hp: 50,
-    maxHp: 70,
-    isBreathing: false,
-    position: { x: 4, y: 5 },
-  },
-};
-
-const entities = entitiesInitialValues.map((entry) => new Entity(entry));
-
-export default entities;
+export const entitiesInstances = entitiesInitialValues.map((entry) => new Entity(entry));
+export default entitiesInstances;
