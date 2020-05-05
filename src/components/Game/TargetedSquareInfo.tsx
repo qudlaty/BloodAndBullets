@@ -5,7 +5,7 @@ import EntityCard from "../EntityCard/EntityCard";
 import { Square } from "../../services/SquaresService";
 import { Entity, Position } from "../../services/Entities";
 import { Item } from "../../services/Items";
-import { structures } from "../../services/EntitiesValues";
+import { structures } from "../../resources/Structures";
 
 import InventoryList from "../EntityCard/InventoryList";
 

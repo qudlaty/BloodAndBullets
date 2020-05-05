@@ -10,7 +10,6 @@ import { Entity } from "../../services/Entities";
 import { Square } from "../../services/SquaresService";
 
 import { EntitiesService, SquaresService } from "../../services";
-import Entities from "../../services/EntitiesValues";
 import * as Helpers from "../../helpers";
 
 import GameLogic from "../../services/GameLogicService";
@@ -41,8 +40,8 @@ export default class Game extends React.PureComponent<void, GameState> {
   constructor(props: void) {
     super(props);
 
-    // Initial VALUE of game state
-    EntitiesService.entities = Entities;
+    GameModel.loadBuiltInMap();
+    GameModel.loadPredefinedEntitities();
 
     this.state = {
       entities: EntitiesService.entities,
@@ -60,7 +59,6 @@ export default class Game extends React.PureComponent<void, GameState> {
   }
 
   componentDidMount() {
-    GameModel.loadBuiltInMap();
     this.loop();
   }
 
