@@ -1,10 +1,10 @@
-import GameModel from "./GameModelService";
-import { SquaresService, Square } from "./SquaresService";
-import { EntitiesService } from "./EntitiesService";
-import { Entity } from "./Entities";
-import * as Helpers from "../helpers";
+import { GameModel } from "../GameModelService";
+import { SquaresService, Square } from "../SquaresService";
+import { EntitiesService } from "../EntitiesService";
+import { Entity } from "../EntitiesService";
+import * as Helpers from "../../helpers";
 
-import { GameState } from "../components/Game";
+import { GameState } from "../../components/Game";
 class GameLogicClass {
   model;
 
@@ -82,5 +82,5 @@ class GameLogicClass {
   };
 }
 
-const GameLogic = new GameLogicClass();
+export const GameLogic = new GameLogicClass();
 export default GameLogic;

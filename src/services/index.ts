@@ -1,9 +1,7 @@
-export { SquaresService, Square } from "./SquaresService";
-export { EntitiesService } from "./EntitiesService";
-export * from "../resources/Items";
-export * from "./Entities";
-export * from "./SquaresService";
+// Services - handlers of abstractions
 export * from "./EntitiesService";
+export * from "./SquaresService";
+export * from "./ItemService";
+export * from "./MessageService";
 export * from "./GameLogicService";
 export * from "./GameModelService";
-export * from "./MessageService";

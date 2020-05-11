@@ -1,11 +1,9 @@
 import React from "react";
-import * as Helpers from "../../helpers/Helpers";
+import * as Helpers from "../../helpers";
 import { SquaresService } from "../../services";
 import EntityCard from "../EntityCard/EntityCard";
-import { Square } from "../../services/SquaresService";
-import { Entity, Position } from "../../services/Entities";
-import { Item } from "../../resources";
-import { structures } from "../../resources/Structures";
+import { Entity, Square, Position, Item } from "../../services";
+import { structures } from "../../resources";
 
 import InventoryList from "../EntityCard/InventoryList";
 

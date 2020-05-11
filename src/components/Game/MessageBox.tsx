@@ -1,5 +1,5 @@
 import React from "react";
-import MessageService from "../../services/MessageService";
+import { MessageService } from "../../services";
 
 export class MessageBox extends React.Component {
   messages = MessageService.messages;

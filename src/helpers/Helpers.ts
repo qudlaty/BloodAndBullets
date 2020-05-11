@@ -1,4 +1,4 @@
-import { Entity } from "../services/Entities";
+import { Entity } from "../services/EntitiesService";
 import { Square } from "../services/SquaresService";
 
 /** @description
