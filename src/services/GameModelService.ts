@@ -1,11 +1,13 @@
 import { SquaresService, Square } from "./SquaresService";
 import { EntitiesService } from "./EntitiesService";
 import tutorial_map_00 from "../resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
-import entities, { entitiesInstances } from "../resources/Entities";
+import { characterDefinitions } from "../resources/CharacterDefinitions";
+import { Entity } from "./Entities";
 
 class GameModelClass {
   entities;
   squares;
+  selected;
 
   constructor() {
     this.entities = EntitiesService.entities;
@@ -49,8 +51,8 @@ class GameModelClass {
     });
   };
 
-  loadEntities = (entities) => {
-    EntitiesService.entities = entitiesInstances;
+  loadEntities = (entities: Entity[]) => {
+    EntitiesService.entities = entities;
   };
 
   loadBuiltInMap = () => {
@@ -58,7 +60,7 @@ class GameModelClass {
   };
 
   loadPredefinedEntitities = () => {
-    this.loadEntities(entitiesInstances);
+    this.loadEntities(characterDefinitions);
   };
 }
 

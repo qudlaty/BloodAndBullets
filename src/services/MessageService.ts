@@ -5,6 +5,6 @@ class MessageServiceClass {
   }
 }
 
-const MessageService = new MessageServiceClass();
+export const MessageService = new MessageServiceClass();
 
 export default MessageService;
