@@ -1,5 +1,5 @@
 import React from "react";
-import { Item, RangedWeapon } from "../../services/Items";
+import { Item, RangedWeapon } from "../../resources";
 import LinearDisplay from "./LinearDisplay";
 
 interface InventoryItemProps {

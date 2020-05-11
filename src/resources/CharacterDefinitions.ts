@@ -1,5 +1,5 @@
-import { M16, M40, L30 } from "../services/Items";
-import { Entity } from "../services/Entities";
+import { M16, M40, L30 } from "./";
+import { Entity } from "../services";
 
 export const entitiesInitialValues = [
   {
@@ -118,5 +118,5 @@ export const entitiesInitialValues = [
   },
 ];
 
-export const entitiesInstances = entitiesInitialValues.map((entry) => new Entity(entry));
-export default entitiesInstances;
+export const characterDefinitions = entitiesInitialValues.map((entry) => new Entity(entry));
+export default characterDefinitions;

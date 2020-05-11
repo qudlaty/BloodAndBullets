@@ -1,9 +1,9 @@
-import { Item, Weapon } from "./Items";
+import { Item, Weapon } from "../resources";
 import { applyMixins } from "../helpers";
 import { SquaresService } from ".";
 import { Square } from "./SquaresService";
 import * as Helpers from "../helpers";
-import Message from "../services/MessageService";
+import { MessageService } from "./";
 
 /** Position on a grid */
 export interface Position {
@@ -39,7 +39,7 @@ class Movable extends Identifiable {
       Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination");
       targetSquare.isChosenDestination = true;
     } else {
-      Message.send(`${this.name} can't move into square (${targetPosition.x}, ${targetPosition.y})`);
+      MessageService.send(`${this.name} can't move into square (${targetPosition.x}, ${targetPosition.y})`);
     }
   }
 }
@@ -98,7 +98,7 @@ class Combative extends Identifiable {
       this.targetPosition = targetedSquarePosition;
       this.isShooting = true;
     } else {
-      Message.send(`${this.name} can't shoot - no weapon equipped`);
+      MessageService.send(`${this.name} can't shoot - no weapon equipped`);
     }
   }
 }

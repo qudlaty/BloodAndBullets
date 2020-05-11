@@ -27,6 +27,7 @@ export class RangedWeapon extends Weapon {
   }
 }
 
+// TODO: Should add kinetic/thermal damage
 class Rifle extends RangedWeapon {
   type = "projectile";
   range = 4;
