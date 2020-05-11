@@ -1,8 +1,8 @@
-import { SquaresService, Square } from "./SquaresService";
-import { EntitiesService } from "./EntitiesService";
-import tutorial_map_00 from "../resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
-import { characterDefinitions } from "../resources/CharacterDefinitions";
-import { Entity } from "./Entities";
+import { SquaresService, Square } from "../SquaresService";
+import { EntitiesService } from "../EntitiesService";
+import tutorial_map_00 from "../../resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
+import { characterDefinitions } from "../../resources/CharacterDefinitions";
+import { Entity } from "../EntitiesService";
 
 class GameModelClass {
   entities;
@@ -64,6 +64,6 @@ class GameModelClass {
   };
 }
 
-let GameModel = new GameModelClass();
+export const GameModel = new GameModelClass();
 
 export default GameModel;

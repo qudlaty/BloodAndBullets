@@ -1,4 +1,5 @@
 import React from "react";
+import * as dat from "dat.gui";
 
 import Board from "../Board";
 import EntitiesList from "../EntitiesList";
@@ -6,14 +7,8 @@ import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 import { MessageBox } from "./MessageBox";
 
-import { Entity } from "../../services/Entities";
-import { Square } from "../../services/SquaresService";
-
-import { EntitiesService, SquaresService } from "../../services";
+import { Entity, EntitiesService, Square, SquaresService, GameLogic, GameModel } from "../../services";
 import * as Helpers from "../../helpers";
-
-import GameLogic from "../../services/GameLogicService";
-import GameModel from "../../services/GameModelService";
 
 import styles from "./Game.module.scss";
 
@@ -36,13 +31,14 @@ export interface GameState {
 export default class Game extends React.PureComponent<void, GameState> {
   renderCounter: number = 0;
   stepNumber: number = 0;
+  dat;
 
   constructor(props: void) {
     super(props);
 
     GameModel.loadBuiltInMap();
     GameModel.loadPredefinedEntitities();
-
+    this.dat = new dat.GUI();
     this.state = {
       entities: EntitiesService.entities,
       squares: SquaresService.squares,

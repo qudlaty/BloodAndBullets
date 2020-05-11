@@ -1,3 +1,4 @@
+// Resources - collections of items, structures, entities
 export * from "./CharacterDefinitions";
-export * from "./Items";
-export * from "./Structures";
+export * from "./StructureDefinitions";
+export * from "./ItemDefinitions";

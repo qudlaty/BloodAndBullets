@@ -1,7 +1,7 @@
-import { SquaresService, Square } from "./SquaresService";
-import * as Helpers from "../helpers/Helpers";
-import { Entity, Position, HavingInventory } from "../services/Entities";
-import { RangedWeapon } from "../resources/Items";
+import { Entity, Position, HavingInventory } from ".";
+import { SquaresService, Square } from "../SquaresService";
+import * as Helpers from "../../helpers/Helpers";
+import { RangedWeapon } from "../";
 const arenaSize: number = 10;
 
 class EntitiesServiceClass {

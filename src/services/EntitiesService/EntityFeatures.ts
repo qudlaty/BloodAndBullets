@@ -1,9 +1,6 @@
-import { Item, Weapon } from "../resources";
-import { applyMixins } from "../helpers";
-import { SquaresService } from ".";
-import { Square } from "./SquaresService";
-import * as Helpers from "../helpers";
-import { MessageService } from "./";
+import { Item, Weapon, Square } from "..";
+import { SquaresService, MessageService } from "..";
+import * as Helpers from "../../helpers";
 
 /** Position on a grid */
 export interface Position {
@@ -11,7 +8,7 @@ export interface Position {
   y: number;
 }
 
-class Identifiable {
+export class Identifiable {
   name: string = "An Entity";
   icon: string = "E";
 }
@@ -25,7 +22,7 @@ export class Positionable {
   }
 }
 
-class Movable extends Identifiable {
+export class Movable extends Identifiable {
   moveDestination: Position;
 
   setMoveDestinationSquare(squareIndex: number) {
@@ -78,7 +75,7 @@ export class Bleedable extends Mortal {
   }
 }
 
-class Breathing extends Mortal {
+export class Breathing extends Mortal {
   isSupposedToBeBreathing: boolean = undefined;
   get isBreathing(): boolean {
     return this.isAlive && this.isSupposedToBeBreathing;
@@ -88,7 +85,7 @@ class Breathing extends Mortal {
   }
 }
 
-class Combative extends Identifiable {
+export class Combative extends Identifiable {
   targetPosition: Position;
   isShooting?: boolean;
   ceaseFire?: boolean;
@@ -119,7 +116,7 @@ export class HavingInventory {
   }
 }
 
-class HavingEquipment extends HavingInventory {
+export class HavingEquipment extends HavingInventory {
   equipment: any;
   hasWeapon?: boolean;
 
@@ -142,39 +139,3 @@ class HavingEquipment extends HavingInventory {
     }
   }
 }
-
-export class Entity {
-  // Extended by mixins below
-  constructor(...props) {
-    Object.assign(this, ...props);
-  }
-  isFriendly?: boolean;
-  active?: boolean;
-}
-
-/************************************************************/
-/* Always update both lists */
-
-export interface Entity
-  extends Identifiable,
-    Positionable,
-    Mortal,
-    Bleedable,
-    Movable,
-    Breathing,
-    Combative,
-    HavingInventory,
-    HavingEquipment {}
-applyMixins(Entity, [
-  Identifiable,
-  Positionable,
-  Mortal,
-  Bleedable,
-  Movable,
-  Breathing,
-  Combative,
-  HavingInventory,
-  HavingEquipment,
-]);
-
-/************************************************************/

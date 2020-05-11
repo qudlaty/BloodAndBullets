@@ -1,4 +1,4 @@
-import { M16, M40, L30 } from "./";
+import { M16, M40, L30 } from "./ItemDefinitions";
 import { Entity } from "../services";
 
 export const entitiesInitialValues = [

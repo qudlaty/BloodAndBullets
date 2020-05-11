@@ -1,7 +1,7 @@
 import React from "react";
 import Blood from "../Square/Blood";
 import Items from "../Square/Items";
-import { Item } from "../../resources/Items";
+import { Item } from "../../services";
 import "./Square.scss";
 
 // TODO: This should really take less props
