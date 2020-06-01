@@ -49,8 +49,3 @@ Question: So actions change state within a tick, how should that be related to t
 
 - recommended immutability of react.state stops us from doing OOP fully
   - too bad for immutability \o/
-  
-## Helpful links
-https://www.reddit.com/r/roguelikedev/comments/2vptbj/faq_friday_4_world_architecture/
-
-
