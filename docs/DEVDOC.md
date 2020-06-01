@@ -17,6 +17,7 @@ After that you can just `npm install` and SASS should be working.
 ### The concept of **tick** vs the concept of **turn**.
 
 - **Turn** is a part of a higher-level game logic, concerning who (which side of a conflict) is allowed to execute actions. There is also a limit of how many actions you can take during a turn (action points).
+  - After player does the action, everything else also executes actions and we again wait for player input = next turn.
 
 - **Tick** is the smallest unit of game-time, during which the state of the game is unaltered, but the next state can be calculated.
   Transition to next tick is triggered by the timer driving the game loop.
@@ -26,14 +27,16 @@ Initially, we have a new tick every 1 second.
 ### Actions
 
 - Clicking an entity while nothing is selected
-- Changes the "state.selected" field
+  - Changes the "state.selected" field
 - Clicking an entity while something is selected.
-- Changes the "state.selected" again, if entity is friendly
-- Changes the "state.selected.targetPosition" if not
+  - Changes the "state.selected" again, if entity is friendly
+  - Changes the "state.selected.targetPosition" if not
 - Clicking a "Nuke all" button
-- Changes hp on all entities
+  - Changes hp on all entities
 
 Question: So actions change state within a tick, how should that be related to the tick calculating next game state?
+
+**Bonus** this nicely relates to redux architecture
 
 ### Keeping game state in a component state?
 
