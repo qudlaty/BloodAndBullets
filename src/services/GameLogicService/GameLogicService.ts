@@ -4,7 +4,7 @@ import { EntitiesService } from "../EntitiesService";
 import { Entity } from "../EntitiesService";
 import * as Helpers from "../../helpers";
 
-import { GameState } from "../../components/Game";
+import { GameState } from "../../components/Game/GameState";
 class GameLogicClass {
   model;
 

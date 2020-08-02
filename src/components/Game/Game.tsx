@@ -10,21 +10,8 @@ import { GameActionsClass } from "./GameActions";
 import { Entity, EntitiesService, Square, SquaresService, GameLogic, GameModel } from "../../services";
 
 import styles from "./Game.module.scss";
+import { GameState } from "./GameState";
 
-/** Type of GameState */
-export interface GameState {
-  entities: Entity[];
-  squares: Square[];
-
-  selected: Entity;
-  targeted: Square;
-  targetedSquareNumber: number;
-
-  arenaSize: number;
-  autoLoop: boolean;
-  isBoardRotated: boolean;
-  isEditorOn: boolean;
-}
 let GameActions = null;
 
 /** Game composes all the parts of the interface */
