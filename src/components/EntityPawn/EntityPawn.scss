@@ -5,7 +5,7 @@
 .entity-pawn {
   position: absolute;
   transition: top 0.8s, left 0.8s;
-
+  background: rgba(200,200,200,0.3);
   .entity-pawn__icon {
     position: relative;
     font-size: 1.5em;
