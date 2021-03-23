@@ -6,7 +6,7 @@
   position: absolute;
   transition: top 0.8s, left 0.8s;
   background: rgba(200,200,200,0.3);
-  .entity-pawn__icon {
+  &__icon {
     position: relative;
     font-size: 1.5em;
     //opacity: 0.1;
@@ -20,6 +20,22 @@
     }
     &--dead {
       color: rgba(0, 0, 0, 0.3);
+    }
+  }
+  &__health-display {
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    z-index: 5;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    text-shadow:1px 1px 1px black, -1px -1px 1px black;
+    &.friendly {
+      color: greenyellow;
+    }
+    &.hostile {
+      color: red;
     }
   }
   .shooting-visualization {
