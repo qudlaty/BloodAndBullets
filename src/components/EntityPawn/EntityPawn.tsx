@@ -22,6 +22,7 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
     let classessFromFlags = Helpers.turnFlagsIntoClasses(entity, classNameBase);
     classessFromFlags += Helpers.turnFlagsIntoClasses(square, classNameBase);
     className += ` ${classessFromFlags} `;
+    let fof = entity.isFriendly ? 'friendly' : 'hostile';
 
     let animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
 
@@ -34,6 +35,10 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
           top: squareDistance / 2 - 4 + squareDistance * entity.position.y,
         }}
       >
+        <div
+          className={`entity-pawn__health-display ` + fof}
+        >{entity.hp}</div>
+
         <div
           className={className}
           style={{
