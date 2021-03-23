@@ -1,10 +1,13 @@
 # BloodAndBulllets
 
-"Blood And Bullets: Assault Squad" is a tactical roguelike allowing you to lead a boarding party tasked with invading starships in order to take them over by any means necessary.
+"Blood And Bullets: Assault Squad" is a tactical roguelike allowing you to lead
+a boarding party tasked with invading starships in order to take them over by
+any means necessary.
 
 [CLICK HERE TO PLAY THE NIGHLTY BUILD](https://qudlaty.github.io/BloodAndBulllets/build/)
 
-It introduces multiple mechanics making the deadly game of on-board spaceship combat full of tactical possibilities.
+It introduces multiple mechanics making the deadly game of on-board spaceship
+combat full of tactical possibilities.
 
 - Bleeding targets leave blood on the floor when they withdraw. Blood sticks to boots/wheels/tracks/appendages, making traces, allowing you to track and hunt wounded prey. You can also examine how fresh the blood is, to determine whether given track is still relevant to your hunt.
 - Heat mechanics and thermo-vision allowing you to detect heat signatures of the enemy crew, heat traces of their past positions and heat-producing parts of the ship.
@@ -29,4 +32,4 @@ There will be bullets and there will be blood.
 
 ## Dev documentation
 
-Check the file: [docs/README.md](docs/README.md)
+Check the file: [docs/README.md](docs/README.md) for some info regarding development.
