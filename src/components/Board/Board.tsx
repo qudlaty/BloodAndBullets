@@ -69,7 +69,7 @@ export default class Board extends React.Component<BoardProps> {
   render() {
     let className: string = styles.board;
     if (this.props.isRotated) {
-      className += ` ${styles["board--rotated"]}`;
+      className += ` ${styles["board--rotated"]} board--rotated`;
     }
     return (
       <div className={className}>
