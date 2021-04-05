@@ -12,8 +12,9 @@
 
 .board {
   transform: perspective(0) rotateX(0) rotateY(0) rotateZ(0);
+  transform-style: preserve-3d;
   transition: all 1s;
   &--rotated {
-    transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
+    transform: perspective(750px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
   }
 }

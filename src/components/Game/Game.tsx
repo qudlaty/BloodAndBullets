@@ -100,6 +100,9 @@ export default class Game extends React.PureComponent<void, GameState> {
               <span>Auto Cycle</span>
             </label>
           </div>
+          <div className={styles.status}>
+            Hello, status will be here.
+          </div>
 
           <div className={styles["interaction-container"]}>
             <SelectedEntityInfo
