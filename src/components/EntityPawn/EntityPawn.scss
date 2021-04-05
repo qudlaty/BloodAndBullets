@@ -1,10 +1,11 @@
 .board--rotated .entity-pawn {
-  transform: perspective(471px) rotateX(57deg) rotateY(-3deg) rotateZ(60deg);
+  transform: perspective(750px)  translateZ(8px) rotateY(0deg) rotateZ(-45deg) rotateX(-30deg);
 }
 
 .entity-pawn {
+  transform: perspective(0)  translateZ(0) rotateX(0) rotateY(0) rotateZ(0);
   position: absolute;
-  transition: top 0.8s, left 0.8s;
+  transition: all 1s, top 0.8s, left 0.8s;
   background: rgba(200,200,200,0.3);
   &__icon {
     position: relative;
