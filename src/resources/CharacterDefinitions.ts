@@ -89,7 +89,7 @@ export const entitiesInitialValues = [
     position: { x: 7, y: 6 },
   },
   {
-    name: "Spider",
+    name: "Henry The Spider",
     age: 1,
     hp: 100,
     maxHp: 150,
