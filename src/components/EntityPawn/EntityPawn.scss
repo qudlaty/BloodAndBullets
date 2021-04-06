@@ -56,6 +56,9 @@
       color: white;
     }
   }
+  .board--rotated & .shooting-visualization {
+    transform: perspective(750px) translateZ(-10px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+  }
 }
 
 @keyframes breathing {
