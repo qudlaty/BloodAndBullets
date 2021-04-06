@@ -55,9 +55,12 @@
       line-height: 26px;
       color: white;
     }
+    transition: all 1s;
+    transform-style: preserve-3d;
+    transform: perspective(500px) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   }
   .board--rotated & .shooting-visualization {
-    transform: perspective(750px) translateZ(-10px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+    transform: perspective(500px) translateY(0px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
   }
 }
 
