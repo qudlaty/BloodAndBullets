@@ -35,6 +35,12 @@ class SquareComponent extends React.PureComponent<SquareProps> {
         <Blood bloodAmount={this.props.blood} />
         <Items items={this.props.items} itemsNumber={this.props.itemsNumber} />
         <div className="square__content">&nbsp;</div>
+        <div className="square__wall square__wall_1"></div>
+        <div className="square__wall square__wall_2"></div>
+        <div className="square__wall square__wall_3"></div>
+        <div className="square__wall square__wall_4"></div>
+        <div className="square__wall square__wall_5"></div>
+        <div className="square__wall square__wall_6"></div>
       </button>
     );
   }
