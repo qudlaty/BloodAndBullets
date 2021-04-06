@@ -1,10 +1,8 @@
-/** This file contains all the click-handling logic for the Game */
+/** This file contains most of the click-handling logic for the Game */
 /* Handling of particular events is delegated to proper services */
 
 import * as Helpers from "../../helpers";
-import { Component } from "react";
-import Game from "./Game";
-import { Entity, EntitiesService, Square, SquaresService, GameLogic, GameModel } from "../../services";
+import { Entity, EntitiesService, SquaresService, GameLogic } from "../../services";
 
 let component = null;
 export class GameActionsClass {
@@ -59,7 +57,7 @@ export class GameActionsClass {
     this.loop();
   };
 
-  newHandleClick = (squareIndex: number) => {
+  handleClickV2 = (squareIndex: number) => {
     component.setState(
       (state) => {
         let { squares, entities, selected, targeted, isEditorOn, targetedSquareNumber: selectedSquareNumber } = state;
