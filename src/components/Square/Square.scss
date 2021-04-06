@@ -51,6 +51,9 @@
   color: #aaa;
   background: #333;
   transition: all 0.5s;
+  &:hover {
+    background: rgb(240, 160, 5);
+  }
   &--dark {
     background: #111;
     border-color: #222;
@@ -118,6 +121,9 @@
   &.floor {
     background: #444;
     border: #505050;
+    &:hover{
+      background: rgb(240, 160, 5);
+    }
   }
   &.wall {
     background: #999;
@@ -142,6 +148,9 @@
     background: rgba(200,200,200,0.5);
     transform-style: preserve-3d;
     @include cuboid();
+  }
+  &.wall:hover &__wall{
+    background: rgba(0, 151, 252, 0.5);
   }
   &.nothing {
     background: #222;
