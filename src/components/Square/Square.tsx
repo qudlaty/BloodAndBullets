@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Blood from "../Square/Blood";
 import Items from "../Square/Items";
 import { Item } from "../../services";
@@ -30,19 +30,26 @@ class SquareComponent extends React.PureComponent<SquareProps> {
 
   render() {
     // console.log("Render Square", this.props.squareId);
+    // TODO: Extract into separate component
+    function cuboid(classPrefix:string):ReactElement {
+      let i = 6;
+      let cuboidFaces: ReactElement[] = [];
+
+      while(i--){
+        cuboidFaces.push(<div key={i} className={`${classPrefix}__cuboid-face`}></div>);
+      }
+
+      return <div className={`${classPrefix}__cuboid`}>
+        {cuboidFaces}
+      </div>
+    }
+
     return (
       <button className={this.props.className} onClick={this.onClick}>
         <Blood bloodAmount={this.props.blood} />
         <Items items={this.props.items} itemsNumber={this.props.itemsNumber} />
         <div className="square__content">&nbsp;</div>
-        <div className="square__cuboid">
-          <div className="square__wall"></div>
-          <div className="square__wall"></div>
-          <div className="square__wall"></div>
-          <div className="square__wall"></div>
-          <div className="square__wall"></div>
-          <div className="square__wall"></div>
-        </div>
+        {cuboid('square')}
       </button>
     );
   }
