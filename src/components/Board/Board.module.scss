@@ -3,11 +3,16 @@
   padding: 10px;
   border: 1px solid #555;
 
-  &__row:after {
-    content: "";
-    display: table;
-    clear: both;
+  &__row{
+    z-index: 0;
+    position: relative;
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
   }
+
 }
 
 .board {
