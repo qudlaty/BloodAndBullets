@@ -27,6 +27,14 @@ class EntityCard extends React.Component<EntityCardProps> {
     this.props.processInterface();
   };
 
+  onReload = (itemName: string) => {
+    let { entity } = this.props;
+    if (entity.equipment.hands && entity.equipment.hands.name === itemName) {
+      entity.isShooting = false;
+    }
+    this.props.processInterface();
+  };
+
   render() {
     let { entity } = this.props;
     if (!entity) return null;
@@ -78,6 +86,7 @@ class EntityCard extends React.Component<EntityCardProps> {
           title="In hands"
           onClick={this.handleInventoryClick}
           onDrop={this.onDrop}
+          onReload={this.onReload}
           inventory={inHandsArray}
           processInterface={() => this.props.processInterface()}
         />
@@ -86,6 +95,7 @@ class EntityCard extends React.Component<EntityCardProps> {
           title="In backpack"
           onClick={this.handleInventoryClick}
           onDrop={this.onDrop}
+          onReload={this.onReload}
           inventory={entity.inventory}
           processInterface={() => this.props.processInterface()}
         />

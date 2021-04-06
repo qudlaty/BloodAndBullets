@@ -9,6 +9,7 @@ interface InventoryListProps {
   title: string;
   onClick(itemName: string);
   onDrop(itemName: string);
+  onReload(itemName: string);
   inventory: Item[]; //
   processInterface: Function;
 }
@@ -25,6 +26,7 @@ export default function InventoryList(props: InventoryListProps) {
       item={item}
       onClick={props.onClick}
       onDrop={props.onDrop}
+      onReload={props.onReload}
       processInterface={props.processInterface}
     />
   ));
