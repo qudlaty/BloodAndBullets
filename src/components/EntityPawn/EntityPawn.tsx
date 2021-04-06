@@ -23,7 +23,7 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
     classessFromFlags += Helpers.turnFlagsIntoClasses(square, classNameBase);
     className += ` ${classessFromFlags} `;
     let fof = entity.isFriendly ? 'friendly' : 'hostile';
-
+    let zIndex = entity.isShooting ? 5 : 1;
     let animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
 
     return (
@@ -33,6 +33,7 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
         style={{
           left: squareDistance / 2 - 4 + squareDistance * entity.position.x,
           top: squareDistance / 2 - 4 + squareDistance * entity.position.y,
+          zIndex: zIndex,
         }}
       >
         <div
