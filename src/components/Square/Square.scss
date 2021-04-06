@@ -129,27 +129,20 @@
     background: #999;
     border: #aaa;
   }
-  &__cuboid {
+  &__cuboid, &__cuboid-face {
     width: 100%;
     height: 100%;
     position: absolute;
     top:0;
     left:0;
   }
-  &__wall {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  &.wall &__wall{
+  &.wall &__cuboid-face{
     pointer-events: none;
     background: rgba(200,200,200,0.5);
     transform-style: preserve-3d;
     @include cuboid();
   }
-  &.wall:hover &__wall{
+  &.wall:hover &__cuboid-face{
     background: rgba(0, 151, 252, 0.5);
   }
   &.nothing {
