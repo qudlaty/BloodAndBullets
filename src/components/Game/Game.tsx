@@ -1,5 +1,5 @@
 import React from "react";
-import * as dat from "dat.gui";
+//import * as dat from "dat.gui";
 
 import Board from "../Board";
 import EntitiesList from "../EntitiesList";
@@ -7,7 +7,7 @@ import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 import { MessageBox } from "./MessageBox";
 import { GameActionsClass } from "./GameActions";
-import { Entity, EntitiesService, Square, SquaresService, GameLogic, GameModel } from "../../services";
+import { EntitiesService, SquaresService, GameModel } from "../../services";
 
 import styles from "./Game.module.scss";
 import { GameState } from "./GameState";
@@ -25,7 +25,7 @@ export default class Game extends React.PureComponent<void, GameState> {
 
     GameModel.loadBuiltInMap();
     GameModel.loadPredefinedEntitities();
-    this.dat = new dat.GUI();
+    //this.dat = new dat.GUI();
     this.state = {
       entities: EntitiesService.entities,
       squares: SquaresService.squares,
@@ -57,7 +57,7 @@ export default class Game extends React.PureComponent<void, GameState> {
           <Board
             squares={this.state.squares}
             entities={this.state.entities}
-            onClick={(i) => GameActions.newHandleClick(i)}
+            onClick={(i) => GameActions.handleClickV2(i)}
             size={this.state.arenaSize}
             isRotated={this.state.isBoardRotated}
           />

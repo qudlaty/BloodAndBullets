@@ -23,6 +23,7 @@ export default function InventoryList(props: InventoryListProps) {
 
   const inventoryItems = props.inventory.map((item) => (
     <InventoryItem
+      key={`i${item.name}`}
       item={item}
       onClick={props.onClick}
       onDrop={props.onDrop}
