@@ -5,6 +5,7 @@ import LinearDisplay from "./LinearDisplay";
 interface InventoryItemProps {
   item: Item;
   onDrop(itemName: string);
+  onReload(itemName: string);
   onClick(itemName: string);
   processInterface: Function;
 }
@@ -45,6 +46,7 @@ export default function InventoryItem(props: InventoryItemProps) {
           className={className}
           onClick={() => {
             weapon.reload();
+            props.onReload(item.name);
             props.processInterface();
           }}
         >

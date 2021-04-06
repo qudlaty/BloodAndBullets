@@ -103,6 +103,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
           title="On the floor"
           onClick={this.onItemClick}
           onDrop={null}
+          onReload={null}
           inventory={targeted.items}
           processInterface={() => this.props.processInterface()}
         />
