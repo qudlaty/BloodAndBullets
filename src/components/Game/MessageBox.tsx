@@ -12,7 +12,7 @@ export class MessageBox extends React.Component {
 
   renderMessage = (message: string, number: number) => {
     return (
-      <li>
+      <li key={`msg${number}`}>
         Message #[{number}]: {message}
       </li>
     );

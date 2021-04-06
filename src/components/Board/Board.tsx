@@ -29,7 +29,7 @@ export default class Board extends React.Component<BoardProps> {
 
     return (
       <SquareComponent // is a pureComponent
-        key={i}
+        key={`r${rowId}_c${i}`}
         squareId={i}
         className={Helpers.getCssClassesForAGivenSquare(square)}
         onClick={this.handleClick}
@@ -40,7 +40,7 @@ export default class Board extends React.Component<BoardProps> {
     );
   }
 
-  EntityPawns = (): ReactElement[] => this.props.entities.map((entity) => <EntityPawnComponent entity={entity} />);
+  EntityPawns = (): ReactElement[] => this.props.entities.map((entity) => <EntityPawnComponent key={entity.name} entity={entity} />);
 
   BoardSquares = () => {
     let cellId: number = 0;

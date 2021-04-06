@@ -121,14 +121,14 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       if (distanceToSelected !== 0) {
         if (targeted.isAvailableDestination) {
           availableActions[0] = (
-            <button onClick={() => this.onMoveClick(selected, targetedSquarePosition)} className={GameStyles.button}>
+            <button key="move" onClick={() => this.onMoveClick(selected, targetedSquarePosition)} className={GameStyles.button}>
               Move
             </button>
           );
         }
         if (targeted.entity) {
           availableActions[1] = (
-            <button onClick={() => this.onAttackClick(selected, targetedSquarePosition)} className={GameStyles.button}>
+            <button key="attack" onClick={() => this.onAttackClick(selected, targetedSquarePosition)} className={GameStyles.button}>
               Attack
             </button>
           );
