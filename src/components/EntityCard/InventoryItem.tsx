@@ -46,7 +46,7 @@ export default function InventoryItem(props: InventoryItemProps) {
           className={className}
           onClick={() => {
             weapon.reload();
-            props.onReload(item.name);
+            props.onReload && props.onReload(item.name);
             props.processInterface();
           }}
         >
