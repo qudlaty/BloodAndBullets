@@ -34,15 +34,16 @@ export default class Game extends React.PureComponent<void, GameState> {
       entities: EntitiesService.entities,
       squares: SquaresService.squares,
 
-      selected: null,
+      selected: EntitiesService.findEntityById("Lazer Blady"),
       targeted: null,
       targetedSquareNumber: null,
       enemiesAlive: null,
       arenaSize: 10,
       autoLoop: true,
-      isBoardRotated: false,
+      isBoardRotated: true,
       isEditorOn: false,
     };
+    this.state.selected.active = true;
     GameActions = new GameActionsClass(this);
   }
 
@@ -57,6 +58,8 @@ export default class Game extends React.PureComponent<void, GameState> {
         <div className={styles.status}>
           Enemies to kill: {this.state.enemiesAlive}<br></br>
           {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
+          {this.state.selected.isAlive ? '' : " Damn. YOU DIED." }
+
         </div>
         <p>
           L2P: Click friendly entity on the map, twice. Then click a target square to move, or target entity to attack.
@@ -128,14 +131,6 @@ export default class Game extends React.PureComponent<void, GameState> {
             <div></div>
           </div>
           <MessageBox />
-        </div>
-
-        <div className={styles.game__list}>
-          <EntitiesList
-            entities={this.state.entities}
-            onInventoryClick={GameActions.onInventoryClick}
-            processInterface={() => GameActions.processInterface()}
-          />
         </div>
       </div>
     );
