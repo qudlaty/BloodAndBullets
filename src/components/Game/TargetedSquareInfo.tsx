@@ -1,12 +1,13 @@
 import React from "react";
-import * as Helpers from "../../helpers";
+// services
 import { SquaresService } from "../../services";
-import EntityCard from "../EntityCard/EntityCard";
 import { Entity, Square, Position, Item } from "../../services";
-import { structures } from "../../resources";
-
+// components
+import EntityCard from "../EntityCard/EntityCard";
 import InventoryList from "../EntityCard/InventoryList";
-
+// others
+import { structures } from "../../resources";
+import * as Helpers from "../../helpers";
 import GameStyles from "./Game.module.scss";
 
 interface TargetedSquareInfoProps {
@@ -19,6 +20,7 @@ interface TargetedSquareInfoProps {
   processInterface: Function;
 }
 
+// TODO: Refactor, does it really need all this logic.
 export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps> {
   boxSerialNumber: number = 0;
 

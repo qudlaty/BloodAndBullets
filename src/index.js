@@ -4,4 +4,5 @@ import Game from "./components/Game";
 
 import "./style.scss";
 
+// Rendering the top-level Game component
 render(<Game />, document.getElementById("root"));

@@ -5,7 +5,7 @@ interface ItemsProps {
   items: Item[];
   itemsNumber: number; // here to trigger update when list length changes
 }
-
+// FIXME: I have a strange feeling this doesn't update when contents of items list change but not the number of elements
 /**
  * @description
  * Displays icons of items on the square, as well as little number in the corner.

@@ -8,19 +8,21 @@ To have sass support on Windows, you will need to install windows-build-tools fi
 
 Run PowerShell as an Administrator and then:
 
-`npm install --global --production windows-build-tools`
+`npm install --global --production windows-build-tools@4.0.0`
 
 After that you can just `npm install` and SASS should be working.
 
-## Concepts
+---
+
+## Concepts and problems
 
 ### The concept of **tick** vs the concept of **turn**.
 
 - **Turn** is a part of a higher-level game logic, concerning who (which side of a conflict) is allowed to execute actions. There is also a limit of how many actions you can take during a turn (action points).
-  - After player does the action, everything else also executes actions and we again wait for player input = next turn.
+  - After player executes their action and ends the turn, everything else also executes actions and we again wait for player input = next turn.
 
 - **Tick** is the smallest unit of game-time, during which the state of the game is unaltered, but the next state can be calculated.
-  Transition to next tick is triggered by the timer driving the game loop.
+  Transition to next tick is triggered by the timer driving the game loop (at least so far).
 
 Initially, we have a new tick every 1 second.
 
@@ -33,10 +35,20 @@ Initially, we have a new tick every 1 second.
   - Changes the "state.selected.targetPosition" if not
 - Clicking a "Nuke all" button
   - Changes hp on all entities
+- ...
 
-Question: So actions change state within a tick, how should that be related to the tick calculating next game state?
+Question: So actions change state **within** a tick, how should that be related to the **tick** calculating next game state?
 
-**Bonus** this nicely relates to redux architecture
+Perhaps we should talk about the following concepts:
+- interface state (selection, targetting, camera position)
+- instant actions (within our turn), changing the GameState
+- queued actions (like walking, shooting) that need to be animated over multiple ticks.
+
+**Bonus** - Actions nicely relate to redux architecture.
+
+---
+
+## State Management
 
 ### Keeping game state in a component state?
 
@@ -49,3 +61,36 @@ Question: So actions change state within a tick, how should that be related to t
 
 - recommended immutability of react.state stops us from doing OOP fully
   - too bad for immutability \o/
+- It is sometimes necessary to pass a callback down a hierarchy of components, so it could be called from the most nested one and alter the state in the least nested one.
+This is kinda bad and hard to maintain.
+
+##### Current state of COMPONENT interlinking
+- **Game**
+  - `onClick` **imported here**
+  - `processInterface` **imported here**
+  - `onInventoryClick` **imported here**
+  - **Board** - component displaying the main grid of the game**
+    - **`onClick`** - only used to pass down to `Square`
+    - **SquareComponent**
+      - **`onClick`** - consumed locally
+      - **Blood** - pure component displaying the amount of blood
+      - **Items** - pure component displaying items in the square
+    - **EntityPawn** - calculates entity position on the map, determines animations for breathing, shooting
+      - **ShootingVisualization** - gets direct access to entity
+  - **MessageBox** - independent auto-scrolling message log component
+  - **SelectedEntityInfo** - component framing an entity card with few classess and a button
+    - **`processInterface`**
+    - **`onInventoryClick`**
+    - **EntityCard**
+    - // TODO: Should be changed into higher-order-component
+      https://reactjs.org/docs/higher-order-components.html
+  - **TargetedSquareInfo** - component framing inventory list, blood counter
+    - **`processInterface`**
+    - **EntityCard**
+    - **InventoryList**
+
+
+## Possible alternatives:
+### Context (not bad)
+### Redux (nice, but not exactluy known for simplicity)
+### Hooks (apparently the modern way to go)
