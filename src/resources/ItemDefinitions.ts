@@ -18,5 +18,5 @@ export class L30 extends Lazer {
   name = "Assault Lazer Cannon";
   rounds = 30;
   maxRounds = 30;
-  damage = 10;
+  damage = 3;
 }

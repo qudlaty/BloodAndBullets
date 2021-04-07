@@ -22,7 +22,10 @@ export const entitiesInitialValues = [
     maxHp: 50,
     icon: "🤖",
     isBreathing: false,
-    position: { x: 4, y: 5 },
+    position: { x: 3, y: 5 },
+    equipment: {hands: new L30()},
+    inventory: [],
+    hasWeapon: true,
   },
   {
     name: "Octo",
@@ -34,6 +37,9 @@ export const entitiesInitialValues = [
     position: { x: 8, y: 2 },
     bleedingReductionPerTurn: 0,
     bleeding: 1,
+    equipment: {hands: new L30()},
+    inventory: [],
+    hasWeapon: true,
   },
   {
     name: "Squid",
@@ -43,6 +49,9 @@ export const entitiesInitialValues = [
     icon: "🦑",
     isBreathing: true,
     position: { x: 5, y: 5 },
+    equipment: {hands: new M40()},
+    inventory: [],
+    hasWeapon: true,
   },
   {
     name: "Ant",
@@ -52,6 +61,9 @@ export const entitiesInitialValues = [
     icon: "🐜",
     isBreathing: true,
     position: { x: 7, y: 6 },
+    equipment: {hands: new M40()},
+    inventory: [],
+    hasWeapon: true,
   },
   {
     name: "Henry The Spider",
@@ -62,6 +74,9 @@ export const entitiesInitialValues = [
     isBreathing: true,
     position: { x: 9, y: 3 },
     bleedingReductionPerTurn: 1,
+    equipment: {hands: new L30()},
+    inventory: [],
+    hasWeapon: true,
   },
   {
     name: "Mosquito",
@@ -71,6 +86,9 @@ export const entitiesInitialValues = [
     icon: "🦟",
     isBreathing: true,
     position: { x: 2, y: 7 },
+    equipment: {hands: new M16()},
+    inventory: [],
+    hasWeapon: true,
   },
   {
     name: "Microbe",
@@ -79,7 +97,10 @@ export const entitiesInitialValues = [
     maxHp: 5,
     icon: "🦠",
     isBreathing: true,
-    position: { x: 3, y: 5 },
+    position: { x: 1, y: 5 },
+    equipment: {hands: new L30()},
+    inventory: [],
+    hasWeapon: true,
   },
 ];
 
