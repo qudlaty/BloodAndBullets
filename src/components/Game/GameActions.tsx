@@ -95,8 +95,10 @@ export class GameActionsClass {
             //targeted = undefined;
           } else if (Helpers.isSelectedTargeted(selected, targeted)) {
             // Deselecting if not selecting
+            /* // DISABLE DOUBLECLICK DESELECT
             GameLogic.deselectAllEntities();
             selected = undefined;
+            // */
           }
         }
 
