@@ -17,6 +17,15 @@
     float: left;
     clear: both;
   }
+  .status {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: yellow;
+    padding: 5px;
+    background: black;
+    z-index:20;
+  }
 
   .game__info {
     border: 1px solid #666;
@@ -34,10 +43,6 @@
     }
     .actions {
       padding: 0 0 10px 0;
-    }
-    .status {
-      color: yellow;
-      padding: 5px;
     }
     .interaction-container {
       display: grid;

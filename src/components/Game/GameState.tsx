@@ -5,6 +5,8 @@ export interface GameState {
   entities: Entity[];
   squares: Square[];
 
+  enemiesAlive: number;
+
   selected: Entity;
   targeted: Square;
   targetedSquareNumber: number;
