@@ -16,7 +16,7 @@ export class M40 extends Rifle {
 
 export class L30 extends Lazer {
   name = "Assault Lazer Cannon";
-  rounds = 3;
-  maxRounds = 3;
+  rounds = 30;
+  maxRounds = 30;
   damage = 10;
 }

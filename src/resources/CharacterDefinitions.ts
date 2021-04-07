@@ -34,9 +34,10 @@ export const entitiesInitialValues = [
     icon: "🧑🏻",
     isBreathing: true,
     isFriendly: true,
+    hasWeapon: true,
     position: { x: 4, y: 8 },
-    inventory: [new L30(), new M16()],
-    equipment: {},
+    inventory: [new M16()],
+    equipment: {hands: new L30()},
   },
   {
     name: "Lux Aeterna",
