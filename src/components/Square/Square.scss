@@ -26,7 +26,7 @@
     transform-origin: bottom;
   }
   &:nth-of-type(5){
-    transform: translateZ(17px);
+    transform: translateZ(18px);
     transform-origin: bottom;
   }
 }
@@ -139,6 +139,7 @@
   &.wall &__cuboid-face{
     pointer-events: none;
     background: rgba(200,200,200,0.5);
+    border: 1px solid rgba(220,220,220,0.8);
     transform-style: preserve-3d;
     @include cuboid();
   }
