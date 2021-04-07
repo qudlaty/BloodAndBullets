@@ -166,12 +166,14 @@ class EntitiesServiceClass {
 
   moveEntities(): void {
     this.entities.forEach((entity) => this.moveEntityIntoChosenDestination(entity));
-    //let JR: Entity = this.findEntityById("John Rambo");
-    let OP: Entity = this.findEntityById("Squid");
-    let OC: Entity = this.findEntityById("Octo");
-    //this.moveEntityRandomly(JR);
-    this.moveEntityRandomly(OP);
-    this.moveEntityRandomly(OC);
+    // let OP: Entity = this.findEntityById("Squid");
+    // let OC: Entity = this.findEntityById("Octo");
+    // //this.moveEntityRandomly(JR);
+    // this.moveEntityRandomly(OP);
+    // this.moveEntityRandomly(OC);
+    this.entities.filter(entity => !entity.isFriendly).forEach((entity) => {
+      this.moveEntityRandomly(entity);
+    });
   }
 }
 
