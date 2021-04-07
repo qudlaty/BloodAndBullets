@@ -31,7 +31,8 @@ export default function ShootingVisualization(props): ReactElement {
         // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
         let className = `projectile${localId}_beam`;
         let projectile = "";
-
+        const distanceWhereBeamBegins = 20;//in pixels
+        actualDistance = actualDistance - distanceWhereBeamBegins;
         customStyle = `
           @keyframes pulsing${localId} {
             0%  {opacity: 0.1;}
@@ -44,9 +45,9 @@ export default function ShootingVisualization(props): ReactElement {
           }
 
           @keyframes swiping${localId} {
-            0%  {transform: rotate(${angle + 90 + -1}deg);}
-            50%  {transform: rotate(${angle + 90 + 1}deg);}
-            100%  {transform: rotate(${angle + 90 - 1}deg);}
+            0%  {transform: rotate(${angle + 90 -1}deg) translateX(${distanceWhereBeamBegins}px);}
+            50%  {transform: rotate(${angle + 90 + 1}deg) translateX(${distanceWhereBeamBegins}px);}
+            100%  {transform: rotate(${angle + 90 - 1}deg) translateX(${distanceWhereBeamBegins}px);}
           }
 
           .${className} {
@@ -55,14 +56,13 @@ export default function ShootingVisualization(props): ReactElement {
             border-radius: 5px;
             background: #F00;
             position: absolute;
-            top: 16px;
-            left: 16px;
-
-            transform: rotate(${angle + 90}deg);
+            top: 13px;
+            left: 13px;
+            transform: rotate(${angle + 90}deg);/* overriden by swiping keyframes */
             transform-origin: left 0px;
-            animation: pulsing${localId} 0.1s linear infinite,
-            elongating${localId} 1s linear alternate infinite,
-            swiping${localId} 1s linear alternate infinite;
+            animation: pulsing${localId} 0.1s ease infinite,
+            elongating${localId} 0.7s ease alternate infinite,
+            swiping${localId} 1s ease alternate infinite;
             box-shadow: 0 0 5px 5px white;
             z-index: 10;
           }
