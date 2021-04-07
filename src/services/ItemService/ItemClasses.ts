@@ -32,7 +32,7 @@ export class Rifle extends RangedWeapon {
   type = "projectile";
   range = 4;
   damage = 1;
-  causesBleeding = 4;
+  causesBleeding = 2;
 }
 
 export class Lazer extends RangedWeapon {
