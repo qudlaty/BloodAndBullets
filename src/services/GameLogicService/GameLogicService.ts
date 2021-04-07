@@ -45,19 +45,35 @@ class GameLogicClass {
       entity.bleedExternally();
 
       EntitiesService.stopBreathingForKilledEntity(entity);
+
       SquaresService.markAvailableDestinationsForSelectedEntity(entity);
       // SquaresService.castLightsFromFriendlyEntity(entity);
     });
 
+    nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
+    console.log(nextState.enemiesAlive);
     return nextState;
+  }
+
+  calculateNumberOfAliveEnemies(entities: Entity[]):number {
+    let amountOfAliveEnemies = 0;
+    entities.forEach((entity) => {
+      if(entity.isFriendly) {
+        return;
+      } else if(entity.hp > 0) {
+        amountOfAliveEnemies++;
+      }
+    });
+
+    return amountOfAliveEnemies;
   }
 
   syncSquaresWithEntities = (previousState) => {
     let squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
-    /* 
-    Reattach new squares array to the SquaresService 
-    This might actually be not-needed, as elements of that array are objects 
-    and are referenced in both arrays, so unless we're adding new squares, 
+    /*
+    Reattach new squares array to the SquaresService
+    This might actually be not-needed, as elements of that array are objects
+    and are referenced in both arrays, so unless we're adding new squares,
     everything should work without re-attaching
     */
     SquaresService.squares = squares;

@@ -22,7 +22,7 @@ let GameActions = null;
 export default class Game extends React.PureComponent<void, GameState> {
   renderCounter: number = 0;
   stepNumber: number = 0;
-  dat;
+  //dat;
 
   constructor(props: void) {
     super(props);
@@ -37,7 +37,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       selected: null,
       targeted: null,
       targetedSquareNumber: null,
-
+      enemiesAlive: null,
       arenaSize: 10,
       autoLoop: true,
       isBoardRotated: false,
@@ -54,6 +54,10 @@ export default class Game extends React.PureComponent<void, GameState> {
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className={styles.game}>
+        <div className={styles.status}>
+          Enemies to kill: {this.state.enemiesAlive}<br></br>
+          {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
+        </div>
         <p>
           L2P: Click friendly entity on the map, twice. Then click a target square to move, or target entity to attack.
         </p>
@@ -104,10 +108,6 @@ export default class Game extends React.PureComponent<void, GameState> {
               <span>Auto Cycle</span>
             </label>
           </div>
-          <div className={styles.status}>
-            Hello, status will be here.
-          </div>
-
           <div className={styles["interaction-container"]}>
             <SelectedEntityInfo
               selected={this.state.selected}
