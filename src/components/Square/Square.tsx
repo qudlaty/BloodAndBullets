@@ -1,7 +1,10 @@
 import React, { ReactElement } from "react";
+// services
+import { Item } from "../../services";
+// components
 import Blood from "../Square/Blood";
 import Items from "../Square/Items";
-import { Item } from "../../services";
+// others
 import "./Square.scss";
 
 // TODO: This should really take less props

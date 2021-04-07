@@ -1,7 +1,9 @@
 import React, { ReactElement } from "react";
-import EntityCard from "../EntityCard/EntityCard";
+// services
 import { Entity } from "../../services";
-
+// components
+import EntityCard from "../EntityCard/EntityCard";
+// others
 import GameStyles from "./Game.module.scss";
 
 interface SelectedEntityInfoProperties {
@@ -11,6 +13,7 @@ interface SelectedEntityInfoProperties {
   processInterface: Function;
 }
 
+// TODO: Change this into HOC, as it doesn't really need half of it's props for itself
 export default class SelectedEntityInfo extends React.Component<SelectedEntityInfoProperties> {
   render(): ReactElement {
     if (!this.props.selected) {
