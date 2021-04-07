@@ -1,6 +1,7 @@
 import React from "react";
 import { SquaresService } from "../../services";
 import { Entity } from "../../services/EntitiesService";
+import HpBar from "./HpBar";
 import ShootingVisualization from "./ShootingVisualization";
 import * as Helpers from "../../helpers";
 import "./EntityPawn.scss";
@@ -23,6 +24,7 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
     classessFromFlags += Helpers.turnFlagsIntoClasses(square, classNameBase);
     className += ` ${classessFromFlags} `;
     let fof = entity.isFriendly ? 'friendly' : 'hostile';
+    let color = entity.isFriendly ? 'green' : 'red';
     let zIndex = entity.isShooting ? 5 : 1;
     let animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
 
@@ -38,7 +40,14 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
       >
         <div
           className={`entity-pawn__health-display ` + fof}
-        >{entity.hp}</div>
+        >
+
+          <HpBar
+            current={entity.hp}
+            max={entity.maxHp}
+            color={color}
+          />
+        </div>
 
         <div
           className={className}
