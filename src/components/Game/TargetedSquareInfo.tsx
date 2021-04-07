@@ -25,8 +25,12 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
   boxSerialNumber: number = 0;
 
   onItemClick = (itemName: string): void => {
-    let { selected, targeted } = this.props;
-    if (Helpers.isSelectedTargeted(selected, targeted)) {
+    let { selected, targeted, squareNumber } = this.props;
+    let targetedSquarePosition = SquaresService.targetSquarePosition(squareNumber);
+    if (selected && targeted &&
+      selected.position.x == targetedSquarePosition.x &&
+      selected.position.y == targetedSquarePosition.y
+      ) {
       let item = targeted.takeFromInventory(itemName);
       selected.addToInventory(item);
     }
