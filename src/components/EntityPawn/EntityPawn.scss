@@ -1,13 +1,14 @@
 .board--rotated .entity-pawn {
-  transform: perspective(750px)  translateZ(11px) rotateY(0deg) rotateZ(-45deg) rotateX(-45deg);
+  transform: perspective(750px)
+  translateZ(11px) rotateZ(-45deg) rotateX(-60deg);
 }
 
 .entity-pawn {
-  transform: perspective(0)  translateZ(0) rotateX(0) rotateY(0) rotateZ(0);
+  transform: translateZ(0) rotateX(0) rotateY(0) rotateZ(0);
   position: absolute;
+  transform-style: preserve-3d;
   transition: all 1s, top 0.8s, left 0.8s;
   pointer-events: none;
-  background: rgba(200,200,200,0.3);
   &__icon {
     position: relative;
     font-size: 1.5em;
@@ -57,10 +58,11 @@
     }
     transition: all 1s;
     transform-style: preserve-3d;
-    transform: perspective(500px) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    transform: perspective(0) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   }
   .board--rotated & .shooting-visualization {
-    transform: perspective(500px) translateY(0px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+    transform:
+    translateY(3px) rotateX(60deg) rotateZ(45deg);
   }
 }
 

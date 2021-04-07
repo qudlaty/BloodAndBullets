@@ -20,6 +20,6 @@
   transform-style: preserve-3d;
   transition: all 1s;
   &--rotated {
-    transform: perspective(750px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+    transform: perspective(2000px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
   }
 }
