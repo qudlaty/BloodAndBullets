@@ -165,10 +165,10 @@ class EntitiesServiceClass {
 
   moveEntities(): void {
     this.entities.forEach((entity) => this.moveEntityIntoChosenDestination(entity));
-    let JR: Entity = this.findEntityById("John Rambo");
+    //let JR: Entity = this.findEntityById("John Rambo");
     let OP: Entity = this.findEntityById("Squid");
     let OC: Entity = this.findEntityById("Octo");
-    this.moveEntityRandomly(JR);
+    //this.moveEntityRandomly(JR);
     this.moveEntityRandomly(OP);
     this.moveEntityRandomly(OC);
   }
