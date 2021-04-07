@@ -46,6 +46,7 @@ class EntitiesServiceClass {
   stopBreathingForKilledEntity(entity: Entity): Entity {
     if (entity && entity.hp <= 0) {
       entity.isBreathing = false;
+      entity.isShooting = false;
       entity.hp = 0;
     }
     return entity;
