@@ -2,7 +2,7 @@
 /* Handling of particular events is delegated to proper services */
 
 import * as Helpers from "../../helpers";
-import { Entity, EntitiesService, SquaresService, GameLogic } from "../../services";
+import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "../../services";
 
 let component = null;
 export class GameActionsClass {
@@ -24,6 +24,7 @@ export class GameActionsClass {
 
   loop = () => {
     component.stepNumber++;
+    this.drawAggro();
     this.processEntities();
     if (component.state.autoLoop) {
       setTimeout(this.loop, 1000);
@@ -109,6 +110,44 @@ export class GameActionsClass {
       () => this.processInterface()
     );
   };
+
+  drawAggro() {
+    EntitiesService.entities.forEach((entity)=>{
+      if(entity.isFriendly) return;
+      entity.isShooting = false;
+      this.aggro(entity.name);
+    })
+  }
+
+  aggro = (name) => {
+    let actor = EntitiesService.findEntityById(name);
+    let position = actor.position;
+    let closeEntities = this.findEntitiesThatAreClose(position);
+    let entitiesToAttack = closeEntities.filter(entity => entity.hp > 0);
+    if(entitiesToAttack.length) {
+      let firstAmongThem = entitiesToAttack[0];
+      actor.attackPosition(firstAmongThem.position);
+    }
+  }
+
+  findEntitiesThatAreClose(position: Position){
+    let {x, y} = position;
+    let entities: Entity[] = [];
+    for (let j = y - 1; j <= y + 1; j++) {
+      if (j < 0 || j >= SquaresService.arenaSize) {
+        continue;
+      }
+      for (let i = x - 1; i <= x + 1; i++) {
+        if (i < 0 || i >= SquaresService.arenaSize || (i === x && j === y)) {
+          continue;
+        }
+        let newlyFoundEntities = EntitiesService.getEntitiesAtGivenPosition({x: i, y: j})
+        entities = entities.concat(newlyFoundEntities);
+      }
+    }
+
+    return entities;
+  }
 
   nuke = (dmg: number) => {
     component.setState(
