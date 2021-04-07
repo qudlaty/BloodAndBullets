@@ -1,4 +1,5 @@
 import React from "react";
+// services
 import { MessageService } from "../../services";
 
 export class MessageBox extends React.Component {

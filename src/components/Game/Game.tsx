@@ -1,16 +1,20 @@
 import React from "react";
 //import * as dat from "dat.gui";
 
+// services
+import { EntitiesService, SquaresService, GameModel } from "../../services";
+
+// components
 import Board from "../Board";
 import EntitiesList from "../EntitiesList";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 import { MessageBox } from "./MessageBox";
-import { GameActionsClass } from "./GameActions";
-import { EntitiesService, SquaresService, GameModel } from "../../services";
 
-import styles from "./Game.module.scss";
+// others
 import { GameState } from "./GameState";
+import { GameActionsClass } from "./GameActions";
+import styles from "./Game.module.scss";
 
 let GameActions = null;
 
