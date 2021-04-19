@@ -9,6 +9,8 @@
   }
   &__board {
     float: left;
+    border: 1px solid #666;
+    overflow: hidden;
   }
   &__info {
     float: left;
