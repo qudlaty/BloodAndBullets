@@ -1,7 +1,7 @@
 import * as Helpers from "../../helpers";
 import React, { ReactElement } from "react";
 
-export default function ShootingVisualization(props): ReactElement {
+export function ShootingVisualization(props): ReactElement {
   const DISTANCE_BETWEEN_TILES = 38;
   let { entity } = props;
 

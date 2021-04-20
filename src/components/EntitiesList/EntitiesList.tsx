@@ -1,5 +1,5 @@
 import React from "react";
-import EntityCard from "../EntityCard";
+import { EntityCard } from "../EntityCard";
 import "./EntitiesList.scss";
 import { Entity } from "../../services/EntitiesService";
 

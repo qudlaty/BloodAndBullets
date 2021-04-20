@@ -3,8 +3,8 @@ import React from "react";
 import { SquaresService } from "../../services";
 import { Entity, Square, Position, Item } from "../../services";
 // components
-import EntityCard from "../EntityCard/EntityCard";
-import InventoryList from "../EntityCard/InventoryList";
+import { EntityCard } from "../EntityCard";
+import { InventoryList } from "../InventoryList";
 // others
 import { structures } from "../../resources";
 import * as Helpers from "../../helpers";

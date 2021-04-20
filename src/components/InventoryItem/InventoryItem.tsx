@@ -1,6 +1,6 @@
 import React from "react";
 import { Item, RangedWeapon } from "../../services";
-import LinearDisplay from "./LinearDisplay";
+import { LinearDisplay } from "../LinearDisplay";
 
 interface InventoryItemProps {
   item: Item;
@@ -10,7 +10,7 @@ interface InventoryItemProps {
   processInterface: Function;
 }
 
-export default function InventoryItem(props: InventoryItemProps) {
+export function InventoryItem(props: InventoryItemProps) {
   let { item } = props;
   let reloadButton;
   let dropButton;

@@ -5,3 +5,4 @@ export * from "./EntityCard";
 export * from "./EntityPawn";
 export * from "./Game";
 export * from "./Square";
+export * from "./LinearDisplay";
