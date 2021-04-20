@@ -1,6 +1,6 @@
 import React from "react";
-import LinearDisplay from "./LinearDisplay";
-import InventoryList from "./InventoryList";
+import { LinearDisplay } from "../LinearDisplay";
+import { InventoryList } from "../InventoryList";
 import "./EntityCard.scss";
 import { Entity, Item } from "../../services";
 
@@ -10,7 +10,7 @@ interface EntityCardProps {
   processInterface?: Function;
 }
 
-class EntityCard extends React.Component<EntityCardProps> {
+export class EntityCard extends React.Component<EntityCardProps> {
   renderCount = 0;
   handleInventoryClick = (itemName: string): void => {
     this.props.onInventoryClick(this.props.entity, itemName);
@@ -103,5 +103,3 @@ class EntityCard extends React.Component<EntityCardProps> {
     );
   }
 }
-
-export default EntityCard;

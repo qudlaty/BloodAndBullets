@@ -1,4 +1,3 @@
-import { timeStamp } from "console";
 import React from "react";
 import "./HpBar.scss";
 
@@ -8,7 +7,7 @@ interface HpBarProps {
     color: string;
 }
 
-export default class HpBar extends React.Component<HpBarProps> {
+export class HpBar extends React.Component<HpBarProps> {
 
     render() {
         let percentage = ~~((this.props.current * 100) / this.props.max);
