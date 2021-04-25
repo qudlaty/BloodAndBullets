@@ -137,7 +137,7 @@
     left:0;
   }
   &.wall &__cuboid-face{
-    pointer-events: none;
+    //pointer-events: none;
     background: rgba(200,200,200,0.5);
     border: 1px solid rgba(220,220,220,0.8);
     transform-style: preserve-3d;
@@ -147,7 +147,17 @@
     background: rgba(0, 151, 252, 0.5);
   }
   &.nothing {
-    background: #222;
+    background: transparent;
     border: #222;
+  }
+  &.floor &__cuboid-face {
+    background: inherit;//rgba(200,200,200,0.9);
+    border:1px solid #666;
+    @include cuboid();
+  }
+  &.floor &__cuboid {
+    background: inherit;
+    transform-style: preserve-3d;
+    transform: rotateX(180deg);
   }
 }
