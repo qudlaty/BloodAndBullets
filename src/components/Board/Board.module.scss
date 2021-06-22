@@ -3,10 +3,11 @@
   background: transparent;// #111;
   padding: 10px;
   border: 1px solid #555;
-  font-size: 50px;
+  //font-size: 50px;
   &__row{
     z-index: 0;
     position: relative;
+    font-size: 1em;
     &:after {
       content: "";
       display: table;

@@ -14,6 +14,7 @@ interface BoardProps {
   entities: Entity[]; // updated every tick
   size: number;
   isRotated: boolean;
+  style: any;
 }
 /**
  * @description Board component renders Squares and EntityPawns
@@ -72,7 +73,7 @@ export default class Board extends React.Component<BoardProps> {
       className += ` ${styles["board--rotated"]} board--rotated`;
     }
     return (
-      <div className={className}>
+      <div className={className} style={this.props.style}>
         {this.BoardSquares()}
         {this.EntityPawns()}
       </div>
