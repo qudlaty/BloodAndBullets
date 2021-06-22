@@ -20,19 +20,20 @@ export function ShootingVisualization(props): ReactElement {
     (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y)
   ) {
     if (targetCoords) {
-      let distanceToTargetX = DISTANCE_BETWEEN_TILES * (targetCoords.x - entity.position.x);
-      let distanceToTargetY = DISTANCE_BETWEEN_TILES * (targetCoords.y - entity.position.y);
+      let distanceToTargetXInUnits = (targetCoords.x - entity.position.x);
+      let distanceToTargetYInUnits = (targetCoords.y - entity.position.y);
 
-      let actualDistance = Helpers.calculateDistance(distanceToTargetX, distanceToTargetY);
+      let actualDistanceInUnits = Helpers.calculateDistance(distanceToTargetXInUnits, distanceToTargetYInUnits);
       let weaponType = entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type;
-      let angle = calcNewAangle(distanceToTargetX, distanceToTargetY);
+      let angle = calcNewAangle(distanceToTargetXInUnits, distanceToTargetYInUnits);
 
       if (weaponType === "lazer") {
         // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
         let className = `projectile${localId}_beam`;
         let projectile = "";
         const distanceWhereBeamBegins = 20;//in pixels
-        actualDistance = actualDistance - distanceWhereBeamBegins;
+        //actualDistance = actualDistance - distanceWhereBeamBegins;
+        // do above within template
         customStyle = `
           @keyframes pulsing${localId} {
             0%  {opacity: 0.1;}
@@ -40,8 +41,8 @@ export function ShootingVisualization(props): ReactElement {
           }
 
           @keyframes elongating${localId} {
-            0%  {width: ${actualDistance - 20};}
-            100%  {width: ${actualDistance + 20};}
+            0%  { width: calc(${actualDistanceInUnits}em + ${actualDistanceInUnits} * 4px - 20px); }
+            100%  {width: calc(${actualDistanceInUnits}em + ${actualDistanceInUnits} * 4px - 20px); }
           }
 
           @keyframes swiping${localId} {
@@ -51,7 +52,7 @@ export function ShootingVisualization(props): ReactElement {
           }
 
           .${className} {
-            width: ${actualDistance}px;
+            width: ${actualDistanceInUnits}em;
             height: 3px;
             border-radius: 5px;
             background: #F00;

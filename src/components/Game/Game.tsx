@@ -69,6 +69,7 @@ export default class Game extends React.PureComponent<void, GameState> {
             onClick={(i) => GameActions.handleClickV2(i)}
             size={this.state.arenaSize}
             isRotated={this.state.isBoardRotated}
+            style={{fontSize: '40px'}}
           />
         </div>
 
