@@ -33,9 +33,9 @@ export default class Board extends React.Component<BoardProps> {
         squareId={i}
         className={Helpers.getCssClassesForAGivenSquare(square)}
         onClick={this.handleClick}
-        blood={square.blood} // number
-        items={square.items} // list of objects
-        itemsNumber={square.items && square.items.length}
+        blood={square && square.blood} // number
+        items={square && square.items} // list of objects
+        itemsNumber={square && square.items && square.items.length}
       ></SquareComponent>
     );
   }
