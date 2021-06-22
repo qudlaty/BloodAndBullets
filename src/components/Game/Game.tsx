@@ -38,7 +38,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       enemiesAlive: null,
       arenaSize: 10,
       autoLoop: true,
-      isBoardRotated: true,
+      isBoardRotated: false,
       isEditorOn: false,
     };
     this.state.selected.active = true;

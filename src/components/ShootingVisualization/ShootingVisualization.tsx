@@ -2,7 +2,7 @@ import * as Helpers from "../../helpers";
 import React, { ReactElement } from "react";
 
 export function ShootingVisualization(props): ReactElement {
-  const DISTANCE_BETWEEN_TILES = 38;
+  const DISTANCE_BETWEEN_TILES = 54;
   let { entity } = props;
 
   let calcNewAangle = Helpers.calculateAngle;
@@ -56,8 +56,8 @@ export function ShootingVisualization(props): ReactElement {
             border-radius: 5px;
             background: #F00;
             position: absolute;
-            top: 13px;
-            left: 13px;
+            top: 0.5em;
+            left: 0.5em;
             transform: rotate(${angle + 90}deg);/* overriden by swiping keyframes */
             transform-origin: left 0px;
             animation: pulsing${localId} 0.1s ease infinite,
