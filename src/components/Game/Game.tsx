@@ -36,7 +36,7 @@ export default class Game extends React.PureComponent<void, GameState> {
       targeted: null,
       targetedSquareNumber: null,
       enemiesAlive: null,
-      arenaSize: 10,
+      arenaSize: 20,
       autoLoop: true,
       isBoardRotated: false,
       isEditorOn: false,
