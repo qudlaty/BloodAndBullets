@@ -16,7 +16,7 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
   render() {
     let { entity } = this.props;
     let square = SquaresService.getSquare(entity.position.x, entity.position.y);
-    const squareDistance = 38;
+    const squareDistance = 52;
 
     let classNameBase = "entity-pawn__icon";
     let className = `${classNameBase}`;
@@ -28,13 +28,15 @@ export default class EntityPawn extends React.Component<EntityPawnProps> {
     let zIndex = entity.isShooting ? 5 : 1;
     let animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
 
+    let boardPadding = 10;
+    let squareMargin = 2;
     return (
       <div
         className="entity-pawn"
         key={entity.name}
         style={{
-          left: squareDistance / 2 - 4 + squareDistance * entity.position.x,
-          top: squareDistance / 2 - 4 + squareDistance * entity.position.y,
+          left: `calc(${boardPadding + 3}px + ${entity.position.x * squareMargin * 2}px + ${entity.position.x}em)`,
+          top: `calc(${boardPadding + 3}px + ${entity.position.y * squareMargin * 2}px + ${entity.position.y}em)`,
           zIndex: zIndex,
         }}
       >
