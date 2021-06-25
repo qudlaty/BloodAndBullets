@@ -31,12 +31,12 @@ export default class Game extends React.PureComponent<void, GameState> {
     this.state = {
       entities: EntitiesService.entities,
       squares: SquaresService.squares,
-
+      squareSize: 40,
       selected: EntitiesService.findEntityById("Lazer Blady"),
       targeted: null,
       targetedSquareNumber: null,
       enemiesAlive: null,
-      arenaSize: 20,
+      arenaSize: 10,
       autoLoop: true,
       isBoardRotated: false,
       isEditorOn: false,
@@ -49,6 +49,16 @@ export default class Game extends React.PureComponent<void, GameState> {
     GameActions.loop();
   }
 
+  zoomIn() {
+    this.setState((prevState) => {
+      return { squareSize: prevState.squareSize + 5 };
+    });
+  }
+  zoomOut() {
+    this.setState((prevState) => {
+      return { squareSize: prevState.squareSize - 5 };
+    });
+  }
   render() {
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
@@ -69,7 +79,7 @@ export default class Game extends React.PureComponent<void, GameState> {
             onClick={(i) => GameActions.handleClickV2(i)}
             size={this.state.arenaSize}
             isRotated={this.state.isBoardRotated}
-            style={{fontSize: '40px'}}
+            style={{fontSize: `${this.state.squareSize}px`}}
           />
         </div>
 
@@ -99,6 +109,14 @@ export default class Game extends React.PureComponent<void, GameState> {
             <button onClick={GameActions.toggleRotateBoard} className={styles.button}>
               Rotate Board
             </button>
+
+            <button onClick={() => this.zoomIn()} className={styles.button}>
+              Zoom In (+)
+            </button>
+            <button onClick={() => this.zoomOut()} className={styles.button}>
+              Zoom Out (-)
+            </button>
+
             <button onClick={GameActions.nextTick} className={styles.button}>
               Next Tick
             </button>
