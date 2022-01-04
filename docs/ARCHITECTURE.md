@@ -16,7 +16,7 @@ This approach resulted in a codebase that at times was very hard to manage (The 
 - First, totally and truly decouple simulation logic and display logic
    - Simulation logic could be written in pure TypeScript, framework agnostic
 - Make every component reusable and unaware of any other components
-- Introduce some new concepts allowing to move the project in a playable direction with all necessary mechancis in place.
+- Introduce some new concepts allowing to move the project in a playable direction with all necessary mechanics in place.
 
 ## New Concepts
 
