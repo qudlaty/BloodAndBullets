@@ -17,7 +17,7 @@ import styles from "./Game.module.scss";
 let GameActions = null;
 
 /** Game composes all the parts of the interface */
-export default class Game extends React.PureComponent<void, GameState> {
+export class Game extends React.PureComponent<void, GameState> {
   renderCounter: number = 0;
   stepNumber: number = 0;
   //dat;
@@ -153,3 +153,5 @@ export default class Game extends React.PureComponent<void, GameState> {
     );
   }
 }
+
+export default Game;
