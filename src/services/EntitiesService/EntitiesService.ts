@@ -2,7 +2,7 @@ import { Entity, Position, HavingInventory } from ".";
 import { SquaresService, Square } from "../SquaresService";
 import * as Helpers from "../../helpers/Helpers";
 import { RangedWeapon } from "../";
-const arenaSize: number = 20;
+const arenaSize: number = 10;
 
 class EntitiesServiceClass {
   entities: Entity[];
