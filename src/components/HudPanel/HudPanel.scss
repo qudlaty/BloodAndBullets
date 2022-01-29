@@ -1,0 +1,36 @@
+$color-green: #0C0;
+$color-amber: #fb7e14;
+
+$color-primary: $color-amber;
+$color-border: $color-primary;
+
+.hud-panel {
+  & , & > *{
+    box-sizing: border-box;
+    background: inherit;
+  }
+
+  font-size: 1.8vmin;
+  font-weight: 100;
+  font-family: Arial;
+
+  color: $color-border;
+
+  border: 1px solid $color-border;
+  padding: 1em;
+  margin: 1em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__title {
+    //position:absolute;
+    //top: calc(-0.5em - 0.3em);
+    margin-top: calc(-1em - 0.5em - 0.3em);
+    padding: 0.2em 0.4em;
+  }
+  &__content {
+    width: 100%;
+  }
+}

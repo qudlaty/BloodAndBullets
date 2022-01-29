@@ -5,3 +5,4 @@ export * from "./ItemService";
 export * from "./MessageService";
 export * from "./GameLogicService";
 export * from "./GameModelService";
+export * from "./GameActionsService";

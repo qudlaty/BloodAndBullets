@@ -4,7 +4,7 @@ import { Entity, Square, EntitiesService, SquaresService } from "../../services"
 export interface GameState {
   entities: Entity[];
   squares: Square[];
-
+  squareSize: number;
   enemiesAlive: number;
 
   selected: Entity;

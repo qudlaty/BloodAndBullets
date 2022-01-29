@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 // services
 import { Entity } from "../../services";
 // components
-import EntityCard from "../EntityCard/EntityCard";
+import { EntityCard } from "../EntityCard";
 // others
 import GameStyles from "./Game.module.scss";
 

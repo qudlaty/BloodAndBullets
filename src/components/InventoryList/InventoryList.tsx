@@ -1,7 +1,7 @@
 import React from "react";
 import "./InventoryList.scss";
 import { Item } from "../../services";
-import InventoryItem from "./InventoryItem";
+import { InventoryItem } from "../InventoryItem";
 
 interface InventoryListProps {
   className?: string;
@@ -14,7 +14,7 @@ interface InventoryListProps {
   processInterface: Function;
 }
 
-export default function InventoryList(props: InventoryListProps) {
+export function InventoryList(props: InventoryListProps) {
   const className = `inventory-list ${props.className || ""}`;
 
   if (!props.inventory) {
