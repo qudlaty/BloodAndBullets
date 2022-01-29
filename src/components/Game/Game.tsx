@@ -67,7 +67,6 @@ export class Game extends React.PureComponent<void, GameState> {
           Enemies to kill: {this.state.enemiesAlive}<br></br>
           {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
           {this.state.selected.isAlive ? '' : " Damn. YOU DIED." }
-
         </div>
         <p>
           L2P: Click friendly entity on the map, twice. Then click a target square to move, or target entity to attack.
