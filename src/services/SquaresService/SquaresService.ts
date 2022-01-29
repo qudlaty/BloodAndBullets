@@ -3,7 +3,7 @@ import { Square } from "./SquareClass";
 import { Entity, Position } from "../EntitiesService";
 
 class SquaresServiceClass {
-  arenaSize: number = 20;
+  arenaSize: number = 10;
 
   squares: Square[] = [];
 
