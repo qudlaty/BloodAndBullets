@@ -13,6 +13,7 @@ interface BloodProps {
  */
 class Blood extends React.PureComponent<BloodProps> {
   render() {
+    console.log('BLOOD', this.props);
     let { bloodAmount } = this.props;
 
     let bloodNumbers = [];
@@ -32,11 +33,12 @@ class Blood extends React.PureComponent<BloodProps> {
       <div
         className="square__blood"
         style={{
-       //   background: `rgba(255, 0, 0, ${(bloodAmount / 50).toFixed(2)})`,
+          background: `rgba(255, 0, 0, ${(bloodAmount / 50).toFixed(2)})`,
           position: 'relative'
         }}
       >
         {bloodNumbers}
+        {bloodAmount}
       </div>
     );
   }
