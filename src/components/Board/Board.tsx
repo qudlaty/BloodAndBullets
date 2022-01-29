@@ -14,6 +14,7 @@ interface BoardProps {
   entities: Entity[]; // updated every tick
   size: number;
   isRotated: boolean;
+  style: any;
 }
 /**
  * @description Board component renders Squares and EntityPawns
@@ -33,9 +34,9 @@ export default class Board extends React.Component<BoardProps> {
         squareId={i}
         className={Helpers.getCssClassesForAGivenSquare(square)}
         onClick={this.handleClick}
-        blood={square.blood} // number
-        items={square.items} // list of objects
-        itemsNumber={square.items && square.items.length}
+        blood={square && square.blood} // number
+        items={square && square.items} // list of objects
+        itemsNumber={square && square.items && square.items.length}
       ></SquareComponent>
     );
   }
@@ -72,7 +73,7 @@ export default class Board extends React.Component<BoardProps> {
       className += ` ${styles["board--rotated"]} board--rotated`;
     }
     return (
-      <div className={className}>
+      <div className={className} style={this.props.style}>
         {this.BoardSquares()}
         {this.EntityPawns()}
       </div>

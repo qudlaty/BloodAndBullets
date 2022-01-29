@@ -9,6 +9,8 @@
   }
   &__board {
     float: left;
+    border: 1px solid #666;
+    overflow: hidden;
   }
   &__info {
     float: left;
@@ -18,9 +20,6 @@
     clear: both;
   }
   .status {
-    position: fixed;
-    top: 0;
-    left: 0;
     color: yellow;
     padding: 5px;
     background: black;
@@ -126,3 +125,11 @@
     }
   }
 }
+
+.status {
+  margin-bottom: 10px;
+}
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+

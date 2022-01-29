@@ -1,6 +1,6 @@
 .board--rotated .entity-pawn {
   transform: perspective(750px)
-  translateZ(11px) rotateZ(-45deg) rotateX(-60deg);
+  translateZ(0.33em) rotateZ(-45deg) rotateX(-60deg);
 }
 
 .entity-pawn {
@@ -9,9 +9,14 @@
   transform-style: preserve-3d;
   transition: all 1s, top 0.8s, left 0.8s;
   pointer-events: none;
+  //font-size: 50px;
+
+  //background: rgba(0,0,100,0.7);
+  width: 1em;
+  height: 1em;
   &__icon {
     position: relative;
-    font-size: 1.5em;
+    font-size: 0.7em;
     //opacity: 0.1;
     z-index: 2;
     transition: all 1s;
@@ -31,7 +36,7 @@
     width: 100%;
     z-index: 5;
     color: white;
-    font-size: 10px;
+    font-size: 1em;
     text-align: center;
     text-shadow:1px 1px 1px black, -1px -1px 1px black;
     &.friendly {

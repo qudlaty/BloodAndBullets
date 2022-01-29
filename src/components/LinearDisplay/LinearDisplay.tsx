@@ -9,7 +9,7 @@ interface LinearDisplayProps {
   label?: string;
 }
 
-export default function LinearDisplay(props: LinearDisplayProps) {
+export function LinearDisplay(props: LinearDisplayProps) {
   let className = `linear-display ${props.className || ""}`;
   let percentage = ~~((props.current * 100) / props.max);
   let overload = percentage > 100;
