@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/BloodAndBullets/build/static/css/main.7621aae1.chunk.css",
-    "main.js": "/BloodAndBullets/build/static/js/main.41c0b41e.chunk.js",
-    "main.js.map": "/BloodAndBullets/build/static/js/main.41c0b41e.chunk.js.map",
+    "main.js": "/BloodAndBullets/build/static/js/main.cfae0466.chunk.js",
+    "main.js.map": "/BloodAndBullets/build/static/js/main.cfae0466.chunk.js.map",
     "runtime-main.js": "/BloodAndBullets/build/static/js/runtime-main.561fb24a.js",
     "runtime-main.js.map": "/BloodAndBullets/build/static/js/runtime-main.561fb24a.js.map",
     "static/js/2.43c06dcd.chunk.js": "/BloodAndBullets/build/static/js/2.43c06dcd.chunk.js",
     "static/js/2.43c06dcd.chunk.js.map": "/BloodAndBullets/build/static/js/2.43c06dcd.chunk.js.map",
     "index.html": "/BloodAndBullets/build/index.html",
-    "precache-manifest.f45c60630673d6b624f1f25f1b78a607.js": "/BloodAndBullets/build/precache-manifest.f45c60630673d6b624f1f25f1b78a607.js",
+    "precache-manifest.b984de55d0a625f37b56960bb886fb00.js": "/BloodAndBullets/build/precache-manifest.b984de55d0a625f37b56960bb886fb00.js",
     "service-worker.js": "/BloodAndBullets/build/service-worker.js",
     "static/css/main.7621aae1.chunk.css.map": "/BloodAndBullets/build/static/css/main.7621aae1.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.561fb24a.js",
     "static/js/2.43c06dcd.chunk.js",
     "static/css/main.7621aae1.chunk.css",
-    "static/js/main.41c0b41e.chunk.js"
+    "static/js/main.cfae0466.chunk.js"
   ]
 }
