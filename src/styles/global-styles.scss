@@ -19,3 +19,17 @@ h1,
 p {
   font-family: Lato;
 }
+
+.meta-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.screen-switch {
+  background: black;
+  padding: 5px 7px;
+  select {
+    background: black;
+    color: #999;
+  }
+}

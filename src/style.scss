@@ -1,10 +1,13 @@
-body {
+@import "styles/global-styles.scss";
+
+html, body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+  @include zero;
 }
-#root {
+
+#root, .app {
   all: inherit;
 }
-@import "styles/global-styles.scss";

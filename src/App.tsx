@@ -33,12 +33,16 @@ export default class App extends React.Component<void, AppState> {
   render() {
     let SelectedScene = this.scenes[this.state.loadedScene];
     return <div className="app">
-      <span>Select screen: </span>
-      <select value={this.state.loadedScene} onChange={(e)=>this.handleChange(e)}>
-        <option value="BlastZone">BlastZone</option>
-        <option value="Game">Game</option>
-      </select>
+      <div className="meta-bar">
+        <div className="screen-switch">
+          <span>Select screen: </span>
+          <select value={this.state.loadedScene} onChange={(e)=>this.handleChange(e)}>
+            <option value="BlastZone">BlastZone</option>
+            <option value="Game">Game</option>
+          </select>
+        </div>
+      </div>
       <SelectedScene/>
-    </div>;
+    </div>
   }
 }
