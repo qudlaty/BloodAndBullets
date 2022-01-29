@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/BloodAndBulllets/build/static/css/main.e9cae7ff.chunk.css",
-    "main.js": "/BloodAndBulllets/build/static/js/main.3c48f8d4.chunk.js",
-    "main.js.map": "/BloodAndBulllets/build/static/js/main.3c48f8d4.chunk.js.map",
-    "runtime-main.js": "/BloodAndBulllets/build/static/js/runtime-main.75db0f46.js",
-    "runtime-main.js.map": "/BloodAndBulllets/build/static/js/runtime-main.75db0f46.js.map",
-    "static/js/2.2f38c7e9.chunk.js": "/BloodAndBulllets/build/static/js/2.2f38c7e9.chunk.js",
-    "static/js/2.2f38c7e9.chunk.js.map": "/BloodAndBulllets/build/static/js/2.2f38c7e9.chunk.js.map",
-    "index.html": "/BloodAndBulllets/build/index.html",
-    "precache-manifest.b8955839debadf35b86a578746681413.js": "/BloodAndBulllets/build/precache-manifest.b8955839debadf35b86a578746681413.js",
-    "service-worker.js": "/BloodAndBulllets/build/service-worker.js",
-    "static/css/main.e9cae7ff.chunk.css.map": "/BloodAndBulllets/build/static/css/main.e9cae7ff.chunk.css.map"
+    "main.css": "/BloodAndBullets/build/static/css/main.0569403e.chunk.css",
+    "main.js": "/BloodAndBullets/build/static/js/main.d76f86d0.chunk.js",
+    "main.js.map": "/BloodAndBullets/build/static/js/main.d76f86d0.chunk.js.map",
+    "runtime-main.js": "/BloodAndBullets/build/static/js/runtime-main.561fb24a.js",
+    "runtime-main.js.map": "/BloodAndBullets/build/static/js/runtime-main.561fb24a.js.map",
+    "static/js/2.2f38c7e9.chunk.js": "/BloodAndBullets/build/static/js/2.2f38c7e9.chunk.js",
+    "static/js/2.2f38c7e9.chunk.js.map": "/BloodAndBullets/build/static/js/2.2f38c7e9.chunk.js.map",
+    "index.html": "/BloodAndBullets/build/index.html",
+    "precache-manifest.3a758316101496dcf5638567a0721f29.js": "/BloodAndBullets/build/precache-manifest.3a758316101496dcf5638567a0721f29.js",
+    "service-worker.js": "/BloodAndBullets/build/service-worker.js",
+    "static/css/main.0569403e.chunk.css.map": "/BloodAndBullets/build/static/css/main.0569403e.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.75db0f46.js",
+    "static/js/runtime-main.561fb24a.js",
     "static/js/2.2f38c7e9.chunk.js",
-    "static/css/main.e9cae7ff.chunk.css",
-    "static/js/main.3c48f8d4.chunk.js"
+    "static/css/main.0569403e.chunk.css",
+    "static/js/main.d76f86d0.chunk.js"
   ]
 }
