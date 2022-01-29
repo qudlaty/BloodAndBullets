@@ -33,7 +33,7 @@ class Blood extends React.PureComponent<BloodProps> {
       <div
         className="square__blood"
         style={{
-          //background: `rgba(255, 0, 0, ${(bloodAmount / 50).toFixed(2)})`,
+          background: `rgba(255, 0, 0, ${(bloodAmount / 50).toFixed(2)})`,
           position: 'relative'
         }}
       >
