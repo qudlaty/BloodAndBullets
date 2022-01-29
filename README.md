@@ -1,10 +1,10 @@
-# BloodAndBulllets
+# BloodAndBullets
 
 "Blood And Bullets: Assault Squad" is a tactical roguelike allowing you to lead
 a boarding party tasked with invading starships in order to take them over by
 any means necessary.
 
-[CLICK HERE TO PLAY THE NIGHLTY BUILD](https://qudlaty.github.io/BloodAndBullets/build/)
+[CLICK HERE TO PLAY THE NIGHTLY BUILD](https://qudlaty.github.io/BloodAndBullets/build/)
 
 It introduces multiple mechanics making the deadly game of on-board spaceship
 combat full of tactical possibilities.
