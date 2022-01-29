@@ -1,4 +1,4 @@
-# BloodAndBulllets
+# BloodAndBullets
 
 "Blood And Bullets: Assault Squad" is a tactical roguelike allowing you to lead
 a boarding party tasked with invading starships in order to take them over by
