@@ -1,4 +1,4 @@
-import { Entity, Square, EntitiesService, SquaresService } from "../../services";
+import { Entity, Square } from "services";
 
 /** Type of GameState */
 export interface GameState {

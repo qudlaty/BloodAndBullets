@@ -1,5 +1,5 @@
-import { Entity } from "../services/EntitiesService";
-import { Square } from "../services/SquaresService";
+import { Entity } from "services/EntitiesService";
+import { Square } from "services/SquaresService";
 
 /** @description
  * Takes a collection and a list of strings describing object keys.

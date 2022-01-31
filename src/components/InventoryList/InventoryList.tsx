@@ -1,7 +1,7 @@
 import React from "react";
 import "./InventoryList.scss";
-import { Item } from "../../services";
-import { InventoryItem } from "../InventoryItem";
+import { Item } from "services";
+import { InventoryItem } from "components/InventoryItem";
 
 interface InventoryListProps {
   className?: string;

@@ -1,4 +1,4 @@
-import { Rifle, Lazer } from "../services";
+import { Rifle, Lazer } from "services";
 
 export class M16 extends Rifle {
   name = "M16";

@@ -1,6 +1,6 @@
-import * as Helpers from "../../helpers/Helpers";
+import * as Helpers from "helpers";
 import { Square } from "./SquareClass";
-import { Entity, Position } from "../EntitiesService";
+import { Entity, Position } from "services/EntitiesService";
 
 class SquaresServiceClass {
   arenaSize: number = 10;

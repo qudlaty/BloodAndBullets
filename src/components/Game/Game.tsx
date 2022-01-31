@@ -2,14 +2,13 @@ import React from "react";
 //import * as dat from "dat.gui";
 
 // services
-import { EntitiesService, SquaresService, GameModel, GameActionsClass, GameState } from "../../services";
+import { EntitiesService, SquaresService, GameModel, GameActionsClass, GameState } from "services";
 
 // components
-import Board from "../Board";
-import EntitiesList from "../EntitiesList";
+import { Board, MessageBox } from "components";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
-import { MessageBox } from "../MessageBox";
+
 
 // others
 import styles from "./Game.module.scss";

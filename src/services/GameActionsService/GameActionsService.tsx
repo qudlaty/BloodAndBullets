@@ -1,8 +1,8 @@
 /** This file contains most of the click-handling logic for the Game */
 /* Handling of particular events is delegated to proper services */
 
-import * as Helpers from "../../helpers";
-import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "../../services";
+import * as Helpers from "helpers";
+import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "services";
 
 let component = null;
 export class GameActionsClass {

@@ -1,5 +1,5 @@
 import React from "react";
-import { HudPanel, Grid, Controls } from "../../components";
+import { HudPanel, Grid, Controls } from "components";
 import "./BlastZone.scss";
 
 interface BlastZoneState {

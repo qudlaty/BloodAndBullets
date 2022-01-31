@@ -1,4 +1,4 @@
-class MessageServiceClass {
+export class MessageServiceClass {
   messages: string[] = [];
   send(message: string) {
     this.messages.push(message);
@@ -6,5 +6,3 @@ class MessageServiceClass {
 }
 
 export const MessageService = new MessageServiceClass();
-
-export default MessageService;

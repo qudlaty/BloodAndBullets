@@ -1,5 +1,5 @@
-import { Item } from "../ItemService";
-import { Entity, HavingInventory } from "../EntitiesService";
+import { Item } from "services/ItemService";
+import { Entity, HavingInventory } from "services/EntitiesService";
 
 export interface Square {
   entity?: Entity;

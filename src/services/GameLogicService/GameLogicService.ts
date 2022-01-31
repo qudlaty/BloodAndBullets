@@ -1,10 +1,10 @@
-import { GameModel } from "../GameModelService";
-import { SquaresService, Square } from "../SquaresService";
-import { EntitiesService } from "../EntitiesService";
-import { Entity } from "../EntitiesService";
-import * as Helpers from "../../helpers";
-
+import { GameModel } from "services/GameModelService";
 import { GameState } from "./GameState";
+
+import { SquaresService, Square } from "services/SquaresService";
+import { EntitiesService, Entity } from "services/EntitiesService";
+import * as Helpers from "helpers";
+
 class GameLogicClass {
   model;
 
