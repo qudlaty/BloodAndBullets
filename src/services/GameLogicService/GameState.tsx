@@ -16,3 +16,5 @@ export interface GameState {
   isBoardRotated: boolean;
   isEditorOn: boolean;
 }
+
+export class GameState implements GameState{}
