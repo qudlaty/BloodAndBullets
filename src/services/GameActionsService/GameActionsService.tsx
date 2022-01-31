@@ -5,7 +5,12 @@ import * as Helpers from "helpers";
 import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "services";
 
 let component = null;
-export class GameActionsClass {
+/**
+ * @description Class with methods designed to operate on Game Component state.
+ * @requires Game component to be passed to constructor.
+ * @example let gameActions = new GameActionsClass(this);
+ */
+export class GameActionsClassForGameComponent {
   constructor(that) {
     component = that;
   }

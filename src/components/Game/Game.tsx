@@ -2,7 +2,7 @@ import React from "react";
 //import * as dat from "dat.gui";
 
 // services
-import { EntitiesService, SquaresService, GameModel, GameActionsClass, GameState } from "services";
+import { EntitiesService, SquaresService, GameModel, GameActionsClassForGameComponent, GameState } from "services";
 
 // components
 import { Board, MessageBox } from "components";
@@ -41,7 +41,7 @@ export class Game extends React.PureComponent<void, GameState> {
       isEditorOn: false,
     };
     this.state.selected.active = true;
-    GameActions = new GameActionsClass(this);
+    GameActions = new GameActionsClassForGameComponent(this);
   }
 
   componentDidMount() {
