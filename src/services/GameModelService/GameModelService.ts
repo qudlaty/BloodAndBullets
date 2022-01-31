@@ -47,7 +47,7 @@ class GameModelClass {
     SquaresService.squares.forEach((square, index) => {
       let targetSquare = square;
       let sourceSquare = squaresLoaded[index];
-      targetSquare.squareType = sourceSquare && sourceSquare.squareType || 'floor';
+      targetSquare.squareType = (sourceSquare && sourceSquare.squareType) || 'floor';
     });
   };
 
