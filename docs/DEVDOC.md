@@ -12,6 +12,16 @@ Run PowerShell as an Administrator and then:
 
 After that you can just `npm install` and SASS should be working.
 
+### Typescript version from Workspace
+
+To read and interpret tsconfig.json file, you need to switch VSCode to the
+Typescript version used by Workspace. Do that by:
+0. Open a `.ts` file
+1. Open Command Pallete `Ctrl+Shift+P`
+2. Type part of `TypeScript: select TypeScript Version` to find this option and select it
+3. Select `Use Workspace Version`
+VSCode will now properly interpret the tsconfig.json
+
 ---
 
 ## Concepts and problems
