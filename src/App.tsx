@@ -1,5 +1,5 @@
 import React from "react";
-import { HudPanel, Grid, Controls, Game } from "./components";
+import { Game } from "./components";
 import BlastZone from "./screens/BlastZone";
 interface AppState {
   loadedScene: string

@@ -2,7 +2,6 @@ import * as Helpers from "helpers";
 import React, { ReactElement } from "react";
 
 export function ShootingVisualization(props): ReactElement {
-  const DISTANCE_BETWEEN_TILES = 54;
   let { entity } = props;
 
   let calcNewAangle = Helpers.calculateAngle;

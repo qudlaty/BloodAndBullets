@@ -27,8 +27,8 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let { selected, targeted, squareNumber } = this.props;
     let targetedSquarePosition = SquaresService.targetSquarePosition(squareNumber);
     if (selected && targeted &&
-      selected.position.x == targetedSquarePosition.x &&
-      selected.position.y == targetedSquarePosition.y
+      selected.position.x === targetedSquarePosition.x &&
+      selected.position.y === targetedSquarePosition.y
       ) {
       let item = targeted.takeFromInventory(itemName);
       selected.addToInventory(item);
