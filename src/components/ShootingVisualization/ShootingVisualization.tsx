@@ -1,4 +1,4 @@
-import * as Helpers from "../../helpers";
+import * as Helpers from "helpers";
 import React, { ReactElement } from "react";
 
 export function ShootingVisualization(props): ReactElement {

@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 // services
-import { Item } from "../../services";
+import { Item } from "services";
 // components
-import Blood from "../Square/Blood";
-import Items from "../Square/Items";
+import Blood from "./Blood";
+import Items from "./Items";
 // others
 import "./Square.scss";
 
@@ -26,7 +26,7 @@ interface SquareProps {
  * @param items - array of items
  * @param itemsNumber - numberof items
  */
-class SquareComponent extends React.PureComponent<SquareProps> {
+export class SquareComponent extends React.PureComponent<SquareProps> {
   onClick = () => {
     this.props.onClick(this.props.squareId);
   };
@@ -58,4 +58,3 @@ class SquareComponent extends React.PureComponent<SquareProps> {
   }
 }
 
-export default SquareComponent;

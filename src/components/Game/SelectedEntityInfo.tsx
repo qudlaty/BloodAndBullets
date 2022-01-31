@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
 // services
-import { Entity } from "../../services";
+import { Entity } from "services";
 // components
-import { EntityCard } from "../EntityCard";
+import { EntityCard } from "components/EntityCard";
 // others
 import GameStyles from "./Game.module.scss";
 

@@ -1,16 +1,14 @@
 import React from "react";
-import { SquaresService } from "../../services";
-import { Entity } from "../../services/EntitiesService";
-import { HpBar } from "../HpBar";
-import { ShootingVisualization } from "../ShootingVisualization";
-import * as Helpers from "../../helpers";
+import { SquaresService, Entity } from "services";
+import { HpBar, ShootingVisualization } from "components";
+import * as Helpers from "helpers";
 import "./EntityPawn.scss";
 
 interface EntityPawnProps {
   entity: Entity;
 }
 
-export default class EntityPawn extends React.Component<EntityPawnProps> {
+export class EntityPawn extends React.Component<EntityPawnProps> {
   randomTime = `${(Math.random() + 0.5).toFixed(2)}s`;
 
   render() {

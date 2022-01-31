@@ -1,5 +1,5 @@
 import React from "react";
-import { Entity, Item } from "../../services";
+import { Entity, Item } from "services";
 
 interface ItemsProps {
   items: Item[];

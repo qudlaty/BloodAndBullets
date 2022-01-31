@@ -1,4 +1,4 @@
-import { applyMixins } from "../../helpers";
+import { applyMixins } from "helpers";
 import {
   Identifiable,
   Positionable,

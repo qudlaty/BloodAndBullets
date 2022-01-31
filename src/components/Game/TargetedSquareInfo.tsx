@@ -1,13 +1,12 @@
 import React from "react";
 // services
-import { SquaresService } from "../../services";
-import { Entity, Square, Position, Item } from "../../services";
+import { SquaresService } from "services";
+import { Entity, Square, Position, Item } from "services";
 // components
-import { EntityCard } from "../EntityCard";
-import { InventoryList } from "../InventoryList";
+import { EntityCard, InventoryList } from "components";
 // others
-import { structures } from "../../resources";
-import * as Helpers from "../../helpers";
+import { structures } from "resources";
+import * as Helpers from "helpers";
 import GameStyles from "./Game.module.scss";
 
 interface TargetedSquareInfoProps {

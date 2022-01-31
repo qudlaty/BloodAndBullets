@@ -1,8 +1,8 @@
 import React from "react";
-import { LinearDisplay } from "../LinearDisplay";
-import { InventoryList } from "../InventoryList";
+import { LinearDisplay, InventoryList } from "components";
+import { Entity, Item } from "services";
+
 import "./EntityCard.scss";
-import { Entity, Item } from "../../services";
 
 interface EntityCardProps {
   entity: Entity;

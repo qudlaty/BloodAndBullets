@@ -1,6 +1,6 @@
-import { Item, Weapon, Square } from "..";
-import { SquaresService, MessageService } from "..";
-import * as Helpers from "../../helpers";
+import { Item, Weapon, Square } from "services";
+import { SquaresService, MessageService } from "services";
+import * as Helpers from "helpers";
 
 /** Position on a grid */
 export interface Position {

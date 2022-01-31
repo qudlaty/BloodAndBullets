@@ -1,10 +1,7 @@
 import React, { ReactElement } from "react";
-
-import SquareComponent from "../Square";
-import EntityPawnComponent from "../EntityPawn";
-import * as Helpers from "../../helpers";
-import { Entity } from "../../services/EntitiesService";
-import { Square } from "../../services/SquaresService";
+import { SquareComponent, EntityPawn } from "components";
+import { Entity, Square } from "services";
+import * as Helpers from "helpers";
 
 import styles from "./Board.module.scss";
 
@@ -19,7 +16,7 @@ interface BoardProps {
 /**
  * @description Board component renders Squares and EntityPawns
  */
-export default class Board extends React.Component<BoardProps> {
+export class Board extends React.Component<BoardProps> {
   handleClick = (i: number) => {
     console.log("Handles Click on Board", i);
     this.props.onClick(i);
@@ -41,7 +38,7 @@ export default class Board extends React.Component<BoardProps> {
     );
   }
 
-  EntityPawns = (): ReactElement[] => this.props.entities.map((entity) => <EntityPawnComponent key={entity.name} entity={entity} />);
+  EntityPawns = (): ReactElement[] => this.props.entities.map((entity) => <EntityPawn key={entity.name} entity={entity} />);
 
   BoardSquares = () => {
     let cellId: number = 0;
