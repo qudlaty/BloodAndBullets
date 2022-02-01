@@ -1,4 +1,4 @@
-import { GameModel } from "services/GameModelService";
+import { GameModel, GameModelClass } from "services/GameModelService";
 import { GameState } from "./GameState";
 
 import { SquaresService, Square } from "services/SquaresService";
@@ -9,7 +9,7 @@ import * as Helpers from "helpers";
  * @description Assorted methods required to run the game logic
  */
 class GameLogicClass {
-  model;
+  model: GameModelClass;
 
   constructor() {
     this.model = GameModel;

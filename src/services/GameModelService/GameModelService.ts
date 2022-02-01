@@ -7,7 +7,7 @@ import tutorial_map_00 from "resources/maps/tutorial_map_00.json"; // yes, it's 
 /**
  * @description Handles loading and saving of the map and entities
  */
-class GameModelClass {
+export class GameModelClass {
   entities;
   squares;
   selected;

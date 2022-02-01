@@ -1,6 +1,6 @@
 import React from "react";
 import { Game } from "./components";
-import BlastZone from "./screens/BlastZone";
+import { BlastZone }  from "screens/BlastZone";
 interface AppState {
   loadedScene: string
 }
