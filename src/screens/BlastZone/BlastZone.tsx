@@ -6,7 +6,7 @@ interface BlastZoneState {
   gridX: number,
   gridY: number,
 }
-export default class BlastZone extends React.Component<void, BlastZoneState> {
+export class BlastZone extends React.Component<void, BlastZoneState> {
   constructor(props: void) {
     super(props);
     this.state = {

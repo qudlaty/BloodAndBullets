@@ -3,6 +3,7 @@ import { SquaresService, Square } from "services/SquaresService";
 import * as Helpers from "helpers";
 import { RangedWeapon } from "services";
 import { Identifiable } from "./EntityFeatures";
+import { Item } from "services/ItemService";
 const arenaSize: number = 10;
 
 /**
@@ -91,15 +92,20 @@ class EntitiesServiceClass {
 
   checkAmmoAndCalculateDamageApplied(entity: Entity): number {
     let damageApplied: number = 0;
-    let weapon: RangedWeapon = entity.equipment && entity.equipment.hands;
-
-    if (!weapon) return 0;
+    let weapon: RangedWeapon = undefined;
+    let equippedWeapon: Item = entity.equipment && entity.equipment.hands;
+    if(!(equippedWeapon instanceof RangedWeapon)){
+      return 0;
+    } else {
+      weapon = equippedWeapon;
+    }
 
     if (weapon.isAbleToFire) {
       damageApplied = weapon.fire();
     } else {
       weapon.rounds = "empty";
       entity.isShooting = false;
+      return 0;
     }
 
     return damageApplied;
@@ -121,13 +127,13 @@ class EntitiesServiceClass {
 
   applyDamageToTargetEntity(targetEntity: Entity, damage: number) {
     if (damage) {
-      targetEntity.hp -= damage;
-      targetEntity.bleeding = 5;
+      targetEntity.hp -= damage; // TODO: This should go through a method to calc armor in
+      targetEntity.bleeding = 5; // TODO: This should be defined elsewhere (on a weapon)
     }
   }
 
   ceaseFireNextTickIfTargetIsKilled(entity: Entity, targetEntity: Entity): void {
-    if (targetEntity.hp < 0) {
+    if (targetEntity.isDead) {
       entity.ceaseFire = true;
     }
   }
@@ -142,12 +148,7 @@ class EntitiesServiceClass {
 
   applyEffectsOfBleeding(entity: Entity): Entity {
     // TODO: move to a "bleed" method
-    if (entity.bleeding && entity.hp > 0) {
-      entity.hp -= entity.bleeding;
-      let square: Square = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
-      SquaresService.addBloodToSquare(square, entity.bleeding);
-      entity.bleeding -= entity.bleedingReductionPerTurn;
-    }
+    entity.bleedExternally();
     return entity;
   }
 

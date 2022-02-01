@@ -17,7 +17,7 @@ export class Positionable {
   position: Position = { x: undefined, y: undefined };
 
   get square(): Square {
-    let square = SquaresService.getSquareFromPosition(this.position.x, this.position.y);
+    let square: Square = SquaresService.getSquareFromPosition(this.position.x, this.position.y);
     return square;
   }
 }
@@ -30,7 +30,7 @@ export class Movable extends Identifiable {
   }
 
   setMoveDestinationPosition(targetPosition: Position) {
-    let targetSquare = SquaresService.getSquareFromPosition(targetPosition.x, targetPosition.y);
+    let targetSquare: Square = SquaresService.getSquareFromPosition(targetPosition.x, targetPosition.y);
     if (!targetSquare.entity || targetSquare.entity.isDead) {
       this.moveDestination = targetPosition;
       Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination");
@@ -45,7 +45,7 @@ export class Mortal extends Positionable {
   hp: number = 100;
   maxHp: number = 100;
   get isDead(): boolean {
-    return this.hp <= 0;
+    return !this.isAlive;
   }
   get isAlive(): boolean {
     return this.hp > 0;
@@ -103,8 +103,8 @@ export class Combative extends Identifiable {
 export class HavingInventory extends Identifiable {
   inventory: Item[];
   takeFromInventory(itemName: string): Item {
-    let actualItemIndex = this.inventory.findIndex((item) => item.name === itemName);
-    let actualItem = this.inventory.splice(actualItemIndex, 1)[0];
+    let actualItemIndex: number = this.inventory.findIndex((item) => item.name === itemName);
+    let actualItem: Item = this.inventory.splice(actualItemIndex, 1)[0];
 
     return actualItem;
   }
@@ -117,12 +117,12 @@ export class HavingInventory extends Identifiable {
 }
 
 export class HavingEquipment extends HavingInventory {
-  equipment: any;
+  equipment: {hands: Item};
   hasWeapon?: boolean;
 
   equipInHands(itemName: string) {
     this.unEquipFromHands();
-    let item = this.takeFromInventory(itemName);
+    let item: Item = this.takeFromInventory(itemName);
     this.equipment.hands = item;
     if (item instanceof Weapon) {
       this.hasWeapon = true;
@@ -133,7 +133,7 @@ export class HavingEquipment extends HavingInventory {
 
   unEquipFromHands() {
     if (this.equipment.hands) {
-      this.inventory.push(this.equipment.hands);
+      this.addToInventory(this.equipment.hands);
       this.equipment.hands = null;
       this.hasWeapon = false;
     }
