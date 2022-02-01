@@ -71,7 +71,7 @@ export class GameActionsClassForGameComponent {
         targeted = squares[squareIndex];
         selectedSquareNumber = squareIndex;
         const doubleClick = () => previousTargeted === targeted;
-        SquaresService.markSquareAsTargeted(squareIndex);
+        SquaresService.markSquareAtIndexAsTargeted(squareIndex);
 
         if (isEditorOn) {
           switch (targeted.squareType) {
@@ -109,7 +109,7 @@ export class GameActionsClassForGameComponent {
 
         // setting attack
         if (doubleClick() && selected && targeted.entity && selected !== targeted.entity) {
-          selected.attackPosition(SquaresService.targetSquarePosition(squareIndex));
+          selected.attackPosition(SquaresService.getSquarePositionFromIndex(squareIndex));
         }
 
         return { squares, entities, selected, targeted, targetedSquareNumber: selectedSquareNumber };
