@@ -5,6 +5,9 @@ import { SquaresService, Square } from "services/SquaresService";
 import { EntitiesService, Entity } from "services/EntitiesService";
 import * as Helpers from "helpers";
 
+/**
+ * @description Assorted methods required to run the game logic
+ */
 class GameLogicClass {
   model;
 
@@ -60,7 +63,7 @@ class GameLogicClass {
     entities.forEach((entity) => {
       if(entity.isFriendly) {
         return;
-      } else if(entity.hp > 0) {
+      } else if(entity.isAlive) {
         amountOfAliveEnemies++;
       }
     });

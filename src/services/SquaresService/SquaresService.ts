@@ -3,30 +3,30 @@ import { Square } from "./SquareClass";
 import { Entity, Position } from "services/EntitiesService";
 
 class SquaresServiceClass {
-  arenaSize: number = 10;
+  arenaSize: number = 10; // TODO: This should be defined ELSEWHERE
 
   squares: Square[] = [];
 
   constructor() {
     let i = this.arenaSize * this.arenaSize;
     while (i-- !== 0) {
-      this.initializeSquareIfEmpty(i);
+      this.initializeSquareAtIndexIfEmpty(i);
     }
   }
 
-  getSquare(x: number, y: number): Square {
-    return this.squares[this.targetSquareIndex(x, y)];
+  getSquareFromPosition(x: number, y: number): Square {
+    return this.squares[this.getSquareIndexFromPosition(x, y)];
   }
 
-  setSquare(x: number, y: number, value): void {
-    this.squares[this.targetSquareIndex(x, y)] = value;
+  setSquareValueAtPosition(x: number, y: number, value): void {
+    this.squares[this.getSquareIndexFromPosition(x, y)] = value;
   }
 
-  targetSquareIndex(x: number, y: number): number {
+  getSquareIndexFromPosition(x: number, y: number): number {
     return y * this.arenaSize + x;
   }
 
-  targetSquarePosition(squareIndex: number): Position {
+  getSquarePositionFromIndex(squareIndex: number): Position {
     let x: number, y: number;
     y = Math.floor(squareIndex / this.arenaSize);
     x = squareIndex % this.arenaSize;
@@ -34,16 +34,16 @@ class SquaresServiceClass {
   }
 
   setEntityWithinApropriateSquare(entity: Entity): void {
-    this.setEntityWithinASquare(entity.position.x, entity.position.y, entity);
+    this.setEntityWithinASquareAtPosition(entity.position.x, entity.position.y, entity);
   }
 
-  setEntityWithinASquare(x: number, y: number, entity: Entity) {
-    let squareIndex: number = this.targetSquareIndex(x, y);
-    this.initializeSquareIfEmpty(squareIndex);
+  setEntityWithinASquareAtPosition(x: number, y: number, entity: Entity) {
+    let squareIndex: number = this.getSquareIndexFromPosition(x, y);
+    this.initializeSquareAtIndexIfEmpty(squareIndex);
     this.squares[squareIndex].entity = entity;
   }
 
-  addBlood(square: Square, amount: number) {
+  addBloodToSquare(square: Square, amount: number) {
     if (!square.blood) {
       square.blood = amount;
     } else {
@@ -51,13 +51,13 @@ class SquaresServiceClass {
     }
   }
 
-  markSquareAsTargeted(squareIndex: number): void {
+  markSquareAtIndexAsTargeted(squareIndex: number): void {
     Helpers.resetGivenFieldsOnACollection(this.squares, "isTargeted");
-    this.initializeSquareIfEmpty(squareIndex);
+    this.initializeSquareAtIndexIfEmpty(squareIndex);
     this.squares[squareIndex].isTargeted = true;
   }
 
-  initializeSquareIfEmpty(squareIndex: number) {
+  initializeSquareAtIndexIfEmpty(squareIndex: number) {
     if (!this.squares[squareIndex]) {
       this.squares[squareIndex] = new Square();
     }
@@ -78,12 +78,12 @@ class SquaresServiceClass {
             continue;
           }
 
-          let square: Square = this.getSquare(i, j);
+          let square: Square = this.getSquareFromPosition(i, j);
           if (square.squareType === "floor") {
             square.isAvailableDestination = true;
           }
 
-          this.setSquare(i, j, square);
+          this.setSquareValueAtPosition(i, j, square);
         }
       }
     }
@@ -104,10 +104,10 @@ class SquaresServiceClass {
             continue;
           }
 
-          let square: Square = this.getSquare(i, j);
+          let square: Square = this.getSquareFromPosition(i, j);
 
           square.isInTwilightZone = true;
-          this.setSquare(i, j, square);
+          this.setSquareValueAtPosition(i, j, square);
         }
       }
 
@@ -120,10 +120,10 @@ class SquaresServiceClass {
             continue;
           }
 
-          let square: Square = this.getSquare(i, j);
+          let square: Square = this.getSquareFromPosition(i, j);
 
           square.isLit = true;
-          this.setSquare(i, j, square);
+          this.setSquareValueAtPosition(i, j, square);
         }
       }
     }

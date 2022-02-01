@@ -13,7 +13,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
 
   render() {
     let { entity } = this.props;
-    let square = SquaresService.getSquare(entity.position.x, entity.position.y);
+    let square = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
 
     let classNameBase = "entity-pawn__icon";
     let className = `${classNameBase}`;

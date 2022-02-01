@@ -4,6 +4,9 @@ import { EntitiesService, Entity } from "services/EntitiesService";
 import { characterDefinitions } from "resources/CharacterDefinitions";
 import tutorial_map_00 from "resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
 
+/**
+ * @description Handles loading and saving of the map and entities
+ */
 class GameModelClass {
   entities;
   squares;
@@ -65,5 +68,3 @@ class GameModelClass {
 }
 
 export const GameModel = new GameModelClass();
-
-export default GameModel;

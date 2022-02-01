@@ -1,6 +1,9 @@
 import { Entity, Square } from "services";
 
-/** Type of GameState */
+/**
+ * @description Interface of GameState used in Game Component as state
+ *
+ */
 export interface GameState {
   entities: Entity[];
   squares: Square[];

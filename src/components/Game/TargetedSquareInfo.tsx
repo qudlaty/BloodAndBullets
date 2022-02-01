@@ -25,7 +25,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
   onItemClick = (itemName: string): void => {
     let { selected, targeted, squareNumber } = this.props;
-    let targetedSquarePosition = SquaresService.targetSquarePosition(squareNumber);
+    let targetedSquarePosition = SquaresService.getSquarePositionFromIndex(squareNumber);
     if (selected && targeted &&
       selected.position.x === targetedSquarePosition.x &&
       selected.position.y === targetedSquarePosition.y
@@ -37,7 +37,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
   };
 
   onMoveClick(selected: Entity, targetedSquarePosition: Position): void {
-    let targetedSquare: Square = SquaresService.getSquare(targetedSquarePosition.x, targetedSquarePosition.y);
+    let targetedSquare: Square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
     selected.setMoveDestinationPosition(targetedSquarePosition);
     targetedSquare.isChosenDestination = true;
     this.props.processInterface();
@@ -54,7 +54,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     box.position = targetPosition;
     box.name += this.boxSerialNumber++;
     let newStructure = new Entity(box);
-    let square = SquaresService.getSquare(targetedSquarePosition.x, targetedSquarePosition.y);
+    let square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
     square.entity = newStructure;
     square.addToInventory(newStructure as Item); // TODO: FIXME: Stop forcing types, make a new list for scenery items.
     //EntitiesService.entities.push(newBox);
@@ -68,7 +68,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       return null;
     }
 
-    let targetedSquarePosition = SquaresService.targetSquarePosition(squareNumber);
+    let targetedSquarePosition = SquaresService.getSquarePositionFromIndex(squareNumber);
 
     let entityInfo;
     let distanceInfo;

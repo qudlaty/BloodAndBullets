@@ -17,7 +17,7 @@ export class Positionable {
   position: Position = { x: undefined, y: undefined };
 
   get square(): Square {
-    let square = SquaresService.getSquare(this.position.x, this.position.y);
+    let square = SquaresService.getSquareFromPosition(this.position.x, this.position.y);
     return square;
   }
 }
@@ -26,11 +26,11 @@ export class Movable extends Identifiable {
   moveDestination: Position;
 
   setMoveDestinationSquare(squareIndex: number) {
-    this.setMoveDestinationPosition(SquaresService.targetSquarePosition(squareIndex));
+    this.setMoveDestinationPosition(SquaresService.getSquarePositionFromIndex(squareIndex));
   }
 
   setMoveDestinationPosition(targetPosition: Position) {
-    let targetSquare = SquaresService.getSquare(targetPosition.x, targetPosition.y);
+    let targetSquare = SquaresService.getSquareFromPosition(targetPosition.x, targetPosition.y);
     if (!targetSquare.entity || targetSquare.entity.isDead) {
       this.moveDestination = targetPosition;
       Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination");
@@ -70,8 +70,8 @@ export class Bleedable extends Mortal {
     if (!this.bleeding) return;
     let entity = this;
     let bloodReleased = this.bleed();
-    let square: Square = SquaresService.getSquare(entity.position.x, entity.position.y);
-    SquaresService.addBlood(square, bloodReleased);
+    let square: Square = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
+    SquaresService.addBloodToSquare(square, bloodReleased);
   }
 }
 
@@ -100,7 +100,7 @@ export class Combative extends Identifiable {
   }
 }
 
-export class HavingInventory {
+export class HavingInventory extends Identifiable {
   inventory: Item[];
   takeFromInventory(itemName: string): Item {
     let actualItemIndex = this.inventory.findIndex((item) => item.name === itemName);
