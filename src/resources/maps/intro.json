@@ -1,0 +1,534 @@
+[
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "inventory": [
+      {
+        "name": "box0",
+        "icon": "📦",
+        "hp": 50,
+        "maxHp": 70,
+        "isSupposedToBeBreathing": false,
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "squareType": "floor",
+    "entity": {
+      "name": "box0",
+      "icon": "📦",
+      "hp": 50,
+      "maxHp": 70,
+      "isSupposedToBeBreathing": false,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor",
+    "isTargeted": true
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "nothing"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor",
+    "isAvailableDestination": true
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall",
+    "isAvailableDestination": true
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor",
+    "isAvailableDestination": true,
+    "isChosenDestination": true
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor",
+    "isAvailableDestination": true
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor",
+    "isAvailableDestination": true
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall",
+    "isAvailableDestination": true
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "wall"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  },
+  {
+    "name": "An Entity",
+    "icon": "E",
+    "squareType": "floor"
+  }
+]
