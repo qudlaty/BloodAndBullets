@@ -27,19 +27,7 @@ export class Game extends React.PureComponent<void, GameState> {
     GameModel.loadBuiltInMap();
     GameModel.loadPredefinedEntitities();
     //this.dat = new dat.GUI();
-    this.state = {
-      entities: EntitiesService.entities,
-      squares: SquaresService.squares,
-      squareSize: 40,
-      selected: EntitiesService.findEntityById("Lazer Blady"),
-      targeted: null,
-      targetedSquareNumber: null,
-      enemiesAlive: null,
-      arenaSize: 10,
-      autoLoop: true,
-      isBoardRotated: false,
-      isEditorOn: false,
-    };
+    this.state = new GameState();
     this.state.selected.active = true;
     GameActions = new GameActionsClassForGameComponent(this);
   }
