@@ -66,6 +66,12 @@ class EntitiesServiceClass {
     });
   }
 
+  getEntitiesAtGivenPositionThatAreAlive(targetPosition: Position): Entity[] {
+    const entitiesAtTargetSquare = this.getEntitiesAtGivenPosition(targetPosition);
+    const aliveEntitiesAtTargetSquare = entitiesAtTargetSquare.filter(entity => entity.isAlive);
+    return aliveEntitiesAtTargetSquare;
+  }
+
   selectEntityFromGivenSquare(selected: Entity, targeted: Square): Entity {
     if (selected && targeted && targeted.entity) {
       selected.active = false;
@@ -111,17 +117,19 @@ class EntitiesServiceClass {
     return damageApplied;
   }
 
-  fireAShot(entity: Entity) {
-    if (entity.ceaseFire || entity.isDead) {
-      entity.isShooting = false;
-      entity.ceaseFire = false;
-      return;
+  shouldEntityStopShooting = entity => entity.ceaseFire || entity.isDead;
+  stopShooting = entity => (entity.isShooting = false, entity.ceaseFire = false);
+  stopShootingWhenForbidden = entity => {
+    if (this.shouldEntityStopShooting(entity)) {
+      this.stopShooting(entity);
     }
+  }
+
+  fireAShot(entity: Entity) {
     let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
     let targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
     targetEntities.forEach((targetEntity) => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
-      this.ceaseFireNextTickIfTargetIsKilled(entity, targetEntity);
     });
   }
 
@@ -132,18 +140,26 @@ class EntitiesServiceClass {
     }
   }
 
-  ceaseFireNextTickIfTargetIsKilled(entity: Entity, targetEntity: Entity): void {
-    if (targetEntity.isDead) {
+  ceaseFireNextTickIfNoAliveTargets(entity: Entity): void {
+    const areThereAliveTargetEntities = entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
+    if (!areThereAliveTargetEntities) {
       entity.ceaseFire = true;
     }
   }
 
-  isEntityShootingProperly(entity: Entity): boolean {
-    return (
+  isEntityShootingAtSomethingAlive(entity: Entity): boolean {
+    const areThereAliveTargetEntities = entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
+
+    console.log('ALIVE ENTITIES', areThereAliveTargetEntities);
+    const result = (
       entity.isShooting &&
       entity.targetPosition &&
-      (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y)
+      (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y) &&
+      areThereAliveTargetEntities
     );
+
+
+    return result;
   }
 
   applyEffectsOfBleeding(entity: Entity): Entity {
