@@ -79,7 +79,7 @@ class SquaresServiceClass {
           }
 
           let square: Square = this.getSquareFromPosition(i, j);
-          if (square.squareType === "floor") {
+          if (this.isSquareEnterableByFriendlyUnits(square)) {
             square.isAvailableDestination = true;
           }
 
@@ -88,6 +88,12 @@ class SquaresServiceClass {
       }
     }
   }
+
+  isSquareEnterableByFriendlyUnits = square => [
+    'floor',
+    'monster-filter',
+  ].includes(square.squareType);
+
   lightAllSquares(): void {
     this.squares.forEach((square) => (square.isLit = true));
   }

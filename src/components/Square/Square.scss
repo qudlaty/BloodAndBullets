@@ -132,6 +132,11 @@ $squareSize: 1em;
     background: #999;
     border: #aaa;
   }
+  &.monster-filter {
+    background: #696;
+    border: #0F0;
+  }
+
   &__cuboid, &__cuboid-face {
     display: none;
     width: 100%;

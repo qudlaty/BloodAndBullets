@@ -3,6 +3,7 @@
 
 import * as Helpers from "helpers";
 import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "services";
+import { GameState } from "services/GameLogicService";
 
 let component = null;
 /**
@@ -65,7 +66,7 @@ export class GameActionsClassForGameComponent {
 
   handleClickV2 = (squareIndex: number) => {
     component.setState(
-      (state) => {
+      (state: GameState) => {
         let { squares, entities, selected, targeted, isEditorOn, targetedSquareNumber: selectedSquareNumber } = state;
         let previousTargeted = targeted;
         targeted = squares[squareIndex];
@@ -82,8 +83,11 @@ export class GameActionsClassForGameComponent {
               targeted.squareType = "nothing";
               break;
             case "nothing":
-            default:
+              targeted.squareType = "monster-filter";
+              break;
+            case "monster-filter":
               targeted.squareType = "floor";
+              break;
           }
         }
 
