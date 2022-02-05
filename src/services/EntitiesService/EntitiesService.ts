@@ -112,7 +112,7 @@ class EntitiesServiceClass {
   }
 
   fireAShot(entity: Entity) {
-    if (entity.ceaseFire) {
+    if (entity.ceaseFire || entity.isDead) {
       entity.isShooting = false;
       entity.ceaseFire = false;
       return;
