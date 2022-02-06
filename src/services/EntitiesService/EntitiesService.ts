@@ -22,6 +22,13 @@ class EntitiesServiceClass {
     return result;
   }
 
+  removeEntity(entity: Entity) {
+    let indexOfEntityToRemove = this.entities.findIndex(currentEntity => currentEntity.name === entity.name);
+    if(indexOfEntityToRemove === -1) return -1;
+    this.entities.splice(indexOfEntityToRemove,1);
+    return 0;
+  }
+
   findItemOnEntity(entity: HavingInventory, id: string) {
     let result = entity.inventory.filter(item => this.getEntityId(entity) === id)[0];
     return result;

@@ -1,6 +1,6 @@
 import React from "react";
 // services
-import { SquaresService } from "services";
+import { SquaresService, EntitiesService } from "services";
 import { Entity, Square, Position, Item } from "services";
 // components
 import { EntityCard, InventoryList } from "components";
@@ -31,6 +31,12 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       selected.position.y === targetedSquarePosition.y
       ) {
       let item = targeted.takeFromInventory(itemName);
+      if (!item) {
+        item = targeted.entity;
+        let square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
+        square.entity = null;
+        EntitiesService.removeEntity(item as Entity);
+      }
       selected.addToInventory(item);
     }
     this.props.processInterface();
@@ -53,11 +59,17 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let targetPosition = Object.assign({}, targetedSquarePosition);
     box.position = targetPosition;
     box.name += this.boxSerialNumber++;
-    let newStructure = new Entity(box);
     let square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
+
+    let newStructure = new Entity(box);
+
+    // TODO: FIXME: Stop forcing types, make a new list for scenery items.
     square.entity = newStructure;
-    square.addToInventory(newStructure as Item); // TODO: FIXME: Stop forcing types, make a new list for scenery items.
-    //EntitiesService.entities.push(newBox);
+    EntitiesService.entities.push(newStructure);
+
+    square.addToInventory(newStructure as Item);
+
+
     this.props.processInterface();
   }
 
@@ -94,6 +106,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     if (targeted.entity && !Helpers.isSelectedTargeted(selected, targeted)) {
       entityInfo = (
         <EntityCard
+          onEntityClick={this.onItemClick}
           onInventoryClick={this.props.onInventoryClick}
           entity={targeted.entity}
           processInterface={() => this.props.processInterface()}

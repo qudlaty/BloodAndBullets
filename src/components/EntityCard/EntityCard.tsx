@@ -7,6 +7,7 @@ import "./EntityCard.scss";
 interface EntityCardProps {
   entity: Entity;
   onInventoryClick?(entity: Entity, itemName: string);
+  onEntityClick?(entityName: string);
   processInterface?: Function;
 }
 
@@ -58,7 +59,15 @@ export class EntityCard extends React.Component<EntityCardProps> {
     let inHandsArray = inHands && [inHands];
 
     return (
-      <div className={className}>
+      <div
+        className={className}
+      >
+        <button
+          className="inventory-list__drop-button"
+          onClick={() => this.props.onEntityClick(entity.name)}
+        >
+          Pick up
+        </button>
         <div>
           <div className="entity-card__position" title="Position">
             <span>
