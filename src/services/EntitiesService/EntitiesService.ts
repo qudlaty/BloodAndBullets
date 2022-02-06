@@ -135,7 +135,7 @@ class EntitiesServiceClass {
   fireAShot(entity: Entity) {
     let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
     let targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
-    targetEntities.forEach((targetEntity) => {
+    targetEntities.forEach(targetEntity => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
     });
   }
@@ -148,25 +148,22 @@ class EntitiesServiceClass {
   }
 
   ceaseFireNextTickIfNoAliveTargets(entity: Entity): void {
-    const areThereAliveTargetEntities = entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
+    if(!entity.targetPosition) return;
+    const areThereAliveTargetEntities = !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
     if (!areThereAliveTargetEntities) {
       entity.ceaseFire = true;
     }
   }
 
   isEntityShootingAtSomethingAlive(entity: Entity): boolean {
-    const areThereAliveTargetEntities = entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
+    const areThereAliveTargetEntities: boolean = entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
 
-    console.log('ALIVE ENTITIES', areThereAliveTargetEntities);
-    const result = (
+    return (
       entity.isShooting &&
       entity.targetPosition &&
       (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y) &&
       areThereAliveTargetEntities
     );
-
-
-    return result;
   }
 
   applyEffectsOfBleeding(entity: Entity): Entity {

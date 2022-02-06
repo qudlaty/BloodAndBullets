@@ -41,7 +41,7 @@ class GameLogicClass {
     EntitiesService.moveEntities();
     //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
     //SquaresService.lightAllSquares();
-    entities.forEach((entity) => {// Entity processing function
+    entities.forEach(entity => {// Entity processing function
       EntitiesService.stopShootingWhenForbidden(entity);
       if (EntitiesService.isEntityShootingAtSomethingAlive(entity)) {
         EntitiesService.fireAShot(entity);

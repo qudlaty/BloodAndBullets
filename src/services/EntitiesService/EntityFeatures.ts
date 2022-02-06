@@ -95,6 +95,7 @@ export class Combative extends Identifiable {
     if (this.hasWeapon) {
       this.targetPosition = targetedSquarePosition;
       this.isShooting = true;
+      this.ceaseFire = false;
     } else {
       MessageService.send(`${this.name} can't shoot - no weapon equipped`);
     }
