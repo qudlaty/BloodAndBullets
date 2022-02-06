@@ -1,6 +1,7 @@
 import { Item, Weapon, Square } from "services";
 import { SquaresService, MessageService } from "services";
 import * as Helpers from "helpers";
+import { Entity } from "./EntityClass";
 
 /** Position on a grid */
 export interface Position {
@@ -100,15 +101,18 @@ export class Combative extends Identifiable {
   }
 }
 
+type InventoryItem = Item|Entity;
 export class HavingInventory extends Identifiable {
-  inventory: Item[];
-  takeFromInventory(itemName: string): Item {
+
+  inventory: Array<InventoryItem>;
+  takeFromInventory(itemName: string): InventoryItem {
     let actualItemIndex: number = this.inventory.findIndex((item) => item.name === itemName);
-    let actualItem: Item = this.inventory.splice(actualItemIndex, 1)[0];
+    if(actualItemIndex === -1) return null;
+    let actualItem: InventoryItem = this.inventory.splice(actualItemIndex, 1)[0];
 
     return actualItem;
   }
-  addToInventory(item: Item) {
+  addToInventory(item: InventoryItem) {
     if (!this.inventory) {
       this.inventory = [];
     }
