@@ -3,6 +3,8 @@ import { EntitiesService, Entity } from "services/EntitiesService";
 
 import { characterDefinitions } from "resources/CharacterDefinitions";
 import tutorial_map_00 from "resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
+import intro from "resources/maps/intro.json";
+
 
 /**
  * @description Handles loading and saving of the map and entities
@@ -59,7 +61,7 @@ export class GameModelClass {
   };
 
   loadBuiltInMap = () => {
-    this.loadMapIntoBoard(tutorial_map_00);
+    this.loadMapIntoBoard(intro);
   };
 
   loadPredefinedEntitities = () => {
