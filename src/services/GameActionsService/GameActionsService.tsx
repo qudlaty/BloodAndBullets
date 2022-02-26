@@ -64,6 +64,14 @@ export class GameActionsClassForGameComponent {
     this.loop();
   };
 
+  executeActions = () => {
+    component.setState(
+      (prevState) => GameLogic.calculeteNextGameStateAfterExecute(prevState),
+      () => this.setSquaresAccordingToEntities()
+    );
+    this.processInterface();
+  }
+
   handleClickV2 = (squareIndex: number) => {
     component.setState(
       (state: GameState) => {
