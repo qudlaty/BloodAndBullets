@@ -14,6 +14,11 @@ export class Identifiable {
   icon: string = "E";
 }
 
+export class Actor {
+  actionPoints: number = 2;
+  maxActionPoints: number = 2;
+}
+
 export class Positionable {
   position: Position = { x: undefined, y: undefined };
 
