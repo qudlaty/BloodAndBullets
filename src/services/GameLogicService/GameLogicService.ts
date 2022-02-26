@@ -37,24 +37,24 @@ class GameLogicClass {
   calculateNextGameState(previousState: GameState) {
     let nextState: GameState = previousState;
     let { entities } = nextState;
-    nextState.actionPoints = 2;
+    nextState.selected.actionPoints = 2;
 
     EntitiesService.moveEntities();
     //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
     //SquaresService.lightAllSquares();
-    entities.forEach(this.processAnEntity);
+    console.log('Nunber of entities',entities.length)
+    let entitiesForProcessing = entities.filter(entity => entity !== nextState.selected)
+    console.log('TOProcess',entitiesForProcessing.length)
+    entitiesForProcessing.forEach(this.processAnEntity);
 
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
     return nextState;
   }
 
   calculeteNextGameStateAfterExecute(previousState: GameState): GameState{
-    if(previousState.actionPoints == 0) return previousState;
+    if(previousState.selected.actionPoints == 0) return previousState;
     let nextState: GameState = previousState;
     let { entities } = nextState;
-    nextState.actionPoints--;
-
-    //EntitiesService.moveEntities();
 
     this.processAnEntity(nextState.selected);
 

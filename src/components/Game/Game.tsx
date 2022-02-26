@@ -104,9 +104,16 @@ export class Game extends React.PureComponent<void, GameState> {
             </button>
 
             <button onClick={GameActions.executeActions} className={styles.button}>
-              Execute 
+              Execute
             </button>
-            <span>Actions points: {this.state.actionPoints}</span>
+
+
+
+
+            <label className={` ${styles.button} ${styles["auto-cycle"]}`}>
+              <input type="checkbox" checked={this.state.autoLoop} onChange={GameActions.switchAutoLoop} />
+              <span>Auto Cycle</span>
+            </label>
 
             <button onClick={GameActions.nextTick} className={styles.button}>
               Next Tick
@@ -114,10 +121,7 @@ export class Game extends React.PureComponent<void, GameState> {
 
             <span className={styles["step-counter"]}>Tick: {this.stepNumber}</span>
 
-            <label className={` ${styles.button} ${styles["auto-cycle"]}`}>
-              <input type="checkbox" checked={this.state.autoLoop} onChange={GameActions.switchAutoLoop} />
-              <span>Auto Cycle</span>
-            </label>
+            <span>Actions points: {this.state.selected.actionPoints} </span>
           </div>
           <div className={styles["interaction-container"]}>
             <SelectedEntityInfo

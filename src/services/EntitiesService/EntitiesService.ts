@@ -133,6 +133,8 @@ class EntitiesServiceClass {
   }
 
   fireAShot(entity: Entity) {
+    if(!entity.actionPoints) return;
+    entity.actionPoints--;
     let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
     let targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
     targetEntities.forEach(targetEntity => {
@@ -173,6 +175,7 @@ class EntitiesServiceClass {
   }
 
   moveEntityIntoChosenDestination(entity: Entity): Entity {
+    if (!entity.actionPoints) return entity;
     if (!entity.isDead && entity.moveDestination) {
       let chosenDestinationSquare: Square = SquaresService.getSquareFromPosition(
         entity.moveDestination.x,
@@ -182,6 +185,7 @@ class EntitiesServiceClass {
       entity.position = entity.moveDestination;
       delete entity.moveDestination;
       chosenDestinationSquare.isChosenDestination = undefined;
+      entity.actionPoints--;
     }
     return entity;
   }
@@ -191,7 +195,7 @@ class EntitiesServiceClass {
   }
 
   moveEntities(): void {
-    this.entities.forEach((entity) => this.moveEntityIntoChosenDestination(entity));
+    // this.entities.forEach((entity) => this.moveEntityIntoChosenDestination(entity));
     // let OP: Entity = this.findEntityById("Squid");
     // let OC: Entity = this.findEntityById("Octo");
     // //this.moveEntityRandomly(JR);

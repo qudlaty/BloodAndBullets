@@ -9,6 +9,7 @@ import {
   Combative,
   HavingInventory,
   HavingEquipment,
+  Actor,
 } from ".";
 
 /**
@@ -35,7 +36,8 @@ export interface Entity
     Breathing,
     Combative,
     HavingInventory,
-    HavingEquipment {}
+    HavingEquipment,
+    Actor {}
 applyMixins(Entity, [
   Identifiable,
   Positionable,
@@ -46,6 +48,7 @@ applyMixins(Entity, [
   Combative,
   HavingInventory,
   HavingEquipment,
+  Actor,
 ]);
 
 /************************************************************/

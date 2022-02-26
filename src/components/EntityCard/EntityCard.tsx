@@ -76,6 +76,8 @@ export class EntityCard extends React.Component<EntityCardProps> {
             </span>
           </div>
 
+          <LinearDisplay label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
+
           <div className="entity-card__portrait">{entity.icon}</div>
         </div>
         <strong title="Name">{entity.name}</strong>
