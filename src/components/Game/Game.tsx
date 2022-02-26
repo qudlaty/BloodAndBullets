@@ -77,7 +77,7 @@ export class Game extends React.PureComponent<void, GameState> {
             <button onClick={GameModel.saveMap} className={styles.button}>
               Save Map
             </button>
-            <button onClick={GameModel.loadMap} className={styles.button}>
+            <button onClick={()=> GameModel.loadMap(GameActions)} className={styles.button}>
               Load Map
             </button>
             <button
@@ -102,6 +102,11 @@ export class Game extends React.PureComponent<void, GameState> {
             <button onClick={() => this.zoomOut()} className={styles.button}>
               Zoom Out (-)
             </button>
+
+            <button onClick={GameActions.executeActions} className={styles.button}>
+              Execute 
+            </button>
+            <span>Actions points: {this.state.actionPoints}</span>
 
             <button onClick={GameActions.nextTick} className={styles.button}>
               Next Tick
