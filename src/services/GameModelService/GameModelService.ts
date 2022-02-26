@@ -36,16 +36,18 @@ export class GameModelClass {
     localStorage[result] = squaresStringified;
   };
 
-  loadMap = () => {
-    let mapNames = Object.keys(localStorage);
+  loadMap = (GameActions) => {
+    let mapNames: any = Object.keys(localStorage);
     let message = `Enter the name of map to load. ${mapNames}`;
     let mapName = "map00";
-    let result = window.prompt(message, mapName);
+    console.log(mapNames);
+    let result = window.prompt(message, mapNames);
     let squaresStringified = localStorage[result];
 
     console.log(squaresStringified);
     let squaresLoaded = JSON.parse(squaresStringified);
     this.loadMapIntoBoard(squaresLoaded);
+    GameActions.processInterface();
   };
 
   loadMapIntoBoard = (squaresLoaded) => {
