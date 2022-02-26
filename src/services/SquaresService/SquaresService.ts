@@ -57,6 +57,13 @@ class SquaresServiceClass {
     this.squares[squareIndex].isTargeted = true;
   }
 
+  markSquareAtIndexAsAttacked(squareIndex: number): void {
+    Helpers.resetGivenFieldsOnACollection(this.squares, "isAttacked");
+    this.initializeSquareAtIndexIfEmpty(squareIndex);
+    this.squares[squareIndex].isAttacked = true;
+  }
+
+
   initializeSquareAtIndexIfEmpty(squareIndex: number) {
     if (!this.squares[squareIndex]) {
       this.squares[squareIndex] = new Square();

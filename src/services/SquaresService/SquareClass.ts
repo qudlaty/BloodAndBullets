@@ -8,6 +8,7 @@ export interface Square {
   isAvailableDestination?: boolean;
   isChosenDestination?: boolean;
   isTargeted?: boolean;
+  isAttacked?: boolean;
   isLit?: boolean;
   isInTwilightZone?: boolean;
   addItem(item: Item): void;

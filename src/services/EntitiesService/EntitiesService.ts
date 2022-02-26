@@ -115,6 +115,8 @@ class EntitiesServiceClass {
 
     if (weapon.isAbleToFire) {
       damageApplied = weapon.fire();
+      entity.isShooting = true;
+      entity.actionPoints--;
     } else {
       weapon.rounds = "empty";
       entity.isShooting = false;
@@ -134,7 +136,6 @@ class EntitiesServiceClass {
 
   fireAShot(entity: Entity) {
     if(!entity.actionPoints) return;
-    entity.actionPoints--;
     let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
     let targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
     targetEntities.forEach(targetEntity => {
@@ -157,11 +158,10 @@ class EntitiesServiceClass {
     }
   }
 
-  isEntityShootingAtSomethingAlive(entity: Entity): boolean {
+  isEntityTargettingSomethingAlive(entity: Entity): boolean {
     const areThereAliveTargetEntities: boolean = entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
 
     return (
-      entity.isShooting &&
       entity.targetPosition &&
       (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y) &&
       areThereAliveTargetEntities

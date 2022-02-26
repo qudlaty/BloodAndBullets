@@ -76,6 +76,7 @@ export function turnFlagsIntoClasses(flags: object, classNameBase?: string) {
     isDead: "dead",
     isShooting: "shooting",
     isTargeted: "targeted",
+    isAttacked: "attacked",
     isLit: "is-lit",
     isInTwilightZone: "is-in-twilight-zone",
   };

@@ -30,6 +30,9 @@ export class GameActionsClassForGameComponent {
 
   loop = () => {
     component.stepNumber++;
+
+    Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'targetPosition', 'isShooting');
+    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAttacked');
     this.drawAggro();
     this.processEntities();
     if (component.state.autoLoop) {
@@ -102,6 +105,9 @@ export class GameActionsClassForGameComponent {
         /** Setting move destination while clicking on empty square */
         if (doubleClick() && targeted.isAvailableDestination) {
           selected.setMoveDestinationSquare(squareIndex);
+          delete selected.targetPosition;
+          delete selected.isShooting;
+          Helpers.resetGivenFieldsOnACollection(squares,'isAttacked')
         }
 
         /** To be able to deselect */
@@ -121,7 +127,11 @@ export class GameActionsClassForGameComponent {
 
         // setting attack
         if (doubleClick() && selected && targeted.entity && selected !== targeted.entity) {
-          selected.attackPosition(SquaresService.getSquarePositionFromIndex(squareIndex));
+          let targetSquarePosition = SquaresService.getSquarePositionFromIndex(squareIndex);
+          selected.attackPosition(targetSquarePosition);
+          SquaresService.markSquareAtIndexAsAttacked(squareIndex);
+          delete selected.moveDestination;
+          Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
         }
 
         return { squares, entities, selected, targeted, targetedSquareNumber: selectedSquareNumber };

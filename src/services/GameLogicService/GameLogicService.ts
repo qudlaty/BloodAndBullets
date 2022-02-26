@@ -42,9 +42,7 @@ class GameLogicClass {
     EntitiesService.moveEntities();
     //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
     //SquaresService.lightAllSquares();
-    console.log('Nunber of entities',entities.length)
     let entitiesForProcessing = entities.filter(entity => entity !== nextState.selected)
-    console.log('TOProcess',entitiesForProcessing.length)
     entitiesForProcessing.forEach(this.processAnEntity);
 
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
@@ -65,7 +63,7 @@ class GameLogicClass {
   processAnEntity(entity) { // Entity processing function
     EntitiesService.moveEntityIntoChosenDestination(entity);
     EntitiesService.stopShootingWhenForbidden(entity);
-    if (EntitiesService.isEntityShootingAtSomethingAlive(entity)) {
+    if (EntitiesService.isEntityTargettingSomethingAlive(entity)) {
       EntitiesService.fireAShot(entity);
     }
     EntitiesService.ceaseFireNextTickIfNoAliveTargets(entity);

@@ -107,6 +107,11 @@ $squareSize: 1em;
     border: 1px solid #13af13;
   }
 
+  &--attacked {
+    box-shadow: 0 0 10px 3px inset #FF0000, 0 0 10px 3px #FFFFFF;
+    border: 1px solid #FF0000;
+  }
+
   &__content {
     // This is required, so the click event hits the Square, not the EntityPawn
     z-index: 1000;
