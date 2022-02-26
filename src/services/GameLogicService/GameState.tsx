@@ -18,6 +18,7 @@ export interface GameState {
   autoLoop: boolean;
   isBoardRotated: boolean;
   isEditorOn: boolean;
+  actionPoints: number;
 }
 
 export class GameState implements GameState{
@@ -35,6 +36,7 @@ export class GameState implements GameState{
         autoLoop: false,
         isBoardRotated: false,
         isEditorOn: false,
+        actionPoints: 2,
       }
     );
   }

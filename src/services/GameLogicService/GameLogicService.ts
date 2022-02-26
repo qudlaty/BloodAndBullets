@@ -37,27 +37,46 @@ class GameLogicClass {
   calculateNextGameState(previousState: GameState) {
     let nextState: GameState = previousState;
     let { entities } = nextState;
+    nextState.actionPoints = 2;
 
     EntitiesService.moveEntities();
     //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
     //SquaresService.lightAllSquares();
-    entities.forEach((entity) => {// Entity processing function
-      EntitiesService.stopShootingWhenForbidden(entity);
-      if (EntitiesService.isEntityShootingAtSomethingAlive(entity)) {
-        EntitiesService.fireAShot(entity);
-      }
-      EntitiesService.ceaseFireNextTickIfNoAliveTargets(entity);
-
-      entity.bleedExternally();
-
-      EntitiesService.stopBreathingForKilledEntity(entity);
-
-      SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-      // SquaresService.castLightsFromFriendlyEntity(entity);
-    });
+    entities.forEach(this.processAnEntity);
 
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
     return nextState;
+  }
+
+  calculeteNextGameStateAfterExecute(previousState: GameState): GameState{
+    if(previousState.actionPoints == 0) return previousState;
+    let nextState: GameState = previousState;
+    let { entities } = nextState;
+    nextState.actionPoints--;
+
+    //EntitiesService.moveEntities();
+
+    this.processAnEntity(nextState.selected);
+
+    nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
+    return nextState;
+  }
+
+  processAnEntity(entity) { // Entity processing function
+    EntitiesService.moveEntityIntoChosenDestination(entity);
+    EntitiesService.stopShootingWhenForbidden(entity);
+    if (EntitiesService.isEntityShootingAtSomethingAlive(entity)) {
+      EntitiesService.fireAShot(entity);
+    }
+    EntitiesService.ceaseFireNextTickIfNoAliveTargets(entity);
+
+    entity.bleedExternally();
+
+    EntitiesService.stopBreathingForKilledEntity(entity);
+
+    SquaresService.markAvailableDestinationsForSelectedEntity(entity);
+    console.log('procesing', entity)
+    // SquaresService.castLightsFromFriendlyEntity(entity);
   }
 
   calculateNumberOfAliveEnemies(entities: Entity[]):number {
