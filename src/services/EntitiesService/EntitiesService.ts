@@ -40,8 +40,20 @@ class EntitiesServiceClass {
     let oldPositionX = entity.position.x;
     let oldPositionY = entity.position.y;
 
-    entity.position.x = entity.position.x + Helpers.getRandomIntInclusive(-1, 1);
-    entity.position.y = entity.position.y + Helpers.getRandomIntInclusive(-1, 1);
+    let deltaX = Helpers.getRandomIntInclusive(-1, 1);
+    let deltaY = Helpers.getRandomIntInclusive(-1, 1);
+
+    if(!entity.actionPoints) {
+      deltaX = 0;
+      deltaY = 0;
+    }
+    if(deltaX || deltaY) { // non-zero move
+      entity.actionPoints--;
+    } else {// zero ==> no move
+    }
+
+    entity.position.x = entity.position.x + deltaX;
+    entity.position.y = entity.position.y + deltaY;
 
     entity.position.x = Helpers.getNumberWithinBoundaries(entity.position.x, 0, arenaSize - 1);
     entity.position.y = Helpers.getNumberWithinBoundaries(entity.position.y, 0, arenaSize - 1);
@@ -58,7 +70,7 @@ class EntitiesServiceClass {
   stopBreathingForKilledEntity(entity: Entity): Entity {
     if (entity.isDead) {
       entity.isBreathing = false;
-      entity.isShooting = false;
+      this.stopShooting(entity);
       entity.hp = 0;
     }
     return entity;
@@ -119,7 +131,7 @@ class EntitiesServiceClass {
       entity.actionPoints--;
     } else {
       weapon.rounds = "empty";
-      entity.isShooting = false;
+      this.stopShooting(entity);
       return 0;
     }
 
@@ -204,6 +216,10 @@ class EntitiesServiceClass {
     this.entities.filter(entity => !entity.isFriendly).forEach((entity) => {
       this.moveEntityRandomly(entity);
     });
+  }
+
+  refillActionPointsForAllEntities() {
+    this.entities.forEach(entity => {entity.actionPoints = entity.maxActionPoints})
   }
 }
 

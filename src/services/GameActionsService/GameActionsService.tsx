@@ -47,6 +47,14 @@ export class GameActionsClassForGameComponent {
     );
   }
 
+  executeActions = () => {
+    component.setState(
+      (prevState) => GameLogic.calculeteNextGameStateAfterExecute(prevState),
+      () => this.setSquaresAccordingToEntities()
+    );
+    this.processInterface();
+  }
+
   processInterface() {
     component.setState(
       (prevState) => GameLogic.calculateNextInterfaceState(prevState),
@@ -66,14 +74,6 @@ export class GameActionsClassForGameComponent {
     component.setState({ autoLoop: false });
     this.loop();
   };
-
-  executeActions = () => {
-    component.setState(
-      (prevState) => GameLogic.calculeteNextGameStateAfterExecute(prevState),
-      () => this.setSquaresAccordingToEntities()
-    );
-    this.processInterface();
-  }
 
   handleClickV2 = (squareIndex: number) => {
     component.setState(
@@ -131,6 +131,7 @@ export class GameActionsClassForGameComponent {
           selected.attackPosition(targetSquarePosition);
           SquaresService.markSquareAtIndexAsAttacked(squareIndex);
           delete selected.moveDestination;
+          delete selected.isShooting;
           Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
         }
 
@@ -144,18 +145,18 @@ export class GameActionsClassForGameComponent {
     EntitiesService.entities.forEach((entity)=>{
       if(entity.isFriendly) return;
       entity.isShooting = false;
-      this.aggro(entity.name);
+      this.aggro(entity);
     })
   }
 
-  aggro = (name) => {
-    let actor = EntitiesService.findEntityById(name);
-    let position = actor.position;
+  aggro = (entity: Entity) => {
+    // let actor = EntitiesService.findEntityById(name);
+    let position = entity.position;
     let closeEntities = this.findEntitiesThatAreClose(position);
-    let entitiesToAttack = closeEntities.filter(entity => entity.hp > 0);
+    let entitiesToAttack = closeEntities.filter(closeEntity => closeEntity.hp > 0);
     if(entitiesToAttack.length) {
       let firstAmongThem = entitiesToAttack[0];
-      actor.attackPosition(firstAmongThem.position);
+      entity.attackPosition(firstAmongThem.position);
     }
   }
 

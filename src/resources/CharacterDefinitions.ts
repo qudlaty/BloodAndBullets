@@ -28,6 +28,8 @@ export const entitiesInitialValues = [
     equipment: {hands: new L30()},
     inventory: [],
     hasWeapon: true,
+    actionPoints: 2,
+    maxActionPoints: 2
   },
   {
     name: "Octo",
@@ -42,6 +44,8 @@ export const entitiesInitialValues = [
     equipment: {hands: new L30()},
     inventory: [],
     hasWeapon: true,
+    actionPoints: 2,
+    maxActionPoints: 2
   },
   {
     name: "Squid",
@@ -54,6 +58,8 @@ export const entitiesInitialValues = [
     equipment: {hands: new M40()},
     inventory: [],
     hasWeapon: true,
+    actionPoints: 2,
+    maxActionPoints: 2
   },
   {
     name: "Ant",
@@ -66,6 +72,8 @@ export const entitiesInitialValues = [
     equipment: {hands: new M40()},
     inventory: [],
     hasWeapon: true,
+    actionPoints: 2,
+    maxActionPoints: 2
   },
   {
     name: "Henry The Spider",
@@ -79,6 +87,8 @@ export const entitiesInitialValues = [
     equipment: {hands: new L30()},
     inventory: [],
     hasWeapon: true,
+    actionPoints: 2,
+    maxActionPoints: 2
   },
   {
     name: "Mosquito",
@@ -91,6 +101,8 @@ export const entitiesInitialValues = [
     equipment: {hands: new M16()},
     inventory: [],
     hasWeapon: true,
+    actionPoints: 1,
+    maxActionPoints: 1
   },
   {
     name: "Microbe",
@@ -103,6 +115,8 @@ export const entitiesInitialValues = [
     equipment: {hands: new L30()},
     inventory: [],
     hasWeapon: true,
+    actionPoints: 2,
+    maxActionPoints: 2
   },
 ];
 

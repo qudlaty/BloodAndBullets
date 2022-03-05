@@ -104,6 +104,7 @@ export class Combative extends Identifiable {
     } else {
       MessageService.send(`${this.name} can't shoot - no weapon equipped`);
     }
+    console.log(this.name, 'is attacking', targetedSquarePosition, this);
   }
 }
 

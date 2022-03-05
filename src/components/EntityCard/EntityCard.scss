@@ -29,14 +29,14 @@
 
   &__position {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -1em;
+    left: 1em;
     font-size: 10px;
     display: block;
     float: right;
     clear: both;
-    background: rbga(50, 50, 50, 0.5);
-    color: #666;
+    background: rgba(50, 50, 50, 0.8);
+    color: #696;
     padding: 3px;
   }
 

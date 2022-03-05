@@ -37,8 +37,7 @@ class GameLogicClass {
   calculateNextGameState(previousState: GameState) {
     let nextState: GameState = previousState;
     let { entities } = nextState;
-    nextState.selected.actionPoints = 2;
-
+    EntitiesService.refillActionPointsForAllEntities();
     EntitiesService.moveEntities();
     //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
     //SquaresService.lightAllSquares();
@@ -48,6 +47,8 @@ class GameLogicClass {
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
     return nextState;
   }
+
+
 
   calculeteNextGameStateAfterExecute(previousState: GameState): GameState{
     if(previousState.selected.actionPoints == 0) return previousState;
@@ -61,6 +62,7 @@ class GameLogicClass {
   }
 
   processAnEntity(entity) { // Entity processing function
+    console.log('start procesing', entity);
     EntitiesService.moveEntityIntoChosenDestination(entity);
     EntitiesService.stopShootingWhenForbidden(entity);
     if (EntitiesService.isEntityTargettingSomethingAlive(entity)) {
@@ -73,7 +75,7 @@ class GameLogicClass {
     EntitiesService.stopBreathingForKilledEntity(entity);
 
     SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-    console.log('procesing', entity)
+    console.log('end procesing', entity)
     // SquaresService.castLightsFromFriendlyEntity(entity);
   }
 
