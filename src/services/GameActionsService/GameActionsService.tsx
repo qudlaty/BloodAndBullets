@@ -30,10 +30,9 @@ export class GameActionsClassForGameComponent {
 
   loop = () => {
     component.stepNumber++;
-
+    EntitiesService.refillActionPointsForAllEntities();
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'targetPosition', 'isShooting');
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAttacked');
-    this.drawAggro();
     this.processEntities();
     if (component.state.autoLoop) {
       setTimeout(this.loop, 1000);
@@ -41,15 +40,27 @@ export class GameActionsClassForGameComponent {
   };
 
   processEntities() {
+    this.drawAggro();
+    EntitiesService.moveEntities();
+    let entitiesForProcessing = EntitiesService.entities.filter(
+      entity => entity !== EntitiesService.selected)
+    ;
+    entitiesForProcessing.forEach( entity => {
+      this.setNewStateAfterProcessingChosenEntity(entity);
+    });
+  }
+
+  setNewStateAfterProcessingChosenEntity(entity) {
     component.setState(
-      (prevState) => GameLogic.calculateNextGameState(prevState),
+      (prevState) => GameLogic.calculeteNextGameStateAfterProcessingAGivenEntity(prevState, entity),
       () => this.setSquaresAccordingToEntities()
     );
+    this.processInterface();
   }
 
   executeActions = () => {
     component.setState(
-      (prevState) => GameLogic.calculeteNextGameStateAfterExecute(prevState),
+      (prevState) => GameLogic.calculeteNextGameStateAfterProcessingAGivenEntity(prevState, EntitiesService.selected),
       () => this.setSquaresAccordingToEntities()
     );
     this.processInterface();
