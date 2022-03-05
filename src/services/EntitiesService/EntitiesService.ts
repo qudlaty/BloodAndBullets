@@ -147,7 +147,7 @@ class EntitiesServiceClass {
   }
 
   fireAShot(entity: Entity) {
-    if(!entity.actionPoints) return;
+    if(!entity.actionPoints || entity.isDead) return;
     let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
     let targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
     targetEntities.forEach(targetEntity => {
