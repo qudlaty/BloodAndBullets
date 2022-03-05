@@ -9,7 +9,9 @@ export function ShootingVisualization(props): ReactElement {
   let projectileNumber = 5;
   let projectiles = [];
   let localId = `Entity${entity.icon}`;
+  let uniqueShootingAnimationId = `shooting-animation-${localId}-ap-${entity.actionPoints}`;
   let customStyle = "";
+  let commonStyles = "";
 
   if (
     targetCoords &&
@@ -25,6 +27,17 @@ export function ShootingVisualization(props): ReactElement {
       let actualDistanceInUnits = Helpers.calculateDistance(distanceToTargetXInUnits, distanceToTargetYInUnits);
       let weaponType = entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type;
       let angle = calcNewAangle(distanceToTargetXInUnits, distanceToTargetYInUnits);
+      commonStyles = `
+      @keyframes fading${uniqueShootingAnimationId} {
+        0%  {opacity: 1;}
+        95% {opacity: 1;}
+        100%  {opacity: 0;}
+      }
+
+      .fading-after-1s-for-${uniqueShootingAnimationId} {
+        animation: fading${uniqueShootingAnimationId} 1s linear normal forwards 1;
+      }
+      `;
 
       if (weaponType === "lazer") {
         // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
@@ -106,9 +119,10 @@ export function ShootingVisualization(props): ReactElement {
       }
     }
   }
+  let finalClassName = `shooting-visualization fading-after-1s-for-${uniqueShootingAnimationId}`;
   return (
-    <div className="shooting-visualization">
-      <style>{customStyle}</style>
+    <div className={finalClassName}>
+      <style>{customStyle + commonStyles}</style>
       {projectiles}
     </div>
   );
