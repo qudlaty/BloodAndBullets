@@ -34,29 +34,15 @@ class GameLogicClass {
    * Calculate WHAT EXACTLY? This should probably go into GameLogic
    * @param previousState
    */
-  calculateNextGameState(previousState: GameState) {
-    let nextState: GameState = previousState;
-    let { entities } = nextState;
-    EntitiesService.refillActionPointsForAllEntities();
-    EntitiesService.moveEntities();
-    //Helpers.resetGivenFieldsOnACollection(squares, "isLit", "isInTwilightZone");
-    //SquaresService.lightAllSquares();
-    let entitiesForProcessing = entities.filter(entity => entity !== nextState.selected)
-    entitiesForProcessing.forEach(this.processAnEntity);
 
-    nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
-    return nextState;
-  }
-
-
-
-  calculeteNextGameStateAfterExecute(previousState: GameState): GameState{
+  calculeteNextGameStateAfterProcessingAGivenEntity(
+      previousState: GameState,
+      givenEntity: Entity
+    ): GameState{
     if(previousState.selected.actionPoints == 0) return previousState;
     let nextState: GameState = previousState;
     let { entities } = nextState;
-
-    this.processAnEntity(nextState.selected);
-
+    this.processAnEntity(givenEntity);
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
     return nextState;
   }
