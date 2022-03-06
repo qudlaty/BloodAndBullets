@@ -15,6 +15,9 @@ export class GameActionsClassForGameComponent {
   constructor(that) {
     component = that;
   }
+
+  intervalHandle = null;
+
   toggleEditorMode = () => {
     if (!component.state.isEditorOn) {
       Helpers.resetGivenFieldsOnACollection(component.state.squares, "blood", "entity");
@@ -29,25 +32,46 @@ export class GameActionsClassForGameComponent {
   };
 
   loop = () => {
+    console.log('Entered loop');
+    if(this.intervalHandle) {
+      setTimeout(this.loop, 1000);
+      return;
+    };
+    console.log('Processing LOOP')
     component.stepNumber++;
     EntitiesService.refillActionPointsForAllEntities();
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'targetPosition', 'isShooting');
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAttacked');
     this.processEntities();
     if (component.state.autoLoop) {
+      console.log("Setting Timeout for loop")
       setTimeout(this.loop, 1000);
     }
   };
 
   processEntities() {
     this.drawAggro();
-    EntitiesService.moveEntities();
+    // EntitiesService.moveEntities();
+    this.intervalHandle = setInterval(
+      () => this.processNextUnprocessedEntity(),
+      1000
+    );
+  }
+
+  processNextUnprocessedEntity() {
     let entitiesForProcessing = EntitiesService.entities.filter(
-      entity => entity !== EntitiesService.selected)
-    ;
-    entitiesForProcessing.forEach( entity => {
-      this.setNewStateAfterProcessingChosenEntity(entity);
-    });
+      entity =>
+        (!entity.isFriendly && entity.isAlive) &&
+        (entity.actionPoints > 0)
+    );
+    if(entitiesForProcessing.length) {
+      let entityForThisTurn = entitiesForProcessing[0];
+      this.setNewStateAfterProcessingChosenEntity(entityForThisTurn)
+    } else {// all are processed
+      clearInterval(this.intervalHandle);
+      this.intervalHandle = null;
+      console.log('All entities processed')
+    }
   }
 
   setNewStateAfterProcessingChosenEntity(entity) {
@@ -60,7 +84,7 @@ export class GameActionsClassForGameComponent {
 
   executeActions = () => {
     component.setState(
-      (prevState) => GameLogic.calculeteNextGameStateAfterProcessingAGivenEntity(prevState, EntitiesService.selected),
+      (prevState) => GameLogic.calculeteNextGameStateAfterProcessingAGivenEntity(prevState, prevState.selected),
       () => this.setSquaresAccordingToEntities()
     );
     this.processInterface();
