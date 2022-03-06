@@ -49,6 +49,7 @@ class GameLogicClass {
 
   processAnEntity(entity) { // Entity processing function
     console.log('start procesing', entity);
+    EntitiesService.moveEntityRandomly(entity);
     EntitiesService.moveEntityIntoChosenDestination(entity);
     EntitiesService.stopShootingWhenForbidden(entity);
     if (EntitiesService.isEntityTargettingSomethingAlive(entity)) {

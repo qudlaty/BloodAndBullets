@@ -35,7 +35,7 @@ class EntitiesServiceClass {
   }
 
   moveEntityRandomly(entity: Entity) {
-    if (entity.isDead) return;
+    if (entity.isDead || entity.isFriendly) return;
 
     let oldPositionX = entity.position.x;
     let oldPositionY = entity.position.y;
