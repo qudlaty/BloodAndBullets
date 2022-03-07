@@ -13,18 +13,23 @@ interface BloodProps {
  */
 class Blood extends React.PureComponent<BloodProps> {
   render() {
-    console.log('BLOOD', this.props);
     let { bloodAmount } = this.props;
 
-    let bloodNumbers = [];
+    let bloodDrops = [];
     let i = bloodAmount;
+    let marginForDropsInPercent = 0;
+    let mfd = marginForDropsInPercent;
+    let dropSizeVariance = 3;
+    let dsv = dropSizeVariance;
+
 
     while(i--) {
-      bloodNumbers.push(
-        <span style={{
+      bloodDrops.push(
+        <span className="blood__drop" style={{
           position: 'absolute',
-          left: `${Math.random() * 90}%`,
-          top: `${Math.random() * 90 -15}%`,
+          fontSize: `${1 + Math.random() * dsv}em`,
+          left: `calc(${mfd + Math.random() * (100-2*mfd)}% - 0.4em)`,
+          top: `calc(${mfd + Math.random() * (100-2*mfd)}% - 0.5em)`,
         }}>o</span>
       );
     }
@@ -33,12 +38,14 @@ class Blood extends React.PureComponent<BloodProps> {
       <div
         className="square__blood"
         style={{
-          background: `rgba(255, 0, 0, ${(bloodAmount / 50).toFixed(2)})`,
+          background: `rgba(255, 0, 0, 0)`,//${(bloodAmount / 50).toFixed(2)})`,
           position: 'relative'
         }}
       >
-        {bloodNumbers}
-        {bloodAmount}
+        {bloodDrops}
+        <span className="blood__text">
+          {bloodAmount}
+        </span>
       </div>
     );
   }
