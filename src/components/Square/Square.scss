@@ -44,7 +44,6 @@ $squareSize: 1em;
   border: 1px solid #505550;
 
   float: left;
-  //font-size: 50px;
   font-size: 1em;
   line-height: $squareSize;
   text-align: center;
@@ -52,7 +51,6 @@ $squareSize: 1em;
 
   color: #aaa;
   background: #333;
-  transition: all 0.5s;
   &:hover {
     background: rgb(240, 160, 5);
   }
@@ -83,6 +81,16 @@ $squareSize: 1em;
     text-align: right;
     text-shadow: 0px 0px 1px #000;
     padding-right: 3px;
+    & .blood__drop {
+      color: rgba(255,0,0, 0);
+      text-shadow:rgba(200, 0, 0, 0.5) 0em 0em 0.3em;
+    }
+    & .blood__text {
+      color: rgba(220, 00, 00, 1);
+      background:rgba(100, 0, 0, 0.5);
+      border-radius: 2px;
+      font-size: 1.4em;
+    }
   }
   &__items-number {
     color: #aaa;
