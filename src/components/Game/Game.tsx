@@ -42,14 +42,6 @@ export class Game extends React.PureComponent<void, GameState> {
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className={styles.game}>
-        <div className={styles.status}>
-          Enemies to kill: {this.state.enemiesAlive}<br></br>
-          {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
-          {this.state.selected.isAlive ? '' : " Damn. YOU DIED." }
-        </div>
-        <p className="instructions">
-
-        </p>
         <div className={styles.game__board}>
           <Board
             squares={this.state.squares}
@@ -109,6 +101,15 @@ export class Game extends React.PureComponent<void, GameState> {
             <span className={styles["step-counter"]}>Tick: {this.stepNumber}</span>
 
             <span>Actions points: {this.state.selected.actionPoints} </span>
+            &nbsp;
+            <span>
+              Enemies to kill: {this.state.enemiesAlive}
+              {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
+              {this.state.selected.isAlive ? '' : " Damn. YOU DIED." }
+            </span>
+            <p className="instructions">
+
+            </p>
           </div>
           <div className={styles["interaction-container"]}>
             <SelectedEntityInfo
