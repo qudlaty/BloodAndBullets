@@ -20,7 +20,7 @@
 .board {
   transform: perspective(700px) rotateX(0) rotateY(0) rotateZ(0);
   transform-style: preserve-3d;
-  transition: all 1s;
+  transition: transform 1s, font-size 0.1s;
   &--rotated {
     transform: perspective(700px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
   }

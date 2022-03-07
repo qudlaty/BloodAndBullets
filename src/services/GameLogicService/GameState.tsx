@@ -7,18 +7,17 @@ import { Entity, Square, EntitiesService, SquaresService } from "services";
 export interface GameState {
   entities: Entity[];
   squares: Square[];
-  squareSize: number;
-  enemiesAlive: number;
-
   selected: Entity;
   targeted: Square;
   targetedSquareNumber: number;
 
   arenaSize: number;
-  autoLoop: boolean;
+  squareSize: number;
+  enemiesAlive: number;
+
+  isAutoLoopOn: boolean;
   isBoardRotated: boolean;
   isEditorOn: boolean;
-  actionPoints: number;
 }
 
 export class GameState implements GameState{
@@ -27,16 +26,17 @@ export class GameState implements GameState{
       {
         entities: EntitiesService.entities,
         squares: SquaresService.squares,
-        squareSize: 40,
         selected: EntitiesService.findEntityById("Lazer Blady"),
         targeted: null,
         targetedSquareNumber: null,
-        enemiesAlive: null,
+
         arenaSize: 10,
-        autoLoop: false,
+        squareSize: 40,
+        enemiesAlive: null,
+
+        isAutoLoopOn: true,
         isBoardRotated: false,
         isEditorOn: false,
-        actionPoints: 2,
       }
     );
   }
