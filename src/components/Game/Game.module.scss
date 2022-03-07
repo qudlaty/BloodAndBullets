@@ -1,29 +1,21 @@
 .game {
-  // display: flex;
-  // flex-direction: row;
-  // align-items: flex-start;
-  float: left;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 
   & > * {
     margin: 5px;
   }
   &__board {
-    float: left;
     border: 1px solid #666;
     overflow: hidden;
+    min-width: 462px;// TODO: refactor this
   }
   &__info {
-    float: left;
   }
   &__list {
     float: left;
     clear: both;
-  }
-  .status {
-    color: yellow;
-    padding: 5px;
-    background: black;
-    z-index:20;
   }
 
   .button, .actions button, .auto-cycle {
