@@ -26,7 +26,7 @@
     z-index:20;
   }
 
-  .actions button, .button, .auto-cycle {
+  .button, .actions button, .auto-cycle {
     color: #999;
     background: #444;
     margin-top: 5px;
@@ -45,6 +45,14 @@
     padding: 10px;
     .actions {
       padding: 0 0 10px 0;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      align-content: center;
+
       .auto-cycle {
         white-space: pre;
         top: -1px;

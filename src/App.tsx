@@ -1,6 +1,8 @@
 import React from "react";
 import { Game } from "./components";
 import { BlastZone }  from "screens/BlastZone";
+import "App.scss";
+
 interface AppState {
   loadedScene: string
 }
@@ -34,6 +36,9 @@ export default class App extends React.Component<void, AppState> {
     let SelectedScene = this.scenes[this.state.loadedScene];
     return <div className="app">
       <div className="meta-bar">
+        <div className="app-name">
+          <span className="be">B</span>lood and <span className="be">B</span>u<span className="el">ll</span>ets
+        </div>
         <div className="screen-switch">
           <span>Select screen: </span>
           <select value={this.state.loadedScene} onChange={(e)=>this.handleChange(e)}>
