@@ -1,5 +1,4 @@
 import React from "react";
-//import * as dat from "dat.gui";
 
 // services
 import { EntitiesService, SquaresService, GameModel, GameActionsClassForGameComponent, GameState } from "services";
@@ -9,43 +8,36 @@ import { Board, MessageBox } from "components";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 
-
 // others
 import styles from "./Game.module.scss";
 
 let GameActions = null;
 
-/** Game composes all the parts of the interface */
+/** Game composes all the parts of the interface together */
 export class Game extends React.PureComponent<void, GameState> {
   renderCounter: number = 0;
   stepNumber: number = 0;
-  //dat;
 
   constructor(props: void) {
     super(props);
 
     GameModel.loadBuiltInMap();
     GameModel.loadPredefinedEntitities();
-    //this.dat = new dat.GUI();
     this.state = new GameState();
     this.state.selected.active = true;
     GameActions = new GameActionsClassForGameComponent(this);
   }
 
   componentDidMount() {
-    GameActions.loop();
+    this.startIfAutoLoopIsOn();
   }
 
-  zoomIn() {
-    this.setState((prevState) => {
-      return { squareSize: prevState.squareSize + 5 };
-    });
+  startIfAutoLoopIsOn(){
+    if(this.state.isAutoLoopOn){
+      GameActions.loop();
+    }
   }
-  zoomOut() {
-    this.setState((prevState) => {
-      return { squareSize: prevState.squareSize - 5 };
-    });
-  }
+
   render() {
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
@@ -55,8 +47,8 @@ export class Game extends React.PureComponent<void, GameState> {
           {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
           {this.state.selected.isAlive ? '' : " Damn. YOU DIED." }
         </div>
-        <p>
-          L2P: Click friendly entity on the map, twice. Then click a target square to move, or target entity to attack.
+        <p className="instructions">
+
         </p>
         <div className={styles.game__board}>
           <Board
@@ -71,39 +63,34 @@ export class Game extends React.PureComponent<void, GameState> {
 
         <div className={styles.game__info}>
           <div className={styles.actions}>
-            <button onClick={GameActions.toggleEditorMode} className={styles.button}>
+            <button onClick={GameActions.toggleEditorMode}>
               Editor Mode
             </button>
-            <button onClick={GameModel.saveMap} className={styles.button}>
+            <button onClick={GameModel.saveMap}>
               Save Map
             </button>
-            <button onClick={()=> GameModel.loadMap(GameActions)} className={styles.button}>
+            <button onClick={()=> GameModel.loadMap(GameActions)}>
               Load Map
             </button>
-            <button
-              onClick={() => {
-                GameActions.nuke(40);
-              }}
-              className={`${styles.button} ${styles["button-nuke"]}`}
-            >
+            <button onClick={() => GameActions.nuke(40)} className={styles["button-nuke"]}>
               Nuke All
             </button>
-            <button onClick={GameActions.ceaseFire} className={styles.button}>
+            <button onClick={GameActions.ceaseFire}>
               Cease Fire
             </button>
 
-            <button onClick={GameActions.toggleRotateBoard} className={styles.button}>
+            <button onClick={GameActions.toggleRotateBoard}>
               Rotate Board
             </button>
 
-            <button onClick={() => this.zoomIn()} className={styles.button}>
+            <button onClick={GameActions.zoomIn}>
               Zoom In (+)
             </button>
-            <button onClick={() => this.zoomOut()} className={styles.button}>
+            <button onClick={GameActions.zoomOut}>
               Zoom Out (-)
             </button>
 
-            <button onClick={GameActions.executeActions} className={styles.button}>
+            <button onClick={GameActions.executeActions}>
               Execute
             </button>
 
@@ -111,7 +98,7 @@ export class Game extends React.PureComponent<void, GameState> {
 
 
             <label className={` ${styles.button} ${styles["auto-cycle"]}`}>
-              <input type="checkbox" checked={this.state.autoLoop} onChange={GameActions.switchAutoLoop} />
+              <input type="checkbox" checked={this.state.isAutoLoopOn} onChange={GameActions.switchAutoLoop} />
               <span>Auto Cycle</span>
             </label>
 

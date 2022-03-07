@@ -29,19 +29,49 @@
   .game__info {
     border: 1px solid #666;
     padding: 10px;
-    .button {
+    .actions {
+      padding: 0 0 10px 0;
+    }
+    button, .auto-cycle {
       color: #999;
       background: #444;
       margin-top: 5px;
       margin-right: 5px;
       border: 2px solid #666;
       padding: 5px;
-      &-nuke {
+      &.nuke {
         color: #e00;
       }
+      &:active {
+        border-color: white;
+      }
     }
-    .actions {
-      padding: 0 0 10px 0;
+    .auto-cycle {
+      white-space: pre;
+      top: -1px;
+      position: relative;
+      color: #666;
+      span {
+        padding-left: 15px;
+      }
+      input {
+        display: none;
+        border: 1px solid #666;
+        background: #222;
+        &:checked {
+          & ~ span {
+            color: white;
+            position: relative;
+
+            &::before {
+              position: absolute;
+              left: 1px;
+              top: -1px;
+              content: "✓";
+            }
+          }
+        }
+      }
     }
     .interaction-container {
       display: grid;
@@ -98,33 +128,7 @@
   border: 2px solid black;
 }
 
-.auto-cycle {
-  white-space: pre;
-  top: 1px;
-  position: relative;
-  color: #222;
-  span {
-    padding-left: 15px;
-  }
-  input {
-    display: none;
-    border: 1px solid #666;
-    background: #222;
-    &:checked {
-      & ~ span {
-        color: white;
-        position: relative;
 
-        &::before {
-          position: absolute;
-          left: 1px;
-          top: -1px;
-          content: "✓";
-        }
-      }
-    }
-  }
-}
 
 .status {
   margin-bottom: 10px;

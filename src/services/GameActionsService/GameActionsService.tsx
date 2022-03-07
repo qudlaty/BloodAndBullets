@@ -9,14 +9,14 @@ let component = null;
 /**
  * @description Class with methods designed to operate on Game Component state.
  * @requires Game component to be passed to constructor.
- * @example let gameActions = new GameActionsClass(this);
+ * @example let gameActions = new GameActionsClass(this); // run inside the GameComponent
  */
 export class GameActionsClassForGameComponent {
   constructor(that) {
     component = that;
   }
 
-  intervalHandle = null;
+  entitiesProcessingLoopIntervalHandle = null;
 
   toggleEditorMode = () => {
     if (!component.state.isEditorOn) {
@@ -31,30 +31,54 @@ export class GameActionsClassForGameComponent {
     }
   };
 
+  zoomIn() {
+    component.setState((prevState) => {
+      return { squareSize: prevState.squareSize + 5 };
+    });
+  }
+
+  zoomOut() {
+    component.setState((prevState) => {
+      return { squareSize: prevState.squareSize - 5 };
+    });
+  }
+
+  get isTurnInProgress() {return this.entitiesProcessingLoopIntervalHandle};
+
   loop = () => {
-    console.log('Entered loop');
-    if(this.intervalHandle) {
+    console.debug('Attempting loop')
+    if(this.isTurnInProgress) {
       setTimeout(this.loop, 1000);
       return;
     };
-    console.log('Processing LOOP')
-    component.stepNumber++;
-    EntitiesService.refillActionPointsForAllEntities();
-    Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'targetPosition', 'isShooting');
-    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAttacked');
-    this.processEntities();
-    if (component.state.autoLoop) {
-      console.log("Setting Timeout for loop")
+    console.debug('Executing nextStep')
+    this.nextStep();
+    if (component.state.isAutoLoopOn) {
+      console.debug('Scheduling next loop step in 1s');
       setTimeout(this.loop, 1000);
     }
   };
 
+  nextTick = () => {
+    component.setState({ isAutoLoopOn: false });
+    this.nextStep();
+  };
+
+  nextStep() {
+    component.stepNumber++;
+    console.info('Starting processing turn #', component.stepNumber)
+    EntitiesService.refillActionPointsForAllEntities();
+    Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'targetPosition', 'isShooting');
+    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAttacked');
+    this.processEntities();
+  }
+
   processEntities() {
     this.drawAggro();
     // EntitiesService.moveEntities();
-    this.intervalHandle = setInterval(
+    this.entitiesProcessingLoopIntervalHandle = setInterval(
       () => this.processNextUnprocessedEntity(),
-      1000
+      100
     );
   }
 
@@ -68,9 +92,9 @@ export class GameActionsClassForGameComponent {
       let entityForThisTurn = entitiesForProcessing[0];
       this.setNewStateAfterProcessingChosenEntity(entityForThisTurn)
     } else {// all are processed
-      clearInterval(this.intervalHandle);
-      this.intervalHandle = null;
-      console.log('All entities processed')
+      clearInterval(this.entitiesProcessingLoopIntervalHandle);
+      this.entitiesProcessingLoopIntervalHandle = null;
+      console.log('All entities processed.')
     }
   }
 
@@ -104,11 +128,6 @@ export class GameActionsClassForGameComponent {
   setSquaresAccordingToEntities() {
     component.setState((prevState) => GameLogic.syncSquaresWithEntities(prevState));
   }
-
-  nextTick = () => {
-    component.setState({ autoLoop: false });
-    this.loop();
-  };
 
   handleClickV2 = (squareIndex: number) => {
     component.setState(
@@ -237,11 +256,13 @@ export class GameActionsClassForGameComponent {
 
   switchAutoLoop = () => {
     component.setState(
-      (previousState) => {
-        return { autoLoop: !previousState.autoLoop };
+      (previousState: GameState) => {
+        let isAutoLoopOn = !previousState.isAutoLoopOn
+        console.info('Switching auto loop to', isAutoLoopOn);
+        return { isAutoLoopOn };
       },
       () => {
-        if (component.state.autoLoop) {
+        if (component.state.isAutoLoopOn) {
           this.loop();
         }
       }
