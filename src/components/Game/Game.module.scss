@@ -94,14 +94,12 @@
     .interaction-container {
       display: grid;
       font-family: Verdana;
-      border: 1px solid #555;
+      //border: 1px solid #555;
       grid-template-columns: 50% 50%;
       margin-bottom: 10px;
-      padding: 10px;
       .selected,
       .targeted {
         display: block;
-        padding: 10px;
         border: 1px solid rgb(116, 98, 0);
         &__label {
           display: block;
