@@ -37,13 +37,11 @@ $squareSize: 1em;
 
   height: $squareSize;
   width: $squareSize;
-  box-sizing: border-box;
   margin: 2px;
   padding: 0;
 
   border: 1px solid #505550;
 
-  float: left;
   font-size: 1em;
   line-height: $squareSize;
   text-align: center;
@@ -51,6 +49,7 @@ $squareSize: 1em;
 
   color: #aaa;
   background: #333;
+
   &:hover {
     background: rgb(240, 160, 5);
   }
