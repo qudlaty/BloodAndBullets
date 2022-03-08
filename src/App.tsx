@@ -18,12 +18,11 @@ export default class App extends React.Component<void, AppState> {
     this.state = {
       loadedScene: 'Game'
     }
-    this.handleChange.bind(this);
   }
   componentDidMount() {
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     // e.target.value;
     console.log(e)
     console.log(e.target)
@@ -35,10 +34,13 @@ export default class App extends React.Component<void, AppState> {
   render() {
     let SelectedScene = this.scenes[this.state.loadedScene];
     return <div className="app">
+
       <div className="meta-bar">
+
         <div className="app-name">
           <span className="be">B</span>lood and <span className="be">B</span>u<span className="el">ll</span>ets
         </div>
+
         <div className="screen-switch">
           <span>Select screen: </span>
           <select value={this.state.loadedScene} onChange={(e)=>this.handleChange(e)}>
@@ -46,8 +48,11 @@ export default class App extends React.Component<void, AppState> {
             <option value="Game">Game</option>
           </select>
         </div>
+
       </div>
+
       <SelectedScene/>
+
     </div>
   }
 }

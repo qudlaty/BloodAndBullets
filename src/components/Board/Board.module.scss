@@ -1,19 +1,27 @@
 .board {
-  min-width: 462px;// TODO: refactor this
-  //transform: scale(2);
+  //min-width: 442px;// TODO: refactor this
   background: transparent;// #111;
   padding: 10px;
   border: 1px solid #555;
-  //font-size: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+
   &__row{
     z-index: 0;
     position: relative;
     font-size: 1em;
-    &:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
   }
 
 }

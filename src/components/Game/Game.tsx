@@ -55,61 +55,68 @@ export class Game extends React.PureComponent<void, GameState> {
 
         <div className={styles.game__info}>
           <div className={styles.actions}>
-            <button onClick={GameActions.toggleEditorMode}>
-              Editor Mode
-            </button>
-            <button onClick={GameModel.saveMap}>
-              Save Map
-            </button>
-            <button onClick={()=> GameModel.loadMap(GameActions)}>
-              Load Map
-            </button>
-            <button onClick={() => GameActions.nuke(40)} className={styles["button-nuke"]}>
-              Nuke All
-            </button>
-            <button onClick={GameActions.ceaseFire}>
-              Cease Fire
-            </button>
+            <div className={styles.action_row}>
+              <button onClick={GameActions.toggleEditorMode}>
+                Editor Mode
+              </button>
+              <button onClick={GameModel.saveMap}>
+                Save Map
+              </button>
+              <button onClick={()=> GameModel.loadMap(GameActions)}>
+                Load Map
+              </button>
+            </div>
 
-            <button onClick={GameActions.toggleRotateBoard}>
-              Rotate Board
-            </button>
+            <div className={styles.action_row}>
+              <button onClick={GameActions.toggleRotateBoard}>
+                Rotate Board
+              </button>
+              <button onClick={GameActions.zoomIn}>
+                Zoom In (+)
+              </button>
+              <button onClick={GameActions.zoomOut}>
+                Zoom Out (-)
+              </button>
+            </div>
+            <div className={styles.action_row}>
+              <button onClick={() => GameActions.nuke(40)} className={styles["button-nuke"]}>
+                Nuke All
+              </button>
+              <button onClick={GameActions.ceaseFire}>
+                Cease Fire
+              </button>
+              <button onClick={GameActions.executeActions} className={styles.execute_actions}>
+                Execute Actions
+              </button>
+            </div>
 
-            <button onClick={GameActions.zoomIn}>
-              Zoom In (+)
-            </button>
-            <button onClick={GameActions.zoomOut}>
-              Zoom Out (-)
-            </button>
+            <div className={styles.action_row}>
+              <span className={styles["step-counter"]}>Tick: {this.stepNumber}</span>
 
-            <button onClick={GameActions.executeActions}>
-              Execute
-            </button>
+              <label className={` ${styles.button} ${styles["auto-cycle"]}`}>
+                <input type="checkbox" checked={this.state.isAutoLoopOn} onChange={GameActions.switchAutoLoop} />
+                <span>Auto Cycle</span>
+              </label>
 
+              <button onClick={GameActions.nextTick} className={styles.button + ' '+ styles.next_tick}>
+                Next Tick
+              </button>
 
+            </div>
 
-
-            <label className={` ${styles.button} ${styles["auto-cycle"]}`}>
-              <input type="checkbox" checked={this.state.isAutoLoopOn} onChange={GameActions.switchAutoLoop} />
-              <span>Auto Cycle</span>
-            </label>
-
-            <button onClick={GameActions.nextTick} className={styles.button}>
-              Next Tick
-            </button>
-
-            <span className={styles["step-counter"]}>Tick: {this.stepNumber}</span>
-
-            <span>Actions points: {this.state.selected.actionPoints} </span>
-            &nbsp;
+            <div className={styles.action_row}>
             <span>
-              Enemies to kill: {this.state.enemiesAlive}
-              {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
-              {this.state.selected.isAlive ? '' : " Damn. YOU DIED." }
-            </span>
-            <p className="instructions">
+                Enemies to kill: {this.state.enemiesAlive}
+                {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
+                {this.state.selected.isAlive ? '' : " Damn. YOU DIED." }
+              </span>
+              &nbsp;
+              <p className="instructions">
 
-            </p>
+              </p>
+              <span>Actions points: {this.state.selected.actionPoints} </span>
+
+            </div>
           </div>
           <div className={styles["interaction-container"]}>
             <SelectedEntityInfo

@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: baseline;
 
-  padding-left: 1em;
+  padding: 0.5em;
   background: #111;
 
   .app-name {
@@ -19,7 +19,7 @@
     }
     .el {
       color: white;
-      text-shadow: rgba(255,255,255,1) 0.1em 0em 0.1em;
+      text-shadow: rgba(255,255,255,1) 0em 0.1em 0.1em;
     }
   }
 
