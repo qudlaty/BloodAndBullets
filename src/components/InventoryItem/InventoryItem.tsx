@@ -58,7 +58,7 @@ export function InventoryItem(props: InventoryItemProps) {
     }
 
     ammoCounter = weapon.reload ? (
-      <LinearDisplay label="Rounds" current={weapon.rounds} max={weapon.maxRounds} />
+      <LinearDisplay className="full" label="Rounds" current={weapon.rounds} max={weapon.maxRounds} />
     ) : null;
   }
 
