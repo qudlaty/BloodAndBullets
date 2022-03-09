@@ -1,7 +1,7 @@
 import React from "react";
 import { LinearDisplay, InventoryList } from "components";
 import { Entity, Item } from "services";
-
+import * as Helpers from "helpers";
 import "./EntityCard.scss";
 
 interface EntityCardProps {
@@ -36,6 +36,17 @@ export class EntityCard extends React.Component<EntityCardProps> {
     this.props.processInterface();
   };
 
+  get distanceToTarget(): number {
+    let { entity } = this.props;
+    if (!entity.targetPosition) return null;
+    return Number(
+      Helpers.calculateDistance(
+        entity.targetPosition.x - entity.position.x,
+        entity.targetPosition.y - entity.position.y
+      ).toFixed(2)
+    );
+  };
+
   render() {
     let { entity } = this.props;
     if (!entity) return null;
@@ -59,37 +70,34 @@ export class EntityCard extends React.Component<EntityCardProps> {
     let inHandsArray = inHands && [inHands];
 
     return (
-      <div
-        className={className}
-      >
+      <div className={className}>
+
         <button
           className="inventory-list__drop-button"
           onClick={() => this.props.onEntityClick(entity.name)}
         >
           Pick up
         </button>
+
         <div>
-          <div className="entity-card__position" title="Position">
-            <span>
-              {" "}
-              {entity.position.x} {entity.position.y}{" "}
-            </span>
-          </div>
-
-          <LinearDisplay label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
-
           <div className="entity-card__portrait">{entity.icon}</div>
         </div>
         <strong title="Name">{entity.name}</strong>
         <br />
-        <div
-          style={{
-            clear: "both",
-            display: "inline-block",
-            textAlign: "right",
-          }}
-        >
-          <LinearDisplay label="HP" current={entity.hp} max={entity.maxHp} />
+        <small className="entity-data__rank">Private</small>
+        <div>
+          <LinearDisplay className="full" label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
+          <LinearDisplay className ="full" label="HP" current={entity.hp} max={entity.maxHp} />
+          <br />
+          <span className="entity-data__location">
+            LOC: {entity.position.x}, {entity.position.y}
+          </span>
+          <span hidden={!entity.targetPosition} className="entity-data__distance-to-target">
+            DIST: { this.distanceToTarget }
+          </span>
+          <span hidden={!entity.targetPosition} className="entity-data__target-position">
+            TRGT: {entity.targetPosition && entity.targetPosition.x}, {entity.targetPosition && entity.targetPosition.y}
+          </span>
           <br />
         </div>
         <InventoryList
