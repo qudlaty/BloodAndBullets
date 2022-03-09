@@ -103,11 +103,11 @@ $squareSize: 1em;
     box-shadow: 0 0 4px 0px inset lightblue;
   }
   &--is-chosen-destination {
-    border: 1px dotted white;
+    box-shadow: 0 0 8px 3px inset lightblue;
   }
   &--targeted {
     box-shadow: 0 0 4px 2px inset #ac7000;
-    border: 1px solid #d88c00;
+    border: 3px solid #d88c00;
   }
   &--active {
     box-shadow: 0 0 10px 3px inset #095c09, 0 0 10px 3px #095c09;
@@ -115,8 +115,7 @@ $squareSize: 1em;
   }
 
   &--attacked {
-    box-shadow: 0 0 10px 3px inset #FF0000, 0 0 10px 3px #FFFFFF;
-    border: 1px solid #FF0000;
+    box-shadow: 0 0 2px 3px inset white, 0 0 10px 3px red;
   }
 
   &__content {
@@ -134,10 +133,10 @@ $squareSize: 1em;
     font-size: 0.8em;
   }
   &.floor {
-    background: #444;
-    border: #505050;
+    background-color: #444;
+    border-color: #505050;
     &:hover{
-      background: rgb(240, 160, 5);
+      background-color: rgb(240, 160, 5);
     }
   }
   &.wall {
