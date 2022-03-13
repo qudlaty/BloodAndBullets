@@ -109,11 +109,14 @@ export class Combative extends Identifiable {
   }
 }
 
-type InventoryItem = Item|Entity;
+export type InventoryItem = Item|Entity;
 export class HavingInventory extends Identifiable {
 
   inventory: Array<InventoryItem>;
   takeFromInventory(itemName: string): InventoryItem {
+    if (!this.inventory) {
+      this.inventory = [];
+    }
     let actualItemIndex: number = this.inventory.findIndex((item) => item.name === itemName);
     if(actualItemIndex === -1) return null;
     let actualItem: InventoryItem = this.inventory.splice(actualItemIndex, 1)[0];
