@@ -68,6 +68,14 @@ export class EntityCard extends React.Component<EntityCardProps> {
 
     let inHands = entity.equipment && entity.equipment.hands;
     let inHandsArray = inHands && [inHands];
+    let bleedingText
+    let bleedingReductionText;
+    if(entity.bleedingReductionPerTurn) {
+      bleedingReductionText = <span className="bleeding-info__reduction">(-{entity.bleedingReductionPerTurn}<small className="bleeding-info__reduction__unit">/Turn</small>)</span>;
+    }
+    if(entity.bleeding) {
+      bleedingText = <span className="bleeding-info">Bleeding: {entity.bleeding} {bleedingReductionText}</span>
+    }
 
     return (
       <div className={className}>
@@ -88,14 +96,16 @@ export class EntityCard extends React.Component<EntityCardProps> {
         <div>
           <LinearDisplay className="full" label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
           <LinearDisplay className ="full" label="HP" current={entity.hp} max={entity.maxHp} />
+          {bleedingText}
+          <br/>
           <br />
-          <span className="entity-data__location">
+          <span title="Location" className="entity-data__location">
             LOC: {entity.position.x}, {entity.position.y}
           </span>
-          <span hidden={!entity.targetPosition} className="entity-data__distance-to-target">
+          <span title="Distance to target" hidden={!entity.targetPosition} className="entity-data__distance-to-target">
             DIST: { this.distanceToTarget }
           </span>
-          <span hidden={!entity.targetPosition} className="entity-data__target-position">
+          <span title="Target location" hidden={!entity.targetPosition} className="entity-data__target-position">
             TRGT: {entity.targetPosition && entity.targetPosition.x}, {entity.targetPosition && entity.targetPosition.y}
           </span>
           <br />
