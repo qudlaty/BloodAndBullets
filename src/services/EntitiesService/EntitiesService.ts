@@ -104,14 +104,12 @@ class EntitiesServiceClass {
   }
 
   setSelected(selected: Entity, value: boolean): Entity {
-    let selectedInEntities = this.findEntityById(this.getEntityId(selected));
-    if (value) {
-      selected.active = value;
-    } else {
-      selected = null;
-      console.log("Nullified:", selected);
+    this.selected = selected;
+    selected.active = value;
+    if (!value) {
+      this.selected = null;
+      console.log("Deselected:", selected);
     }
-    selectedInEntities.active = value;
     return selected;
   }
 

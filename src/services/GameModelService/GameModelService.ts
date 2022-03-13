@@ -66,7 +66,7 @@ export class GameModelClass {
     this.loadMapIntoBoard(intro);
   };
 
-  loadPredefinedEntitities = () => {
+  loadPredefinedEntitities = () => {// TODO: Save and load entities together with the map?
     this.loadEntities(characterDefinitions);
   };
 }
