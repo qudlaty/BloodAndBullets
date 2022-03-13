@@ -68,6 +68,7 @@ export class Bleedable extends Mortal {
       bloodReleased = entity.bleeding;
       entity.hp -= bloodReleased;
       entity.bleeding -= entity.bleedingReductionPerTurn;
+      if(entity.bleeding < 0) entity.bleeding = 0;
     }
     return bloodReleased;
   }
