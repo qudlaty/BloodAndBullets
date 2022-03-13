@@ -88,7 +88,7 @@ class GameLogicClass {
     everything should work without re-attaching
     */
     SquaresService.squares = squares;
-    let entities: Entity[] = previousState.entities;
+    let entities: Entity[] = EntitiesService.entities;
     if (entities.length) {
       Helpers.resetGivenFieldsOnACollection(squares, "entity");
     }
@@ -96,7 +96,7 @@ class GameLogicClass {
       SquaresService.setEntityWithinApropriateSquare(entity);
     });
 
-    return { squares };
+    return { squares, entities };
   };
 
   deselectAllEntities = () => {

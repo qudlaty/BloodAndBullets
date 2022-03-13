@@ -4,6 +4,7 @@ import { EntitiesService, Entity } from "services/EntitiesService";
 import { characterDefinitions } from "resources/CharacterDefinitions";
 import tutorial_map_00 from "resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
 import intro from "resources/maps/intro.json";
+import { GameActionsClassForGameComponent } from "services/GameActionsService";
 
 
 /**
@@ -20,6 +21,7 @@ export class GameModelClass {
   }
 
   saveMap = () => {
+    console.log('Alive suares:', SquaresService.squares);
     let squares: Square[] = JSON.parse(JSON.stringify(SquaresService.squares));
     let squaresProcessedForSave = squares.map((square) => {
       //let newSquare = { squareType: square.squareType, entity: square.entity };
@@ -36,7 +38,7 @@ export class GameModelClass {
     localStorage[result] = squaresStringified;
   };
 
-  loadMap = (GameActions) => {
+  loadMap = (GameActions: GameActionsClassForGameComponent) => {
     let mapNames: any = Object.keys(localStorage);
     let message = `Enter the name of map to load. ${mapNames}`;
     let mapName = "map00";
@@ -47,6 +49,16 @@ export class GameModelClass {
     console.log(squaresStringified);
     let squaresLoaded = JSON.parse(squaresStringified);
     this.loadMapIntoBoard(squaresLoaded);
+    let entitiesWithinTheMap = squaresLoaded.filter(square => square.entity).map(square => square.entity);
+    console.log('Entities Within The Map:', entitiesWithinTheMap);
+
+    let entitiesProcessed = entitiesWithinTheMap.
+    map(entity => {delete entity.equipment; delete entity.inventory; return entity}).
+    map(entityRecord => new Entity(entityRecord));
+
+    console.log('ALIVE ENTITIES?', entitiesProcessed)
+    this.loadEntities(entitiesProcessed);///
+    GameActions.setSquaresAccordingToEntities();
     GameActions.processInterface();
   };
 
