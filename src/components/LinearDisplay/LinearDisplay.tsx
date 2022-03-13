@@ -13,11 +13,14 @@ export function LinearDisplay(props: LinearDisplayProps) {
   let className = `linear-display ${props.className || ""}`;
   let percentage = ~~((props.current * 100) / props.max);
   let overload = percentage > 100;
+  let negative = percentage < 0;
   if (overload) {
     percentage = 100;
     className += " linear-display--overloaded";
   }
-
+  if (negative) {
+    percentage = 0;
+  }
   let progressStyle = {
     width: `${percentage}%`,
   };
