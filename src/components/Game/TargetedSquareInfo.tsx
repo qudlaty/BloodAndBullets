@@ -35,7 +35,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         item = targeted.entity;
         let square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
         square.entity = null;
-        EntitiesService.removeEntity(item as Entity);
+        EntitiesService.removeEntity(item as Entity);// TODO: Take this out of the component
       }
       selected.addToInventory(item);
     }

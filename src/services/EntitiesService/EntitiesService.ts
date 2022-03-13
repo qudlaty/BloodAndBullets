@@ -29,6 +29,10 @@ class EntitiesServiceClass {
     return 0;
   }
 
+  addEntity(entity: Entity) {
+    this.entities.push(entity);
+  }
+
   findItemOnEntity(entity: HavingInventory, id: string) {
     let result = entity.inventory.filter(item => this.getEntityId(entity) === id)[0];
     return result;

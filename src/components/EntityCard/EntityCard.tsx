@@ -1,6 +1,6 @@
 import React from "react";
 import { LinearDisplay, InventoryList } from "components";
-import { Entity, Item } from "services";
+import { Entity, Item, InventoryItem, EntitiesService } from "services";
 import * as Helpers from "helpers";
 import "./EntityCard.scss";
 
@@ -17,14 +17,24 @@ export class EntityCard extends React.Component<EntityCardProps> {
     this.props.onInventoryClick(this.props.entity, itemName);
   };
 
-  onDrop = (itemName: string) => {
+  onDrop = (itemName: string) => {//TODO: Take this outside of the component, duuuh.
     let { entity } = this.props;
     if (entity.equipment.hands && entity.equipment.hands.name === itemName) {
       entity.unEquipFromHands();
       entity.isShooting = false;
     }
-    let item: Item = entity.takeFromInventory(itemName);
-    entity.square.addItem(item);
+    let item: InventoryItem = entity.takeFromInventory(itemName);
+    //debugger;
+    if(item instanceof Item){
+      console.log("Dropping Item")
+      entity.square.addItem(item);
+    } else if (item instanceof Entity){
+      console.log("Dropping Entity")
+      EntitiesService.addEntity(item);
+      entity.square.entity = item;
+      item.position = {...entity.position};
+    }
+
     this.props.processInterface();
   };
 
