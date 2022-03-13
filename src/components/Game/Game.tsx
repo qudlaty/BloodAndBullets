@@ -121,17 +121,16 @@ export class Game extends React.PureComponent<void, GameState> {
 
             <div className={styles.action_row}>
             <span>
-                Enemies to kill: {this.state.enemiesAlive}
-                {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
-                {this.state.selected && this.state.selected.isAlive ? '' : " Damn. YOU DIED."
-                  // TODO: calculate alive friendlies or a lose condition script here.
-                }
+                Enemies alive: {this.state.enemiesAlive} <br/>
+                Friends alive: {this.state.friendsAlive} <br/>
+                {this.state.enemiesAlive && !this.state.friendsAlive ? 'YOU LOST':'' }
+                {this.state.friendsAlive && !this.state.enemiesAlive ? 'YOU WON':'' }
               </span>
               &nbsp;
               <p className="instructions">
 
               </p>
-              <span>Friendly actions points: {this.calculateFriendlyActionPoints()} </span>
+              <span>Friends actions points: {this.calculateFriendlyActionPoints()} </span>
 
             </div>
           </div>
