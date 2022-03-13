@@ -26,7 +26,7 @@ export class GameState implements GameState{
       {
         entities: EntitiesService.entities,
         squares: SquaresService.squares,
-        selected: EntitiesService.findEntityById("Lazer Blady"),
+        selected: EntitiesService.selected,
         targeted: null,
         targetedSquareNumber: null,
 

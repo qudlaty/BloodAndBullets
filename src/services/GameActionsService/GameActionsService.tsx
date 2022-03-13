@@ -61,7 +61,7 @@ export class GameActionsClassForGameComponent {
 
   nextTick = () => {
     component.setState({ isAutoLoopOn: false });
-    this.nextStep();
+    this.nextStep();// TODO should not be run if processing loop is in progress
   };
 
   nextStep() {

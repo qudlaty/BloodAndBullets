@@ -23,9 +23,12 @@ export class Game extends React.PureComponent<void, GameState> {
 
     GameModel.loadBuiltInMap();
     GameModel.loadPredefinedEntitities();
+    EntitiesService.setSelected(EntitiesService.findEntityById("Lazer Blady"), true);
+
     this.state = new GameState();
-    this.state.selected.active = true;
+
     GameActions = new GameActionsClassForGameComponent(this);
+    console.log('Initial state dump:', this.state);
   }
 
   componentDidMount() {

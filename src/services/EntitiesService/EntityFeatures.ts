@@ -14,7 +14,7 @@ export class Identifiable {
   icon: string = "E";
 }
 
-export class Actor {
+export class Actor {// one who acts
   actionPoints: number = 2;
   maxActionPoints: number = 2;
 }
@@ -59,8 +59,8 @@ export class Mortal extends Positionable {
 }
 
 export class Bleedable extends Mortal {
-  bleeding: number;
-  bleedingReductionPerTurn: number = 1;
+  public bleeding: number = 0;
+  public bleedingReductionPerTurn: number = 1;
   bleed(): number {
     let entity = this;
     let bloodReleased = 0;
@@ -93,7 +93,7 @@ export class Breathing extends Mortal {
 
 export class Combative extends Identifiable {
   targetPosition: Position;
-  isShooting?: boolean;
+  isShooting?: boolean;// TODO: refactor to not be optional maybe?
   ceaseFire?: boolean;
   hasWeapon?: boolean;
   attackPosition(targetedSquarePosition: Position) {
