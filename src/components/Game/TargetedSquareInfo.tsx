@@ -67,7 +67,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     square.entity = newStructure;
     EntitiesService.entities.push(newStructure);
 
-    square.addToInventory(newStructure as Item);
+    //square.addToInventory(newStructure as Item);
 
 
     this.props.processInterface();
