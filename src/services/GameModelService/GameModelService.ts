@@ -5,6 +5,8 @@ import { characterDefinitions } from "resources/CharacterDefinitions";
 import tutorial_map_00 from "resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
 import intro from "resources/maps/intro.json";
 import { GameActionsClassForGameComponent } from "services/GameActionsService";
+import { L30 } from "resources";
+import { Item } from "services/ItemService";
 
 
 /**
@@ -49,11 +51,26 @@ export class GameModelClass {
     console.log(squaresStringified);
     let squaresLoaded = JSON.parse(squaresStringified);
     this.loadMapIntoBoard(squaresLoaded);
+
     let entitiesWithinTheMap = squaresLoaded.filter(square => square.entity).map(square => square.entity);
     console.log('Entities Within The Map:', entitiesWithinTheMap);
 
+    function makeInstanceOfAWeapon(weaponRecord): Item {
+      return new L30();
+    }
+
+    function processEquipmentForEntityRecord(entityRecord): any {
+      if(entityRecord.equipment && entityRecord.equipment.hands) {
+        entityRecord.equipment.hands = makeInstanceOfAWeapon(entityRecord.equipment.hands)
+      }
+      if(entityRecord.inventory) {
+        entityRecord.inventory.map(itemRecord => makeInstanceOfAWeapon(itemRecord));
+      }
+      return entityRecord;
+    }
+
     let entitiesProcessed = entitiesWithinTheMap.
-    map(entity => {delete entity.equipment; delete entity.inventory; return entity}).
+    map(entity => processEquipmentForEntityRecord(entity)).
     map(entityRecord => new Entity(entityRecord));
 
     console.log('ALIVE ENTITIES?', entitiesProcessed)
