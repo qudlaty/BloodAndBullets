@@ -75,7 +75,7 @@ export const entitiesInitialValues = [
     hp: 1,
     maxHp: 5,
     icon: "🦠",
-    position: { x: 1, y: 5 },
+    position: { x: 3, y: 8 },
     equipment: {hands: new L30()},
   },
 ];
@@ -83,6 +83,7 @@ export const entitiesInitialValues = [
 let defaultValues = {
   bleedingReductionPerTurn: 1,
   isBreathing: true,
+  isPassable: false,
   actionPoints: 2,
   maxActionPoints: 2,
   hasWeapon: true,
