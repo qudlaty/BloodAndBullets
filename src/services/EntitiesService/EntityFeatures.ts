@@ -21,7 +21,7 @@ export class Actor {// one who acts
 
 export class Positionable {
   position: Position = { x: undefined, y: undefined };
-
+  isPassable: boolean = false;
   get square(): Square {
     let square: Square = SquaresService.getSquareFromPosition(this.position.x, this.position.y);
     return square;
@@ -37,7 +37,7 @@ export class Movable extends Identifiable {
 
   setMoveDestinationPosition(targetPosition: Position) {
     let targetSquare: Square = SquaresService.getSquareFromPosition(targetPosition.x, targetPosition.y);
-    if (!targetSquare.entity || targetSquare.entity.isDead) {
+    if (!targetSquare.entity || targetSquare.entity.isDead|| targetSquare.entity.isPassable) {
       this.moveDestination = targetPosition;
       Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination");
       targetSquare.isChosenDestination = true;
