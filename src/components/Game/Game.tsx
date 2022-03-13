@@ -1,7 +1,7 @@
 import React from "react";
 
 // services
-import { EntitiesService, SquaresService, GameModel, GameActionsClassForGameComponent, GameState } from "services";
+import { EntitiesService, SquaresService, GameModel, GameActionsClassForGameComponent, GameState, Entity } from "services";
 
 // components
 import { Board, MessageBox } from "components";
@@ -39,6 +39,18 @@ export class Game extends React.PureComponent<void, GameState> {
     if(this.state.isAutoLoopOn){
       GameActions.loop();
     }
+  }
+
+  calculateFriendlyActionPoints(): number{
+    let startValue = 0;
+    let apAdder = (previousValue: number, entity: Entity): number => {
+      let result = previousValue + entity.actionPoints;
+      return result;
+    };
+    return EntitiesService.entities.filter(entity => entity.isFriendly).reduce(
+      apAdder, // takes a previous value and an array element (entity), returns number (next value)
+      startValue // start value for only the first iteration
+    );
   }
 
   render() {
@@ -111,13 +123,15 @@ export class Game extends React.PureComponent<void, GameState> {
             <span>
                 Enemies to kill: {this.state.enemiesAlive}
                 {this.state.enemiesAlive ? '' : " Great Job. YOU WON." }
-                {this.state.selected.isAlive ? '' : " Damn. YOU DIED." }
+                {this.state.selected && this.state.selected.isAlive ? '' : " Damn. YOU DIED."
+                  // TODO: calculate alive friendlies or a lose condition script here.
+                }
               </span>
               &nbsp;
               <p className="instructions">
 
               </p>
-              <span>Actions points: {this.state.selected.actionPoints} </span>
+              <span>Friendly actions points: {this.calculateFriendlyActionPoints()} </span>
 
             </div>
           </div>
