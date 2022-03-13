@@ -39,11 +39,12 @@ class GameLogicClass {
       previousState: GameState,
       givenEntity: Entity
     ): GameState{
-    if(previousState.selected.actionPoints == 0) return previousState;
+    if(givenEntity.actionPoints === 0) return previousState;
     let nextState: GameState = previousState;
     let { entities } = nextState;
     this.processAnEntity(givenEntity);
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
+    nextState.friendsAlive = this.calculateNumberOfAliveFriends(entities);
     return nextState;
   }
 
@@ -64,6 +65,10 @@ class GameLogicClass {
     SquaresService.markAvailableDestinationsForSelectedEntity(entity);
     console.log('end procesing', entity)
     // SquaresService.castLightsFromFriendlyEntity(entity);
+  }
+
+  calculateNumberOfAliveFriends(entities: Entity[]):number {
+    return entities.filter(entity => entity.isFriendly && entity.isAlive).length;
   }
 
   calculateNumberOfAliveEnemies(entities: Entity[]):number {

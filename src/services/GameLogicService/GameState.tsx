@@ -1,4 +1,5 @@
 import { Entity, Square, EntitiesService, SquaresService } from "services";
+import GameLogic from "./GameLogicService";
 
 /**
  * @description Interface of GameState used in Game Component as state
@@ -14,6 +15,7 @@ export interface GameState {
   arenaSize: number;
   squareSize: number;
   enemiesAlive: number;
+  friendsAlive: number;
 
   isAutoLoopOn: boolean;
   isBoardRotated: boolean;
@@ -32,9 +34,10 @@ export class GameState implements GameState{
 
         arenaSize: 10,
         squareSize: 40,
-        enemiesAlive: null,
+        enemiesAlive: GameLogic.calculateNumberOfAliveEnemies(EntitiesService.entities),
+        friendsAlive: GameLogic.calculateNumberOfAliveFriends(EntitiesService.entities),
 
-        isAutoLoopOn: true,
+        isAutoLoopOn: false,
         isBoardRotated: false,
         isEditorOn: false,
       }
