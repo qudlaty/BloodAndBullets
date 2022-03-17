@@ -158,7 +158,7 @@ export class GameActionsClassForGameComponent {
 
         /** Setting move destination while clicking on empty square */
         if (doubleClick() && targeted.isAvailableDestination) {
-          selected.setMoveDestinationSquare(squareIndex);
+          selected.setMoveDestinationSquareByNumber(squareIndex);
           delete selected.targetPosition;
           delete selected.isShooting;
           Helpers.resetGivenFieldsOnACollection(squares,'isAttacked')
