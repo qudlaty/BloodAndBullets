@@ -50,7 +50,7 @@ export class GameModelClass {
 
     console.log(squaresStringified);
     let squaresLoaded = JSON.parse(squaresStringified);
-    this.loadMapIntoBoard(squaresLoaded);
+    this.loadSquaresIntoService(squaresLoaded);
 
     let entitiesWithinTheMap = squaresLoaded.filter(square => square.entity).map(square => square.entity);
     console.log('Entities Within The Map:', entitiesWithinTheMap);
@@ -70,16 +70,16 @@ export class GameModelClass {
     }
 
     let entitiesProcessed = entitiesWithinTheMap.
-    map(entity => processEquipmentForEntityRecord(entity)).
-    map(entityRecord => new Entity(entityRecord));
+          map(entity => processEquipmentForEntityRecord(entity)).
+          map(entityRecord => new Entity(entityRecord));
 
     console.log('ALIVE ENTITIES?', entitiesProcessed)
-    this.loadEntities(entitiesProcessed);///
+    this.loadEntitiesIntoService(entitiesProcessed);///
     GameActions.setSquaresAccordingToEntities();
     GameActions.processInterface();
   };
 
-  loadMapIntoBoard = (squaresLoaded) => {
+  loadSquaresIntoService = (squaresLoaded) => {
     SquaresService.squares.forEach((square, index) => {
       let targetSquare = square;
       let sourceSquare = squaresLoaded[index];
@@ -87,16 +87,16 @@ export class GameModelClass {
     });
   };
 
-  loadEntities = (entities: Entity[]) => {
+  loadEntitiesIntoService = (entities: Entity[]) => {
     EntitiesService.entities = entities;
   };
 
   loadBuiltInMap = () => {
-    this.loadMapIntoBoard(intro);
+    this.loadSquaresIntoService(intro);
   };
 
   loadPredefinedEntitities = () => {// TODO: Save and load entities together with the map?
-    this.loadEntities(characterDefinitions);
+    this.loadEntitiesIntoService(characterDefinitions);
   };
 }
 
