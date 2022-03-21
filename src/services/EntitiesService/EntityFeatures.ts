@@ -31,6 +31,7 @@ export class Positionable {
 
 export class Movable extends Identifiable {
   moveDestination: Position;
+  // TODO: are these methods really appropriate for this context?
 
   setMoveDestinationSquareByNumber(squareIndex: number) {
     this.setMoveDestinationPosition(SquaresService.getSquarePositionFromIndex(squareIndex));
@@ -38,10 +39,10 @@ export class Movable extends Identifiable {
 
   setMoveDestinationPosition(targetPosition: Position) {
     let targetSquare: Square = SquaresService.getSquareFromPosition(targetPosition.x, targetPosition.y);
-    if (!targetSquare.entity || targetSquare.entity.isDead|| targetSquare.entity.isPassable) {
+    let targetSquareNumber: number = SquaresService.getSquareIndexFromPosition(targetPosition.x, targetPosition.y)
+    if (SquaresService.isTargetSquareEnterable(targetSquare)) {
       this.moveDestination = targetPosition;
-      Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination");
-      targetSquare.isChosenDestination = true;
+      SquaresService.markSquareAtIndexAsChosenDestination(targetSquareNumber);
     } else {
       MessageService.send(`${this.name} can't move into square (${targetPosition.x}, ${targetPosition.y})`);
     }
