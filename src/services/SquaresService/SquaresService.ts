@@ -67,6 +67,12 @@ class SquaresServiceClass {
     this.squares[squareIndex].isAttacked = true;
   }
 
+  markSquareAtIndexAsChosenDestination(squareIndex: number): void {
+    Helpers.resetGivenFieldsOnACollection(this.squares, "isChosenDestination");
+    this.initializeSquareAtIndexIfEmpty(squareIndex);
+    this.squares[squareIndex].isChosenDestination = true;
+  }
+
 
   initializeSquareAtIndexIfEmpty(squareIndex: number) {
     if (!this.squares[squareIndex]) {
@@ -98,6 +104,10 @@ class SquaresServiceClass {
         }
       }
     }
+  }
+
+  isTargetSquareEnterable(targetSquare: Square): boolean {
+    return !targetSquare.entity || targetSquare.entity.isDead || targetSquare.entity.isPassable;
   }
 
   isSquareEnterableByFriendlyUnits = square => [
