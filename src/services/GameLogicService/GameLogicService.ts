@@ -95,7 +95,7 @@ class GameLogicClass {
     SquaresService.squares = squares;
     let entities: Entity[] = EntitiesService.entities;
     if (entities.length) {
-      Helpers.resetGivenFieldsOnACollection(squares, "entity");
+      Helpers.resetGivenFieldsOnACollection(squares, "entity", "entities");
     }
     entities.forEach((entity) => {
       SquaresService.setEntityWithinApropriateSquare(entity);

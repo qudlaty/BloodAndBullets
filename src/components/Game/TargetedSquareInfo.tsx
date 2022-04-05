@@ -82,7 +82,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
     let targetedSquarePosition = SquaresService.getSquarePositionFromIndex(squareNumber);
 
-    let entityInfo;
+    let entityInfo = [];
     let distanceInfo;
     let positionInfo;
     let bloodInfo;
@@ -102,17 +102,22 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         </button>
       </div>
     );
-
-    if (targeted.entity && !Helpers.isSelectedTargeted(selected, targeted)) {
-      entityInfo = (
-        <EntityCard
-          onEntityClick={this.onItemClick}
-          onInventoryClick={this.props.onInventoryClick}
-          entity={targeted.entity}
-          processInterface={() => this.props.processInterface()}
-        />
-      );
+    
+    if (targeted.entities && targeted.entities.length){
+      targeted.entities.forEach(i => {
+        if (selected !== i) {
+          entityInfo.push(
+            <EntityCard
+              onEntityClick={this.onItemClick}
+              onInventoryClick={this.props.onInventoryClick}
+              entity={i}
+              processInterface={() => this.props.processInterface()}
+            />
+          );
+        }
+      });
     }
+    
 
     if (targeted.items) {
       items = (

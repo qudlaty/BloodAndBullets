@@ -2,6 +2,7 @@ import { Item } from "services/ItemService";
 import { Entity, HavingInventory, Identifiable } from "services/EntitiesService";
 
 export interface Square {
+  entities?: Entity[];
   entity?: Entity;
   blood?: number;
   squareType: string;

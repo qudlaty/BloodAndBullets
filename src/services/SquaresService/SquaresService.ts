@@ -41,6 +41,10 @@ class SquaresServiceClass {
     let squareIndex: number = this.getSquareIndexFromPosition(x, y);
     this.initializeSquareAtIndexIfEmpty(squareIndex);
     this.squares[squareIndex].entity = entity;
+    if(!Array.isArray(this.squares[squareIndex].entities)){
+      this.squares[squareIndex].entities = [];
+    }
+    this.squares[squareIndex].entities.push(entity);
   }
 
   addBloodToSquare(square: Square, amount: number) {
