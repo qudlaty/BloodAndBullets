@@ -42,7 +42,9 @@ export class GameModelClass {
 
   loadMap = (GameActions: GameActionsClassForGameComponent) => {
     let mapNames: any = Object.keys(localStorage);
-    let message = `Enter the name of map to load. ${mapNames}`;
+    let message = `Enter the name of map to load.\n`+
+    `Maps available in localStorage: ${mapNames}\n`+
+    `Be aware item processing is not working fully yet.`;
     let mapName = "map00";
     console.log(mapNames);
     let result = window.prompt(message, mapNames);

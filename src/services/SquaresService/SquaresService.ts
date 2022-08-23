@@ -107,9 +107,10 @@ class SquaresServiceClass {
   }
 
   isTargetSquareEnterable(targetSquare: Square): boolean {
-    let unpassableEntitiesInThisSquare = targetSquare.entities && targetSquare.entities.filter(i =>{
-      return !i.isPassable && i.isAlive;
-    })
+    let unpassableEntitiesInThisSquare = targetSquare.entities &&
+      targetSquare.entities.filter(
+        entity => !entity.isPassable && entity.isAlive
+      );
     return  !(unpassableEntitiesInThisSquare && unpassableEntitiesInThisSquare.length);
   }
 

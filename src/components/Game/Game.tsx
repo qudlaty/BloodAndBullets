@@ -4,7 +4,7 @@ import React from "react";
 import { EntitiesService, SquaresService, GameModel, GameActionsClassForGameComponent, GameState, Entity } from "services";
 
 // components
-import { Board, MessageBox } from "components";
+import { Board, MessageBox, Controls } from "components";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 
@@ -66,6 +66,10 @@ export class Game extends React.PureComponent<void, GameState> {
             isRotated={this.state.isBoardRotated}
             style={{fontSize: `${this.state.squareSize}px`}}
           />
+          <Controls
+            keys={['W', 'S', 'A', 'D']}
+            onKeyPress={e => e}
+          ></Controls>
         </div>
 
         <div className={styles.game__info}>
