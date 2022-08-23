@@ -1,0 +1,31 @@
+.emoji {
+  height: 100%;
+  background-size: cover;
+  &-octopus {
+    background-image: url("images/octopus_samsung_1f419.png");
+  }
+  &-squid {
+    background-image: url("images/squid__joypixels_1f991.png");
+  }
+  &-spider {
+    background-image: url("images/spider__whatsapp_1f577-fe0f.png");
+  }
+  &-mosquito {
+    background-image: url("images/mosquito__emojipedia_1f99f.png");
+  }
+  &-ant {
+    background-image: url("images/ant_whatsapp_1f41c.png");
+  }
+  &-microbe {
+    background-image: url("images/microbe__joypixels_1f9a0.png");
+  }
+  &-astronaut {
+    background-image: url("images/astronaut-light-skin-tone_joy_pixels_1f9d1-1f3fb-200d-1f680.png");
+  }
+  &-robot {
+    background-image: url("images/robot-face__emojidex1f916.png");
+  }
+  &-oildrum {
+    background-image: url("images/oil-drum_red_emojidex_1f6e2.png");
+  }
+}
