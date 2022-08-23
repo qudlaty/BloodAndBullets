@@ -3,6 +3,7 @@ export * from "./Board";
 export * from "./EntitiesList";
 export * from "./EntityCard";
 export * from "./EntityPawn";
+export * from "./EmojiMapper";
 export * from "./Game";
 export * from "./Square";
 export * from "./LinearDisplay";

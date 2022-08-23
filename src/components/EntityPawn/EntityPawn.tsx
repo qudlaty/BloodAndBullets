@@ -1,6 +1,6 @@
 import React from "react";
 import { SquaresService, Entity } from "services";
-import { HpBar, ShootingVisualization } from "components";
+import { HpBar, ShootingVisualization, EmojiMapper } from "components";
 import * as Helpers from "helpers";
 import "./EntityPawn.scss";
 
@@ -54,7 +54,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
             animation: animationBreathing,
           }}
         >
-          {entity.icon}
+          <EmojiMapper emoji={entity.icon} />
         </div>
         <ShootingVisualization entity={entity} />
       </div>

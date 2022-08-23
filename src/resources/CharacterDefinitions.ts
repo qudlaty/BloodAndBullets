@@ -6,7 +6,7 @@ export const entitiesInitialValues = [
     name: "Lazer Blady",
     hp: 75,
     maxHp: 100,
-    icon: "🧑🏻",
+    icon: "🧑‍🚀",
     isFriendly: true,
     position: { x: 4, y: 8 },
     inventory: [new M16()],
