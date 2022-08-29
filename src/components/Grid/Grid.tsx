@@ -12,15 +12,6 @@ interface GridState {
 }
 
 export class Grid extends React.Component<GridProps, GridState> {
-  gridReference;
-  scroll = {
-    x: 0,
-    y: 0,
-  }
-
-  mapdrag = false;
-
-  stateDriven = false;
 
   constructor(props) {
     super(props);
