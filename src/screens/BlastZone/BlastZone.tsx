@@ -1,6 +1,7 @@
 import React from "react";
 import { HudPanel, Grid, Controls } from "components";
 import "./BlastZone.scss";
+import { DragScrollArea } from "components/DragScrollArea";
 
 interface BlastZoneState {
   gridX: number,
@@ -68,7 +69,9 @@ export class BlastZone extends React.Component<void, BlastZoneState> {
       </div>
       <div className="mid-row">
         <HudPanel title="Tactical Grid">
-          <Grid width={100} height={100} startAt={[this.state.gridX,this.state.gridY]}></Grid>
+          <DragScrollArea>
+            <Grid width={100} height={100} startAt={[this.state.gridX,this.state.gridY]}></Grid>
+          </DragScrollArea>
         </HudPanel>
       </div>
 
