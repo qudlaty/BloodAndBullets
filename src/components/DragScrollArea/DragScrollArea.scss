@@ -1,0 +1,14 @@
+.drag-scroll-area {
+  &-external {
+    overflow: hidden;
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid black;
+  }
+  &-internal {
+    border: 1px dashed orange;
+    width: max-content;
+    height: max-content;
+  }
+}
