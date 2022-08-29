@@ -5,13 +5,7 @@ interface DragScrollAreaProps {
   children: JSX.Element;
 }
 
-interface DragScrollAreaState {
-  mapdrag: boolean,
-  scroll: {
-    x: number,
-    y: number,
-  }
-}
+interface DragScrollAreaState {}
 
 export class DragScrollArea extends
   React.Component<DragScrollAreaProps, DragScrollAreaState> {
@@ -20,8 +14,6 @@ export class DragScrollArea extends
     x: 0,
     y: 0,
   }
-
-  mapdrag = false;
 
   constructor(props) {
     super(props);
@@ -42,40 +34,22 @@ export class DragScrollArea extends
     this.executeScroll();
   }
 
-  handleMove(e) {
-    if(!this.mapdrag) return;
+  onMouseDown = (e) => {
+    if(e.button === 2) {
+      document.addEventListener('mouseup', this.onMouseUp);
+      document.addEventListener('mousemove', this.onMouseMove);
+      e.preventDefault();
+    }
+  }
+
+  onMouseMove = (e) => {
     this.scrollRelativeXY(e.movementX, e.movementY);
   }
 
-  onMouseDrag(e){
-    console.log(e);
-  }
-
-  onMouseDown(e) {
-    console.log(e.button);
-    if(e.button === 2) {
-      this.mapdrag = true;
-    }
+  onMouseUp = (e) => {
+    document.removeEventListener('mouseup', this.onMouseUp);
+    document.removeEventListener('mousemove', this.onMouseMove);
     e.preventDefault();
-    console.log(this.mapdrag);
-  }
-
-  onMouseOut(e) {
-    console.log("MOUSE OUT")
-    this.mapdrag = false;
-  }
-
-  startDragging(e){
-      this.mapdrag = true;
-  }
-
-  onMouseUp(e){
-    console.log(e.button);
-    if(e.button === 2) {
-      this.mapdrag = false;
-    }
-    e.preventDefault();
-    console.log(this.mapdrag);
   }
 
   executeScroll() {
@@ -90,11 +64,7 @@ export class DragScrollArea extends
       className="drag-scroll-area drag-scroll-area-external"
       ref={this.areaReference}
       onMouseDown={(e) => this.onMouseDown(e)}
-      onMouseUp={(e) => this.onMouseUp(e)}
-      onMouseMove={(e) => this.handleMove(e)}
-      onContextMenu={(e)=>e.preventDefault()}
-      onDrag={(e)=>this.onMouseDrag(e)}
-      //onMouseOut={(e)=>this.onMouseOut(e)}
+      onContextMenu={(e) => e.preventDefault()}
     >
       <div className="drag-scroll-area drag-scroll-area-internal">
         {

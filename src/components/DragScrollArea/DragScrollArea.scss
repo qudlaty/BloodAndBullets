@@ -7,6 +7,7 @@
     border: 1px solid black;
   }
   &-internal {
+    cursor: grab;
     border: 1px dashed orange;
     width: max-content;
     height: max-content;
