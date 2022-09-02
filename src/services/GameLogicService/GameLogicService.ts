@@ -4,6 +4,7 @@ import { GameState } from "./GameState";
 import { SquaresService, Square } from "services/SquaresService";
 import { EntitiesService, Entity } from "services/EntitiesService";
 import * as Helpers from "helpers";
+import { ScriptsService } from "services/ScriptsService";
 
 /**
  * @description Assorted methods required to run the game logic
@@ -45,6 +46,7 @@ class GameLogicClass {
     this.processAnEntity(givenEntity);
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
     nextState.friendsAlive = this.calculateNumberOfAliveFriends(entities);
+    ScriptsService.runScripts(givenEntity);
     return nextState;
   }
 
