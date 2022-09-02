@@ -15,7 +15,7 @@ class ScriptsServiceClass {
   scripts = [
     {
       what: scriptTypes.entityPresent,
-      where: {x: 9, y: 9},
+      where: {x: 8, y: 8},
       who: 'Lazer Blady',
       condition: 'alive', // dead, hpGreaterThan, hpLessThan, havingEquipment
       params: [],//
@@ -24,7 +24,20 @@ class ScriptsServiceClass {
         action: 'message',// 'switch power', 'open', 'spawn'
         params: ['You have reached the exit. You have won the game.']
       }
+    },
+    {
+      what: scriptTypes.entityPresent,
+      where: {x: 6, y: 8},
+      who: 'Lazer Blady',
+      condition: 'alive', // dead, hpGreaterThan, hpLessThan, havingEquipment
+      params: [],//
+
+      result: {
+        action: 'load-map',// 'switch power', 'open', 'spawn'
+        params: ['A2']
+      }
     }
+
   ];
   constructor() {
     console.debug(JSON.stringify(this.scripts))
@@ -75,6 +88,9 @@ class ScriptsServiceClass {
       case 'message':
         MessageService.send(script.result.params[0]);
         break;
+      case 'load-map':
+        console.log('Going to loadMap', script.result.params[0])
+        // TODO: GameModel.loadMapByName(script.result.params[0]);
       default:
     }
   }
