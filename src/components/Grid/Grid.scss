@@ -4,16 +4,10 @@ $color-amber: #fb7e14;
 $color-primary: $color-amber;
 $color-border: $color-primary;
 .grid {
-  overflow: hidden;
   display: grid;
   grid-template-rows: repeat(101, 40px);
   grid-gap: 10px 10px;
-  border: 0px solid $color-border;
-
   .row {
-    // display:flex;
-    // flex-direction: row;
-    //border: 1px solid red;
     display: grid;
     grid-template-columns: repeat(101, 40px);
     height: 40px;
