@@ -10,8 +10,9 @@ export interface Position {
 }
 
 export class Identifiable {
-  name: string = "An Entity";
-  icon: string = "E";
+  id: number | string;
+  name: string = "";
+  icon: string = " ";
 }
 
 export class Actor {// one who acts

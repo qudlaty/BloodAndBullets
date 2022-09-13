@@ -76,7 +76,8 @@ class SquaresServiceClass {
 
   initializeSquareAtIndexIfEmpty(squareIndex: number) {
     if (!this.squares[squareIndex]) {
-      this.squares[squareIndex] = new Square();
+      this.squares[squareIndex] = new Square(squareIndex);
+      this.squares[squareIndex].position = this.getSquarePositionFromIndex(squareIndex);
     }
   }
 

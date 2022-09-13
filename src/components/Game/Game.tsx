@@ -67,8 +67,8 @@ export class Game extends React.PureComponent<void, GameState> {
             style={{fontSize: `${this.state.squareSize}px`}}
           />
           <Controls
-            keys={['W', 'S', 'A', 'D']}
-            onKeyPress={e => e}
+            keys={['W', 'S', 'A', 'D', 'space']}// TODO: implement using this.
+            onKeyPress={GameActions.handleKeyPress}
           ></Controls>
         </div>
 

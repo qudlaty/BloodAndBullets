@@ -11,6 +11,7 @@ interface ControlsState {
     s: boolean,
     a: boolean,
     d: boolean,
+    space: boolean,
 }
 
 export class Controls extends React.Component<ControlsProps, ControlsState> {
@@ -21,6 +22,7 @@ export class Controls extends React.Component<ControlsProps, ControlsState> {
             s: false,
             a: false,
             d: false,
+            space: false,
         }
     }
 
@@ -48,7 +50,12 @@ export class Controls extends React.Component<ControlsProps, ControlsState> {
                 this.setState({d: true});
                 this.props.onKeyPress('d');
                 break;
+            case 32: // space
+                this.setState({space: true});
+                this.props.onKeyPress('space');
+                break;
         }
+        event.preventDefault();
     }
 
     onKeyUp(event) {
@@ -66,6 +73,9 @@ export class Controls extends React.Component<ControlsProps, ControlsState> {
             case 68: // D
                 this.setState({d: false});
                 break;
+            case 32: // space
+                this.setState({space: false});
+                break;
         }
     }
 
@@ -75,6 +85,9 @@ export class Controls extends React.Component<ControlsProps, ControlsState> {
             [<span className={`${this.state.s ? 'pressed' : ''} key` }>S</span>]
             [<span className={`${this.state.a ? 'pressed' : ''} key` }>A</span>]
             [<span className={`${this.state.d ? 'pressed' : ''} key` }>D</span>]
+            &nbsp;
+            [<span className={`${this.state.space ? 'pressed' : ''} key` }>space</span>]
+
         </div>;
     }
 }

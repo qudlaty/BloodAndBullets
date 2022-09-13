@@ -36,6 +36,36 @@ class ScriptsServiceClass {
         action: 'load-map',// 'switch power', 'open', 'spawn'
         params: ['A2']
       }
+    },
+    {
+      what: scriptTypes.entityPresent,
+      where: {x: 4, y: 9},
+      condition: 'alive', // dead, hpGreaterThan, hpLessThan, havingEquipment
+      params: [],//
+
+      result: {
+        action: 'heal',// 'switch power', 'open', 'spawn'
+        params: []
+      }
+    },
+    {
+      what: scriptTypes.entityPresent,
+      where: {x: 5, y: 8},
+      condition: 'alive', // dead, hpGreaterThan, hpLessThan, havingEquipment
+      params: [],//
+
+      result: {
+        action: 'move',// 'switch power', 'open', 'spawn'
+        params: [{x: 0, y:0}],
+      }
+    },
+    {
+      what: scriptTypes.entityPresent,
+      where: {x: 0, y: 1},
+      result: {
+        action: 'move',
+        params: [{x: 0, y:9}],
+      }
     }
 
   ];
@@ -91,6 +121,33 @@ class ScriptsServiceClass {
       case 'load-map':
         console.log('Going to loadMap', script.result.params[0])
         // TODO: GameModel.loadMapByName(script.result.params[0]);
+        break;
+      case 'heal':
+        console.log(`Going to heal ${script.where.x},${script.where.y}`)
+        let entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
+        entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
+          let entity = entityAtLocation;
+          MessageService.send(`Healing ${entity.name} from ${entity.hp} to ${entity.maxHp}`)
+
+          entityAtLocation.hp = entityAtLocation.maxHp;
+        });
+        break;
+      case 'move':{
+        console.log(`Going to heal ${script.where.x},${script.where.y}`)
+        let entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
+        entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
+          let entity = entityAtLocation;
+          let e = entity;
+          let targetDestination = script.result.params[0];
+          MessageService.send(`Moving ${entity.name} from ${e.position.x}, ${e.position.y} to
+          ${targetDestination.x},${targetDestination.y}`)
+
+          //entityAtLocation.hp = entityAtLocation.maxHp;
+          entity.position.x = targetDestination.x;
+          entity.position.y = targetDestination.y;
+        });
+        break;
+      }
       default:
     }
   }

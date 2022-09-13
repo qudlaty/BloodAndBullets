@@ -52,7 +52,7 @@ export function LinearDisplay(props: LinearDisplayProps) {
 
   return (
     <div className={className}>
-      <div className="linear-display__label">{props.label}:&nbsp;</div>
+      <div className="linear-display__label">{props.label}{props.label ? ':' : ''}&nbsp;</div>
       <div className="linear-display__bar-container" title={title}>
         <div className="linear-display__bar-progress" style={progressStyle}>
           <span className="linear-display__bar-progress-text">

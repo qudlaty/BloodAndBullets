@@ -102,7 +102,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         </button>
       </div>
     );
-    
+
     if (targeted.entities && targeted.entities.length){
       targeted.entities.forEach(i => {
         if (selected !== i) {
@@ -117,7 +117,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         }
       });
     }
-    
+
 
     if (targeted.items) {
       items = (
@@ -171,9 +171,13 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       bloodInfo = <li>Blood amount: {targeted.blood}</li>;
     }
 
+    let square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
+
     return (
       <div className={this.props.className}>
         <strong className={GameStyles.targeted__label}>Target square Info</strong>
+        <code>{square.icon} {square.name}</code>
+        <p>{square.description}</p>
         <div>{entityInfo}</div>
         <div>{availableActions}</div>
         <ul>
