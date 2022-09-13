@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 // services
-import { Item } from "services";
+import { Item, Square, SquaresService } from "services";
 // components
 import Blood from "./Blood";
 import Items from "./Items";
@@ -47,11 +47,14 @@ export class SquareComponent extends React.PureComponent<SquareProps> {
       </div>
     }
 
+    let squareModel = SquaresService.squares[this.props.squareId]
+    let icon = squareModel.icon;
+
     return (
       <button className={this.props.className} onClick={this.onClick}>
+        <div className="square__content">{icon}</div>
         <Blood bloodAmount={this.props.blood} />
         <Items items={this.props.items} itemsNumber={this.props.itemsNumber} />
-        <div className="square__content">&nbsp;</div>
         {cuboid('square')}
       </button>
     );

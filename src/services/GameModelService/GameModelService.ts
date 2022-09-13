@@ -86,6 +86,9 @@ export class GameModelClass {
       let targetSquare = square;
       let sourceSquare = squaresLoaded[index];
       targetSquare.squareType = (sourceSquare && sourceSquare.squareType) || 'floor';
+      targetSquare.icon = (sourceSquare && sourceSquare.icon) || ' ';
+      targetSquare.name = (sourceSquare && sourceSquare.name) || ' ';
+      targetSquare.description = (sourceSquare && sourceSquare.description) || ' ';
     });
   };
 

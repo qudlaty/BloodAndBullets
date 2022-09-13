@@ -8,7 +8,7 @@ export const entitiesInitialValues = [
     maxHp: 100,
     icon: "🧑‍🚀",
     isFriendly: true,
-    position: { x: 4, y: 8 },
+    position: { x: 6, y: 8 },
     inventory: [new M16()],
     equipment: {hands: new L30()},
   },

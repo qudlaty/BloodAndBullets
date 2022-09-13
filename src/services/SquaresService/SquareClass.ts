@@ -1,7 +1,10 @@
 import { Item } from "services/ItemService";
-import { Entity, HavingInventory, Identifiable } from "services/EntitiesService";
+import { Entity, HavingInventory, Identifiable, Position } from "services/EntitiesService";
+import { SquaresService } from "./SquaresService";
 
 export interface Square {
+  position?: Position;
+  description?: string;
   entities?: Entity[];
   entity?: Entity;
   blood?: number;
@@ -17,6 +20,10 @@ export interface Square {
 
 export class Square extends HavingInventory implements Square {
   public squareType: string = "nothing";
+  constructor(squareIndex){
+    super();
+    this.id = squareIndex;
+  }
   addItem(item: Item) {
     this.addToInventory(item);
   }

@@ -76,6 +76,8 @@ $squareSize: 1em;
     line-height: 2em;
   }
   &__blood {
+    position: absolute;
+    overflow:hidden;
     color: #900;
     text-align: right;
     text-shadow: 0px 0px 1px #000;
@@ -122,6 +124,8 @@ $squareSize: 1em;
     // This is required, so the click event hits the Square, not the EntityPawn
     z-index: 1000;
     position: relative;
+    font-size: 0.7em;
+    text-align: center;
   }
   &__item-icon {
     width: 100%;

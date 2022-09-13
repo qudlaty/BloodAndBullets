@@ -129,6 +129,17 @@ export class GameActionsClassForGameComponent {
     component.setState((prevState) => GameLogic.syncSquaresWithEntities(prevState));
   }
 
+  handleKeyPress = (param) => {
+    console.log(param);
+    switch (param){
+      case "space":
+        this.executeActions();
+        break;
+      default:
+
+    }
+  }
+
   handleClickV2 = (squareIndex: number) => {
     component.setState(
       (state: GameState) => {

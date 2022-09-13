@@ -1,6 +1,8 @@
 .emoji {
-  height: 100%;
+  height: 1.3em;
+  width: 1.3em;
   background-size: cover;
+  display: inline-block;
   &-octopus {
     background-image: url("images/octopus_samsung_1f419.png");
   }

@@ -1,16 +1,26 @@
 import React from "react";
 import { Game } from "./components";
 import { BlastZone }  from "screens/BlastZone";
+import { ShowRoom } from "screens/ShowRoom";
+
 import "App.scss";
 
 interface AppState {
   loadedScene: string
 }
+
+const availableScreensList = [
+  'Game',
+  'BlastZone',
+  'ShowRoom',
+]
+
 export default class App extends React.Component<void, AppState> {
 
   scenes:{} = {
-    BlastZone,
     Game,
+    BlastZone,
+    ShowRoom,
   }
   SelectedScene = null;
   constructor(props: void) {
@@ -33,6 +43,10 @@ export default class App extends React.Component<void, AppState> {
 
   render() {
     let SelectedScene = this.scenes[this.state.loadedScene];
+
+    const availableScreenSwitchOptions = availableScreensList.map(
+      item => <option value={item}>{item}</option>
+    );
     return <div className="app">
 
       <div className="meta-bar">
@@ -44,8 +58,7 @@ export default class App extends React.Component<void, AppState> {
         <div className="screen-switch">
           <span>Select screen: </span>
           <select value={this.state.loadedScene} onChange={(e)=>this.handleChange(e)}>
-            <option value="BlastZone">BlastZone</option>
-            <option value="Game">Game</option>
+            {availableScreenSwitchOptions}
           </select>
         </div>
 

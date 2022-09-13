@@ -1,0 +1,25 @@
+.show-room {
+  padding: 1em;
+  li {
+    display:block;
+    border: 1px solid rgba(200,200,200,0.5);
+    padding: 10px;
+    margin-right: 10px;
+    margin-left: 0;
+    padding-left: 0;
+    .description {
+      margin-right: 10px;
+      padding-left: 20px;
+      width: 20%;
+      display: inline-block;
+    }
+    .content {
+      font-size:24px;
+      display: inline-block;
+      background: #234;
+      padding: 0;
+      min-width: 1em;
+      min-height: 1em;
+    }
+  }
+}

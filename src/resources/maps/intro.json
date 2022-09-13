@@ -1,534 +1,1487 @@
 [
   {
-    "name": "An Entity",
-    "icon": "E",
-    "inventory": [
-      {
-        "name": "box0",
-        "icon": "📦",
-        "hp": 50,
-        "maxHp": 70,
-        "isSupposedToBeBreathing": false,
-        "position": {
-          "x": 0,
-          "y": 0
-        }
-      }
-    ],
+    "id": 0,
+    "name": "",
+
     "squareType": "floor",
-    "entity": {
-      "name": "box0",
-      "icon": "📦",
-      "hp": 50,
-      "maxHp": 70,
-      "isSupposedToBeBreathing": false,
-      "position": {
-        "x": 0,
-        "y": 0
-      }
+    "position": {
+      "x": 0,
+      "y": 0
     }
   },
   {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
+    "id": 1,
+    "name": "",
+
     "squareType": "floor",
-    "isTargeted": true
+    "position": {
+      "x": 1,
+      "y": 0
+    }
   },
   {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "nothing"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
+    "id": 2,
+    "name": "",
+
     "squareType": "floor",
-    "isAvailableDestination": true
+    "position": {
+      "x": 2,
+      "y": 0
+    }
   },
   {
-    "name": "An Entity",
-    "icon": "E",
+    "id": 3,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 3,
+      "y": 0
+    }
+  },
+  {
+    "id": 4,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 0
+    }
+  },
+  {
+    "id": 5,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 5,
+      "y": 0
+    }
+  },
+  {
+    "id": 6,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 0
+    }
+  },
+  {
+    "id": 7,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 7,
+      "y": 0
+    }
+  },
+  {
+    "id": 8,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 8,
+      "y": 0
+    }
+  },
+  {
+    "id": 9,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 9,
+      "y": 0
+    }
+  },
+  {
+    "id": 10,
+    "name": "Teleport to SW Corner",
+    "description": "Moves you to 0,9",
+    "icon": "⬇️",
+    "squareType": "floor",
+    "position": {
+      "x": 0,
+      "y": 1
+    }
+  },
+  {
+    "id": 11,
+    "name": "",
+
     "squareType": "wall",
-    "isAvailableDestination": true
+    "position": {
+      "x": 1,
+      "y": 1
+    }
   },
   {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor",
-    "isAvailableDestination": true,
-    "isChosenDestination": true
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor",
-    "isAvailableDestination": true
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor",
-    "isAvailableDestination": true
-  },
-  {
-    "name": "An Entity",
-    "icon": "E",
+    "id": 12,
+    "name": "",
+
     "squareType": "wall",
-    "isAvailableDestination": true
+    "position": {
+      "x": 2,
+      "y": 1
+    }
   },
   {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
+    "id": 13,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 3,
+      "y": 1
+    }
   },
   {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "wall"
+    "id": 14,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 1
+    }
   },
   {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
+    "id": 15,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 5,
+      "y": 1
+    }
   },
   {
-    "name": "An Entity",
-    "icon": "E",
-    "squareType": "floor"
+    "id": 16,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 6,
+      "y": 1
+    }
+  },
+  {
+    "id": 17,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 7,
+      "y": 1
+    }
+  },
+  {
+    "id": 18,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 8,
+      "y": 1
+    }
+  },
+  {
+    "id": 19,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 9,
+      "y": 1
+    }
+  },
+  {
+    "id": 20,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 0,
+      "y": 2
+    }
+  },
+  {
+    "id": 21,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "id": 22,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": 23,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 3,
+      "y": 2
+    }
+  },
+  {
+    "id": 24,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 2
+    }
+  },
+  {
+    "id": 25,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 5,
+      "y": 2
+    }
+  },
+  {
+    "id": 26,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 2
+    }
+  },
+  {
+    "id": 27,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 7,
+      "y": 2
+    }
+  },
+  {
+    "id": 28,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 8,
+      "y": 2
+    },
+    "entity": {
+      "bleedingReductionPerTurn": 0,
+      "isSupposedToBeBreathing": true,
+      "isPassable": false,
+      "actionPoints": 2,
+      "maxActionPoints": 2,
+      "hasWeapon": true,
+      "name": "Octo",
+      "hp": 200,
+      "maxHp": 200,
+      "icon": "🐙",
+      "position": {
+        "x": 8,
+        "y": 2
+      },
+      "bleeding": 1,
+      "equipment": {
+        "hands": {
+          "name": "Assault Lazer Cannon",
+          "causesBleeding": 0,
+          "range": 6,
+          "damage": 3,
+          "rounds": 30,
+          "maxRounds": 30,
+          "type": "lazer"
+        }
+      }
+    },
+    "entities": [
+      {
+        "bleedingReductionPerTurn": 0,
+        "isSupposedToBeBreathing": true,
+        "isPassable": false,
+        "actionPoints": 2,
+        "maxActionPoints": 2,
+        "hasWeapon": true,
+        "name": "Octo",
+        "hp": 200,
+        "maxHp": 200,
+        "icon": "🐙",
+        "position": {
+          "x": 8,
+          "y": 2
+        },
+        "bleeding": 1,
+        "equipment": {
+          "hands": {
+            "name": "Assault Lazer Cannon",
+            "causesBleeding": 0,
+            "range": 6,
+            "damage": 3,
+            "rounds": 30,
+            "maxRounds": 30,
+            "type": "lazer"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 9,
+      "y": 2
+    }
+  },
+  {
+    "id": 30,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 0,
+      "y": 3
+    }
+  },
+  {
+    "id": 31,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 1,
+      "y": 3
+    }
+  },
+  {
+    "id": 32,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "id": 33,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 3,
+      "y": 3
+    }
+  },
+  {
+    "id": 34,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 3
+    }
+  },
+  {
+    "id": 35,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 5,
+      "y": 3
+    }
+  },
+  {
+    "id": 36,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 3
+    }
+  },
+  {
+    "id": 37,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 7,
+      "y": 3
+    }
+  },
+  {
+    "id": 38,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 8,
+      "y": 3
+    }
+  },
+  {
+    "id": 39,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 9,
+      "y": 3
+    },
+    "entity": {
+      "bleedingReductionPerTurn": 1,
+      "isSupposedToBeBreathing": true,
+      "isPassable": false,
+      "actionPoints": 2,
+      "maxActionPoints": 2,
+      "hasWeapon": true,
+      "name": "Henry The Spider",
+      "hp": 100,
+      "maxHp": 150,
+      "icon": "🕷️",
+      "position": {
+        "x": 9,
+        "y": 3
+      },
+      "equipment": {
+        "hands": {
+          "name": "Assault Lazer Cannon",
+          "causesBleeding": 0,
+          "range": 6,
+          "damage": 3,
+          "rounds": 30,
+          "maxRounds": 30,
+          "type": "lazer"
+        }
+      }
+    },
+    "entities": [
+      {
+        "bleedingReductionPerTurn": 1,
+        "isSupposedToBeBreathing": true,
+        "isPassable": false,
+        "actionPoints": 2,
+        "maxActionPoints": 2,
+        "hasWeapon": true,
+        "name": "Henry The Spider",
+        "hp": 100,
+        "maxHp": 150,
+        "icon": "🕷️",
+        "position": {
+          "x": 9,
+          "y": 3
+        },
+        "equipment": {
+          "hands": {
+            "name": "Assault Lazer Cannon",
+            "causesBleeding": 0,
+            "range": 6,
+            "damage": 3,
+            "rounds": 30,
+            "maxRounds": 30,
+            "type": "lazer"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 0,
+      "y": 4
+    }
+  },
+  {
+    "id": 41,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 1,
+      "y": 4
+    }
+  },
+  {
+    "id": 42,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 2,
+      "y": 4
+    }
+  },
+  {
+    "id": 43,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 3,
+      "y": 4
+    }
+  },
+  {
+    "id": 44,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 4
+    }
+  },
+  {
+    "id": 45,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 5,
+      "y": 4
+    }
+  },
+  {
+    "id": 46,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 4
+    },
+    "entity": {
+      "bleedingReductionPerTurn": 1,
+      "isSupposedToBeBreathing": true,
+      "isPassable": false,
+      "actionPoints": 0,
+      "maxActionPoints": 2,
+      "hasWeapon": true,
+      "name": "Squid",
+      "hp": 100,
+      "maxHp": 100,
+      "icon": "🦑",
+      "position": {
+        "x": 6,
+        "y": 4
+      },
+      "equipment": {
+        "hands": {
+          "name": "M41A Pulse Rifle",
+          "causesBleeding": 2,
+          "range": 4,
+          "damage": 1,
+          "rounds": 40,
+          "maxRounds": 40,
+          "type": "projectile"
+        }
+      }
+    },
+    "entities": [
+      {
+        "bleedingReductionPerTurn": 1,
+        "isSupposedToBeBreathing": true,
+        "isPassable": false,
+        "actionPoints": 0,
+        "maxActionPoints": 2,
+        "hasWeapon": true,
+        "name": "Squid",
+        "hp": 100,
+        "maxHp": 100,
+        "icon": "🦑",
+        "position": {
+          "x": 6,
+          "y": 4
+        },
+        "equipment": {
+          "hands": {
+            "name": "M41A Pulse Rifle",
+            "causesBleeding": 2,
+            "range": 4,
+            "damage": 1,
+            "rounds": 40,
+            "maxRounds": 40,
+            "type": "projectile"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 7,
+      "y": 4
+    }
+  },
+  {
+    "id": 48,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 8,
+      "y": 4
+    }
+  },
+  {
+    "id": 49,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 9,
+      "y": 4
+    }
+  },
+  {
+    "id": 50,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 0,
+      "y": 5
+    }
+  },
+  {
+    "id": 51,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 1,
+      "y": 5
+    }
+  },
+  {
+    "id": 52,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 2,
+      "y": 5
+    }
+  },
+  {
+    "id": 53,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 3,
+      "y": 5
+    },
+    "entity": {
+      "isFriendly": true,
+      "bleedingReductionPerTurn": 50,
+      "isSupposedToBeBreathing": false,
+      "isPassable": false,
+      "actionPoints": 2,
+      "maxActionPoints": 2,
+      "hasWeapon": true,
+      "name": "Robot",
+      "age": 1,
+      "hp": 50,
+      "maxHp": 50,
+      "icon": "🤖",
+      "position": {
+        "x": 3,
+        "y": 5
+      },
+      "equipment": {
+        "hands": {
+          "name": "Assault Lazer Cannon",
+          "causesBleeding": 0,
+          "range": 6,
+          "damage": 3,
+          "rounds": 30,
+          "maxRounds": 30,
+          "type": "lazer"
+        }
+      }
+    },
+    "entities": [
+      {
+        "isFriendly": true,
+        "bleedingReductionPerTurn": 50,
+        "isSupposedToBeBreathing": false,
+        "isPassable": false,
+        "actionPoints": 2,
+        "maxActionPoints": 2,
+        "hasWeapon": true,
+        "name": "Robot",
+        "age": 1,
+        "hp": 50,
+        "maxHp": 50,
+        "icon": "🤖",
+        "position": {
+          "x": 3,
+          "y": 5
+        },
+        "equipment": {
+          "hands": {
+            "name": "Assault Lazer Cannon",
+            "causesBleeding": 0,
+            "range": 6,
+            "damage": 3,
+            "rounds": 30,
+            "maxRounds": 30,
+            "type": "lazer"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 5
+    }
+  },
+  {
+    "id": 55,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 5,
+      "y": 5
+    }
+  },
+  {
+    "id": 56,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 5
+    }
+  },
+  {
+    "id": 57,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 7,
+      "y": 5
+    }
+  },
+  {
+    "id": 58,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 8,
+      "y": 5
+    }
+  },
+  {
+    "id": 59,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 9,
+      "y": 5
+    }
+  },
+  {
+    "id": 60,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 0,
+      "y": 6
+    }
+  },
+  {
+    "id": 61,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 1,
+      "y": 6
+    }
+  },
+  {
+    "id": 62,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 2,
+      "y": 6
+    }
+  },
+  {
+    "id": 63,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 3,
+      "y": 6
+    }
+  },
+  {
+    "id": 64,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 4,
+      "y": 6
+    }
+  },
+  {
+    "id": 65,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 5,
+      "y": 6
+    }
+  },
+  {
+    "id": 66,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 6
+    }
+  },
+  {
+    "id": 67,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 7,
+      "y": 6
+    }
+  },
+  {
+    "id": 68,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 8,
+      "y": 6
+    }
+  },
+  {
+    "id": 69,
+    "name": "",
+
+    "squareType": "nothing",
+    "position": {
+      "x": 9,
+      "y": 6
+    }
+  },
+  {
+    "id": 70,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 0,
+      "y": 7
+    }
+  },
+  {
+    "id": 71,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 1,
+      "y": 7
+    }
+  },
+  {
+    "id": 72,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 2,
+      "y": 7
+    },
+    "entity": {
+      "bleedingReductionPerTurn": 1,
+      "isSupposedToBeBreathing": true,
+      "isPassable": false,
+      "actionPoints": 1,
+      "maxActionPoints": 1,
+      "hasWeapon": true,
+      "name": "Mosquito",
+      "hp": 12,
+      "maxHp": 20,
+      "icon": "🦟",
+      "position": {
+        "x": 2,
+        "y": 7
+      },
+      "equipment": {
+        "hands": {
+          "name": "M16",
+          "causesBleeding": 2,
+          "range": 4,
+          "damage": 2,
+          "rounds": 15,
+          "maxRounds": 20,
+          "type": "projectile"
+        }
+      }
+    },
+    "entities": [
+      {
+        "bleedingReductionPerTurn": 1,
+        "isSupposedToBeBreathing": true,
+        "isPassable": false,
+        "actionPoints": 1,
+        "maxActionPoints": 1,
+        "hasWeapon": true,
+        "name": "Mosquito",
+        "hp": 12,
+        "maxHp": 20,
+        "icon": "🦟",
+        "position": {
+          "x": 2,
+          "y": 7
+        },
+        "equipment": {
+          "hands": {
+            "name": "M16",
+            "causesBleeding": 2,
+            "range": 4,
+            "damage": 2,
+            "rounds": 15,
+            "maxRounds": 20,
+            "type": "projectile"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 3,
+      "y": 7
+    }
+  },
+  {
+    "id": 74,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 7
+    }
+  },
+  {
+    "id": 75,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 5,
+      "y": 7
+    }
+  },
+  {
+    "id": 76,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 7
+    }
+  },
+  {
+    "id": 77,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 7,
+      "y": 7
+    }
+  },
+  {
+    "id": 78,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 8,
+      "y": 7
+    },
+    "entity": {
+      "bleedingReductionPerTurn": 1,
+      "isSupposedToBeBreathing": true,
+      "isPassable": false,
+      "actionPoints": 0,
+      "maxActionPoints": 2,
+      "hasWeapon": true,
+      "name": "Ant",
+      "age": 1,
+      "hp": 45,
+      "maxHp": 50,
+      "icon": "🐜",
+      "position": {
+        "x": 8,
+        "y": 7
+      },
+      "equipment": {
+        "hands": {
+          "name": "M41A Pulse Rifle",
+          "causesBleeding": 2,
+          "range": 4,
+          "damage": 1,
+          "rounds": 40,
+          "maxRounds": 40,
+          "type": "projectile"
+        }
+      }
+    },
+    "entities": [
+      {
+        "bleedingReductionPerTurn": 1,
+        "isSupposedToBeBreathing": true,
+        "isPassable": false,
+        "actionPoints": 0,
+        "maxActionPoints": 2,
+        "hasWeapon": true,
+        "name": "Ant",
+        "age": 1,
+        "hp": 45,
+        "maxHp": 50,
+        "icon": "🐜",
+        "position": {
+          "x": 8,
+          "y": 7
+        },
+        "equipment": {
+          "hands": {
+            "name": "M41A Pulse Rifle",
+            "causesBleeding": 2,
+            "range": 4,
+            "damage": 1,
+            "rounds": 40,
+            "maxRounds": 40,
+            "type": "projectile"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 9,
+      "y": 7
+    }
+  },
+  {
+    "id": 80,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 0,
+      "y": 8
+    }
+  },
+  {
+    "id": 81,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 1,
+      "y": 8
+    }
+  },
+  {
+    "id": 82,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 2,
+      "y": 8
+    }
+  },
+  {
+    "id": 83,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 3,
+      "y": 8
+    },
+    "entity": {
+      "bleedingReductionPerTurn": 1,
+      "isSupposedToBeBreathing": true,
+      "isPassable": false,
+      "actionPoints": 2,
+      "maxActionPoints": 2,
+      "hasWeapon": true,
+      "name": "Microbe",
+      "hp": 1,
+      "maxHp": 5,
+      "icon": "🦠",
+      "position": {
+        "x": 3,
+        "y": 8
+      },
+      "equipment": {
+        "hands": {
+          "name": "Assault Lazer Cannon",
+          "causesBleeding": 0,
+          "range": 6,
+          "damage": 3,
+          "rounds": 30,
+          "maxRounds": 30,
+          "type": "lazer"
+        }
+      }
+    },
+    "entities": [
+      {
+        "bleedingReductionPerTurn": 1,
+        "isSupposedToBeBreathing": true,
+        "isPassable": false,
+        "actionPoints": 2,
+        "maxActionPoints": 2,
+        "hasWeapon": true,
+        "name": "Microbe",
+        "hp": 1,
+        "maxHp": 5,
+        "icon": "🦠",
+        "position": {
+          "x": 3,
+          "y": 8
+        },
+        "equipment": {
+          "hands": {
+            "name": "Assault Lazer Cannon",
+            "causesBleeding": 0,
+            "range": 6,
+            "damage": 3,
+            "rounds": 30,
+            "maxRounds": 30,
+            "type": "lazer"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 8
+    }
+  },
+  {
+    "id": 85,
+    "name": "Teleport to NW Corner",
+    "description": "Moves you to 0,0",
+    "icon": "↖️",
+    "squareType": "floor",
+    "position": {
+      "x": 5,
+      "y": 8
+    }
+  },
+  {
+    "id": 86,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 8
+    },
+    "isTargeted": true,
+    "entity": {
+      "isFriendly": true,
+      "bleedingReductionPerTurn": 1,
+      "isSupposedToBeBreathing": true,
+      "isPassable": false,
+      "actionPoints": 2,
+      "maxActionPoints": 2,
+      "hasWeapon": true,
+      "name": "Lazer Blady",
+      "hp": 75,
+      "maxHp": 100,
+      "icon": "🧑‍🚀",
+      "position": {
+        "x": 6,
+        "y": 8
+      },
+      "inventory": [
+        {
+          "name": "M16",
+          "causesBleeding": 2,
+          "range": 4,
+          "damage": 2,
+          "rounds": 15,
+          "maxRounds": 20,
+          "type": "projectile"
+        }
+      ],
+      "equipment": {
+        "hands": {
+          "name": "Assault Lazer Cannon",
+          "causesBleeding": 0,
+          "range": 6,
+          "damage": 3,
+          "rounds": 30,
+          "maxRounds": 30,
+          "type": "lazer"
+        }
+      }
+    },
+    "entities": [
+      {
+        "isFriendly": true,
+        "bleedingReductionPerTurn": 1,
+        "isSupposedToBeBreathing": true,
+        "isPassable": false,
+        "actionPoints": 2,
+        "maxActionPoints": 2,
+        "hasWeapon": true,
+        "name": "Lazer Blady",
+        "hp": 75,
+        "maxHp": 100,
+        "icon": "🧑‍🚀",
+        "position": {
+          "x": 6,
+          "y": 8
+        },
+        "inventory": [
+          {
+            "name": "M16",
+            "causesBleeding": 2,
+            "range": 4,
+            "damage": 2,
+            "rounds": 15,
+            "maxRounds": 20,
+            "type": "projectile"
+          }
+        ],
+        "equipment": {
+          "hands": {
+            "name": "Assault Lazer Cannon",
+            "causesBleeding": 0,
+            "range": 6,
+            "damage": 3,
+            "rounds": 30,
+            "maxRounds": 30,
+            "type": "lazer"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 7,
+      "y": 8
+    }
+  },
+  {
+    "id": 88,
+    "name": "EXIT",
+    "description": "Reach this place to win The Game",
+    "icon": "🚪",
+    "squareType": "floor",
+    "position": {
+      "x": 8,
+      "y": 8
+    }
+  },
+  {
+    "id": 89,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 9,
+      "y": 8
+    }
+  },
+  {
+    "id": 90,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 0,
+      "y": 9
+    }
+  },
+  {
+    "id": 91,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 1,
+      "y": 9
+    }
+  },
+  {
+    "id": 92,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 2,
+      "y": 9
+    }
+  },
+  {
+    "id": 93,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 3,
+      "y": 9
+    }
+  },
+  {
+    "id": 94,
+    "name": "Healing Station",
+    "icon": "🏥",
+    "description": "This advanced healing station repairs all damage done to a given entity",
+    "squareType": "floor",
+    "position": {
+      "x": 4,
+      "y": 9
+    }
+  },
+  {
+    "id": 95,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 5,
+      "y": 9
+    }
+  },
+  {
+    "id": 96,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 6,
+      "y": 9
+    }
+  },
+  {
+    "id": 97,
+    "name": "",
+
+    "squareType": "wall",
+    "position": {
+      "x": 7,
+      "y": 9
+    }
+  },
+  {
+    "id": 98,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 8,
+      "y": 9
+    }
+  },
+  {
+    "id": 99,
+    "name": "",
+
+    "squareType": "floor",
+    "position": {
+      "x": 9,
+      "y": 9
+    }
   }
 ]
