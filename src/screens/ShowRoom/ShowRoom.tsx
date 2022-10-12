@@ -1,5 +1,5 @@
 import React from "react";
-import { HudPanel, Grid, Controls, EmojiMapper, HpBar, InventoryItem, LinearDisplay, SquareComponent } from "components";
+import { HudPanel, Grid, Controls, EmojiMapper, HpBar, InventoryItem, LinearDisplay, SquareComponent, Cell } from "components";
 import "./ShowRoom.scss";
 import { DragScrollArea } from "components/DragScrollArea";
 import { M16 } from "resources";
@@ -13,7 +13,10 @@ export class ShowRoom extends React.Component<void, void> {
 
   showRoomList = [
     { name: "Square",
-      content: <SquareComponent squareId={1} onClick={noop} blood={7} items={[]} itemsNumber={3}/>
+      content: <SquareComponent squareId={1} onClick={noop} blood={7} items={[]} itemsNumber={3}>T</SquareComponent>
+    },
+    { name: "Cell",
+      content: <Cell>H</Cell>
     },
     { name: "Controls",
       content: <Controls keys={["q","e"]} onKeyPress={(e)=>{console.log('ehlo', e)}}></Controls>
@@ -25,7 +28,7 @@ export class ShowRoom extends React.Component<void, void> {
       content: <HpBar current={66} max={100} color="green"></HpBar>
     },
     { name: "HpBar 80/100 white",
-      content: <HpBar current={66} max={100} color="white"></HpBar>
+      content: <HpBar current={80} max={100} color="white"></HpBar>
     },
 
     { name: "HpBar 0/100",
