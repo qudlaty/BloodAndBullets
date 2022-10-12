@@ -1,3 +1,5 @@
+@import "src/styles/variables";
+
 // @keyframes shoot-and-rotate {
 //   0% {
 //     border-width: 1px;
@@ -50,9 +52,6 @@ $squareSize: 1em;
   color: #aaa;
   background: #333;
 
-  &:hover {
-    background: rgb(240, 160, 5);
-  }
   &--dark {
     background: #111;
     border-color: #222;
@@ -140,7 +139,8 @@ $squareSize: 1em;
     background-color: #444;
     border-color: #505050;
     &:hover{
-      background-color: rgb(240, 160, 5);
+      //background-color: rgb(240, 160, 5);
+      border: 2px solid $blue-1;
     }
   }
   &.wall {
