@@ -11,6 +11,8 @@ export const entitiesInitialValues = [
     position: { x: 6, y: 8 },
     inventory: [new M16()],
     equipment: {hands: new L30()},
+    actionPoints: 10,
+    maxActionPoints: 10
   },
   {
     name: "Robot",
