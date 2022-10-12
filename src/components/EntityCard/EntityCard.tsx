@@ -24,7 +24,6 @@ export class EntityCard extends React.Component<EntityCardProps> {
       entity.isShooting = false;
     }
     let item: InventoryItem = entity.takeFromInventory(itemName);
-    //debugger;
     if(item instanceof Item){
       console.log("Dropping Item")
       entity.square.addItem(item);
@@ -32,6 +31,7 @@ export class EntityCard extends React.Component<EntityCardProps> {
       console.log("Dropping Entity")
       EntitiesService.addEntity(item);
       entity.square.entity = item;
+      entity.square.entities.push(item);
       item.position = {...entity.position};
     }
 
