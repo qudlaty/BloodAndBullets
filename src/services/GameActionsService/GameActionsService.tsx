@@ -4,6 +4,7 @@
 import * as Helpers from "helpers";
 import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "services";
 import { GameState } from "services/GameLogicService";
+import { Square } from "services/SquaresService";
 
 let component = null;
 /**
@@ -204,8 +205,11 @@ export class GameActionsClassForGameComponent {
           }
         }
 
+        function doesSquareHaveAliveEntities(square: Square): boolean {
+          return !!(square.entities && square.entities.find(entity => entity.isAlive));
+        }
         // setting attack
-        if (doubleClick() && selected && targeted.entity && targeted.entity.isAlive && selected !== targeted.entity) {
+        if (doubleClick() && selected && doesSquareHaveAliveEntities(targeted) && selected !== targeted.entity) {
           let targetSquarePosition = SquaresService.getSquarePositionFromIndex(squareIndex);
           selected.attackPosition(targetSquarePosition);
           SquaresService.markSquareAtIndexAsAttacked(squareIndex);

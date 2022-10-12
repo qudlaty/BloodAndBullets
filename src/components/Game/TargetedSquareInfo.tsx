@@ -31,10 +31,13 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       selected.position.y === targetedSquarePosition.y
       ) {
       let item = targeted.takeFromInventory(itemName);
-      if (!item) {
-        item = targeted.entity;
+      if (!item) {// We aren't picking up an item, we are picking up an Entity.
+
+        item = targeted.entities.find(entity => entity.name === itemName);
+
         let square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
-        square.entity = null;
+        //square.entity = null;
+        EntitiesService.removeEntityFromListOfEntities(square.entities, item as Entity);
         EntitiesService.removeEntity(item as Entity);// TODO: Take this out of the component
       }
       selected.addToInventory(item);
@@ -64,7 +67,8 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     let newStructure = new Entity(box);
 
     // TODO: FIXME: Stop forcing types, make a new list for scenery items.
-    square.entity = newStructure;
+    //square.entity = newStructure;
+    square.entities.push(newStructure);
     EntitiesService.entities.push(newStructure);
 
     //square.addToInventory(newStructure as Item);
@@ -108,6 +112,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         if (selected !== i) {
           entityInfo.push(
             <EntityCard
+              key={i.name}
               onEntityClick={this.onItemClick}
               onInventoryClick={this.props.onInventoryClick}
               entity={i}

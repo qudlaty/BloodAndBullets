@@ -23,9 +23,13 @@ class EntitiesServiceClass {
   }
 
   removeEntity(entity: Entity) {
-    let indexOfEntityToRemove = this.entities.findIndex(currentEntity => currentEntity.name === entity.name);
+    this.removeEntityFromListOfEntities(this.entities, entity);
+  }
+
+  removeEntityFromListOfEntities(entities: Entity[], entity: Entity) {
+    let indexOfEntityToRemove = entities.findIndex(currentEntity => (currentEntity && currentEntity.name) === (entity && entity.name));
     if(indexOfEntityToRemove === -1) return -1;
-    this.entities.splice(indexOfEntityToRemove,1);
+    entities.splice(indexOfEntityToRemove,1);
     return 0;
   }
 

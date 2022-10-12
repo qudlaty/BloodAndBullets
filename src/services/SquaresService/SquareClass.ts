@@ -5,7 +5,7 @@ import { SquaresService } from "./SquaresService";
 export interface Square {
   position?: Position;
   description?: string;
-  entities?: Entity[];
+  entities: Entity[];
   entity?: Entity;
   blood?: number;
   squareType: string;
@@ -20,9 +20,11 @@ export interface Square {
 
 export class Square extends HavingInventory implements Square {
   public squareType: string = "nothing";
+  entities: Entity[] = [];
   constructor(squareIndex){
     super();
     this.id = squareIndex;
+    this.entities = [];
   }
   addItem(item: Item) {
     this.addToInventory(item);

@@ -40,7 +40,11 @@ class SquaresServiceClass {
   setEntityWithinASquareAtPosition(x: number, y: number, entity: Entity) {
     let squareIndex: number = this.getSquareIndexFromPosition(x, y);
     this.initializeSquareAtIndexIfEmpty(squareIndex);
-    this.squares[squareIndex].entity = entity;
+    // this.squares[squareIndex].entity = entity;
+    if(!this.squares[squareIndex].entities) {
+      this.squares[squareIndex].entities = [];
+    }
+
     if(!Array.isArray(this.squares[squareIndex].entities)){
       this.squares[squareIndex].entities = [];
     }
