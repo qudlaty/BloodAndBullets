@@ -10,4 +10,6 @@ html, body {
 
 #root, .app {
   all: inherit;
+  display: flex;
+  flex-direction: column;
 }
