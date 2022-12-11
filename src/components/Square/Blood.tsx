@@ -34,7 +34,9 @@ class Blood extends React.PureComponent<BloodProps> {
           fontSize: `${1 + Math.random() * dsv}em`,
           left: `calc(${mfd + Math.random() * (100-2*mfd)}% - 0.4em)`,
           top: `calc(${mfd + Math.random() * (100-2*mfd)}% - 0.5em)`,
-        }}>o</span>
+        }}
+        key={i}
+        >o</span>
       );
     }
 

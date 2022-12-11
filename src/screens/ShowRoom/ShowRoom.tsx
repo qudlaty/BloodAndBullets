@@ -70,8 +70,8 @@ export class ShowRoom extends React.Component<void, void> {
 
   render() {
     const theListToRender = this.showRoomList.map(
-      item => item.name ?
-        <li>
+      (item, index) => item.name ?
+        <li key={index}>
           <span className="description">
             {item.name}
           </span>
@@ -82,10 +82,10 @@ export class ShowRoom extends React.Component<void, void> {
         : null
     );
     return <div className="show-room">
-      <desc>
+      <div>
       Show Room to present some of our components.
       <p>Be aware than this exposed some problems with the components working in isolation from the context they were designed for. A great opportunity for improvements.</p>
-      </desc>
+      </div>
       <ul>
         {theListToRender}
       </ul>
