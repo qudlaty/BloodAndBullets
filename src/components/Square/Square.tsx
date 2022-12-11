@@ -51,7 +51,7 @@ export class SquareComponent extends React.PureComponent<SquareProps> {
     let icon = squareModel.icon;
 
     return (
-      <button className={this.props.className} onClick={this.onClick}>
+      <button className={'square ' + this.props.className} onClick={this.onClick}>
         <div className="square__content">{icon}</div>
         <Blood bloodAmount={this.props.blood} />
         <Items items={this.props.items} itemsNumber={this.props.itemsNumber} />
