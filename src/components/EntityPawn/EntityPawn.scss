@@ -29,6 +29,16 @@
       text-shadow://TODO: differentiate death by bleed and burn
         rgba(100, 0, 0, 0.9) 0em 0em 0.2em,
         rgba(0, 0, 0, 1) 0.1em 0.1em 0.16em;
+
+      filter:
+        opacity(0.8)
+        grayscale(0.8)
+        contrast(0.5)
+        brightness(0.5)
+        blur(0.5px)
+        drop-shadow(-0em -0em 0.1em rgba(0, 0, 0, 1))
+        drop-shadow(-0em -0em 0.1em rgba(0, 0, 0, 1))
+      ;
     }
   }
   &__health-display {
