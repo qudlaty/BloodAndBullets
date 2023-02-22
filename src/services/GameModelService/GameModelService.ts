@@ -36,8 +36,8 @@ export class GameModelClass {
     let mapName = "map00";
 
     let result = window.prompt(message, mapName);
-
     localStorage[result] = squaresStringified;
+    window.prompt("Saved the following map as " + result, squaresStringified);
   };
 
   loadMap = (GameActions: GameActionsClassForGameComponent) => {
