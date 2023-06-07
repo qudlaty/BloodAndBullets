@@ -1,6 +1,5 @@
 import { Item, Weapon, Square } from "services";
 import { SquaresService, MessageService } from "services";
-import * as Helpers from "helpers";
 import { Entity } from "./EntityClass";
 
 /** Position on a grid */

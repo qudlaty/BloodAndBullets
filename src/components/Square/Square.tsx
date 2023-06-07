@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 // services
-import { Item, Square, SquaresService } from "services";
+import { Item, SquaresService } from "services";
 // components
 import Blood from "./Blood";
 import Items from "./Items";

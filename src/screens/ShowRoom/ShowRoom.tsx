@@ -1,15 +1,11 @@
 import React from "react";
-import { HudPanel, Grid, Controls, EmojiMapper, HpBar, InventoryItem, LinearDisplay, SquareComponent, Cell } from "components";
+import { Controls, EmojiMapper, HpBar, InventoryItem, LinearDisplay, SquareComponent, Cell } from "components";
 import "./ShowRoom.scss";
-import { DragScrollArea } from "components/DragScrollArea";
 import { M16 } from "resources";
 
 const noop = ()=>{}
 
 export class ShowRoom extends React.Component<void, void> {
-  constructor(props: void) {
-    super(props);
-  }
 
   showRoomList = [
     { name: "Square",
@@ -22,7 +18,7 @@ export class ShowRoom extends React.Component<void, void> {
       content: <Controls keys={["q","e"]} onKeyPress={(e)=>{console.log('ehlo', e)}}></Controls>
     },
     { name: "EmojiMapper",
-      content: <> 🛢️ => <EmojiMapper emoji="🛢️"/>, 🕷️ => <EmojiMapper emoji="🕷️"/> </>
+      content: <> 🛢️ ={">"} <EmojiMapper emoji="🛢️"/>, 🕷️ ={">"} <EmojiMapper emoji="🕷️"/> </>
     },
     { name: "HpBar 66/100",
       content: <HpBar current={66} max={100} color="green"></HpBar>

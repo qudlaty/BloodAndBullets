@@ -1,7 +1,7 @@
 import React from "react";
 
 // services
-import { EntitiesService, SquaresService, GameModel, GameActionsClassForGameComponent, GameState, Entity } from "services";
+import { EntitiesService, GameModel, GameActionsClassForGameComponent, GameState, Entity } from "services";
 
 // components
 import { Board, MessageBox, Controls } from "components";

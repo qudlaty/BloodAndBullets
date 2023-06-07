@@ -13,10 +13,6 @@ interface GridState {
 
 export class Grid extends React.Component<GridProps, GridState> {
 
-  constructor(props) {
-    super(props);
-  }
-
   renderGrid() {
     let rows = [];
     for(let y = 0; y <= this.props.height; y++) {

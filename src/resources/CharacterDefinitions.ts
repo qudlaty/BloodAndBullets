@@ -93,7 +93,7 @@ let defaultValues = {
 
 let addEntityToDefaultValues = entity => Object.assign({...defaultValues}, entity);
 
-export const characterDefinitions = entitiesInitialValues.
-  map(entity => addEntityToDefaultValues(entity)).
-  map(entry => new Entity(entry));
+export const characterDefinitions = entitiesInitialValues
+  .map(entity => addEntityToDefaultValues(entity))
+  .map(entry => new Entity(entry));
 export default characterDefinitions;

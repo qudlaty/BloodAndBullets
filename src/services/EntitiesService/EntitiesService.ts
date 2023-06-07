@@ -145,7 +145,7 @@ class EntitiesServiceClass {
   }
 
   shouldEntityStopShooting = entity => entity.ceaseFire || entity.isDead;
-  stopShooting = entity => (entity.isShooting = false, entity.ceaseFire = false);
+  stopShooting = entity => {entity.isShooting = false; entity.ceaseFire = false};
   stopShootingWhenForbidden = entity => {
     if (this.shouldEntityStopShooting(entity)) {
       this.stopShooting(entity);

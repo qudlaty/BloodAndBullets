@@ -1,7 +1,7 @@
 import React from "react";
 // services
 import { SquaresService, EntitiesService } from "services";
-import { Entity, Square, Position, Item } from "services";
+import { Entity, Square, Position } from "services";
 // components
 import { EntityCard, InventoryList } from "components";
 // others

@@ -2,7 +2,6 @@ import { SquaresService, Square } from "services/SquaresService";
 import { EntitiesService, Entity } from "services/EntitiesService";
 
 import { characterDefinitions } from "resources/CharacterDefinitions";
-import tutorial_map_00 from "resources/maps/tutorial_map_00.json"; // yes, it's a resource named with snake_case
 import intro from "resources/maps/intro.json";
 import { GameActionsClassForGameComponent } from "services/GameActionsService";
 import { L30 } from "resources";
@@ -45,7 +44,6 @@ export class GameModelClass {
     let message = `Enter the name of map to load.\n`+
     `Maps available in localStorage: ${mapNames}\n`+
     `Be aware item processing is not working fully yet.`;
-    let mapName = "map00";
     console.log(mapNames);
     let result = window.prompt(message, mapNames);
     let squaresStringified = localStorage[result];
@@ -71,9 +69,9 @@ export class GameModelClass {
       return entityRecord;
     }
 
-    let entitiesProcessed = entitiesWithinTheMap.
-          map(entity => processEquipmentForEntityRecord(entity)).
-          map(entityRecord => new Entity(entityRecord));
+    let entitiesProcessed = entitiesWithinTheMap
+          .map(entity => processEquipmentForEntityRecord(entity))
+          .map(entityRecord => new Entity(entityRecord));
 
     console.log('ALIVE ENTITIES?', entitiesProcessed)
     this.loadEntitiesIntoService(entitiesProcessed);///

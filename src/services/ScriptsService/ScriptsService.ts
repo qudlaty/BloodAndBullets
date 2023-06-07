@@ -1,9 +1,4 @@
-import { GameModel, GameModelClass } from "services/GameModelService";
-import { GameState } from "services/GameLogicService/GameState";
-
-import { SquaresService, Square } from "services/SquaresService";
 import { EntitiesService, Entity } from "services/EntitiesService";
-import * as Helpers from "helpers";
 import { MessageService } from "services/MessageService";
 
 enum scriptTypes {
@@ -105,8 +100,6 @@ class ScriptsServiceClass {
 
           return isGivenEntityFoundAtGivenLocation
         }
-
-        break;
       default:
     }
 

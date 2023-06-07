@@ -117,9 +117,6 @@ export class GameActionsClassForGameComponent {
   }
 
   afterExecuteActions = () => {
-    let squares = SquaresService.squares;
-    let state: GameState = component.state;
-
     // setTimeout(() => {
     //   delete state.selected.targetPosition;
     //   this.processInterface();

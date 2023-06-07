@@ -1,5 +1,4 @@
 import React from "react";
-import * as Helpers from "helpers";
 import "./EmojiMapper.scss";
 
 interface EmojiMapperProps {
