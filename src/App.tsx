@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Game } from "./components";
 import { BlastZone }  from "screens/BlastZone";
 import { ShowRoom } from "screens/ShowRoom";
@@ -6,10 +6,10 @@ import { ShowRoom } from "screens/ShowRoom";
 import "App.scss";
 
 interface AppState {
-  loadedScene: string
+  activeSceneName: string
 }
 
-const availableScreensList = [
+const availableScreenNames = [
   'Game',
   'BlastZone',
   'ShowRoom',
@@ -17,35 +17,36 @@ const availableScreensList = [
 
 export default class App extends React.Component<void, AppState> {
 
-  scenes:{} = {
+  sceneComponents:{} = {
     Game,
     BlastZone,
     ShowRoom,
   }
-  SelectedScene = null;
+
+  SelectedSceneComponent = null;
+
   constructor(props: void) {
     super(props);
     this.state = {
-      loadedScene: 'Game'
+      activeSceneName: 'Game'
     }
   }
+
   componentDidMount() {
   }
 
   handleChange = (e) => {
-    // e.target.value;
-    console.log(e)
-    console.log(e.target)
-    console.log(e.target.value)
-    const sceneToLoad = e.target.value;
-    this.setState(prevState => {return {loadedScene: sceneToLoad}});
+    const nameOfSelectedScene = e.target.value;
+    this.setState(prevState => { return { activeSceneName: nameOfSelectedScene }});
   }
 
-  render() {
-    let SelectedScene = this.scenes[this.state.loadedScene];
 
-    const availableScreenSwitchOptions = availableScreensList.map(
-      item => <option value={item}>{item}</option>
+
+  render() {
+    let SelectedScene = this.sceneComponents[this.state.activeSceneName];
+
+    const availableScreenSwitchOptions = availableScreenNames.map(
+      stringToOption
     );
     return <div className="app">
 
@@ -57,7 +58,7 @@ export default class App extends React.Component<void, AppState> {
 
         <div className="screen-switch">
           <span>Select screen: </span>
-          <select value={this.state.loadedScene} onChange={(e)=>this.handleChange(e)}>
+          <select value={this.state.activeSceneName} onChange={this.handleChange}>
             {availableScreenSwitchOptions}
           </select>
         </div>
@@ -69,3 +70,11 @@ export default class App extends React.Component<void, AppState> {
     </div>
   }
 }
+
+/**
+ * @description
+ * Makes a dropdown option out of a given string
+ * @param item a string to put into value and innerText
+ * @returns an option element with given value and text
+ */
+export const stringToOption = (item: string): ReactElement => <option value={item}>{item}</option>
