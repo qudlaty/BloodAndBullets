@@ -1,6 +1,10 @@
 .board--rotated .entity-pawn {
   transform: perspective(750px)
   translateZ(0.33em) rotateZ(-45deg) rotateX(-60deg);
+  transition: all 1s;
+  &--dead {
+    transform: perspective(750px) translateZ(0em) rotateZ(0deg) rotateX(0deg);
+  }
 }
 
 .entity-pawn {

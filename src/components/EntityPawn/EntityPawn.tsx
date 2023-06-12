@@ -29,7 +29,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
     let squareMargin = 2;
     return (
       <div
-        className="entity-pawn"
+        className={`entity-pawn ${entity.isDead ? 'entity-pawn--dead' : ''}`}
         key={entity.name}
         style={{
           left: `calc(${boardPadding + 3}px + ${entity.position.x * squareMargin * 2}px + ${entity.position.x}em)`,
