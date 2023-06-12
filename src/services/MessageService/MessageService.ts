@@ -1,7 +1,18 @@
+export type MessageRecord = {
+  message: string,
+  timestamp: string,
+  type?: string,
+}
+
 export class MessageServiceClass {
-  messages: string[] = [];
+  messages: MessageRecord[] = [];
   send(message: string) {
-    this.messages.push(message);
+    const timestamp = new Date().toISOString().substring(11,23);
+    const newMessageRecord: MessageRecord = {
+      message,
+      timestamp
+    }
+    this.messages.push(newMessageRecord);
   }
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 // services
 import "./MessageBox.scss";
-import { MessageService } from "services";
+import { MessageRecord, MessageService } from "services";
 
 export class MessageBox extends React.Component {
   messages = MessageService.messages;
@@ -12,10 +12,19 @@ export class MessageBox extends React.Component {
     return this.messages.length !== this.messageNumber;
   }
 
-  renderMessage = (message: string, number: number) => {
+  renderMessage = (messageRecord: MessageRecord, number: number) => {
+    const messageNumber = `000${number}`.slice(-3);
     return (
       <li key={`msg${number}`}>
-        Message #[{number}]: {message}
+        <span className="message-number">
+          {messageNumber + ` `}
+        </span>
+        <span className="message-timestamp">
+          {messageRecord.timestamp + ` `}
+        </span>
+        <span className="message-text">
+          {messageRecord.message}
+        </span>
       </li>
     );
   };
