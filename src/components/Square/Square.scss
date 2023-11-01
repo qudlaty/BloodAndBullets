@@ -1,5 +1,7 @@
 @import "src/styles/variables";
 
+@use "sass:color";
+
 // @keyframes shoot-and-rotate {
 //   0% {
 //     border-width: 1px;
@@ -143,9 +145,22 @@ $squareSize: 1em;
       border: 2px solid $blue-1;
     }
   }
+
+  @mixin slanted-block-border($color) {
+    $color-darker: darken($color, 10%);
+    $color-lighter: lighten($color, 10%);
+    $border-size: 5px;
+    $border-color: $color-darker;
+    $border-color-sides: $color-lighter; //#888;
+    border: $border-size solid $border-color;
+    border-left-color: $border-color-sides;
+    border-right-color: $border-color-sides;
+    box-sizing: border-box;
+  }
+
   &.wall {
-    background: #999;
-    border: #aaa;
+    background-color: #777;
+    @include slanted-block-border(#777);
   }
   &.monster-filter {
     background: #696;
