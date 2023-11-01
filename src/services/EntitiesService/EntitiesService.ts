@@ -1,7 +1,7 @@
 import { Entity, Position, HavingInventory } from ".";
 import { SquaresService, Square } from "services/SquaresService";
 import * as Helpers from "helpers";
-import { RangedWeapon } from "services";
+import { MessageService, RangedWeapon } from "services";
 import { Identifiable } from "./EntityFeatures";
 import { Item } from "services/ItemService";
 const arenaSize: number = 10;
@@ -159,6 +159,28 @@ class EntitiesServiceClass {
     targetEntities.forEach(targetEntity => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
     });
+  }
+
+  reloadWeapon(entity: Entity, weapon: RangedWeapon){
+    let equippedWeapon: Item = entity.equipment && entity.equipment.hands;
+    if(!(equippedWeapon instanceof RangedWeapon)){
+      return 0;
+    } else {
+      weapon = equippedWeapon;
+    }
+    if (entity.equipment.hands && entity.equipment.hands === weapon) {
+      this.stopShooting(entity);
+    }
+    if(weapon.rounds === weapon.maxRounds) {
+      MessageService.send(`${weapon.name} already fully loaded`)
+      return;
+    }
+    if(entity.actionPoints >= weapon.reloadCostInAP){
+      entity.actionPoints -= weapon.reloadCostInAP;
+      weapon.reload();
+    } else {
+      MessageService.send(`${entity.name} has not enough AP to reload ${weapon.name}`)
+    }
   }
 
   applyDamageToTargetEntity(targetEntity: Entity, damage: number) {

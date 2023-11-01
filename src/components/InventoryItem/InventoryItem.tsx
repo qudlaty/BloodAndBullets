@@ -5,7 +5,7 @@ import { LinearDisplay } from "components/LinearDisplay";
 interface InventoryItemProps {
   item: Item;
   onDrop(itemName: string);
-  onReload(itemName: string);
+  onReload(weapon: RangedWeapon);
   onClick(itemName: string);
   processInterface: Function;
 }
@@ -45,8 +45,7 @@ export function InventoryItem(props: InventoryItemProps) {
         <button
           className={className}
           onClick={() => {
-            weapon.reload();
-            props.onReload && props.onReload(item.name);
+            props.onReload && props.onReload(weapon);
             props.processInterface();
           }}
         >

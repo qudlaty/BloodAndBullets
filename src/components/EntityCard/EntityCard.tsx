@@ -1,6 +1,6 @@
 import React from "react";
 import { LinearDisplay, InventoryList } from "components";
-import { Entity, Item, InventoryItem, EntitiesService } from "services";
+import { Entity, Item, InventoryItem, EntitiesService, RangedWeapon } from "services";
 import * as Helpers from "helpers";
 import "./EntityCard.scss";
 
@@ -38,11 +38,9 @@ export class EntityCard extends React.Component<EntityCardProps> {
     this.props.processInterface();
   };
 
-  onReload = (itemName: string) => {
+  onReload = (weapon: RangedWeapon) => {
     let { entity } = this.props;
-    if (entity.equipment.hands && entity.equipment.hands.name === itemName) {
-      entity.isShooting = false;
-    }
+    EntitiesService.reloadWeapon(entity, weapon);
     this.props.processInterface();
   };
 

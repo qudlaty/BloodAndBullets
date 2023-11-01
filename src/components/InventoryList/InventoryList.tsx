@@ -1,6 +1,6 @@
 import React from "react";
 import "./InventoryList.scss";
-import { Item } from "services";
+import { Item, RangedWeapon } from "services";
 import { InventoryItem } from "components/InventoryItem";
 
 interface InventoryListProps {
@@ -9,7 +9,7 @@ interface InventoryListProps {
   title: string;
   onClick(itemName: string);
   onDrop(itemName: string);
-  onReload(itemName: string);
+  onReload(weapon: RangedWeapon);
   inventory: Item[]; //
   processInterface: Function;
 }

@@ -11,6 +11,7 @@ export class Weapon extends Item {
 export class RangedWeapon extends Weapon {
   rounds: number | any = 0;
   maxRounds = 5;
+  reloadCostInAP = 1;
 
   fire() {
     this.rounds--;
