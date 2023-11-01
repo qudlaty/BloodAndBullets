@@ -34,6 +34,36 @@ $squareSize: 1em;
     transform-origin: bottom;
   }
 }
+
+$black-and-yellow-stripes: repeating-linear-gradient(
+  45deg,
+  black 25%,
+  black 50%,
+  yellow 50%,
+  yellow 75%
+);
+
+@mixin metal-floor($color) {
+  $color-darker: darken($color, 3%);
+  $color-lighter: lighten($color, 3%);
+  $color-gap: $color;
+  $color-line: $color-lighter;
+  background: repeating-linear-gradient(
+    45deg,
+    $color-line 0%,    /* 1 FIRST STRIP */
+    $color-line 5%,    /* 1 */
+
+    $color-darker 5%,  /* SHADOW */
+
+    $color-gap 10%,    /* 2 SECOND STRIP */
+    $color-gap 15%,    /* 2 */ 
+
+    $color-darker 20%, /* SHADOW */
+
+    $color-line 20%,   /* 1  */
+    $color-line 25%    /* 1 */
+  );
+} 
 .square {
   position: relative;
   box-sizing: border-box;
@@ -140,6 +170,8 @@ $squareSize: 1em;
   &.floor {
     background-color: #444;
     border-color: #505050;
+    //background: $metal-floor;
+    @include metal-floor(#444);
     &:hover{
       //background-color: rgb(240, 160, 5);
       border: 2px solid $blue-1;
