@@ -19,4 +19,7 @@ export class L30 extends Lazer {
   rounds = 30;
   maxRounds = 30;
   damage = 3;
+  description: "",
+  manufacturer: "",
+  previousOwners: [],
 }
