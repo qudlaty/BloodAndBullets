@@ -1,25 +1,25 @@
 import { Rifle, Lazer } from "services";
 
 export class M16 extends Rifle {
-  name = "🔫M16";
-  rounds = 15;
-  maxRounds = 20;
-  damage = 2;
-}
-
-export class M40 extends Rifle {
-  name = "👽M41A Pulse Rifle";
-  rounds = 40;
-  maxRounds = 40;
-  damage = 1;
-}
-
-export class L30 extends Lazer {
-  name = "☀️Assault Lazer Cannon";
+  name = "M16";
   rounds = 30;
   maxRounds = 30;
   damage = 3;
-  description: "";
-  manufacturer: "";
-  previousOwners: [];
+}
+
+export class M40 extends Rifle {
+  name = "M41A Pulse Rifle";
+  rounds = 10;
+  maxRounds = 10;
+  damage = 5;
+}
+
+export class L30 extends Lazer {
+  name = "Assault Lazer Cannon";
+  rounds = 1;
+  maxRounds = 1;
+  damage = 10;
+  description: "Portable 30kW Energy beam weapon";
+  manufacturer: "Amaar Industries";
+  previousOwners: ['Amaar Industries Factory'];
 }
