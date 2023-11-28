@@ -1,6 +1,6 @@
 {
   "homepage": "https://qudlaty.github.io/BloodAndBullets/build/",
-  "name": "react",
+  "name": "BloodAndBullets",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
