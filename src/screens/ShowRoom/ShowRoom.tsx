@@ -9,7 +9,7 @@ export class ShowRoom extends React.Component<void, void> {
 
   showRoomList = [
     { name: "Square",
-      content: <SquareComponent squareId={1} onClick={noop} blood={7} items={[]} itemsNumber={3}>T</SquareComponent>
+      content: <SquareComponent squareId={1} onClick={noop} blood={7} items={[]} itemsNumber={3}></SquareComponent>
     },
     { name: "Cell",
       content: <Cell>H</Cell>
