@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.69425861.css",
-    "main.js": "/static/js/main.14cc2e81.js",
-    "static/media/astronaut-light-skin-tone_joy_pixels_1f9d1-1f3fb-200d-1f680.png": "/static/media/astronaut-light-skin-tone_joy_pixels_1f9d1-1f3fb-200d-1f680.cea55987b6cfa226bea7.png",
-    "static/media/squid__joypixels_1f991.png": "/static/media/squid__joypixels_1f991.48c6b8fcbff787f73cf9.png",
-    "static/media/mosquito__emojipedia_1f99f.png": "/static/media/mosquito__emojipedia_1f99f.61955cfddcaead81d599.png",
-    "static/media/robot-face__emojidex1f916.png": "/static/media/robot-face__emojidex1f916.8793ba2c6834be789a4e.png",
-    "static/media/oil-drum_red_emojidex_1f6e2.png": "/static/media/oil-drum_red_emojidex_1f6e2.e8630acfd4cc70e51c64.png",
-    "static/media/ant_whatsapp_1f41c.png": "/static/media/ant_whatsapp_1f41c.0f120dd8dbf05a365dbd.png",
-    "static/media/spider__whatsapp_1f577-fe0f.png": "/static/media/spider__whatsapp_1f577-fe0f.7b98d6dd6653e1dd816f.png",
-    "static/media/microbe__joypixels_1f9a0.png": "/static/media/microbe__joypixels_1f9a0.ddc13d32f89b4bb4ab05.png",
-    "index.html": "/index.html",
-    "main.69425861.css.map": "/static/css/main.69425861.css.map",
-    "main.14cc2e81.js.map": "/static/js/main.14cc2e81.js.map"
+    "main.css": "/BloodAndBullets/build/static/css/main.45182e3f.css",
+    "main.js": "/BloodAndBullets/build/static/js/main.14cc2e81.js",
+    "static/media/astronaut-light-skin-tone_joy_pixels_1f9d1-1f3fb-200d-1f680.png": "/BloodAndBullets/build/static/media/astronaut-light-skin-tone_joy_pixels_1f9d1-1f3fb-200d-1f680.cea55987b6cfa226bea7.png",
+    "static/media/squid__joypixels_1f991.png": "/BloodAndBullets/build/static/media/squid__joypixels_1f991.48c6b8fcbff787f73cf9.png",
+    "static/media/mosquito__emojipedia_1f99f.png": "/BloodAndBullets/build/static/media/mosquito__emojipedia_1f99f.61955cfddcaead81d599.png",
+    "static/media/robot-face__emojidex1f916.png": "/BloodAndBullets/build/static/media/robot-face__emojidex1f916.8793ba2c6834be789a4e.png",
+    "static/media/oil-drum_red_emojidex_1f6e2.png": "/BloodAndBullets/build/static/media/oil-drum_red_emojidex_1f6e2.e8630acfd4cc70e51c64.png",
+    "static/media/ant_whatsapp_1f41c.png": "/BloodAndBullets/build/static/media/ant_whatsapp_1f41c.0f120dd8dbf05a365dbd.png",
+    "static/media/spider__whatsapp_1f577-fe0f.png": "/BloodAndBullets/build/static/media/spider__whatsapp_1f577-fe0f.7b98d6dd6653e1dd816f.png",
+    "static/media/microbe__joypixels_1f9a0.png": "/BloodAndBullets/build/static/media/microbe__joypixels_1f9a0.ddc13d32f89b4bb4ab05.png",
+    "index.html": "/BloodAndBullets/build/index.html",
+    "main.45182e3f.css.map": "/BloodAndBullets/build/static/css/main.45182e3f.css.map",
+    "main.14cc2e81.js.map": "/BloodAndBullets/build/static/js/main.14cc2e81.js.map"
   },
   "entrypoints": [
-    "static/css/main.69425861.css",
+    "static/css/main.45182e3f.css",
     "static/js/main.14cc2e81.js"
   ]
 }
