@@ -77,4 +77,4 @@ export default class App extends React.Component<void, AppState> {
  * @param item a string to put into value and innerText
  * @returns an option element with given value and text
  */
-export const stringToOption = (item: string): ReactElement => <option value={item}>{item}</option>
+export const stringToOption = (item: string): ReactElement => <option key={item} value={item}>{item}</option>
