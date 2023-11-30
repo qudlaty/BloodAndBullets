@@ -1,6 +1,7 @@
 @import "styles/global-styles.scss";
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -8,7 +9,8 @@ html, body {
   @include zero;
 }
 
-#root, .app {
+#root,
+.app {
   all: inherit;
   display: flex;
   flex-direction: column;

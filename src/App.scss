@@ -1,7 +1,6 @@
 @import "styles/_variables.scss";
 
 .meta-bar {
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -15,11 +14,11 @@
     color: $orange-hi-viz;
     .be {
       color: red;
-      text-shadow: rgba(255,0,0,1) 0em 0.1em 0.2em;
+      text-shadow: rgba(255, 0, 0, 1) 0em 0.1em 0.2em;
     }
     .el {
       color: white;
-      text-shadow: rgba(255,255,255,1) 0em 0.1em 0.1em;
+      text-shadow: rgba(255, 255, 255, 1) 0em 0.1em 0.1em;
     }
   }
 
