@@ -15,12 +15,21 @@ After that you can just `npm install` and SASS should be working.
 ### Typescript version from Workspace
 
 To read and interpret tsconfig.json file, you need to switch VSCode to the
-Typescript version used by Workspace. Do that by:
-0. Open a `.ts` file
+Typescript version used by Workspace. Do that by: 0. Open a `.ts` file
+
 1. Open Command Pallete `Ctrl+Shift+P`
 2. Type part of `TypeScript: select TypeScript Version` to find this option and select it
 3. Select `Use Workspace Version`
-VSCode will now properly interpret the tsconfig.json
+   VSCode will now properly interpret the tsconfig.json
+
+### Auto-linting configuration
+
+Install following plugins in Visual Studio Code:
+
+- ESLint
+- Prettier - Code formatter
+
+The .vscode directory contained within this repo should take care of setting up Prettier as your default formatter and enabling "Format on Save" functionality.
 
 ---
 
@@ -29,6 +38,7 @@ VSCode will now properly interpret the tsconfig.json
 ### The concept of **tick** vs the concept of **turn**.
 
 - **Turn** is a part of a higher-level game logic, concerning who (which side of a conflict) is allowed to execute actions. There is also a limit of how many actions you can take during a turn (action points).
+
   - After player executes their action and ends the turn, everything else also executes actions and we again wait for player input = next turn.
 
 - **Tick** is the smallest unit of game-time, during which the state of the game is unaltered, but the next state can be calculated.
@@ -50,6 +60,7 @@ Initially, we have a new tick every 1 second.
 Question: So actions change state **within** a tick, how should that be related to the **tick** calculating next game state?
 
 Perhaps we should talk about the following concepts:
+
 - interface state (selection, targetting, camera position)
 - instant actions (within our turn), changing the GameState
 - queued actions (like walking, shooting) that need to be animated over multiple ticks.
@@ -72,14 +83,15 @@ Perhaps we should talk about the following concepts:
 - recommended immutability of react.state stops us from doing OOP fully
   - too bad for immutability \o/
 - It is sometimes necessary to pass a callback down a hierarchy of components, so it could be called from the most nested one and alter the state in the least nested one.
-This is kinda bad and hard to maintain.
+  This is kinda bad and hard to maintain.
 
 ##### Current state of COMPONENT interlinking
+
 - **Game**
   - `onClick` **imported here**
   - `processInterface` **imported here**
   - `onInventoryClick` **imported here**
-  - **Board** - component displaying the main grid of the game**
+  - **Board** - component displaying the main grid of the game\*\*
     - **`onClick`** - only used to pass down to `Square`
     - **SquareComponent**
       - **`onClick`** - consumed locally
@@ -99,8 +111,10 @@ This is kinda bad and hard to maintain.
     - **EntityCard**
     - **InventoryList**
 
-
 ## Possible alternatives:
+
 ### Context (not bad)
+
 ### Redux (nice, but not exactluy known for simplicity)
+
 ### Hooks (apparently the modern way to go)
