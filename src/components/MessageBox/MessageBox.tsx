@@ -16,15 +16,9 @@ export class MessageBox extends React.Component {
     const messageNumber = `000${number}`.slice(-3);
     return (
       <li key={`msg${number}`}>
-        <span className="message-number">
-          {messageNumber + ` `}
-        </span>
-        <span className="message-timestamp">
-          {messageRecord.timestamp + ` `}
-        </span>
-        <span className="message-text">
-          {messageRecord.message}
-        </span>
+        <span className="message-number">{messageNumber + ` `}</span>
+        <span className="message-timestamp">{messageRecord.timestamp + ` `}</span>
+        <span className="message-text">{messageRecord.message}</span>
       </li>
     );
   };
@@ -43,7 +37,7 @@ export class MessageBox extends React.Component {
 
   scrollElement() {
     window.requestAnimationFrame(() => {
-      var element = document.getElementById("messages");
+      const element = document.getElementById("messages");
       element.scrollTop = element.scrollHeight;
     });
   }

@@ -39,6 +39,10 @@ module.exports = {
     },
   },
   rules: {
+    semi: "off", // disabled to not conflict with the following one
+    "@typescript-eslint/semi": "warn",
+    "no-var": "warn",
+
     // Disabled all the triggered rules,
     // we can enable and solve them one at a time
     "react/react-in-jsx-scope": "off",
@@ -54,7 +58,6 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "no-var": "off",
     "no-case-declarations": "off",
     "react/prop-types": "off",
     // Prettier still formats upon save, it's just not displayed as a lint error
@@ -77,8 +80,6 @@ module.exports = {
     "react/jsx-filename-extension": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    semi: "off",
-    "@typescript-eslint/semi": "warn",
     "react/require-default-props  ": "off",
     "operator-assignment": "off",
   },
