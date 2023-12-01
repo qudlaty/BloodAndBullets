@@ -45,15 +45,15 @@ export class GameActionsClassForGameComponent {
     });
   }
 
-  get isTurnInProgress() {return this.entitiesProcessingLoopIntervalHandle};
+  get isTurnInProgress() {return this.entitiesProcessingLoopIntervalHandle;};
 
   loop = () => {
-    console.debug('Attempting loop')
+    console.debug('Attempting loop');
     if(this.isTurnInProgress) {
       setTimeout(this.loop, 1000);
       return;
     };
-    console.debug('Executing nextStep')
+    console.debug('Executing nextStep');
     this.nextStep();
     if (component.state.isAutoLoopOn) {
       console.debug('Scheduling next loop step in 1s');
@@ -68,7 +68,7 @@ export class GameActionsClassForGameComponent {
 
   nextStep() {
     component.stepNumber++;
-    console.info('Starting processing turn #', component.stepNumber)
+    console.info('Starting processing turn #', component.stepNumber);
     EntitiesService.refillActionPointsForAllEntities();
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'targetPosition', 'isShooting');
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAttacked');
@@ -92,11 +92,11 @@ export class GameActionsClassForGameComponent {
     );
     if(entitiesForProcessing.length) {
       let entityForThisTurn = entitiesForProcessing[0];
-      this.setNewStateAfterProcessingChosenEntity(entityForThisTurn)
+      this.setNewStateAfterProcessingChosenEntity(entityForThisTurn);
     } else {// all are processed
       clearInterval(this.entitiesProcessingLoopIntervalHandle);
       this.entitiesProcessingLoopIntervalHandle = null;
-      console.log('All entities processed.')
+      console.log('All entities processed.');
     }
   }
 
@@ -114,7 +114,7 @@ export class GameActionsClassForGameComponent {
       () => this.afterExecuteActions()
     );
     this.processInterface();
-  }
+  };
 
   afterExecuteActions = () => {
     // setTimeout(() => {
@@ -124,7 +124,7 @@ export class GameActionsClassForGameComponent {
     // Helpers.resetGivenFieldsOnACollection(squares,'isAttacked');
 
     this.setSquaresAccordingToEntities();
-  }
+  };
 
   processInterface() {
     component.setState(
@@ -150,7 +150,7 @@ export class GameActionsClassForGameComponent {
       default:
 
     }
-  }
+  };
 
   handleClickV2 = (squareIndex: number) => {
     component.setState(
@@ -227,7 +227,7 @@ export class GameActionsClassForGameComponent {
       if(entity.isFriendly) return;
       entity.isShooting = false;
       this.aggro(entity);
-    })
+    });
   }
 
   aggro = (entity: Entity) => {
@@ -239,7 +239,7 @@ export class GameActionsClassForGameComponent {
       let firstAmongThem = entitiesToAttack[0];
       entity.attackPosition(firstAmongThem.position);
     }
-  }
+  };
 
   findEntitiesThatAreClose(position: Position){
     let {x, y} = position;
@@ -252,7 +252,7 @@ export class GameActionsClassForGameComponent {
         if (i < 0 || i >= SquaresService.arenaSize || (i === x && j === y)) {
           continue;
         }
-        let newlyFoundEntities = EntitiesService.getEntitiesAtGivenPosition({x: i, y: j})
+        let newlyFoundEntities = EntitiesService.getEntitiesAtGivenPosition({x: i, y: j});
         entities = entities.concat(newlyFoundEntities);
       }
     }
@@ -284,7 +284,7 @@ export class GameActionsClassForGameComponent {
   switchAutoLoop = () => {
     component.setState(
       (previousState: GameState) => {
-        let isAutoLoopOn = !previousState.isAutoLoopOn
+        let isAutoLoopOn = !previousState.isAutoLoopOn;
         console.info('Switching auto loop to', isAutoLoopOn);
         return { isAutoLoopOn };
       },

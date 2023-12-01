@@ -145,12 +145,12 @@ class EntitiesServiceClass {
   }
 
   shouldEntityStopShooting = entity => entity.ceaseFire || entity.isDead;
-  stopShooting = entity => {entity.isShooting = false; entity.ceaseFire = false};
+  stopShooting = entity => {entity.isShooting = false; entity.ceaseFire = false;};
   stopShootingWhenForbidden = entity => {
     if (this.shouldEntityStopShooting(entity)) {
       this.stopShooting(entity);
     }
-  }
+  };
 
   fireAShot(entity: Entity) {
     if(!entity.actionPoints || entity.isDead) return;
@@ -172,14 +172,14 @@ class EntitiesServiceClass {
       this.stopShooting(entity);
     }
     if(weapon.rounds === weapon.maxRounds) {
-      MessageService.send(`${weapon.name} already fully loaded`)
+      MessageService.send(`${weapon.name} already fully loaded`);
       return;
     }
     if(entity.actionPoints >= weapon.reloadCostInAP){
       entity.actionPoints -= weapon.reloadCostInAP;
       weapon.reload();
     } else {
-      MessageService.send(`${entity.name} has not enough AP to reload ${weapon.name}`)
+      MessageService.send(`${entity.name} has not enough AP to reload ${weapon.name}`);
     }
   }
 
@@ -247,7 +247,7 @@ class EntitiesServiceClass {
   }
 
   refillActionPointsForAllEntities() {
-    this.entities.forEach(entity => {entity.actionPoints = entity.maxActionPoints})
+    this.entities.forEach(entity => {entity.actionPoints = entity.maxActionPoints;});
   }
 }
 

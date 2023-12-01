@@ -44,10 +44,10 @@ export class SquareComponent extends React.PureComponent<SquareProps> {
 
       return <div className={`${classPrefix}__cuboid`}>
         {cuboidFaces}
-      </div>
+      </div>;
     }
 
-    let squareModel = SquaresService.squares[this.props.squareId]
+    let squareModel = SquaresService.squares[this.props.squareId];
     let icon = squareModel.icon;
 
     return (

@@ -2,7 +2,7 @@ export type MessageRecord = {
   message: string,
   timestamp: string,
   type?: string,
-}
+};
 
 export class MessageServiceClass {
   messages: MessageRecord[] = [];
@@ -11,7 +11,7 @@ export class MessageServiceClass {
     const newMessageRecord: MessageRecord = {
       message,
       timestamp
-    }
+    };
     this.messages.push(newMessageRecord);
   }
 }

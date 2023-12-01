@@ -20,7 +20,7 @@ export class EmojiMapper extends React.Component<EmojiMapperProps> {
     "🧑‍🚀": "astronaut",
     "🤖": "robot",
     "🛢️": "oildrum"
-  }
+  };
 
 
   render() {
@@ -28,9 +28,9 @@ export class EmojiMapper extends React.Component<EmojiMapperProps> {
     let emojiMappedTo = this.emojiMap[emoji];
     let output = <></>;
     if(emojiMappedTo){
-      output = <div className={"emoji emoji-"+ emojiMappedTo}></div>
+      output = <div className={"emoji emoji-"+ emojiMappedTo}></div>;
     } else {
-      output = <div>{emoji}.</div>
+      output = <div>{emoji}.</div>;
     }
 
     return (

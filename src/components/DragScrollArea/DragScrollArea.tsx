@@ -13,7 +13,7 @@ export class DragScrollArea extends
   scroll = {
     x: 0,
     y: 0,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -40,17 +40,17 @@ export class DragScrollArea extends
       document.addEventListener('mousemove', this.onMouseMove);
       e.preventDefault();
     }
-  }
+  };
 
   onMouseMove = (e) => {
     this.scrollRelativeXY(e.movementX, e.movementY);
-  }
+  };
 
   onMouseUp = (e) => {
     document.removeEventListener('mouseup', this.onMouseUp);
     document.removeEventListener('mousemove', this.onMouseMove);
     e.preventDefault();
-  }
+  };
 
   executeScroll() {
     this.areaReference.current.scroll({

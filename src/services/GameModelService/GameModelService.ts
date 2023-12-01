@@ -61,7 +61,7 @@ export class GameModelClass {
 
     function processEquipmentForEntityRecord(entityRecord): any {
       if(entityRecord.equipment && entityRecord.equipment.hands) {
-        entityRecord.equipment.hands = makeInstanceOfAWeapon(entityRecord.equipment.hands)
+        entityRecord.equipment.hands = makeInstanceOfAWeapon(entityRecord.equipment.hands);
       }
       if(entityRecord.inventory) {
         entityRecord.inventory.map(itemRecord => makeInstanceOfAWeapon(itemRecord));
@@ -73,7 +73,7 @@ export class GameModelClass {
           .map(entity => processEquipmentForEntityRecord(entity))
           .map(entityRecord => new Entity(entityRecord));
 
-    console.log('ALIVE ENTITIES?', entitiesProcessed)
+    console.log('ALIVE ENTITIES?', entitiesProcessed);
     this.loadEntitiesIntoService(entitiesProcessed);///
     GameActions.setSquaresAccordingToEntities();
     GameActions.processInterface();

@@ -65,7 +65,7 @@ class GameLogicClass {
     EntitiesService.stopBreathingForKilledEntity(entity);
 
     SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-    console.log('end procesing', entity)
+    console.log('end procesing', entity);
     // SquaresService.castLightsFromFriendlyEntity(entity);
   }
 

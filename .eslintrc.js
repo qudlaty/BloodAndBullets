@@ -78,7 +78,7 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
     semi: "off",
-    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/semi": "warn",
     "react/require-default-props  ": "off",
     "operator-assignment": "off",
   },

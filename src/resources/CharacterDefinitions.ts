@@ -89,7 +89,7 @@ let defaultValues = {
   actionPoints: 2,
   maxActionPoints: 2,
   hasWeapon: true,
-}
+};
 
 let addEntityToDefaultValues = entity => Object.assign({...defaultValues}, entity);
 

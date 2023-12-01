@@ -22,7 +22,7 @@ export class Actor {// one who acts
 export class Positionable {
   position: Position = { x: undefined, y: undefined };
   isPassable: boolean = false;
-  get isBlocking(): boolean { return !this.isPassable }
+  get isBlocking(): boolean { return !this.isPassable; }
   get square(): Square {
     let square: Square = SquaresService.getSquareFromPosition(this.position.x, this.position.y);
     return square;
@@ -39,7 +39,7 @@ export class Movable extends Identifiable {
 
   setMoveDestinationPosition(targetPosition: Position) {
     let targetSquare: Square = SquaresService.getSquareFromPosition(targetPosition.x, targetPosition.y);
-    let targetSquareNumber: number = SquaresService.getSquareIndexFromPosition(targetPosition.x, targetPosition.y)
+    let targetSquareNumber: number = SquaresService.getSquareIndexFromPosition(targetPosition.x, targetPosition.y);
     if (SquaresService.isTargetSquareEnterable(targetSquare)) {
       this.moveDestination = targetPosition;
       SquaresService.markSquareAtIndexAsChosenDestination(targetSquareNumber);

@@ -25,10 +25,10 @@ export class EntityCard extends React.Component<EntityCardProps> {
     }
     let item: InventoryItem = entity.takeFromInventory(itemName);
     if(item instanceof Item){
-      console.log("Dropping Item")
+      console.log("Dropping Item");
       entity.square.addItem(item);
     } else if (item instanceof Entity){
-      console.log("Dropping Entity")
+      console.log("Dropping Entity");
       EntitiesService.addEntity(item);
       entity.square.entity = item;
       entity.square.entities.push(item);
@@ -76,13 +76,13 @@ export class EntityCard extends React.Component<EntityCardProps> {
 
     let inHands = entity.equipment && entity.equipment.hands;
     let inHandsArray = inHands && [inHands];
-    let bleedingText
+    let bleedingText;
     let bleedingReductionText;
     if(entity.bleedingReductionPerTurn) {
       bleedingReductionText = <span className="bleeding-info__reduction">(-{entity.bleedingReductionPerTurn}<small className="bleeding-info__reduction__unit">/Turn</small>)</span>;
     }
     if(entity.bleeding) {
-      bleedingText = <span className="bleeding-info">Bleeding: {entity.bleeding} {bleedingReductionText}</span>
+      bleedingText = <span className="bleeding-info">Bleeding: {entity.bleeding} {bleedingReductionText}</span>;
     }
 
     return (

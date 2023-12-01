@@ -65,12 +65,12 @@ class ScriptsServiceClass {
 
   ];
   constructor() {
-    console.debug(JSON.stringify(this.scripts))
+    console.debug(JSON.stringify(this.scripts));
   }
 
   runScripts = (param) => {
     this.scripts.forEach((script) => this.runScript(script));
-  }
+  };
 
   runScript(script) {
     //runnning a script
@@ -98,7 +98,7 @@ class ScriptsServiceClass {
             }
           });
 
-          return isGivenEntityFoundAtGivenLocation
+          return isGivenEntityFoundAtGivenLocation;
         }
       default:
     }
@@ -112,28 +112,28 @@ class ScriptsServiceClass {
         MessageService.send(script.result.params[0]);
         break;
       case 'load-map':
-        console.log('Going to loadMap', script.result.params[0])
+        console.log('Going to loadMap', script.result.params[0]);
         // TODO: GameModel.loadMapByName(script.result.params[0]);
         break;
       case 'heal':
-        console.log(`Going to heal ${script.where.x},${script.where.y}`)
+        console.log(`Going to heal ${script.where.x},${script.where.y}`);
         let entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
           let entity = entityAtLocation;
-          MessageService.send(`Healing ${entity.name} from ${entity.hp} to ${entity.maxHp}`)
+          MessageService.send(`Healing ${entity.name} from ${entity.hp} to ${entity.maxHp}`);
 
           entityAtLocation.hp = entityAtLocation.maxHp;
         });
         break;
       case 'move':{
-        console.log(`Going to heal ${script.where.x},${script.where.y}`)
+        console.log(`Going to heal ${script.where.x},${script.where.y}`);
         let entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
           let entity = entityAtLocation;
           let e = entity;
           let targetDestination = script.result.params[0];
           MessageService.send(`Moving ${entity.name} from ${e.position.x}, ${e.position.y} to
-          ${targetDestination.x},${targetDestination.y}`)
+          ${targetDestination.x},${targetDestination.y}`);
 
           //entityAtLocation.hp = entityAtLocation.maxHp;
           entity.position.x = targetDestination.x;

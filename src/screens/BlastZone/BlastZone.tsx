@@ -13,7 +13,7 @@ export class BlastZone extends React.Component<void, BlastZoneState> {
     this.state = {
       gridX: 0,
       gridY: 0,
-    }
+    };
   }
   componentDidMount() {
   }
@@ -43,7 +43,7 @@ export class BlastZone extends React.Component<void, BlastZoneState> {
         gridX: prevState.gridX + deltaX,
         gridY: prevState.gridY + deltaY
       };
-    })
+    });
   }
 
   render() {
@@ -51,7 +51,7 @@ export class BlastZone extends React.Component<void, BlastZoneState> {
     const controls = <Controls
       keys={['W', 'S', 'A', 'D']}
       onKeyPress={(e) => this.onControlPress(e)}
-      ></Controls>
+      ></Controls>;
     const console = <></>;
     const statusIndicators = <></>;
 

@@ -3,7 +3,7 @@ import { Controls, EmojiMapper, HpBar, InventoryItem, LinearDisplay, SquareCompo
 import "./ShowRoom.scss";
 import { M16 } from "resources";
 
-const noop = ()=>{}
+const noop = ()=>{};
 
 export class ShowRoom extends React.Component<void, void> {
 
@@ -15,7 +15,7 @@ export class ShowRoom extends React.Component<void, void> {
       content: <Cell>H</Cell>
     },
     { name: "Controls",
-      content: <Controls keys={["q","e"]} onKeyPress={(e)=>{console.log('ehlo', e)}}></Controls>
+      content: <Controls keys={["q","e"]} onKeyPress={(e)=>{console.log('ehlo', e);}}></Controls>
     },
     { name: "EmojiMapper",
       content: <> 🛢️ ={">"} <EmojiMapper emoji="🛢️"/>, 🕷️ ={">"} <EmojiMapper emoji="🕷️"/> </>
