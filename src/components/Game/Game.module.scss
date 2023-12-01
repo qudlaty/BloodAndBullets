@@ -18,7 +18,9 @@
     clear: both;
   }
 
-  .button, .actions button, .auto-cycle {
+  .button,
+  .actions button,
+  .auto-cycle {
     color: #999;
     background: #444;
     margin-top: 5px;
@@ -152,4 +154,3 @@
 .kbd-navigation .square:focus {
   background: #ddd;
 }
-

@@ -7,8 +7,7 @@ interface DragScrollAreaProps {
 
 interface DragScrollAreaState {}
 
-export class DragScrollArea extends
-  React.Component<DragScrollAreaProps, DragScrollAreaState> {
+export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScrollAreaState> {
   areaReference;
   scroll = {
     x: 0,
@@ -24,10 +23,10 @@ export class DragScrollArea extends
     this.scroll.x -= deltaX;
     this.scroll.y -= deltaY;
 
-    if(this.scroll.x <= 0) {
+    if (this.scroll.x <= 0) {
       this.scroll.x = 0;
     }
-    if(this.scroll.y <= 0) {
+    if (this.scroll.y <= 0) {
       this.scroll.y = 0;
     }
 
@@ -35,9 +34,9 @@ export class DragScrollArea extends
   }
 
   onMouseDown = (e) => {
-    if(e.button === 2) {
-      document.addEventListener('mouseup', this.onMouseUp);
-      document.addEventListener('mousemove', this.onMouseMove);
+    if (e.button === 2) {
+      document.addEventListener("mouseup", this.onMouseUp);
+      document.addEventListener("mousemove", this.onMouseMove);
       e.preventDefault();
     }
   };
@@ -47,8 +46,8 @@ export class DragScrollArea extends
   };
 
   onMouseUp = (e) => {
-    document.removeEventListener('mouseup', this.onMouseUp);
-    document.removeEventListener('mousemove', this.onMouseMove);
+    document.removeEventListener("mouseup", this.onMouseUp);
+    document.removeEventListener("mousemove", this.onMouseMove);
     e.preventDefault();
   };
 
@@ -60,17 +59,15 @@ export class DragScrollArea extends
   }
 
   render() {
-    return <div
-      className="drag-scroll-area drag-scroll-area-external"
-      ref={this.areaReference}
-      onMouseDown={(e) => this.onMouseDown(e)}
-      onContextMenu={(e) => e.preventDefault()}
-    >
-      <div className="drag-scroll-area drag-scroll-area-internal">
-        {
-          this.props.children
-        }
+    return (
+      <div
+        className="drag-scroll-area drag-scroll-area-external"
+        ref={this.areaReference}
+        onMouseDown={(e) => this.onMouseDown(e)}
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        <div className="drag-scroll-area drag-scroll-area-internal">{this.props.children}</div>
       </div>
-    </div>;
+    );
   }
 }

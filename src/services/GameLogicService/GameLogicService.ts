@@ -36,11 +36,8 @@ class GameLogicClass {
    * @param previousState
    */
 
-  calculeteNextGameStateAfterProcessingAGivenEntity(
-      previousState: GameState,
-      givenEntity: Entity
-    ): GameState{
-    if(givenEntity.actionPoints === 0) return previousState;
+  calculeteNextGameStateAfterProcessingAGivenEntity(previousState: GameState, givenEntity: Entity): GameState {
+    if (givenEntity.actionPoints === 0) return previousState;
     const nextState: GameState = previousState;
     const { entities } = nextState;
     this.processAnEntity(givenEntity);
@@ -50,8 +47,9 @@ class GameLogicClass {
     return nextState;
   }
 
-  processAnEntity(entity) { // Entity processing function
-    console.log('start procesing', entity);
+  processAnEntity(entity) {
+    // Entity processing function
+    console.log("start procesing", entity);
     EntitiesService.moveEntityRandomly(entity);
     EntitiesService.moveEntityIntoChosenDestination(entity);
     EntitiesService.stopShootingWhenForbidden(entity);
@@ -65,20 +63,20 @@ class GameLogicClass {
     EntitiesService.stopBreathingForKilledEntity(entity);
 
     SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-    console.log('end procesing', entity);
+    console.log("end procesing", entity);
     // SquaresService.castLightsFromFriendlyEntity(entity);
   }
 
-  calculateNumberOfAliveFriends(entities: Entity[]):number {
-    return entities.filter(entity => entity.isFriendly && entity.isAlive).length;
+  calculateNumberOfAliveFriends(entities: Entity[]): number {
+    return entities.filter((entity) => entity.isFriendly && entity.isAlive).length;
   }
 
-  calculateNumberOfAliveEnemies(entities: Entity[]):number {
+  calculateNumberOfAliveEnemies(entities: Entity[]): number {
     let amountOfAliveEnemies = 0;
     entities.forEach((entity) => {
-      if(entity.isFriendly) {
+      if (entity.isFriendly) {
         return;
-      } else if(entity.isAlive) {
+      } else if (entity.isAlive) {
         amountOfAliveEnemies++;
       }
     });

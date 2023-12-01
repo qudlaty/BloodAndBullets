@@ -17,22 +17,23 @@ export class EntityCard extends React.Component<EntityCardProps> {
     this.props.onInventoryClick(this.props.entity, itemName);
   };
 
-  onDrop = (itemName: string) => {//TODO: Take this outside of the component, duuuh.
+  onDrop = (itemName: string) => {
+    //TODO: Take this outside of the component, duuuh.
     const { entity } = this.props;
     if (entity.equipment.hands && entity.equipment.hands.name === itemName) {
       entity.unEquipFromHands();
       entity.isShooting = false;
     }
     const item: InventoryItem = entity.takeFromInventory(itemName);
-    if(item instanceof Item){
+    if (item instanceof Item) {
       console.log("Dropping Item");
       entity.square.addItem(item);
-    } else if (item instanceof Entity){
+    } else if (item instanceof Entity) {
       console.log("Dropping Entity");
       EntitiesService.addEntity(item);
       entity.square.entity = item;
       entity.square.entities.push(item);
-      item.position = {...entity.position};
+      item.position = { ...entity.position };
     }
 
     this.props.processInterface();
@@ -53,7 +54,7 @@ export class EntityCard extends React.Component<EntityCardProps> {
         entity.targetPosition.y - entity.position.y
       ).toFixed(2)
     );
-  };
+  }
 
   render() {
     const { entity } = this.props;
@@ -78,20 +79,25 @@ export class EntityCard extends React.Component<EntityCardProps> {
     const inHandsArray = inHands && [inHands];
     let bleedingText;
     let bleedingReductionText;
-    if(entity.bleedingReductionPerTurn) {
-      bleedingReductionText = <span className="bleeding-info__reduction">(-{entity.bleedingReductionPerTurn}<small className="bleeding-info__reduction__unit">/Turn</small>)</span>;
+    if (entity.bleedingReductionPerTurn) {
+      bleedingReductionText = (
+        <span className="bleeding-info__reduction">
+          (-{entity.bleedingReductionPerTurn}
+          <small className="bleeding-info__reduction__unit">/Turn</small>)
+        </span>
+      );
     }
-    if(entity.bleeding) {
-      bleedingText = <span className="bleeding-info">Bleeding: {entity.bleeding} {bleedingReductionText}</span>;
+    if (entity.bleeding) {
+      bleedingText = (
+        <span className="bleeding-info">
+          Bleeding: {entity.bleeding} {bleedingReductionText}
+        </span>
+      );
     }
 
     return (
       <div className={className}>
-
-        <button
-          className="inventory-list__drop-button"
-          onClick={() => this.props.onEntityClick(entity.name)}
-        >
+        <button className="inventory-list__drop-button" onClick={() => this.props.onEntityClick(entity.name)}>
           Pick up
         </button>
 
@@ -103,15 +109,15 @@ export class EntityCard extends React.Component<EntityCardProps> {
         <small className="entity-data__rank">Private</small>
         <div>
           <LinearDisplay className="full" label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
-          <LinearDisplay className ="full" label="HP" current={entity.hp} max={entity.maxHp} />
+          <LinearDisplay className="full" label="HP" current={entity.hp} max={entity.maxHp} />
           {bleedingText}
-          <br/>
+          <br />
           <br />
           <span title="Location" className="entity-data__location">
             LOC: {entity.position.x}, {entity.position.y}
           </span>
           <span title="Distance to target" hidden={!entity.targetPosition} className="entity-data__distance-to-target">
-            DIST: { this.distanceToTarget }
+            DIST: {this.distanceToTarget}
           </span>
           <span title="Target location" hidden={!entity.targetPosition} className="entity-data__target-position">
             TRGT: {entity.targetPosition && entity.targetPosition.x}, {entity.targetPosition && entity.targetPosition.y}

@@ -24,5 +24,5 @@ export class L30 extends Lazer {
   damage = 10;
   description: "Portable 30kW Energy beam weapon";
   manufacturer: "Amaar Industries";
-  previousOwners: ['Amaar Industries Factory'];
+  previousOwners: ["Amaar Industries Factory"];
 }

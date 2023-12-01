@@ -22,25 +22,23 @@ export interface GameState {
   isEditorOn: boolean;
 }
 
-export class GameState implements GameState{
+export class GameState implements GameState {
   constructor() {
-    Object.assign(this,
-      {
-        entities: EntitiesService.entities,
-        squares: SquaresService.squares,
-        selected: EntitiesService.selected,
-        targeted: null,
-        targetedSquareNumber: null,
+    Object.assign(this, {
+      entities: EntitiesService.entities,
+      squares: SquaresService.squares,
+      selected: EntitiesService.selected,
+      targeted: null,
+      targetedSquareNumber: null,
 
-        arenaSize: 10,
-        squareSize: 40,
-        enemiesAlive: GameLogic.calculateNumberOfAliveEnemies(EntitiesService.entities),
-        friendsAlive: GameLogic.calculateNumberOfAliveFriends(EntitiesService.entities),
+      arenaSize: 10,
+      squareSize: 40,
+      enemiesAlive: GameLogic.calculateNumberOfAliveEnemies(EntitiesService.entities),
+      friendsAlive: GameLogic.calculateNumberOfAliveFriends(EntitiesService.entities),
 
-        isAutoLoopOn: false,
-        isBoardRotated: false,
-        isEditorOn: false,
-      }
-    );
+      isAutoLoopOn: false,
+      isBoardRotated: false,
+      isEditorOn: false,
+    });
   }
 }

@@ -7,7 +7,6 @@ import { GameActionsClassForGameComponent } from "services/GameActionsService";
 import { L30 } from "resources";
 import { Item } from "services/ItemService";
 
-
 /**
  * @description Handles loading and saving of the map and entities
  */
@@ -22,7 +21,7 @@ export class GameModelClass {
   }
 
   saveMap = () => {
-    console.log('Alive suares:', SquaresService.squares);
+    console.log("Alive suares:", SquaresService.squares);
     const squares: Square[] = JSON.parse(JSON.stringify(SquaresService.squares));
     const squaresProcessedForSave = squares.map((square) => {
       //let newSquare = { squareType: square.squareType, entity: square.entity };
@@ -41,9 +40,10 @@ export class GameModelClass {
 
   loadMap = (GameActions: GameActionsClassForGameComponent) => {
     const mapNames: any = Object.keys(localStorage);
-    const message = `Enter the name of map to load.\n`+
-    `Maps available in localStorage: ${mapNames}\n`+
-    `Be aware item processing is not working fully yet.`;
+    const message =
+      `Enter the name of map to load.\n` +
+      `Maps available in localStorage: ${mapNames}\n` +
+      `Be aware item processing is not working fully yet.`;
     console.log(mapNames);
     const result = window.prompt(message, mapNames);
     const squaresStringified = localStorage[result];
@@ -52,29 +52,29 @@ export class GameModelClass {
     const squaresLoaded = JSON.parse(squaresStringified);
     this.loadSquaresIntoService(squaresLoaded);
 
-    const entitiesWithinTheMap = squaresLoaded.filter(square => square.entity).map(square => square.entity);
-    console.log('Entities Within The Map:', entitiesWithinTheMap);
+    const entitiesWithinTheMap = squaresLoaded.filter((square) => square.entity).map((square) => square.entity);
+    console.log("Entities Within The Map:", entitiesWithinTheMap);
 
     function makeInstanceOfAWeapon(weaponRecord): Item {
       return new L30();
     }
 
     function processEquipmentForEntityRecord(entityRecord): any {
-      if(entityRecord.equipment && entityRecord.equipment.hands) {
+      if (entityRecord.equipment && entityRecord.equipment.hands) {
         entityRecord.equipment.hands = makeInstanceOfAWeapon(entityRecord.equipment.hands);
       }
-      if(entityRecord.inventory) {
-        entityRecord.inventory.map(itemRecord => makeInstanceOfAWeapon(itemRecord));
+      if (entityRecord.inventory) {
+        entityRecord.inventory.map((itemRecord) => makeInstanceOfAWeapon(itemRecord));
       }
       return entityRecord;
     }
 
     const entitiesProcessed = entitiesWithinTheMap
-          .map(entity => processEquipmentForEntityRecord(entity))
-          .map(entityRecord => new Entity(entityRecord));
+      .map((entity) => processEquipmentForEntityRecord(entity))
+      .map((entityRecord) => new Entity(entityRecord));
 
-    console.log('ALIVE ENTITIES?', entitiesProcessed);
-    this.loadEntitiesIntoService(entitiesProcessed);///
+    console.log("ALIVE ENTITIES?", entitiesProcessed);
+    this.loadEntitiesIntoService(entitiesProcessed); ///
     GameActions.setSquaresAccordingToEntities();
     GameActions.processInterface();
   };
@@ -83,10 +83,10 @@ export class GameModelClass {
     SquaresService.squares.forEach((square, index) => {
       const targetSquare = square;
       const sourceSquare = squaresLoaded[index];
-      targetSquare.squareType = (sourceSquare && sourceSquare.squareType) || 'floor';
-      targetSquare.icon = (sourceSquare && sourceSquare.icon) || ' ';
-      targetSquare.name = (sourceSquare && sourceSquare.name) || ' ';
-      targetSquare.description = (sourceSquare && sourceSquare.description) || ' ';
+      targetSquare.squareType = (sourceSquare && sourceSquare.squareType) || "floor";
+      targetSquare.icon = (sourceSquare && sourceSquare.icon) || " ";
+      targetSquare.name = (sourceSquare && sourceSquare.name) || " ";
+      targetSquare.description = (sourceSquare && sourceSquare.description) || " ";
     });
   };
 
@@ -98,7 +98,8 @@ export class GameModelClass {
     this.loadSquaresIntoService(intro);
   };
 
-  loadPredefinedEntitities = () => {// TODO: Save and load entities together with the map?
+  loadPredefinedEntitities = () => {
+    // TODO: Save and load entities together with the map?
     this.loadEntitiesIntoService(characterDefinitions);
   };
 }

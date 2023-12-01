@@ -28,29 +28,31 @@ export class Game extends React.PureComponent<void, GameState> {
     this.state = new GameState();
 
     GameActions = new GameActionsClassForGameComponent(this);
-    console.log('Initial state dump:', this.state);
+    console.log("Initial state dump:", this.state);
   }
 
   componentDidMount() {
     this.startIfAutoLoopIsOn();
   }
 
-  startIfAutoLoopIsOn(){
-    if(this.state.isAutoLoopOn){
+  startIfAutoLoopIsOn() {
+    if (this.state.isAutoLoopOn) {
       GameActions.loop();
     }
   }
 
-  calculateFriendlyActionPoints(): number{
+  calculateFriendlyActionPoints(): number {
     const startValue = 0;
     const apAdder = (previousValue: number, entity: Entity): number => {
       const result = previousValue + entity.actionPoints;
       return result;
     };
-    return EntitiesService.entities.filter(entity => entity.isFriendly).reduce(
-      apAdder, // takes a previous value and an array element (entity), returns number (next value)
-      startValue // start value for only the first iteration
-    );
+    return EntitiesService.entities
+      .filter((entity) => entity.isFriendly)
+      .reduce(
+        apAdder, // takes a previous value and an array element (entity), returns number (next value)
+        startValue // start value for only the first iteration
+      );
   }
 
   render() {
@@ -64,10 +66,10 @@ export class Game extends React.PureComponent<void, GameState> {
             onClick={(i) => GameActions.handleClickV2(i)}
             size={this.state.arenaSize}
             isRotated={this.state.isBoardRotated}
-            style={{fontSize: `${this.state.squareSize}px`}}
+            style={{ fontSize: `${this.state.squareSize}px` }}
           />
           <Controls
-            keys={['W', 'S', 'A', 'D', 'space']}// TODO: implement using this.
+            keys={["W", "S", "A", "D", "space"]} // TODO: implement using this.
             onKeyPress={GameActions.handleKeyPress}
           ></Controls>
         </div>
@@ -75,35 +77,21 @@ export class Game extends React.PureComponent<void, GameState> {
         <div className={styles.game__info}>
           <div className={styles.actions}>
             <div className={styles.action_row}>
-              <button onClick={GameActions.toggleEditorMode}>
-                Editor Mode
-              </button>
-              <button onClick={GameModel.saveMap}>
-                Save Map
-              </button>
-              <button onClick={()=> GameModel.loadMap(GameActions)}>
-                Load Map
-              </button>
+              <button onClick={GameActions.toggleEditorMode}>Editor Mode</button>
+              <button onClick={GameModel.saveMap}>Save Map</button>
+              <button onClick={() => GameModel.loadMap(GameActions)}>Load Map</button>
             </div>
 
             <div className={styles.action_row}>
-              <button onClick={GameActions.toggleRotateBoard}>
-                Rotate Board
-              </button>
-              <button onClick={GameActions.zoomIn}>
-                Zoom In (+)
-              </button>
-              <button onClick={GameActions.zoomOut}>
-                Zoom Out (-)
-              </button>
+              <button onClick={GameActions.toggleRotateBoard}>Rotate Board</button>
+              <button onClick={GameActions.zoomIn}>Zoom In (+)</button>
+              <button onClick={GameActions.zoomOut}>Zoom Out (-)</button>
             </div>
             <div className={styles.action_row}>
               <button onClick={() => GameActions.nuke(40)} className={styles["button-nuke"]}>
                 Nuke All
               </button>
-              <button onClick={GameActions.ceaseFire}>
-                Cease Fire
-              </button>
+              <button onClick={GameActions.ceaseFire}>Cease Fire</button>
               <button onClick={GameActions.executeActions} className={styles.execute_actions}>
                 Execute Actions
               </button>
@@ -117,25 +105,21 @@ export class Game extends React.PureComponent<void, GameState> {
                 <span>Auto Cycle</span>
               </label>
 
-              <button onClick={GameActions.nextTick} className={styles.button + ' '+ styles.next_tick}>
+              <button onClick={GameActions.nextTick} className={styles.button + " " + styles.next_tick}>
                 Next Tick
               </button>
-
             </div>
 
             <div className={styles.action_row}>
-            <span>
-                Enemies alive: {this.state.enemiesAlive} <br/>
-                Friends alive: {this.state.friendsAlive} <br/>
-                {this.state.enemiesAlive && !this.state.friendsAlive ? 'YOU LOST':'' }
-                {this.state.friendsAlive && !this.state.enemiesAlive ? 'YOU WON':'' }
+              <span>
+                Enemies alive: {this.state.enemiesAlive} <br />
+                Friends alive: {this.state.friendsAlive} <br />
+                {this.state.enemiesAlive && !this.state.friendsAlive ? "YOU LOST" : ""}
+                {this.state.friendsAlive && !this.state.enemiesAlive ? "YOU WON" : ""}
               </span>
               &nbsp;
-              <p className="instructions">
-
-              </p>
+              <p className="instructions"></p>
               <span>Friends actions points: {this.calculateFriendlyActionPoints()} </span>
-
             </div>
           </div>
           <div className={styles["interaction-container"]}>

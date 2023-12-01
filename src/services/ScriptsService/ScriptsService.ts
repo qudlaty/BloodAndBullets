@@ -2,67 +2,66 @@ import { EntitiesService, Entity } from "services/EntitiesService";
 import { MessageService } from "services/MessageService";
 
 enum scriptTypes {
-  entityPresent = 'entity-present',
-  allEntitiesDead = 'all-entities-dead',
+  entityPresent = "entity-present",
+  allEntitiesDead = "all-entities-dead",
 }
 
 class ScriptsServiceClass {
   scripts = [
     {
       what: scriptTypes.entityPresent,
-      where: {x: 8, y: 8},
-      who: 'Lazer Blady',
-      condition: 'alive', // dead, hpGreaterThan, hpLessThan, havingEquipment
-      params: [],//
+      where: { x: 8, y: 8 },
+      who: "Lazer Blady",
+      condition: "alive", // dead, hpGreaterThan, hpLessThan, havingEquipment
+      params: [], //
 
       result: {
-        action: 'message',// 'switch power', 'open', 'spawn'
-        params: ['You have reached the exit. You have won the game.']
-      }
+        action: "message", // 'switch power', 'open', 'spawn'
+        params: ["You have reached the exit. You have won the game."],
+      },
     },
     {
       what: scriptTypes.entityPresent,
-      where: {x: 6, y: 8},
-      who: 'Lazer Blady',
-      condition: 'alive', // dead, hpGreaterThan, hpLessThan, havingEquipment
-      params: [],//
+      where: { x: 6, y: 8 },
+      who: "Lazer Blady",
+      condition: "alive", // dead, hpGreaterThan, hpLessThan, havingEquipment
+      params: [], //
 
       result: {
-        action: 'load-map',// 'switch power', 'open', 'spawn'
-        params: ['A2']
-      }
+        action: "load-map", // 'switch power', 'open', 'spawn'
+        params: ["A2"],
+      },
     },
     {
       what: scriptTypes.entityPresent,
-      where: {x: 4, y: 9},
-      condition: 'alive', // dead, hpGreaterThan, hpLessThan, havingEquipment
-      params: [],//
+      where: { x: 4, y: 9 },
+      condition: "alive", // dead, hpGreaterThan, hpLessThan, havingEquipment
+      params: [], //
 
       result: {
-        action: 'heal',// 'switch power', 'open', 'spawn'
-        params: []
-      }
+        action: "heal", // 'switch power', 'open', 'spawn'
+        params: [],
+      },
     },
     {
       what: scriptTypes.entityPresent,
-      where: {x: 5, y: 8},
-      condition: 'alive', // dead, hpGreaterThan, hpLessThan, havingEquipment
-      params: [],//
+      where: { x: 5, y: 8 },
+      condition: "alive", // dead, hpGreaterThan, hpLessThan, havingEquipment
+      params: [], //
 
       result: {
-        action: 'move',// 'switch power', 'open', 'spawn'
-        params: [{x: 0, y:0}],
-      }
+        action: "move", // 'switch power', 'open', 'spawn'
+        params: [{ x: 0, y: 0 }],
+      },
     },
     {
       what: scriptTypes.entityPresent,
-      where: {x: 0, y: 1},
+      where: { x: 0, y: 1 },
       result: {
-        action: 'move',
-        params: [{x: 0, y:9}],
-      }
-    }
-
+        action: "move",
+        params: [{ x: 0, y: 9 }],
+      },
+    },
   ];
   constructor() {
     console.debug(JSON.stringify(this.scripts));
@@ -74,9 +73,9 @@ class ScriptsServiceClass {
 
   runScript(script) {
     //runnning a script
-    console.log('Running script.', script);
+    console.log("Running script.", script);
 
-    if(this.isConditionFullfilled(script)) {
+    if (this.isConditionFullfilled(script)) {
       this.executeResult(script);
     }
   }
@@ -84,16 +83,19 @@ class ScriptsServiceClass {
   isConditionFullfilled(script): boolean {
     switch (script.what) {
       case scriptTypes.entityPresent:
-        if(!script.where) break;// unless we're talking "everywhere"
+        if (!script.where) break; // unless we're talking "everywhere"
         const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
-        console.log(`There are ${entitiesFoundAtLocationGiven.length} entities at ${script.where.x}, ${script.where.y}`);
+        console.log(
+          `There are ${entitiesFoundAtLocationGiven.length} entities at ${script.where.x}, ${script.where.y}`
+        );
         const isAnyEntityPresentAtGivenLocation = entitiesFoundAtLocationGiven.length > 0;
-        if(!script.who) {
+        if (!script.who) {
           return isAnyEntityPresentAtGivenLocation;
-        } else {// we have "who"
+        } else {
+          // we have "who"
           let isGivenEntityFoundAtGivenLocation = false;
           entitiesFoundAtLocationGiven.forEach((entityAtLocation) => {
-            if(entityAtLocation.name === script.who)  {
+            if (entityAtLocation.name === script.who) {
               isGivenEntityFoundAtGivenLocation = true;
             }
           });
@@ -108,14 +110,14 @@ class ScriptsServiceClass {
 
   executeResult(script) {
     switch (script.result.action) {
-      case 'message':
+      case "message":
         MessageService.send(script.result.params[0]);
         break;
-      case 'load-map':
-        console.log('Going to loadMap', script.result.params[0]);
+      case "load-map":
+        console.log("Going to loadMap", script.result.params[0]);
         // TODO: GameModel.loadMapByName(script.result.params[0]);
         break;
-      case 'heal':
+      case "heal":
         console.log(`Going to heal ${script.where.x},${script.where.y}`);
         const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
@@ -125,7 +127,7 @@ class ScriptsServiceClass {
           entityAtLocation.hp = entityAtLocation.maxHp;
         });
         break;
-      case 'move':{
+      case "move": {
         console.log(`Going to heal ${script.where.x},${script.where.y}`);
         const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
@@ -144,7 +146,6 @@ class ScriptsServiceClass {
       default:
     }
   }
-
 }
 
 export const ScriptsService = new ScriptsServiceClass();

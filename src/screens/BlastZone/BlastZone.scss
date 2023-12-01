@@ -1,5 +1,6 @@
 .blast-zone {
-  &, & > * {
+  &,
+  & > * {
     background: inherit;
   }
 
@@ -15,7 +16,7 @@
   }
 
   .mid-row {
-    display:flex;
+    display: flex;
     flex: 1;
     justify-content: stretch;
     & > * {

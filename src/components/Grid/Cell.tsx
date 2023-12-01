@@ -5,11 +5,9 @@ interface CellProps {
   children?: any;
 }
 
-interface CellState {
-}
+interface CellState {}
 
 export class Cell extends React.PureComponent<CellProps, CellState> {
-
   state = {};
 
   // constructor(props) {

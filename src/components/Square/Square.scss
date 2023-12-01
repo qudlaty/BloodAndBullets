@@ -12,35 +12,29 @@
 // }
 $squareSize: 1em;
 @mixin cuboid {
-  &:nth-of-type(1){
+  &:nth-of-type(1) {
     transform: scaleZ(0.5) rotateX(90deg);
     transform-origin: top;
   }
-  &:nth-of-type(2){
+  &:nth-of-type(2) {
     transform: scaleZ(0.5) rotateY(90deg);
     transform-origin: right;
   }
-  &:nth-of-type(3){
+  &:nth-of-type(3) {
     transform: scaleZ(0.5) rotateY(-90deg);
     transform-origin: left;
   }
-  &:nth-of-type(4){
+  &:nth-of-type(4) {
     transform: scaleZ(0.5) rotateX(-90deg);
     transform-origin: bottom;
   }
-  &:nth-of-type(5){
+  &:nth-of-type(5) {
     transform: translateZ(0.5em);
     transform-origin: bottom;
   }
 }
 
-$black-and-yellow-stripes: repeating-linear-gradient(
-  45deg,
-  black 25%,
-  black 50%,
-  yellow 50%,
-  yellow 75%
-);
+$black-and-yellow-stripes: repeating-linear-gradient(45deg, black 25%, black 50%, yellow 50%, yellow 75%);
 
 @mixin metal-floor($color) {
   $color-darker: darken($color, 3%);
@@ -49,20 +43,20 @@ $black-and-yellow-stripes: repeating-linear-gradient(
   $color-line: $color-lighter;
   background: repeating-linear-gradient(
     45deg,
-    $color-line 0%,    /* 1 FIRST STRIP */
-    $color-line 5%,    /* 1 */
+    $color-line 0%,
+    /* 1 FIRST STRIP */ $color-line 5%,
 
-    $color-darker 5%,  /* SHADOW */
+    /* 1 */ $color-darker 5%,
 
-    $color-gap 10%,    /* 2 SECOND STRIP */
-    $color-gap 15%,    /* 2 */ 
+    /* SHADOW */ $color-gap 10%,
+    /* 2 SECOND STRIP */ $color-gap 15%,
 
-    $color-darker 20%, /* SHADOW */
+    /* 2 */ $color-darker 20%,
 
-    $color-line 20%,   /* 1  */
-    $color-line 25%    /* 1 */
+    /* SHADOW */ $color-line 20%,
+    /* 1  */ $color-line 25% /* 1 */
   );
-} 
+}
 .square {
   position: relative;
   box-sizing: border-box;
@@ -107,18 +101,18 @@ $black-and-yellow-stripes: repeating-linear-gradient(
   }
   &__blood {
     position: absolute;
-    overflow:hidden;
+    overflow: hidden;
     color: #900;
     text-align: right;
     text-shadow: 0px 0px 1px #000;
     padding-right: 3px;
     & .blood__drop {
-      color: rgba(255,0,0, 0);
-      text-shadow:rgba(200, 0, 0, 0.5) 0em 0em 0.3em;
+      color: rgba(255, 0, 0, 0);
+      text-shadow: rgba(200, 0, 0, 0.5) 0em 0em 0.3em;
     }
     & .blood__text {
       color: rgba(220, 00, 00, 1);
-      background:rgba(100, 0, 0, 0.5);
+      background: rgba(100, 0, 0, 0.5);
       border-radius: 2px;
       font-size: 1.4em;
     }
@@ -142,12 +136,16 @@ $black-and-yellow-stripes: repeating-linear-gradient(
     border: 3px solid #d88c00;
   }
   &--active {
-    box-shadow: 0 0 10px 3px inset #095c09, 0 0 10px 3px #095c09;
+    box-shadow:
+      0 0 10px 3px inset #095c09,
+      0 0 10px 3px #095c09;
     border: 1px solid #13af13;
   }
 
   &--attacked {
-    box-shadow: 0 0 2px 3px inset white, 0 0 10px 3px red;
+    box-shadow:
+      0 0 2px 3px inset white,
+      0 0 10px 3px red;
   }
 
   &__content {
@@ -171,7 +169,7 @@ $black-and-yellow-stripes: repeating-linear-gradient(
     border-color: #505050;
     //background: $metal-floor;
     @include metal-floor(#444);
-    &:hover{
+    &:hover {
       //background-color: rgb(240, 160, 5);
       border: 2px solid $blue-1;
     }
@@ -195,25 +193,26 @@ $black-and-yellow-stripes: repeating-linear-gradient(
   }
   &.monster-filter {
     background: #696;
-    border: #0F0;
+    border: #0f0;
   }
 
-  &__cuboid, &__cuboid-face {
+  &__cuboid,
+  &__cuboid-face {
     display: none;
     width: 100%;
     height: 100%;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
   }
-  &.wall &__cuboid-face{
+  &.wall &__cuboid-face {
     //pointer-events: none;
-    background: rgba(200,200,200,0.5);
-    border: 1px solid rgba(220,220,220,0.8);
+    background: rgba(200, 200, 200, 0.5);
+    border: 1px solid rgba(220, 220, 220, 0.8);
     transform-style: preserve-3d;
     @include cuboid();
   }
-  &.wall:hover &__cuboid-face{
+  &.wall:hover &__cuboid-face {
     background: rgba(0, 151, 252, 0.5);
   }
   &.nothing {
@@ -221,8 +220,8 @@ $black-and-yellow-stripes: repeating-linear-gradient(
     border: #222;
   }
   &.floor &__cuboid-face {
-    background: inherit;//rgba(200,200,200,0.9);
-    border:1px solid #666;
+    background: inherit; //rgba(200,200,200,0.9);
+    border: 1px solid #666;
     @include cuboid();
   }
   &.floor &__cuboid {

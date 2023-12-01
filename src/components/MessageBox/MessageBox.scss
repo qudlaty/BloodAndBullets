@@ -6,17 +6,17 @@
   overflow-y: scroll;
   padding: 5px;
   margin: 0;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 12px;
   li {
     .message-number {
-      color: rgba(100,100,100,0.3);
+      color: rgba(100, 100, 100, 0.3);
     }
     .message-timestamp {
       color: rgba(78, 211, 78, 0.5);
     }
     .message-text {
-      color: rgba(200,200,200,0.8);
+      color: rgba(200, 200, 200, 0.8);
     }
   }
   :last-child {

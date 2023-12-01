@@ -14,8 +14,8 @@ interface BloodProps {
 class Blood extends React.PureComponent<BloodProps> {
   render() {
     const { bloodAmount } = this.props;
-    if(bloodAmount < 0) {
-      console.error('Blood amount negative.');
+    if (bloodAmount < 0) {
+      console.error("Blood amount negative.");
       return;
     }
 
@@ -26,17 +26,20 @@ class Blood extends React.PureComponent<BloodProps> {
     const dropSizeVariance = 3;
     const dsv = dropSizeVariance;
 
-
-    while(i--) {
+    while (i--) {
       bloodDrops.push(
-        <span className="blood__drop" style={{
-          position: 'absolute',
-          fontSize: `${1 + Math.random() * dsv}em`,
-          left: `calc(${mfd + Math.random() * (100-2*mfd)}% - 0.4em)`,
-          top: `calc(${mfd + Math.random() * (100-2*mfd)}% - 0.5em)`,
-        }}
-        key={i}
-        >o</span>
+        <span
+          className="blood__drop"
+          style={{
+            position: "absolute",
+            fontSize: `${1 + Math.random() * dsv}em`,
+            left: `calc(${mfd + Math.random() * (100 - 2 * mfd)}% - 0.4em)`,
+            top: `calc(${mfd + Math.random() * (100 - 2 * mfd)}% - 0.5em)`,
+          }}
+          key={i}
+        >
+          o
+        </span>
       );
     }
 
@@ -44,14 +47,12 @@ class Blood extends React.PureComponent<BloodProps> {
       <div
         className="square__blood"
         style={{
-          background: `rgba(255, 0, 0, 0)`,//${(bloodAmount / 50).toFixed(2)})`,
+          background: `rgba(255, 0, 0, 0)`, //${(bloodAmount / 50).toFixed(2)})`,
           //position: 'relative'
         }}
       >
         {bloodDrops}
-        <span className="blood__text">
-          {bloodAmount}
-        </span>
+        <span className="blood__text">{bloodAmount}</span>
       </div>
     );
   }

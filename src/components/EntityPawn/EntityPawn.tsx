@@ -20,8 +20,8 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
     let classessFromFlags = Helpers.turnFlagsIntoClasses(entity, classNameBase);
     classessFromFlags += Helpers.turnFlagsIntoClasses(square, classNameBase);
     className += ` ${classessFromFlags} `;
-    const fof = entity.isFriendly ? 'friendly' : 'hostile';
-    const color = entity.isFriendly ? 'green' : 'red';
+    const fof = entity.isFriendly ? "friendly" : "hostile";
+    const color = entity.isFriendly ? "green" : "red";
     const zIndex = entity.isShooting ? 5 : 1;
     const animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
 
@@ -29,7 +29,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
     const squareMargin = 2;
     return (
       <div
-        className={`entity-pawn ${entity.isDead ? 'entity-pawn--dead' : ''}`}
+        className={`entity-pawn ${entity.isDead ? "entity-pawn--dead" : ""}`}
         key={entity.name}
         style={{
           left: `calc(${boardPadding + 3}px + ${entity.position.x * squareMargin * 2}px + ${entity.position.x}em)`,
@@ -37,15 +37,8 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
           zIndex: zIndex,
         }}
       >
-        <div
-          className={`entity-pawn__health-display ` + fof}
-        >
-
-          <HpBar
-            current={entity.hp}
-            max={entity.maxHp}
-            color={color}
-          />
+        <div className={`entity-pawn__health-display ` + fof}>
+          <HpBar current={entity.hp} max={entity.maxHp} color={color} />
         </div>
 
         <div

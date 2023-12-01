@@ -38,7 +38,8 @@ export class Board extends React.Component<BoardProps> {
     );
   }
 
-  EntityPawns = (): ReactElement[] => this.props.entities.map((entity) => <EntityPawn key={entity.name} entity={entity} />);
+  EntityPawns = (): ReactElement[] =>
+    this.props.entities.map((entity) => <EntityPawn key={entity.name} entity={entity} />);
 
   BoardSquares = () => {
     let cellId: number = 0;

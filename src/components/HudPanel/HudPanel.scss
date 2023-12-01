@@ -1,11 +1,12 @@
-$color-green: #0C0;
+$color-green: #0c0;
 $color-amber: #fb7e14;
 
 $color-primary: $color-amber;
 $color-border: $color-primary;
 
 .hud-panel {
-  & , & > *{
+  &,
+  & > * {
     box-sizing: border-box;
     background: inherit;
   }
@@ -33,7 +34,7 @@ $color-border: $color-primary;
   &__content {
     width: 100%;
     height: 100%;
-    position:relative;
+    position: relative;
     display: flex;
   }
 }

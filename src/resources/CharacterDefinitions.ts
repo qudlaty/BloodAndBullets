@@ -10,9 +10,9 @@ export const entitiesInitialValues = [
     isFriendly: true,
     position: { x: 6, y: 8 },
     inventory: [new M16()],
-    equipment: {hands: new L30()},
+    equipment: { hands: new L30() },
     actionPoints: 10,
-    maxActionPoints: 10
+    maxActionPoints: 10,
   },
   {
     name: "Robot",
@@ -23,7 +23,7 @@ export const entitiesInitialValues = [
     isFriendly: true,
     isBreathing: false,
     position: { x: 3, y: 5 },
-    equipment: {hands: new L30()},
+    equipment: { hands: new L30() },
     bleedingReductionPerTurn: 50,
   },
   {
@@ -34,7 +34,7 @@ export const entitiesInitialValues = [
     position: { x: 8, y: 2 },
     bleedingReductionPerTurn: 0,
     bleeding: 1,
-    equipment: {hands: new L30()},
+    equipment: { hands: new L30() },
   },
   {
     name: "Squid",
@@ -42,7 +42,7 @@ export const entitiesInitialValues = [
     maxHp: 100,
     icon: "🦑",
     position: { x: 5, y: 5 },
-    equipment: {hands: new M40()},
+    equipment: { hands: new M40() },
   },
   {
     name: "Ant",
@@ -52,7 +52,7 @@ export const entitiesInitialValues = [
     icon: "🐜",
     isBreathing: true,
     position: { x: 7, y: 6 },
-    equipment: {hands: new M40()},
+    equipment: { hands: new M40() },
   },
   {
     name: "Henry The Spider",
@@ -60,7 +60,7 @@ export const entitiesInitialValues = [
     maxHp: 150,
     icon: "🕷️",
     position: { x: 9, y: 3 },
-    equipment: {hands: new L30()},
+    equipment: { hands: new L30() },
   },
   {
     name: "Mosquito",
@@ -68,9 +68,9 @@ export const entitiesInitialValues = [
     maxHp: 20,
     icon: "🦟",
     position: { x: 2, y: 7 },
-    equipment: {hands: new M16()},
+    equipment: { hands: new M16() },
     actionPoints: 1,
-    maxActionPoints: 1
+    maxActionPoints: 1,
   },
   {
     name: "Microbe",
@@ -78,7 +78,7 @@ export const entitiesInitialValues = [
     maxHp: 5,
     icon: "🦠",
     position: { x: 3, y: 8 },
-    equipment: {hands: new L30()},
+    equipment: { hands: new L30() },
   },
 ];
 
@@ -91,9 +91,9 @@ const defaultValues = {
   hasWeapon: true,
 };
 
-const addEntityToDefaultValues = entity => Object.assign({...defaultValues}, entity);
+const addEntityToDefaultValues = (entity) => Object.assign({ ...defaultValues }, entity);
 
 export const characterDefinitions = entitiesInitialValues
-  .map(entity => addEntityToDefaultValues(entity))
-  .map(entry => new Entity(entry));
+  .map((entity) => addEntityToDefaultValues(entity))
+  .map((entry) => new Entity(entry));
 export default characterDefinitions;

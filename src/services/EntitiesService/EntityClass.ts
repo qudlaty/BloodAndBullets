@@ -28,8 +28,7 @@ export class Entity {
 /* Always update both lists */
 
 export interface Entity
-  extends
-    Identifiable,
+  extends Identifiable,
     Positionable,
     Mortal,
     Bleedable,
@@ -38,18 +37,18 @@ export interface Entity
     Combative,
     HavingInventory,
     HavingEquipment,
-    Actor
-{} applyMixins(Entity, [
-    Identifiable,
-    Positionable,
-    Mortal,
-    Bleedable,
-    Movable,
-    Breathing,
-    Combative,
-    HavingInventory,
-    HavingEquipment,
-    Actor,
+    Actor {}
+applyMixins(Entity, [
+  Identifiable,
+  Positionable,
+  Mortal,
+  Bleedable,
+  Movable,
+  Breathing,
+  Combative,
+  HavingInventory,
+  HavingEquipment,
+  Actor,
 ]);
 
 /************************************************************/

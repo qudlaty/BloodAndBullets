@@ -1,6 +1,5 @@
 .board--rotated .entity-pawn {
-  transform: perspective(750px)
-  translateZ(0.33em) rotateZ(-45deg) rotateX(-60deg);
+  transform: perspective(750px) translateZ(0.33em) rotateZ(-45deg) rotateX(-60deg);
   transition: all 1s;
   &--dead {
     transform: perspective(750px) translateZ(0em) rotateZ(0deg) rotateX(0deg);
@@ -11,7 +10,10 @@
   transform: translateZ(0) rotateX(0) rotateY(0) rotateZ(0);
   position: absolute;
   transform-style: preserve-3d;
-  transition: font-size .1s, left .1s, top .1s;
+  transition:
+    font-size 0.1s,
+    left 0.1s,
+    top 0.1s;
   pointer-events: none;
   width: 1em;
   height: 1em;
@@ -34,15 +36,8 @@
         rgba(100, 0, 0, 0.9) 0em 0em 0.2em,
         rgba(0, 0, 0, 1) 0.1em 0.1em 0.16em;
 
-      filter:
-        opacity(0.8)
-        grayscale(0.8)
-        contrast(0.5)
-        brightness(0.5)
-        blur(0.5px)
-        drop-shadow(-0em -0em 0.1em rgba(0, 0, 0, 1))
-        drop-shadow(-0em -0em 0.1em rgba(0, 0, 0, 1))
-      ;
+      filter: opacity(0.8) grayscale(0.8) contrast(0.5) brightness(0.5) blur(0.5px)
+        drop-shadow(-0em -0em 0.1em rgba(0, 0, 0, 1)) drop-shadow(-0em -0em 0.1em rgba(0, 0, 0, 1));
     }
   }
   &__health-display {
@@ -53,7 +48,9 @@
     color: white;
     font-size: 1em;
     text-align: center;
-    text-shadow:1px 1px 1px black, -1px -1px 1px black;
+    text-shadow:
+      1px 1px 1px black,
+      -1px -1px 1px black;
     &.friendly {
       color: greenyellow;
     }
@@ -81,8 +78,7 @@
     transform: perspective(0) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   }
   .board--rotated & .shooting-visualization {
-    transform:
-    translateY(3px) rotateX(60deg) rotateZ(45deg);
+    transform: translateY(3px) rotateX(60deg) rotateZ(45deg);
   }
 }
 

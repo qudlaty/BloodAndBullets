@@ -21,8 +21,8 @@ export function ShootingVisualization(props): ReactElement {
     (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y)
   ) {
     if (targetCoords) {
-      const distanceToTargetXInUnits = (targetCoords.x - entity.position.x);
-      const distanceToTargetYInUnits = (targetCoords.y - entity.position.y);
+      const distanceToTargetXInUnits = targetCoords.x - entity.position.x;
+      const distanceToTargetYInUnits = targetCoords.y - entity.position.y;
 
       const actualDistanceInUnits = Helpers.calculateDistance(distanceToTargetXInUnits, distanceToTargetYInUnits);
       const weaponType = entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type;
@@ -43,7 +43,7 @@ export function ShootingVisualization(props): ReactElement {
         // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
         const className = `projectile${localId}_beam`;
         const projectile = "";
-        const distanceWhereBeamBegins = 20;//in pixels
+        const distanceWhereBeamBegins = 20; //in pixels
         //actualDistance = actualDistance - distanceWhereBeamBegins;
         // do above within template
         customStyle = `
@@ -58,7 +58,7 @@ export function ShootingVisualization(props): ReactElement {
           }
 
           @keyframes swiping${localId} {
-            0%  {transform: rotate(${angle + 90 -1}deg) translateX(${distanceWhereBeamBegins}px);}
+            0%  {transform: rotate(${angle + 90 - 1}deg) translateX(${distanceWhereBeamBegins}px);}
             50%  {transform: rotate(${angle + 90 + 1}deg) translateX(${distanceWhereBeamBegins}px);}
             100%  {transform: rotate(${angle + 90 - 1}deg) translateX(${distanceWhereBeamBegins}px);}
           }

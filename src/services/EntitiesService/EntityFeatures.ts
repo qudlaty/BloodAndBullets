@@ -14,7 +14,8 @@ export class Identifiable {
   icon: string = " ";
 }
 
-export class Actor {// one who acts
+export class Actor {
+  // one who acts
   actionPoints: number = 2;
   maxActionPoints: number = 2;
 }
@@ -22,7 +23,9 @@ export class Actor {// one who acts
 export class Positionable {
   position: Position = { x: undefined, y: undefined };
   isPassable: boolean = false;
-  get isBlocking(): boolean { return !this.isPassable; }
+  get isBlocking(): boolean {
+    return !this.isPassable;
+  }
   get square(): Square {
     const square: Square = SquaresService.getSquareFromPosition(this.position.x, this.position.y);
     return square;
@@ -70,7 +73,7 @@ export class Bleedable extends Mortal {
       bloodReleased = entity.bleeding;
       entity.hp -= bloodReleased;
       entity.bleeding -= entity.bleedingReductionPerTurn;
-      if(entity.bleeding < 0) entity.bleeding = 0;
+      if (entity.bleeding < 0) entity.bleeding = 0;
     }
     return bloodReleased;
   }
@@ -96,7 +99,7 @@ export class Breathing extends Mortal {
 
 export class Combative extends Identifiable {
   targetPosition: Position;
-  isShooting?: boolean;// TODO: refactor to not be optional maybe?
+  isShooting?: boolean; // TODO: refactor to not be optional maybe?
   ceaseFire?: boolean;
   hasWeapon?: boolean;
   attackPosition(targetedSquarePosition: Position) {
@@ -107,20 +110,19 @@ export class Combative extends Identifiable {
     } else {
       MessageService.send(`${this.name} can't shoot - no weapon equipped`);
     }
-    console.log(this.name, 'is attacking', targetedSquarePosition, this);
+    console.log(this.name, "is attacking", targetedSquarePosition, this);
   }
 }
 
-export type InventoryItem = Item|Entity;
+export type InventoryItem = Item | Entity;
 export class HavingInventory extends Identifiable {
-
   inventory: Array<InventoryItem>;
   takeFromInventory(itemName: string): InventoryItem {
     if (!this.inventory) {
       this.inventory = [];
     }
     const actualItemIndex: number = this.inventory.findIndex((item) => item.name === itemName);
-    if(actualItemIndex === -1) return null;
+    if (actualItemIndex === -1) return null;
     const actualItem: InventoryItem = this.inventory.splice(actualItemIndex, 1)[0];
 
     return actualItem;
@@ -134,7 +136,7 @@ export class HavingInventory extends Identifiable {
 }
 
 export class HavingEquipment extends HavingInventory {
-  equipment: {hands: Item};
+  equipment: { hands: Item };
   hasWeapon?: boolean;
 
   equipInHands(itemName: string) {

@@ -4,7 +4,6 @@ import { Entity } from "services";
 
 import "./EntitiesList.scss";
 
-
 interface ListOfEntitiesProps {
   entities: Entity[];
   onInventoryClick: any;

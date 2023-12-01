@@ -1,6 +1,6 @@
 .board {
   //min-width: 442px;// TODO: refactor this
-  background: transparent;// #111;
+  background: transparent; // #111;
   padding: 10px;
   border: 1px solid #555;
 
@@ -11,7 +11,7 @@
   align-items: center;
   flex-wrap: nowrap;
 
-  &__row{
+  &__row {
     z-index: 0;
     position: relative;
     font-size: 1em;
@@ -23,13 +23,14 @@
     justify-content: center;
     align-items: center;
   }
-
 }
 
 .board {
   transform: perspective(700px) rotateX(0) rotateY(0) rotateZ(0);
   transform-style: preserve-3d;
-  transition: transform 1s, font-size 0.1s;
+  transition:
+    transform 1s,
+    font-size 0.1s;
   &--rotated {
     transform: perspective(700px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
   }

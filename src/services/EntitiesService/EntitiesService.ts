@@ -18,7 +18,7 @@ class EntitiesServiceClass {
   }
 
   findEntityById(id: string): Entity {
-    const result: Entity = this.entities.filter(entity => this.getEntityId(entity) === id)[0];
+    const result: Entity = this.entities.filter((entity) => this.getEntityId(entity) === id)[0];
     return result;
   }
 
@@ -27,9 +27,11 @@ class EntitiesServiceClass {
   }
 
   removeEntityFromListOfEntities(entities: Entity[], entity: Entity) {
-    const indexOfEntityToRemove = entities.findIndex(currentEntity => (currentEntity && currentEntity.name) === (entity && entity.name));
-    if(indexOfEntityToRemove === -1) return -1;
-    entities.splice(indexOfEntityToRemove,1);
+    const indexOfEntityToRemove = entities.findIndex(
+      (currentEntity) => (currentEntity && currentEntity.name) === (entity && entity.name)
+    );
+    if (indexOfEntityToRemove === -1) return -1;
+    entities.splice(indexOfEntityToRemove, 1);
     return 0;
   }
 
@@ -38,7 +40,7 @@ class EntitiesServiceClass {
   }
 
   findItemOnEntity(entity: HavingInventory, id: string) {
-    const result = entity.inventory.filter(item => this.getEntityId(entity) === id)[0];
+    const result = entity.inventory.filter((item) => this.getEntityId(entity) === id)[0];
     return result;
   }
 
@@ -51,13 +53,15 @@ class EntitiesServiceClass {
     let deltaX = Helpers.getRandomIntInclusive(-1, 1);
     let deltaY = Helpers.getRandomIntInclusive(-1, 1);
 
-    if(!entity.actionPoints) {
+    if (!entity.actionPoints) {
       deltaX = 0;
       deltaY = 0;
     }
-    if(deltaX || deltaY) { // non-zero move
+    if (deltaX || deltaY) {
+      // non-zero move
       entity.actionPoints--;
-    } else {// zero ==> no move
+    } else {
+      // zero ==> no move
     }
 
     entity.position.x = entity.position.x + deltaX;
@@ -87,15 +91,14 @@ class EntitiesServiceClass {
   getEntitiesAtGivenPosition(targetPosition: Position): Entity[] {
     return this.entities.filter((potentialTargetEntity: Entity): boolean => {
       return (
-        potentialTargetEntity.position.x === targetPosition.x &&
-        potentialTargetEntity.position.y === targetPosition.y
+        potentialTargetEntity.position.x === targetPosition.x && potentialTargetEntity.position.y === targetPosition.y
       );
     });
   }
 
   getEntitiesAtGivenPositionThatAreAlive(targetPosition: Position): Entity[] {
     const entitiesAtTargetSquare = this.getEntitiesAtGivenPosition(targetPosition);
-    const aliveEntitiesAtTargetSquare = entitiesAtTargetSquare.filter(entity => entity.isAlive);
+    const aliveEntitiesAtTargetSquare = entitiesAtTargetSquare.filter((entity) => entity.isAlive);
     return aliveEntitiesAtTargetSquare;
   }
 
@@ -125,7 +128,7 @@ class EntitiesServiceClass {
     let damageApplied: number = 0;
     let weapon: RangedWeapon = undefined;
     const equippedWeapon: Item = entity.equipment && entity.equipment.hands;
-    if(!(equippedWeapon instanceof RangedWeapon)){
+    if (!(equippedWeapon instanceof RangedWeapon)) {
       return 0;
     } else {
       weapon = equippedWeapon;
@@ -144,26 +147,29 @@ class EntitiesServiceClass {
     return damageApplied;
   }
 
-  shouldEntityStopShooting = entity => entity.ceaseFire || entity.isDead;
-  stopShooting = entity => {entity.isShooting = false; entity.ceaseFire = false;};
-  stopShootingWhenForbidden = entity => {
+  shouldEntityStopShooting = (entity) => entity.ceaseFire || entity.isDead;
+  stopShooting = (entity) => {
+    entity.isShooting = false;
+    entity.ceaseFire = false;
+  };
+  stopShootingWhenForbidden = (entity) => {
     if (this.shouldEntityStopShooting(entity)) {
       this.stopShooting(entity);
     }
   };
 
   fireAShot(entity: Entity) {
-    if(!entity.actionPoints || entity.isDead) return;
+    if (!entity.actionPoints || entity.isDead) return;
     const damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
     const targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
-    targetEntities.forEach(targetEntity => {
+    targetEntities.forEach((targetEntity) => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
     });
   }
 
-  reloadWeapon(entity: Entity, weapon: RangedWeapon){
+  reloadWeapon(entity: Entity, weapon: RangedWeapon) {
     const equippedWeapon: Item = entity.equipment && entity.equipment.hands;
-    if(!(equippedWeapon instanceof RangedWeapon)){
+    if (!(equippedWeapon instanceof RangedWeapon)) {
       return 0;
     } else {
       weapon = equippedWeapon;
@@ -171,11 +177,11 @@ class EntitiesServiceClass {
     if (entity.equipment.hands && entity.equipment.hands === weapon) {
       this.stopShooting(entity);
     }
-    if(weapon.rounds === weapon.maxRounds) {
+    if (weapon.rounds === weapon.maxRounds) {
       MessageService.send(`${weapon.name} already fully loaded`);
       return;
     }
-    if(entity.actionPoints >= weapon.reloadCostInAP){
+    if (entity.actionPoints >= weapon.reloadCostInAP) {
       entity.actionPoints -= weapon.reloadCostInAP;
       weapon.reload();
     } else {
@@ -191,15 +197,17 @@ class EntitiesServiceClass {
   }
 
   ceaseFireNextTickIfNoAliveTargets(entity: Entity): void {
-    if(!entity.targetPosition) return;
-    const areThereAliveTargetEntities = !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
+    if (!entity.targetPosition) return;
+    const areThereAliveTargetEntities = !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition)
+      .length;
     if (!areThereAliveTargetEntities) {
       entity.ceaseFire = true;
     }
   }
 
   isEntityTargettingSomethingAlive(entity: Entity): boolean {
-    const areThereAliveTargetEntities: boolean = entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
+    const areThereAliveTargetEntities: boolean =
+      entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
 
     return (
       entity.targetPosition &&
@@ -241,13 +249,17 @@ class EntitiesServiceClass {
     // //this.moveEntityRandomly(JR);
     // this.moveEntityRandomly(OP);
     // this.moveEntityRandomly(OC);
-    this.entities.filter(entity => !entity.isFriendly).forEach((entity) => {
-      this.moveEntityRandomly(entity);
-    });
+    this.entities
+      .filter((entity) => !entity.isFriendly)
+      .forEach((entity) => {
+        this.moveEntityRandomly(entity);
+      });
   }
 
   refillActionPointsForAllEntities() {
-    this.entities.forEach(entity => {entity.actionPoints = entity.maxActionPoints;});
+    this.entities.forEach((entity) => {
+      entity.actionPoints = entity.maxActionPoints;
+    });
   }
 }
 
