@@ -25,7 +25,7 @@ export class MessageBox extends React.Component {
 
   render() {
     if (!this.messages.length) return null;
-    let RenderedMessages = this.messages.map((message, number) => this.renderMessage(message, number));
+    const RenderedMessages = this.messages.map((message, number) => this.renderMessage(message, number));
     // remember the number of messages rendered
     this.messageNumber = this.messages.length;
     return (

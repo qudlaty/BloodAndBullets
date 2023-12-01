@@ -42,9 +42,9 @@ export class Game extends React.PureComponent<void, GameState> {
   }
 
   calculateFriendlyActionPoints(): number{
-    let startValue = 0;
-    let apAdder = (previousValue: number, entity: Entity): number => {
-      let result = previousValue + entity.actionPoints;
+    const startValue = 0;
+    const apAdder = (previousValue: number, entity: Entity): number => {
+      const result = previousValue + entity.actionPoints;
       return result;
     };
     return EntitiesService.entities.filter(entity => entity.isFriendly).reduce(

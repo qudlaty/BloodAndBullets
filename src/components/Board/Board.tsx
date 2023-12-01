@@ -23,7 +23,7 @@ export class Board extends React.Component<BoardProps> {
   };
 
   renderSquare(i: number, rowId: number, colId: number) {
-    let square = this.props.squares[i];
+    const square = this.props.squares[i];
 
     return (
       <SquareComponent // is a pureComponent
@@ -45,11 +45,11 @@ export class Board extends React.Component<BoardProps> {
     let rowId: number = 0;
     let colId: number;
 
-    let rowsOfSquares = Array(this.props.size)
+    const rowsOfSquares = Array(this.props.size)
       .fill(null)
       .map((row, number) => {
         colId = 0;
-        let cells = Array(this.props.size)
+        const cells = Array(this.props.size)
           .fill(null)
           .map((cell, number) => {
             return this.renderSquare(cellId++, rowId, colId++);

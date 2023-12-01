@@ -116,7 +116,7 @@ export function newCopyOfArray(array: any[]) {
  */
 export function getCssClassesForAGivenSquare(square: Square): string {
   if(!square) return;
-  let squareClassNameBase = "square";
+  const squareClassNameBase = "square";
   let squareClassName = `${squareClassNameBase} ${square && square.squareType}`;
   squareClassName += turnFlagsIntoClasses(square, squareClassNameBase);
   if (square.entity) {

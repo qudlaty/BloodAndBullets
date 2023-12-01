@@ -11,8 +11,8 @@ export class HpBar extends React.Component<HpBarProps> {
 
     render() {
         if(this.props.current <= 0) return null;
-        let percentage = ~~((this.props.current * 100) / this.props.max);
-        let progressStyle = {
+        const percentage = ~~((this.props.current * 100) / this.props.max);
+        const progressStyle = {
             width: `${percentage}%`,
             backgroundColor: this.props.color
         };

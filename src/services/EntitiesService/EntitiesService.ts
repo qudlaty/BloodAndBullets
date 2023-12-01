@@ -18,7 +18,7 @@ class EntitiesServiceClass {
   }
 
   findEntityById(id: string): Entity {
-    let result: Entity = this.entities.filter(entity => this.getEntityId(entity) === id)[0];
+    const result: Entity = this.entities.filter(entity => this.getEntityId(entity) === id)[0];
     return result;
   }
 
@@ -27,7 +27,7 @@ class EntitiesServiceClass {
   }
 
   removeEntityFromListOfEntities(entities: Entity[], entity: Entity) {
-    let indexOfEntityToRemove = entities.findIndex(currentEntity => (currentEntity && currentEntity.name) === (entity && entity.name));
+    const indexOfEntityToRemove = entities.findIndex(currentEntity => (currentEntity && currentEntity.name) === (entity && entity.name));
     if(indexOfEntityToRemove === -1) return -1;
     entities.splice(indexOfEntityToRemove,1);
     return 0;
@@ -38,15 +38,15 @@ class EntitiesServiceClass {
   }
 
   findItemOnEntity(entity: HavingInventory, id: string) {
-    let result = entity.inventory.filter(item => this.getEntityId(entity) === id)[0];
+    const result = entity.inventory.filter(item => this.getEntityId(entity) === id)[0];
     return result;
   }
 
   moveEntityRandomly(entity: Entity) {
     if (entity.isDead || entity.isFriendly) return;
 
-    let oldPositionX = entity.position.x;
-    let oldPositionY = entity.position.y;
+    const oldPositionX = entity.position.x;
+    const oldPositionY = entity.position.y;
 
     let deltaX = Helpers.getRandomIntInclusive(-1, 1);
     let deltaY = Helpers.getRandomIntInclusive(-1, 1);
@@ -66,7 +66,7 @@ class EntitiesServiceClass {
     entity.position.x = Helpers.getNumberWithinBoundaries(entity.position.x, 0, arenaSize - 1);
     entity.position.y = Helpers.getNumberWithinBoundaries(entity.position.y, 0, arenaSize - 1);
 
-    let newSquare = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
+    const newSquare = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
 
     if ((newSquare && newSquare.entity) || (newSquare && newSquare.squareType !== "floor")) {
       // if square occupiec, reverse the move
@@ -124,7 +124,7 @@ class EntitiesServiceClass {
   checkAmmoAndCalculateDamageApplied(entity: Entity): number {
     let damageApplied: number = 0;
     let weapon: RangedWeapon = undefined;
-    let equippedWeapon: Item = entity.equipment && entity.equipment.hands;
+    const equippedWeapon: Item = entity.equipment && entity.equipment.hands;
     if(!(equippedWeapon instanceof RangedWeapon)){
       return 0;
     } else {
@@ -154,15 +154,15 @@ class EntitiesServiceClass {
 
   fireAShot(entity: Entity) {
     if(!entity.actionPoints || entity.isDead) return;
-    let damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
-    let targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
+    const damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
+    const targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
     targetEntities.forEach(targetEntity => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
     });
   }
 
   reloadWeapon(entity: Entity, weapon: RangedWeapon){
-    let equippedWeapon: Item = entity.equipment && entity.equipment.hands;
+    const equippedWeapon: Item = entity.equipment && entity.equipment.hands;
     if(!(equippedWeapon instanceof RangedWeapon)){
       return 0;
     } else {
@@ -217,7 +217,7 @@ class EntitiesServiceClass {
   moveEntityIntoChosenDestination(entity: Entity): Entity {
     if (!entity.actionPoints) return entity;
     if (!entity.isDead && entity.moveDestination) {
-      let chosenDestinationSquare: Square = SquaresService.getSquareFromPosition(
+      const chosenDestinationSquare: Square = SquaresService.getSquareFromPosition(
         entity.moveDestination.x,
         entity.moveDestination.y
       );

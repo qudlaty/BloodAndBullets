@@ -27,9 +27,8 @@ class SquaresServiceClass {
   }
 
   getSquarePositionFromIndex(squareIndex: number): Position {
-    let x: number, y: number;
-    y = Math.floor(squareIndex / this.arenaSize);
-    x = squareIndex % this.arenaSize;
+    const y = Math.floor(squareIndex / this.arenaSize);
+    const x = squareIndex % this.arenaSize;
     return { x, y };
   }
 
@@ -38,14 +37,14 @@ class SquaresServiceClass {
   }
 
   setEntityWithinASquareAtPosition(x: number, y: number, entity: Entity) {
-    let squareIndex: number = this.getSquareIndexFromPosition(x, y);
+    const squareIndex: number = this.getSquareIndexFromPosition(x, y);
     this.initializeSquareAtIndexIfEmpty(squareIndex);
     // this.squares[squareIndex].entity = entity;
-    if(!this.squares[squareIndex].entities) {
+    if (!this.squares[squareIndex].entities) {
       this.squares[squareIndex].entities = [];
     }
 
-    if(!Array.isArray(this.squares[squareIndex].entities)){
+    if (!Array.isArray(this.squares[squareIndex].entities)) {
       this.squares[squareIndex].entities = [];
     }
     this.squares[squareIndex].entities.push(entity);
@@ -77,7 +76,6 @@ class SquaresServiceClass {
     this.squares[squareIndex].isChosenDestination = true;
   }
 
-
   initializeSquareAtIndexIfEmpty(squareIndex: number) {
     if (!this.squares[squareIndex]) {
       this.squares[squareIndex] = new Square(squareIndex);
@@ -87,7 +85,7 @@ class SquaresServiceClass {
 
   markAvailableDestinationsForSelectedEntity(entity: Entity): void {
     if (entity.active) {
-      let { x, y } = entity.position;
+      const { x, y } = entity.position;
 
       Helpers.resetGivenFieldsOnACollection(this.squares, "isAvailableDestination");
 
@@ -100,7 +98,7 @@ class SquaresServiceClass {
             continue;
           }
 
-          let square: Square = this.getSquareFromPosition(i, j);
+          const square: Square = this.getSquareFromPosition(i, j);
           if (this.isSquareEnterableByFriendlyUnits(square)) {
             square.isAvailableDestination = true;
           }
@@ -112,24 +110,19 @@ class SquaresServiceClass {
   }
 
   isTargetSquareEnterable(targetSquare: Square): boolean {
-    let unpassableEntitiesInThisSquare = targetSquare.entities &&
-      targetSquare.entities.filter(
-        entity => !entity.isPassable && entity.isAlive
-      );
-    return  !(unpassableEntitiesInThisSquare && unpassableEntitiesInThisSquare.length);
+    const unpassableEntitiesInThisSquare =
+      targetSquare.entities && targetSquare.entities.filter((entity) => !entity.isPassable && entity.isAlive);
+    return !(unpassableEntitiesInThisSquare && unpassableEntitiesInThisSquare.length);
   }
 
-  isSquareEnterableByFriendlyUnits = square => [
-    'floor',
-    'monster-filter',
-  ].includes(square.squareType);
+  isSquareEnterableByFriendlyUnits = (square) => ["floor", "monster-filter"].includes(square.squareType);
 
   lightAllSquares(): void {
     this.squares.forEach((square) => (square.isLit = true));
   }
   castLightsFromFriendlyEntity(entity: Entity): void {
     if (entity.isFriendly) {
-      let { x, y } = entity.position;
+      const { x, y } = entity.position;
 
       for (let j = y - 2; j <= y + 2; j++) {
         if (j < 0 || j >= this.arenaSize) {
@@ -140,7 +133,7 @@ class SquaresServiceClass {
             continue;
           }
 
-          let square: Square = this.getSquareFromPosition(i, j);
+          const square: Square = this.getSquareFromPosition(i, j);
 
           square.isInTwilightZone = true;
           this.setSquareValueAtPosition(i, j, square);
@@ -156,7 +149,7 @@ class SquaresServiceClass {
             continue;
           }
 
-          let square: Square = this.getSquareFromPosition(i, j);
+          const square: Square = this.getSquareFromPosition(i, j);
 
           square.isLit = true;
           this.setSquareValueAtPosition(i, j, square);

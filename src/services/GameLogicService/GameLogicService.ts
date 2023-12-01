@@ -22,8 +22,8 @@ class GameLogicClass {
   };
 
   calculateNextInterfaceState = (previousState: GameState) => {
-    let nextState = previousState;
-    let { entities, selected } = nextState;
+    const nextState = previousState;
+    const { entities, selected } = nextState;
     entities.forEach((entity) => {
       if (entity === selected) SquaresService.markAvailableDestinationsForSelectedEntity(selected);
     });
@@ -41,8 +41,8 @@ class GameLogicClass {
       givenEntity: Entity
     ): GameState{
     if(givenEntity.actionPoints === 0) return previousState;
-    let nextState: GameState = previousState;
-    let { entities } = nextState;
+    const nextState: GameState = previousState;
+    const { entities } = nextState;
     this.processAnEntity(givenEntity);
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
     nextState.friendsAlive = this.calculateNumberOfAliveFriends(entities);
@@ -87,7 +87,7 @@ class GameLogicClass {
   }
 
   syncSquaresWithEntities = (previousState) => {
-    let squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
+    const squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
     /*
     Reattach new squares array to the SquaresService
     This might actually be not-needed, as elements of that array are objects
@@ -95,7 +95,7 @@ class GameLogicClass {
     everything should work without re-attaching
     */
     SquaresService.squares = squares;
-    let entities: Entity[] = EntitiesService.entities;
+    const entities: Entity[] = EntitiesService.entities;
     if (entities.length) {
       Helpers.resetGivenFieldsOnACollection(squares, "entity", "entities");
     }

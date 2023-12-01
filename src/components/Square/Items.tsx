@@ -16,12 +16,12 @@ class Items extends React.PureComponent<ItemsProps> {
   itemsIcons = [];
 
   render() {
-    let { items, itemsNumber } = this.props;
+    const { items, itemsNumber } = this.props;
 
     if (!items) return null;
 
     items.forEach((item) => {
-      let entity = item as Entity;
+      const entity = item as Entity;
       if (entity.icon) {
         this.itemsIcons.push(<div className="square__item-icon">{entity.icon}</div>);
       }

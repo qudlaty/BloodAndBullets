@@ -37,7 +37,7 @@ export default class App extends React.Component<void, AppState> {
   };
 
   render() {
-    let SelectedScene = this.sceneComponents[this.state.activeSceneName];
+    const SelectedScene = this.sceneComponents[this.state.activeSceneName];
 
     const availableScreenSwitchOptions = availableScreenNames.map(stringToOption);
     return (

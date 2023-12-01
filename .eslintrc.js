@@ -48,7 +48,7 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
-    "prefer-const": "off",
+    "prefer-const": "warn",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-extra-semi": "off",

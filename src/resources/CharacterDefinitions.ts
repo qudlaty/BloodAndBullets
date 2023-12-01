@@ -82,7 +82,7 @@ export const entitiesInitialValues = [
   },
 ];
 
-let defaultValues = {
+const defaultValues = {
   bleedingReductionPerTurn: 1,
   isBreathing: true,
   isPassable: false,
@@ -91,7 +91,7 @@ let defaultValues = {
   hasWeapon: true,
 };
 
-let addEntityToDefaultValues = entity => Object.assign({...defaultValues}, entity);
+const addEntityToDefaultValues = entity => Object.assign({...defaultValues}, entity);
 
 export const characterDefinitions = entitiesInitialValues
   .map(entity => addEntityToDefaultValues(entity))

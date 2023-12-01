@@ -13,18 +13,18 @@ interface BloodProps {
  */
 class Blood extends React.PureComponent<BloodProps> {
   render() {
-    let { bloodAmount } = this.props;
+    const { bloodAmount } = this.props;
     if(bloodAmount < 0) {
       console.error('Blood amount negative.');
       return;
     }
 
-    let bloodDrops = [];
+    const bloodDrops = [];
     let i = bloodAmount;
-    let marginForDropsInPercent = 0;
-    let mfd = marginForDropsInPercent;
-    let dropSizeVariance = 3;
-    let dsv = dropSizeVariance;
+    const marginForDropsInPercent = 0;
+    const mfd = marginForDropsInPercent;
+    const dropSizeVariance = 3;
+    const dsv = dropSizeVariance;
 
 
     while(i--) {

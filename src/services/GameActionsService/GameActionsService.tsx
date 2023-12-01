@@ -45,58 +45,56 @@ export class GameActionsClassForGameComponent {
     });
   }
 
-  get isTurnInProgress() {return this.entitiesProcessingLoopIntervalHandle;};
+  get isTurnInProgress() {
+    return this.entitiesProcessingLoopIntervalHandle;
+  }
 
   loop = () => {
-    console.debug('Attempting loop');
-    if(this.isTurnInProgress) {
+    console.debug("Attempting loop");
+    if (this.isTurnInProgress) {
       setTimeout(this.loop, 1000);
       return;
-    };
-    console.debug('Executing nextStep');
+    }
+    console.debug("Executing nextStep");
     this.nextStep();
     if (component.state.isAutoLoopOn) {
-      console.debug('Scheduling next loop step in 1s');
+      console.debug("Scheduling next loop step in 1s");
       setTimeout(this.loop, 1000);
     }
   };
 
   nextTick = () => {
     component.setState({ isAutoLoopOn: false });
-    this.nextStep();// TODO should not be run if processing loop is in progress
+    this.nextStep(); // TODO should not be run if processing loop is in progress
   };
 
   nextStep() {
     component.stepNumber++;
-    console.info('Starting processing turn #', component.stepNumber);
+    console.info("Starting processing turn #", component.stepNumber);
     EntitiesService.refillActionPointsForAllEntities();
-    Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, 'targetPosition', 'isShooting');
-    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, 'isAttacked');
+    Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, "targetPosition", "isShooting");
+    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isAttacked");
     this.processEntities();
   }
 
   processEntities() {
     this.drawAggro();
     // EntitiesService.moveEntities();
-    this.entitiesProcessingLoopIntervalHandle = setInterval(
-      () => this.processNextUnprocessedEntity(),
-      100
-    );
+    this.entitiesProcessingLoopIntervalHandle = setInterval(() => this.processNextUnprocessedEntity(), 100);
   }
 
   processNextUnprocessedEntity() {
-    let entitiesForProcessing = EntitiesService.entities.filter(
-      entity =>
-        (!entity.isFriendly && entity.isAlive) &&
-        (entity.actionPoints > 0)
+    const entitiesForProcessing = EntitiesService.entities.filter(
+      (entity) => !entity.isFriendly && entity.isAlive && entity.actionPoints > 0
     );
-    if(entitiesForProcessing.length) {
-      let entityForThisTurn = entitiesForProcessing[0];
+    if (entitiesForProcessing.length) {
+      const entityForThisTurn = entitiesForProcessing[0];
       this.setNewStateAfterProcessingChosenEntity(entityForThisTurn);
-    } else {// all are processed
+    } else {
+      // all are processed
       clearInterval(this.entitiesProcessingLoopIntervalHandle);
       this.entitiesProcessingLoopIntervalHandle = null;
-      console.log('All entities processed.');
+      console.log("All entities processed.");
     }
   }
 
@@ -143,20 +141,20 @@ export class GameActionsClassForGameComponent {
 
   handleKeyPress = (param) => {
     console.log(param);
-    switch (param){
+    switch (param) {
       case "space":
         this.executeActions();
         break;
       default:
-
     }
   };
 
   handleClickV2 = (squareIndex: number) => {
     component.setState(
       (state: GameState) => {
-        let { squares, entities, selected, targeted, isEditorOn, targetedSquareNumber: selectedSquareNumber } = state;
-        let previousTargeted = targeted;
+        let { selected, targeted, targetedSquareNumber: selectedSquareNumber } = state;
+        const { squares, entities, isEditorOn } = state;
+        const previousTargeted = targeted;
         targeted = squares[squareIndex];
         selectedSquareNumber = squareIndex;
         const doubleClick = () => previousTargeted === targeted;
@@ -184,12 +182,12 @@ export class GameActionsClassForGameComponent {
           selected.setMoveDestinationSquareByNumber(squareIndex);
           delete selected.targetPosition;
           delete selected.isShooting;
-          Helpers.resetGivenFieldsOnACollection(squares,'isAttacked');
+          Helpers.resetGivenFieldsOnACollection(squares, "isAttacked");
           this.executeActions();
         }
 
         if (doubleClick()) {
-          if (!selected && targeted.entity &&  targeted.entity.isAlive) {
+          if (!selected && targeted.entity && targeted.entity.isAlive) {
             // Selecting
             selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
             //targeted = undefined;
@@ -203,16 +201,16 @@ export class GameActionsClassForGameComponent {
         }
 
         function doesSquareHaveAliveEntities(square: Square): boolean {
-          return !!(square.entities && square.entities.find(entity => entity.isAlive));
+          return !!(square.entities && square.entities.find((entity) => entity.isAlive));
         }
         // setting attack
         if (doubleClick() && selected && doesSquareHaveAliveEntities(targeted) && selected !== targeted.entity) {
-          let targetSquarePosition = SquaresService.getSquarePositionFromIndex(squareIndex);
+          const targetSquarePosition = SquaresService.getSquarePositionFromIndex(squareIndex);
           selected.attackPosition(targetSquarePosition);
           SquaresService.markSquareAtIndexAsAttacked(squareIndex);
           delete selected.moveDestination;
           delete selected.isShooting;
-          Helpers.resetGivenFieldsOnACollection(squares, 'isChosenDestination');
+          Helpers.resetGivenFieldsOnACollection(squares, "isChosenDestination");
           this.executeActions();
         }
 
@@ -223,8 +221,8 @@ export class GameActionsClassForGameComponent {
   };
 
   drawAggro() {
-    EntitiesService.entities.forEach((entity)=>{
-      if(entity.isFriendly) return;
+    EntitiesService.entities.forEach((entity) => {
+      if (entity.isFriendly) return;
       entity.isShooting = false;
       this.aggro(entity);
     });
@@ -232,17 +230,17 @@ export class GameActionsClassForGameComponent {
 
   aggro = (entity: Entity) => {
     // let actor = EntitiesService.findEntityById(name);
-    let position = entity.position;
-    let closeEntities = this.findEntitiesThatAreClose(position);
-    let entitiesToAttack = closeEntities.filter(closeEntity => closeEntity.hp > 0);
-    if(entitiesToAttack.length) {
-      let firstAmongThem = entitiesToAttack[0];
+    const position = entity.position;
+    const closeEntities = this.findEntitiesThatAreClose(position);
+    const entitiesToAttack = closeEntities.filter((closeEntity) => closeEntity.hp > 0);
+    if (entitiesToAttack.length) {
+      const firstAmongThem = entitiesToAttack[0];
       entity.attackPosition(firstAmongThem.position);
     }
   };
 
-  findEntitiesThatAreClose(position: Position){
-    let {x, y} = position;
+  findEntitiesThatAreClose(position: Position) {
+    const { x, y } = position;
     let entities: Entity[] = [];
     for (let j = y - 1; j <= y + 1; j++) {
       if (j < 0 || j >= SquaresService.arenaSize) {
@@ -252,7 +250,7 @@ export class GameActionsClassForGameComponent {
         if (i < 0 || i >= SquaresService.arenaSize || (i === x && j === y)) {
           continue;
         }
-        let newlyFoundEntities = EntitiesService.getEntitiesAtGivenPosition({x: i, y: j});
+        const newlyFoundEntities = EntitiesService.getEntitiesAtGivenPosition({ x: i, y: j });
         entities = entities.concat(newlyFoundEntities);
       }
     }
@@ -263,7 +261,7 @@ export class GameActionsClassForGameComponent {
   nuke = (dmg: number) => {
     component.setState(
       (state) => {
-        let { entities } = state;
+        const { entities } = state;
 
         entities.forEach((entity) => {
           entity.hp = entity.hp - dmg;
@@ -284,8 +282,8 @@ export class GameActionsClassForGameComponent {
   switchAutoLoop = () => {
     component.setState(
       (previousState: GameState) => {
-        let isAutoLoopOn = !previousState.isAutoLoopOn;
-        console.info('Switching auto loop to', isAutoLoopOn);
+        const isAutoLoopOn = !previousState.isAutoLoopOn;
+        console.info("Switching auto loop to", isAutoLoopOn);
         return { isAutoLoopOn };
       },
       () => {
@@ -298,10 +296,10 @@ export class GameActionsClassForGameComponent {
 
   onInventoryClick = (entity: Entity, itemName: string) => {
     component.setState((prevState) => {
-      let entities = [].concat(prevState.entities);
+      const entities = [].concat(prevState.entities);
       EntitiesService.entities = entities;
-      let entityId = EntitiesService.getEntityId(entity);
-      let actualEntity = EntitiesService.findEntityById(entityId);
+      const entityId = EntitiesService.getEntityId(entity);
+      const actualEntity = EntitiesService.findEntityById(entityId);
       //let actualItem = EntitiesService.findItemOnEntity(actualEntity, itemName);
 
       if (actualEntity.equipment.hands && actualEntity.equipment.hands.name === itemName) {
@@ -318,7 +316,8 @@ export class GameActionsClassForGameComponent {
   handleDeselectAllEntities = () => {
     component.setState(
       (state) => {
-        let { squares, entities, selected } = state;
+        let { selected } = state;
+        const { squares, entities } = state;
 
         GameLogic.deselectAllEntities();
         selected = undefined;

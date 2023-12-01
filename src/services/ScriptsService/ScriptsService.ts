@@ -85,9 +85,9 @@ class ScriptsServiceClass {
     switch (script.what) {
       case scriptTypes.entityPresent:
         if(!script.where) break;// unless we're talking "everywhere"
-        let entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
+        const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         console.log(`There are ${entitiesFoundAtLocationGiven.length} entities at ${script.where.x}, ${script.where.y}`);
-        let isAnyEntityPresentAtGivenLocation = entitiesFoundAtLocationGiven.length > 0;
+        const isAnyEntityPresentAtGivenLocation = entitiesFoundAtLocationGiven.length > 0;
         if(!script.who) {
           return isAnyEntityPresentAtGivenLocation;
         } else {// we have "who"
@@ -117,9 +117,9 @@ class ScriptsServiceClass {
         break;
       case 'heal':
         console.log(`Going to heal ${script.where.x},${script.where.y}`);
-        let entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
+        const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
-          let entity = entityAtLocation;
+          const entity = entityAtLocation;
           MessageService.send(`Healing ${entity.name} from ${entity.hp} to ${entity.maxHp}`);
 
           entityAtLocation.hp = entityAtLocation.maxHp;
@@ -127,11 +127,11 @@ class ScriptsServiceClass {
         break;
       case 'move':{
         console.log(`Going to heal ${script.where.x},${script.where.y}`);
-        let entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
+        const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
-          let entity = entityAtLocation;
-          let e = entity;
-          let targetDestination = script.result.params[0];
+          const entity = entityAtLocation;
+          const e = entity;
+          const targetDestination = script.result.params[0];
           MessageService.send(`Moving ${entity.name} from ${e.position.x}, ${e.position.y} to
           ${targetDestination.x},${targetDestination.y}`);
 

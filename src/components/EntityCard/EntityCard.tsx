@@ -18,12 +18,12 @@ export class EntityCard extends React.Component<EntityCardProps> {
   };
 
   onDrop = (itemName: string) => {//TODO: Take this outside of the component, duuuh.
-    let { entity } = this.props;
+    const { entity } = this.props;
     if (entity.equipment.hands && entity.equipment.hands.name === itemName) {
       entity.unEquipFromHands();
       entity.isShooting = false;
     }
-    let item: InventoryItem = entity.takeFromInventory(itemName);
+    const item: InventoryItem = entity.takeFromInventory(itemName);
     if(item instanceof Item){
       console.log("Dropping Item");
       entity.square.addItem(item);
@@ -39,13 +39,13 @@ export class EntityCard extends React.Component<EntityCardProps> {
   };
 
   onReload = (weapon: RangedWeapon) => {
-    let { entity } = this.props;
+    const { entity } = this.props;
     EntitiesService.reloadWeapon(entity, weapon);
     this.props.processInterface();
   };
 
   get distanceToTarget(): number {
-    let { entity } = this.props;
+    const { entity } = this.props;
     if (!entity.targetPosition) return null;
     return Number(
       Helpers.calculateDistance(
@@ -56,7 +56,7 @@ export class EntityCard extends React.Component<EntityCardProps> {
   };
 
   render() {
-    let { entity } = this.props;
+    const { entity } = this.props;
     if (!entity) return null;
     // FIXME: Below should be separated into several sub-components
     // Each sub-component should receive flat data (position, hp, ...)
@@ -74,8 +74,8 @@ export class EntityCard extends React.Component<EntityCardProps> {
       className += " entity-card--dead";
     }
 
-    let inHands = entity.equipment && entity.equipment.hands;
-    let inHandsArray = inHands && [inHands];
+    const inHands = entity.equipment && entity.equipment.hands;
+    const inHandsArray = inHands && [inHands];
     let bleedingText;
     let bleedingReductionText;
     if(entity.bleedingReductionPerTurn) {
