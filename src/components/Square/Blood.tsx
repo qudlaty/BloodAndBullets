@@ -13,30 +13,33 @@ interface BloodProps {
  */
 class Blood extends React.PureComponent<BloodProps> {
   render() {
-    let { bloodAmount } = this.props;
-    if(bloodAmount < 0) {
-      console.error('Blood amount negative.');
+    const { bloodAmount } = this.props;
+    if (bloodAmount < 0) {
+      console.error("Blood amount negative.");
       return;
     }
 
-    let bloodDrops = [];
+    const bloodDrops = [];
     let i = bloodAmount;
-    let marginForDropsInPercent = 0;
-    let mfd = marginForDropsInPercent;
-    let dropSizeVariance = 3;
-    let dsv = dropSizeVariance;
+    const marginForDropsInPercent = 0;
+    const mfd = marginForDropsInPercent;
+    const dropSizeVariance = 3;
+    const dsv = dropSizeVariance;
 
-
-    while(i--) {
+    while (i--) {
       bloodDrops.push(
-        <span className="blood__drop" style={{
-          position: 'absolute',
-          fontSize: `${1 + Math.random() * dsv}em`,
-          left: `calc(${mfd + Math.random() * (100-2*mfd)}% - 0.4em)`,
-          top: `calc(${mfd + Math.random() * (100-2*mfd)}% - 0.5em)`,
-        }}
-        key={i}
-        >o</span>
+        <span
+          className="blood__drop"
+          style={{
+            position: "absolute",
+            fontSize: `${1 + Math.random() * dsv}em`,
+            left: `calc(${mfd + Math.random() * (100 - 2 * mfd)}% - 0.4em)`,
+            top: `calc(${mfd + Math.random() * (100 - 2 * mfd)}% - 0.5em)`,
+          }}
+          key={i}
+        >
+          o
+        </span>
       );
     }
 
@@ -44,14 +47,12 @@ class Blood extends React.PureComponent<BloodProps> {
       <div
         className="square__blood"
         style={{
-          background: `rgba(255, 0, 0, 0)`,//${(bloodAmount / 50).toFixed(2)})`,
+          background: `rgba(255, 0, 0, 0)`, //${(bloodAmount / 50).toFixed(2)})`,
           //position: 'relative'
         }}
       >
         {bloodDrops}
-        <span className="blood__text">
-          {bloodAmount}
-        </span>
+        <span className="blood__text">{bloodAmount}</span>
       </div>
     );
   }

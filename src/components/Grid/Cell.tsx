@@ -5,12 +5,10 @@ interface CellProps {
   children?: any;
 }
 
-interface CellState {
-}
+interface CellState {}
 
 export class Cell extends React.PureComponent<CellProps, CellState> {
-
-  state = {}
+  state = {};
 
   // constructor(props) {
   //   super(props);
@@ -20,6 +18,6 @@ export class Cell extends React.PureComponent<CellProps, CellState> {
 
   render() {
     //console.log(`Rendering [${this.props.children}]`);
-    return <div className="cell">{this.props?.children}</div>
+    return <div className="cell">{this.props?.children}</div>;
   }
 }

@@ -11,7 +11,7 @@ interface InventoryItemProps {
 }
 
 export function InventoryItem(props: InventoryItemProps) {
-  let { item } = props;
+  const { item } = props;
   let reloadButton;
   let dropButton;
   let ammoCounter;
@@ -30,7 +30,7 @@ export function InventoryItem(props: InventoryItemProps) {
   }
 
   if (item instanceof RangedWeapon) {
-    let weapon = item as RangedWeapon;
+    const weapon = item as RangedWeapon;
 
     if (weapon.reload) {
       // has reload capability

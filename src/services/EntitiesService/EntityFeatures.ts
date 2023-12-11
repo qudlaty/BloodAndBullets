@@ -14,7 +14,8 @@ export class Identifiable {
   icon: string = " ";
 }
 
-export class Actor {// one who acts
+export class Actor {
+  // one who acts
   actionPoints: number = 2;
   maxActionPoints: number = 2;
 }
@@ -22,9 +23,11 @@ export class Actor {// one who acts
 export class Positionable {
   position: Position = { x: undefined, y: undefined };
   isPassable: boolean = false;
-  get isBlocking(): boolean { return !this.isPassable }
+  get isBlocking(): boolean {
+    return !this.isPassable;
+  }
   get square(): Square {
-    let square: Square = SquaresService.getSquareFromPosition(this.position.x, this.position.y);
+    const square: Square = SquaresService.getSquareFromPosition(this.position.x, this.position.y);
     return square;
   }
 }
@@ -38,8 +41,8 @@ export class Movable extends Identifiable {
   }
 
   setMoveDestinationPosition(targetPosition: Position) {
-    let targetSquare: Square = SquaresService.getSquareFromPosition(targetPosition.x, targetPosition.y);
-    let targetSquareNumber: number = SquaresService.getSquareIndexFromPosition(targetPosition.x, targetPosition.y)
+    const targetSquare: Square = SquaresService.getSquareFromPosition(targetPosition.x, targetPosition.y);
+    const targetSquareNumber: number = SquaresService.getSquareIndexFromPosition(targetPosition.x, targetPosition.y);
     if (SquaresService.isTargetSquareEnterable(targetSquare)) {
       this.moveDestination = targetPosition;
       SquaresService.markSquareAtIndexAsChosenDestination(targetSquareNumber);
@@ -64,22 +67,22 @@ export class Bleedable extends Mortal {
   public bleeding: number = 0;
   public bleedingReductionPerTurn: number = 1;
   bleed(): number {
-    let entity = this;
+    const entity = this;
     let bloodReleased = 0;
     if (entity.bleeding && entity.isAlive) {
       bloodReleased = entity.bleeding;
       entity.hp -= bloodReleased;
       entity.bleeding -= entity.bleedingReductionPerTurn;
-      if(entity.bleeding < 0) entity.bleeding = 0;
+      if (entity.bleeding < 0) entity.bleeding = 0;
     }
     return bloodReleased;
   }
 
   bleedExternally() {
     if (!this.bleeding) return;
-    let entity = this;
-    let bloodReleased = this.bleed();
-    let square: Square = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
+    const entity = this;
+    const bloodReleased = this.bleed();
+    const square: Square = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
     SquaresService.addBloodToSquare(square, bloodReleased);
   }
 }
@@ -96,7 +99,7 @@ export class Breathing extends Mortal {
 
 export class Combative extends Identifiable {
   targetPosition: Position;
-  isShooting?: boolean;// TODO: refactor to not be optional maybe?
+  isShooting?: boolean; // TODO: refactor to not be optional maybe?
   ceaseFire?: boolean;
   hasWeapon?: boolean;
   attackPosition(targetedSquarePosition: Position) {
@@ -107,21 +110,20 @@ export class Combative extends Identifiable {
     } else {
       MessageService.send(`${this.name} can't shoot - no weapon equipped`);
     }
-    console.log(this.name, 'is attacking', targetedSquarePosition, this);
+    console.log(this.name, "is attacking", targetedSquarePosition, this);
   }
 }
 
-export type InventoryItem = Item|Entity;
+export type InventoryItem = Item | Entity;
 export class HavingInventory extends Identifiable {
-
   inventory: Array<InventoryItem>;
   takeFromInventory(itemName: string): InventoryItem {
     if (!this.inventory) {
       this.inventory = [];
     }
-    let actualItemIndex: number = this.inventory.findIndex((item) => item.name === itemName);
-    if(actualItemIndex === -1) return null;
-    let actualItem: InventoryItem = this.inventory.splice(actualItemIndex, 1)[0];
+    const actualItemIndex: number = this.inventory.findIndex((item) => item.name === itemName);
+    if (actualItemIndex === -1) return null;
+    const actualItem: InventoryItem = this.inventory.splice(actualItemIndex, 1)[0];
 
     return actualItem;
   }
@@ -134,12 +136,12 @@ export class HavingInventory extends Identifiable {
 }
 
 export class HavingEquipment extends HavingInventory {
-  equipment: {hands: Item};
+  equipment: { hands: Item };
   hasWeapon?: boolean;
 
   equipInHands(itemName: string) {
     this.unEquipFromHands();
-    let item: Item = this.takeFromInventory(itemName);
+    const item: Item = this.takeFromInventory(itemName);
     this.equipment.hands = item;
     if (item instanceof Weapon) {
       this.hasWeapon = true;

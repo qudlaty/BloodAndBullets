@@ -22,8 +22,8 @@ class GameLogicClass {
   };
 
   calculateNextInterfaceState = (previousState: GameState) => {
-    let nextState = previousState;
-    let { entities, selected } = nextState;
+    const nextState = previousState;
+    const { entities, selected } = nextState;
     entities.forEach((entity) => {
       if (entity === selected) SquaresService.markAvailableDestinationsForSelectedEntity(selected);
     });
@@ -36,13 +36,10 @@ class GameLogicClass {
    * @param previousState
    */
 
-  calculeteNextGameStateAfterProcessingAGivenEntity(
-      previousState: GameState,
-      givenEntity: Entity
-    ): GameState{
-    if(givenEntity.actionPoints === 0) return previousState;
-    let nextState: GameState = previousState;
-    let { entities } = nextState;
+  calculeteNextGameStateAfterProcessingAGivenEntity(previousState: GameState, givenEntity: Entity): GameState {
+    if (givenEntity.actionPoints === 0) return previousState;
+    const nextState: GameState = previousState;
+    const { entities } = nextState;
     this.processAnEntity(givenEntity);
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
     nextState.friendsAlive = this.calculateNumberOfAliveFriends(entities);
@@ -50,8 +47,9 @@ class GameLogicClass {
     return nextState;
   }
 
-  processAnEntity(entity) { // Entity processing function
-    console.log('start procesing', entity);
+  processAnEntity(entity) {
+    // Entity processing function
+    console.log("start procesing", entity);
     EntitiesService.moveEntityRandomly(entity);
     EntitiesService.moveEntityIntoChosenDestination(entity);
     EntitiesService.stopShootingWhenForbidden(entity);
@@ -65,20 +63,20 @@ class GameLogicClass {
     EntitiesService.stopBreathingForKilledEntity(entity);
 
     SquaresService.markAvailableDestinationsForSelectedEntity(entity);
-    console.log('end procesing', entity)
+    console.log("end procesing", entity);
     // SquaresService.castLightsFromFriendlyEntity(entity);
   }
 
-  calculateNumberOfAliveFriends(entities: Entity[]):number {
-    return entities.filter(entity => entity.isFriendly && entity.isAlive).length;
+  calculateNumberOfAliveFriends(entities: Entity[]): number {
+    return entities.filter((entity) => entity.isFriendly && entity.isAlive).length;
   }
 
-  calculateNumberOfAliveEnemies(entities: Entity[]):number {
+  calculateNumberOfAliveEnemies(entities: Entity[]): number {
     let amountOfAliveEnemies = 0;
     entities.forEach((entity) => {
-      if(entity.isFriendly) {
+      if (entity.isFriendly) {
         return;
-      } else if(entity.isAlive) {
+      } else if (entity.isAlive) {
         amountOfAliveEnemies++;
       }
     });
@@ -87,7 +85,7 @@ class GameLogicClass {
   }
 
   syncSquaresWithEntities = (previousState) => {
-    let squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
+    const squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
     /*
     Reattach new squares array to the SquaresService
     This might actually be not-needed, as elements of that array are objects
@@ -95,7 +93,7 @@ class GameLogicClass {
     everything should work without re-attaching
     */
     SquaresService.squares = squares;
-    let entities: Entity[] = EntitiesService.entities;
+    const entities: Entity[] = EntitiesService.entities;
     if (entities.length) {
       Helpers.resetGivenFieldsOnACollection(squares, "entity", "entities");
     }

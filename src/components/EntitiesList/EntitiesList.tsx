@@ -4,7 +4,6 @@ import { Entity } from "services";
 
 import "./EntitiesList.scss";
 
-
 interface ListOfEntitiesProps {
   entities: Entity[];
   onInventoryClick: any;
@@ -13,7 +12,7 @@ interface ListOfEntitiesProps {
 
 export default class ListOfEntities extends React.Component<ListOfEntitiesProps> {
   render() {
-    let entitiesFriendly = this.props.entities
+    const entitiesFriendly = this.props.entities
       .filter((entity) => entity.isFriendly)
       .map((obj) => {
         return (
@@ -26,7 +25,7 @@ export default class ListOfEntities extends React.Component<ListOfEntitiesProps>
         );
       });
 
-    let entitiesUnfriendly = this.props.entities
+    const entitiesUnfriendly = this.props.entities
       .filter((entity) => !entity.isFriendly)
       .map((obj) => {
         return <EntityCard key={obj.name} entity={obj} processInterface={() => this.props.processInterface()} />;

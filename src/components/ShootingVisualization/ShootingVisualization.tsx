@@ -2,14 +2,14 @@ import * as Helpers from "helpers";
 import React, { ReactElement } from "react";
 
 export function ShootingVisualization(props): ReactElement {
-  let { entity } = props;
+  const { entity } = props;
 
-  let calcNewAangle = Helpers.calculateAngle;
-  let targetCoords = entity.targetPosition;
+  const calcNewAangle = Helpers.calculateAngle;
+  const targetCoords = entity.targetPosition;
   let projectileNumber = 5;
-  let projectiles = [];
-  let localId = `Entity${entity.icon}`;
-  let uniqueShootingAnimationId = `shooting-animation-${localId}-ap-${entity.actionPoints}`;
+  const projectiles = [];
+  const localId = `Entity${entity.icon}`;
+  const uniqueShootingAnimationId = `shooting-animation-${localId}-ap-${entity.actionPoints}`;
   let customStyle = "";
   let commonStyles = "";
 
@@ -21,12 +21,12 @@ export function ShootingVisualization(props): ReactElement {
     (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y)
   ) {
     if (targetCoords) {
-      let distanceToTargetXInUnits = (targetCoords.x - entity.position.x);
-      let distanceToTargetYInUnits = (targetCoords.y - entity.position.y);
+      const distanceToTargetXInUnits = targetCoords.x - entity.position.x;
+      const distanceToTargetYInUnits = targetCoords.y - entity.position.y;
 
-      let actualDistanceInUnits = Helpers.calculateDistance(distanceToTargetXInUnits, distanceToTargetYInUnits);
-      let weaponType = entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type;
-      let angle = calcNewAangle(distanceToTargetXInUnits, distanceToTargetYInUnits);
+      const actualDistanceInUnits = Helpers.calculateDistance(distanceToTargetXInUnits, distanceToTargetYInUnits);
+      const weaponType = entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type;
+      const angle = calcNewAangle(distanceToTargetXInUnits, distanceToTargetYInUnits);
       commonStyles = `
       @keyframes fading${uniqueShootingAnimationId} {
         0%  {opacity: 1;}
@@ -41,9 +41,9 @@ export function ShootingVisualization(props): ReactElement {
 
       if (weaponType === "lazer") {
         // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
-        let className = `projectile${localId}_beam`;
-        let projectile = "";
-        const distanceWhereBeamBegins = 20;//in pixels
+        const className = `projectile${localId}_beam`;
+        const projectile = "";
+        const distanceWhereBeamBegins = 20; //in pixels
         //actualDistance = actualDistance - distanceWhereBeamBegins;
         // do above within template
         customStyle = `
@@ -58,7 +58,7 @@ export function ShootingVisualization(props): ReactElement {
           }
 
           @keyframes swiping${localId} {
-            0%  {transform: rotate(${angle + 90 -1}deg) translateX(${distanceWhereBeamBegins}px);}
+            0%  {transform: rotate(${angle + 90 - 1}deg) translateX(${distanceWhereBeamBegins}px);}
             50%  {transform: rotate(${angle + 90 + 1}deg) translateX(${distanceWhereBeamBegins}px);}
             100%  {transform: rotate(${angle + 90 - 1}deg) translateX(${distanceWhereBeamBegins}px);}
           }
@@ -104,12 +104,12 @@ export function ShootingVisualization(props): ReactElement {
             animation-delay: ${projectileNumber - 1 * 0.3}s;
           }`;
         }
-        let projectile = entity.isShooting ? "|" : "";
+        const projectile = entity.isShooting ? "|" : "";
 
         projectileNumber = 3;
 
         while (projectileNumber--) {
-          let className = `projectile projectile${localId}_${projectileNumber}`;
+          const className = `projectile projectile${localId}_${projectileNumber}`;
           projectiles.push(
             <div key={className} className={className}>
               {projectile}
@@ -119,7 +119,7 @@ export function ShootingVisualization(props): ReactElement {
       }
     }
   }
-  let finalClassName = `shooting-visualization fading-after-1s-for-${uniqueShootingAnimationId}`;
+  const finalClassName = `shooting-visualization fading-after-1s-for-${uniqueShootingAnimationId}`;
   return (
     <div className={finalClassName}>
       <style>{customStyle + commonStyles}</style>

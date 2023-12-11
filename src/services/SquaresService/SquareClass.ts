@@ -20,7 +20,7 @@ export interface Square {
 export class Square extends HavingInventory implements Square {
   public squareType: string = "nothing";
   entities: Entity[] = [];
-  constructor(squareIndex){
+  constructor(squareIndex) {
     super();
     this.id = squareIndex;
     this.entities = [];

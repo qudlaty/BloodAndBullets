@@ -67,7 +67,7 @@ export function isSelectedTargeted(selected: Entity, targeted: Square): boolean 
  * Eg: classNameBase--class-from-flag
  */
 export function turnFlagsIntoClasses(flags: object, classNameBase?: string) {
-  if(!flags) return '';
+  if (!flags) return "";
   const flagsToClassess = {
     active: "active",
     isAvailableDestination: "is-available-destination",
@@ -115,8 +115,8 @@ export function newCopyOfArray(array: any[]) {
  * @yields string with all classess applicable for the given square
  */
 export function getCssClassesForAGivenSquare(square: Square): string {
-  if(!square) return;
-  let squareClassNameBase = "square";
+  if (!square) return;
+  const squareClassNameBase = "square";
   let squareClassName = `${squareClassNameBase} ${square && square.squareType}`;
   squareClassName += turnFlagsIntoClasses(square, squareClassNameBase);
   if (square.entity) {

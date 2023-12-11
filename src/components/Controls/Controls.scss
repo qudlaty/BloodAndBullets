@@ -1,10 +1,10 @@
 .controls {
-  color: rgba(0,200,0,0.5);
+  color: rgba(0, 200, 0, 0.5);
 }
 .key {
-  color: rgba(0,200,0,0.5);
+  color: rgba(0, 200, 0, 0.5);
   &.pressed {
-    color: rgba(0,255,0,0.9);
+    color: rgba(0, 255, 0, 0.9);
     text-shadow: 0 0 12px 12px greenyellow;
   }
 }

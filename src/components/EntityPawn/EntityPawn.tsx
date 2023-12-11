@@ -12,24 +12,24 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
   randomTime = `${(Math.random() + 0.5).toFixed(2)}s`;
 
   render() {
-    let { entity } = this.props;
-    let square = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
+    const { entity } = this.props;
+    const square = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
 
-    let classNameBase = "entity-pawn__icon";
+    const classNameBase = "entity-pawn__icon";
     let className = `${classNameBase}`;
     let classessFromFlags = Helpers.turnFlagsIntoClasses(entity, classNameBase);
     classessFromFlags += Helpers.turnFlagsIntoClasses(square, classNameBase);
     className += ` ${classessFromFlags} `;
-    let fof = entity.isFriendly ? 'friendly' : 'hostile';
-    let color = entity.isFriendly ? 'green' : 'red';
-    let zIndex = entity.isShooting ? 5 : 1;
-    let animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
+    const fof = entity.isFriendly ? "friendly" : "hostile";
+    const color = entity.isFriendly ? "green" : "red";
+    const zIndex = entity.isShooting ? 5 : 1;
+    const animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
 
-    let boardPadding = 10;
-    let squareMargin = 2;
+    const boardPadding = 10;
+    const squareMargin = 2;
     return (
       <div
-        className={`entity-pawn ${entity.isDead ? 'entity-pawn--dead' : ''}`}
+        className={`entity-pawn ${entity.isDead ? "entity-pawn--dead" : ""}`}
         key={entity.name}
         style={{
           left: `calc(${boardPadding + 3}px + ${entity.position.x * squareMargin * 2}px + ${entity.position.x}em)`,
@@ -37,15 +37,8 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
           zIndex: zIndex,
         }}
       >
-        <div
-          className={`entity-pawn__health-display ` + fof}
-        >
-
-          <HpBar
-            current={entity.hp}
-            max={entity.maxHp}
-            color={color}
-          />
+        <div className={`entity-pawn__health-display ` + fof}>
+          <HpBar current={entity.hp} max={entity.maxHp} color={color} />
         </div>
 
         <div
