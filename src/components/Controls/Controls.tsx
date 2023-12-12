@@ -32,7 +32,7 @@ export class Controls extends React.Component<ControlsProps, ControlsState> {
   }
 
   onKeyDown(event) {
-    console.log(event);
+    //console.log(event);
     switch (event.keyCode) {
       case 87: // W
         this.setState({ w: true });
@@ -55,11 +55,11 @@ export class Controls extends React.Component<ControlsProps, ControlsState> {
         this.props.onKeyPress("space");
         break;
     }
-    event.preventDefault();
+    //event.preventDefault();
   }
 
   onKeyUp(event) {
-    console.log(event);
+    //console.log(event);
     switch (event.keyCode) {
       case 87: // W
         this.setState({ w: false });
