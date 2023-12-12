@@ -80,6 +80,7 @@ export class Game extends React.PureComponent<void, GameState> {
               <button onClick={GameActions.toggleEditorMode}>Editor Mode</button>
               <button onClick={GameModel.saveMap}>Save Map</button>
               <button onClick={() => GameModel.loadMap(GameActions)}>Load Map</button>
+              <button onClick={() => GameModel.getMap()}>Generate MAP</button>
             </div>
 
             <div className={styles.action_row}>

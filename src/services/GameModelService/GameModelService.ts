@@ -103,109 +103,71 @@ export class GameModelClass {
     // TODO: Save and load entities together with the map?
     this.loadEntitiesIntoService(characterDefinitions);
   };
-}
-
-//GENERATE RANDOM MAP
-//random number from range min-max(excluded)
-function randomizeSqureTypeNumber(min, max) {
-  return parseInt(Math.random() * (max - min) + min);
-}
-
-// create map with random squares types
-function getMap() {
-  const arrMap = [];
-  const squares = [...Array(100).keys()];
-  let squareType = "wall";
-  let id = 0;
-  let idx = 0;
-  let idy = 0;
-
-  squares.forEach((square) => {
-    switch (id) {
-      case 10:
-        idx = 0;
-        idy++;
-        break;
-      case 20:
-        idx = 0;
-        idy++;
-        break;
-      case 30:
-        idx = 0;
-        idy++;
-        break;
-      case 40:
-        idx = 0;
-        idy++;
-        break;
-      case 50:
-        idx = 0;
-        idy++;
-        break;
-      case 60:
-        idx = 0;
-        idy++;
-        break;
-      case 70:
-        idx = 0;
-        idy++;
-        break;
-      case 80:
-        idx = 0;
-        idy++;
-        break;
-      case 90:
-        idx = 0;
-        idy++;
-        break;
+  //GENERATE RANDOM MAP
+  // create map with random squares types
+  getMap() {
+    function randomizeSqureTypeNumber(min: any, max: any) {
+      return parseInt(Math.random() * (max - min) + min);
     }
-    if (squareType == "wall" || squareType == "nothing") {
-      switch (randomizeSqureTypeNumber(0, 4)) {
-        case 3:
-          squareType = "floor";
-          break;
-        case 2:
-          squareType = "floor";
-          break;
-        case 1:
-          squareType = "wall";
-          break;
-        case 0:
-          squareType = "floor";
-          break;
+
+    const arrMap = [];
+    const squares = [...Array(100).keys()];
+    let squareType = "wall";
+    let id = 0;
+    let idx = 0;
+    let idy = 0;
+
+    squares.forEach((square) => {
+      if (id != 0 && id % 10 == 0) {
+        idx = 0;
+        idy++;
       }
-    } else {
-      switch (randomizeSqureTypeNumber(0, 4)) {
-        case 3:
-          squareType = "floor";
-          break;
-        case 2:
-          squareType = "floor";
-          break;
-        case 1:
-          squareType = "wall";
-          break;
-        case 0:
-          squareType = "nothing";
-          break;
+      if (squareType == "wall" || squareType == "nothing") {
+        switch (randomizeSqureTypeNumber(0, 4)) {
+          case 3:
+            squareType = "floor";
+            break;
+          case 2:
+            squareType = "floor";
+            break;
+          case 1:
+            squareType = "wall";
+            break;
+          case 0:
+            squareType = "floor";
+            break;
+        }
+      } else {
+        switch (randomizeSqureTypeNumber(0, 4)) {
+          case 3:
+            squareType = "floor";
+            break;
+          case 2:
+            squareType = "floor";
+            break;
+          case 1:
+            squareType = "wall";
+            break;
+          case 0:
+            squareType = "nothing";
+            break;
+        }
       }
-    }
-    arrMap.push({
-      id: id,
-      name: " ",
-      icon: " ",
-      squareType: squareType,
-      entities: [],
-      position: { x: idx, y: idy },
-      description: " ",
+      arrMap.push({
+        id: id,
+        name: " ",
+        icon: " ",
+        squareType: squareType,
+        entities: [],
+        position: { x: idx, y: idy },
+        description: " ",
+      });
+      id++;
+      idx++;
     });
-    id++;
-    idx++;
-  });
-  const jsonMap = JSON.stringify(arrMap);
-  localStorage.setItem("autoGenMap", jsonMap);
-  //return jsonMap;
+    const jsonMap = JSON.stringify(arrMap);
+    localStorage.setItem("autoGenMap", jsonMap);
+  }
 }
-getMap();
 
 export const GameModel = new GameModelClass();
