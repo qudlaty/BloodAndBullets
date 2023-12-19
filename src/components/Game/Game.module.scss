@@ -3,7 +3,12 @@
 .game {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
 
   & > * {
     margin: 5px;
@@ -12,6 +17,7 @@
     border: 1px solid #666;
   }
   &__info {
+    color: inherit;
   }
   &__list {
     float: left;
