@@ -22,12 +22,14 @@ $border-width: 2px;
     background: rgba(200, 200, 200, 0.15);
     border: $border-width solid $color-grey-cb;
 
-    font-size: 32px;
-    width: 2em;
-    height: 2em;
+    font-size: 12px;
+    width: 64px;
+    height: 64px;
+    padding: 5px;
     font-weight: bold;
-    line-height: 1.9em;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &__content {
     background: $color-grey-19;

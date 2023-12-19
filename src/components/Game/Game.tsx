@@ -73,7 +73,7 @@ export class Game extends React.PureComponent<void, GameState> {
             onKeyPress={GameActions.handleKeyPress}
           ></Controls>
         </div>
-        <SlideInPanel>
+        <SlideInPanel title="Actions and Info">
           <div className={styles.game__info}>
             <div className={styles.actions}>
               <div className={styles.action_row}>

@@ -19,7 +19,7 @@ export function SlideInPanel({ title, children, className }: SlideInPanelProps) 
   return (
     <div className={finalClassName}>
       <div className="slide-in-panel__tab" onClick={handleTabClick} title={title}>
-        P1
+        {title}
       </div>
       <div className={"slide-in-panel__content"}>{children}</div>
     </div>
