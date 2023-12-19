@@ -15,3 +15,4 @@ export * from "./InventoryList";
 export * from "./InventoryItem";
 export * from "./HpBar";
 export * from "./ShootingVisualization";
+export * from "./SlideInPanel";

@@ -1,0 +1,45 @@
+@import "src/styles/variables";
+@import "src/styles/mixins";
+
+$border-width: 2px;
+
+.slide-in-panel {
+  @include zero;
+  &,
+  & > * {
+    box-sizing: border-box;
+    transition: all 1s;
+  }
+  border: $border-width solid $color-grey-a7;
+  position: fixed;
+  right: 0;
+
+  &__tab {
+    position: absolute;
+    top: -$border-width;
+    transform: translateX(-100%);
+
+    background: rgba(200, 200, 200, 0.15);
+    border: $border-width solid $color-grey-cb;
+
+    font-size: 32px;
+    width: 2em;
+    height: 2em;
+    font-weight: bold;
+    line-height: 1.9em;
+    text-align: center;
+  }
+  &__content {
+    background: $color-grey-19;
+  }
+  &--shown {
+    border-color: white;
+    transform: translateX(0);
+  }
+  &--shown &__tab {
+    background: rgba(200, 200, 200, 0.5);
+  }
+  &--hidden {
+    transform: translateX(100%);
+  }
+}
