@@ -2,7 +2,7 @@
 @import "src/styles/mixins";
 
 $border-width: 2px;
-
+$tab-size: 64px;
 .slide-in-panel {
   @include zero;
   &,
@@ -13,6 +13,7 @@ $border-width: 2px;
   border: $border-width solid $color-grey-a7;
   position: fixed;
   right: 0;
+  max-width: calc(100% - $tab-size);
 
   &__tab {
     position: absolute;
@@ -23,8 +24,8 @@ $border-width: 2px;
     border: $border-width solid $color-grey-cb;
 
     font-size: 12px;
-    width: 64px;
-    height: 64px;
+    width: $tab-size;
+    height: $tab-size;
     padding: 5px;
     font-weight: bold;
     display: flex;
