@@ -1,9 +1,4 @@
-@mixin zero {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
+@import "src/styles/mixins";
 .zero {
   @include zero;
 }
