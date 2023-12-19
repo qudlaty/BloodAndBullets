@@ -1,1 +1,5 @@
 - Try to make them as independent as possible
+- When adding new one
+  - Name the `tsx` file like the directory
+  - add `index.ts` to export from that file
+  - add re-exporting from that file to the `components/index.ts` as well
