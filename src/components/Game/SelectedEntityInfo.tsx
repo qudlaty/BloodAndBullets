@@ -21,8 +21,8 @@ export default class SelectedEntityInfo extends React.Component<SelectedEntityIn
     }
 
     return (
-      <div className={GameStyles.selected}>
-        <strong className={GameStyles.selected__label}>Active entity </strong>
+      <div className="selected">
+        <strong className="selected__label">Active entity </strong>
         <div>
           <EntityCard
             onInventoryClick={this.props.onInventoryClick}
@@ -30,7 +30,7 @@ export default class SelectedEntityInfo extends React.Component<SelectedEntityIn
             processInterface={() => this.props.processInterface()}
           />
         </div>
-        <button onClick={this.props.handleDeselectAllEntities} className={GameStyles.button}>
+        <button onClick={this.props.handleDeselectAllEntities} className="button">
           {" "}
           Deselect
         </button>

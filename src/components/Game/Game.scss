@@ -15,6 +15,10 @@
   }
   &__board {
     border: 1px solid #666;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
   }
   &__info {
     color: inherit;
@@ -97,48 +101,6 @@
               }
             }
           }
-        }
-      }
-    }
-
-    .interaction-container {
-      display: grid;
-      font-family: Verdana;
-      //border: 1px solid #555;
-      grid-template-columns: 50% 50%;
-      margin-bottom: 10px;
-      .selected,
-      .targeted {
-        display: block;
-        border: 1px solid rgb(116, 98, 0);
-        &__label {
-          display: block;
-          text-align: center;
-          padding: 5px;
-        }
-      }
-      .selected {
-        border-color: #095c09;
-        &__label {
-          background: #095c09;
-          border: 1px solid #13af13;
-        }
-        margin-right: 10px;
-      }
-      .targeted {
-        border-color: #ac7000;
-        &__label {
-          background: #ac7000;
-          border: 1px solid #d88c00;
-          color: black;
-        }
-      }
-      .targeted {
-        ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          margin-top: 3px;
         }
       }
     }

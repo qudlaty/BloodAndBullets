@@ -7,7 +7,7 @@ import { EntityCard, InventoryList } from "components";
 // others
 import { structures } from "resources";
 import * as Helpers from "helpers";
-import GameStyles from "./Game.module.scss";
+import "./Game.scss";
 
 interface TargetedSquareInfoProps {
   className: string;
@@ -36,7 +36,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       if (!item) {
         // We aren't picking up an item, we are picking up an Entity.
 
-        item = targeted.entities.find((entity) => entity.name === itemName);
+        item = targeted.entities.find(entity => entity.name === itemName);
 
         const square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
         //square.entity = null;
@@ -100,20 +100,17 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
     const editorButtons = (
       <div>
-        <button onClick={() => this.onAddStructureClick(targetedSquarePosition, "box")} className={GameStyles.button}>
+        <button onClick={() => this.onAddStructureClick(targetedSquarePosition, "box")} className="button">
           Add box
         </button>
-        <button
-          onClick={() => this.onAddStructureClick(targetedSquarePosition, "redBarrel")}
-          className={GameStyles.button}
-        >
+        <button onClick={() => this.onAddStructureClick(targetedSquarePosition, "redBarrel")} className="button">
           Add barrel
         </button>
       </div>
     );
 
     if (targeted.entities && targeted.entities.length) {
-      targeted.entities.forEach((i) => {
+      targeted.entities.forEach(i => {
         if (selected !== i) {
           entityInfo.push(
             <EntityCard
@@ -153,11 +150,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       if (distanceToSelected !== 0) {
         if (targeted.isAvailableDestination) {
           availableActions[0] = (
-            <button
-              key="move"
-              onClick={() => this.onMoveClick(selected, targetedSquarePosition)}
-              className={GameStyles.button}
-            >
+            <button key="move" onClick={() => this.onMoveClick(selected, targetedSquarePosition)} className="button">
               Move
             </button>
           );
@@ -167,7 +160,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
             <button
               key="attack"
               onClick={() => this.onAttackClick(selected, targetedSquarePosition)}
-              className={GameStyles.button}
+              className="button"
             >
               Attack
             </button>
@@ -192,7 +185,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
     return (
       <div className={this.props.className}>
-        <strong className={GameStyles.targeted__label}>Target square Info</strong>
+        <strong className="targeted__label">Target square Info</strong>
         <code>
           {square.icon} {square.name}
         </code>
