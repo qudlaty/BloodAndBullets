@@ -5,10 +5,11 @@ interface SlideInPanelProps {
   className?: string;
   title?: string;
   children: ReactNode | ReactNode[];
+  initiallyOpen: boolean;
 }
 
-export function SlideInPanel({ title, children, className }: SlideInPanelProps) {
-  const initialState = false;
+export function SlideInPanel({ title, children, className, initiallyOpen }: SlideInPanelProps) {
+  const initialState = initiallyOpen;
   const [isShown, setIsShown] = useState(initialState);
   const baseClassName = `slide-in-panel`;
   const finalClassName = `
