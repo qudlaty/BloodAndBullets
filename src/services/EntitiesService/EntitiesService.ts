@@ -6,6 +6,15 @@ import { Identifiable } from "./EntityFeatures";
 import { Item } from "services/ItemService";
 const arenaSize: number = 10;
 
+const defaultEntityValues = {
+  bleedingReductionPerTurn: 1,
+  isBreathing: true,
+  isPassable: false,
+  actionPoints: 2,
+  maxActionPoints: 2,
+  hasWeapon: true,
+};
+
 /**
  * @description Set of functions to interact with Entities
  */
@@ -18,7 +27,7 @@ class EntitiesServiceClass {
   }
 
   findEntityById(id: string): Entity {
-    const result: Entity = this.entities.filter((entity) => this.getEntityId(entity) === id)[0];
+    const result: Entity = this.entities.filter(entity => this.getEntityId(entity) === id)[0];
     return result;
   }
 
@@ -28,7 +37,7 @@ class EntitiesServiceClass {
 
   removeEntityFromListOfEntities(entities: Entity[], entity: Entity) {
     const indexOfEntityToRemove = entities.findIndex(
-      (currentEntity) => (currentEntity && currentEntity.name) === (entity && entity.name)
+      currentEntity => (currentEntity && currentEntity.name) === (entity && entity.name)
     );
     if (indexOfEntityToRemove === -1) return -1;
     entities.splice(indexOfEntityToRemove, 1);
@@ -39,8 +48,17 @@ class EntitiesServiceClass {
     this.entities.push(entity);
   }
 
+  addEntityToDefaultValues(entity) {
+    return Object.assign({ ...defaultEntityValues }, entity);
+  }
+
+  changeEntitiesIntoFullBlownObjects(entitiesInitialValues: any[]): Entity[] {
+    return entitiesInitialValues
+      .map(entity => this.addEntityToDefaultValues(entity)) //
+      .map(entity => new Entity(entity));
+  }
   findItemOnEntity(entity: HavingInventory, id: string) {
-    const result = entity.inventory.filter((item) => this.getEntityId(entity) === id)[0];
+    const result = entity.inventory.filter(item => this.getEntityId(entity) === id)[0];
     return result;
   }
 
@@ -98,7 +116,7 @@ class EntitiesServiceClass {
 
   getEntitiesAtGivenPositionThatAreAlive(targetPosition: Position): Entity[] {
     const entitiesAtTargetSquare = this.getEntitiesAtGivenPosition(targetPosition);
-    const aliveEntitiesAtTargetSquare = entitiesAtTargetSquare.filter((entity) => entity.isAlive);
+    const aliveEntitiesAtTargetSquare = entitiesAtTargetSquare.filter(entity => entity.isAlive);
     return aliveEntitiesAtTargetSquare;
   }
 
@@ -147,12 +165,12 @@ class EntitiesServiceClass {
     return damageApplied;
   }
 
-  shouldEntityStopShooting = (entity) => entity.ceaseFire || entity.isDead;
-  stopShooting = (entity) => {
+  shouldEntityStopShooting = entity => entity.ceaseFire || entity.isDead;
+  stopShooting = entity => {
     entity.isShooting = false;
     entity.ceaseFire = false;
   };
-  stopShootingWhenForbidden = (entity) => {
+  stopShootingWhenForbidden = entity => {
     if (this.shouldEntityStopShooting(entity)) {
       this.stopShooting(entity);
     }
@@ -162,7 +180,7 @@ class EntitiesServiceClass {
     if (!entity.actionPoints || entity.isDead) return;
     const damageApplied = this.checkAmmoAndCalculateDamageApplied(entity);
     const targetEntities = this.getEntitiesAtGivenPosition(entity.targetPosition);
-    targetEntities.forEach((targetEntity) => {
+    targetEntities.forEach(targetEntity => {
       this.applyDamageToTargetEntity(targetEntity, damageApplied);
     });
   }
@@ -250,14 +268,14 @@ class EntitiesServiceClass {
     // this.moveEntityRandomly(OP);
     // this.moveEntityRandomly(OC);
     this.entities
-      .filter((entity) => !entity.isFriendly)
-      .forEach((entity) => {
+      .filter(entity => !entity.isFriendly)
+      .forEach(entity => {
         this.moveEntityRandomly(entity);
       });
   }
 
   refillActionPointsForAllEntities() {
-    this.entities.forEach((entity) => {
+    this.entities.forEach(entity => {
       entity.actionPoints = entity.maxActionPoints;
     });
   }

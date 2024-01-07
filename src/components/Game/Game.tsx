@@ -114,7 +114,7 @@ export class Game extends React.PureComponent<void, GameState> {
               <button onClick={GameActions.toggleEditorMode}>Editor Mode</button>
               <button onClick={GameModel.saveMap}>Save Map</button>
               <button onClick={() => GameModel.loadMap(GameActions)}>Load Map</button>
-              <button onClick={() => GameModel.getMap()}>Generate MAP</button>
+              <button onClick={() => GameModel.generateMAP()}>Generate MAP</button>
               <button onClick={GameActions.toggleRotateBoard}>Rotate Board</button>
               <button onClick={GameActions.zoomIn}>Zoom In (+)</button>
               <button onClick={GameActions.zoomOut}>Zoom Out (-)</button>

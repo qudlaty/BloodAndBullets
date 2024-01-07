@@ -1,5 +1,5 @@
 import { M16, M40, L30 } from "./ItemDefinitions";
-import { Entity } from "services";
+import { EntitiesService, Entity } from "services";
 
 export const entitiesInitialValues = [
   {
@@ -82,18 +82,12 @@ export const entitiesInitialValues = [
   },
 ];
 
-const defaultValues = {
-  bleedingReductionPerTurn: 1,
-  isBreathing: true,
-  isPassable: false,
-  actionPoints: 2,
-  maxActionPoints: 2,
-  hasWeapon: true,
-};
+// const addEntityToDefaultValues = entity => Object.assign({ ...defaultEntityValues }, entity);
 
-const addEntityToDefaultValues = (entity) => Object.assign({ ...defaultValues }, entity);
+// export const characterDefinitions = entitiesInitialValues
+//   .map(entity => addEntityToDefaultValues(entity))
+//   .map(entry => new Entity(entry));
 
-export const characterDefinitions = entitiesInitialValues
-  .map((entity) => addEntityToDefaultValues(entity))
-  .map((entry) => new Entity(entry));
+export const characterDefinitions = EntitiesService.changeEntitiesIntoFullBlownObjects(entitiesInitialValues);
+
 export default characterDefinitions;
