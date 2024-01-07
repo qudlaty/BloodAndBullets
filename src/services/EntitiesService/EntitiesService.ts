@@ -53,6 +53,8 @@ class EntitiesServiceClass {
   }
 
   changeEntitiesIntoFullBlownObjects(entitiesInitialValues: any[]): Entity[] {
+    // eslint-disable-next-line no-debugger
+    //debugger;
     return entitiesInitialValues
       .map(entity => this.addEntityToDefaultValues(entity)) //
       .map(entity => new Entity(entity));
@@ -132,13 +134,16 @@ class EntitiesServiceClass {
     return selected;
   }
 
-  setSelected(selected: Entity, value: boolean): Entity {
+  setSelected(selected: Entity): Entity {
     this.selected = selected;
-    selected.active = value;
-    if (!value) {
-      this.selected = null;
-      console.log("Deselected:", selected);
-    }
+    selected.active = true;
+    return selected;
+  }
+
+  setDeselected(selected: Entity): Entity {
+    this.selected = null;
+    selected.active = false;
+    console.log("Deselected:", selected);
     return selected;
   }
 

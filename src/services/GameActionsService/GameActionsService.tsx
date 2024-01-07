@@ -23,24 +23,24 @@ export class GameActionsClassForGameComponent {
   toggleEditorMode = () => {
     if (!component.state.isEditorOn) {
       Helpers.resetGivenFieldsOnACollection(component.state.squares, "blood", "entity");
-      component.setState((prevState) => {
+      component.setState(prevState => {
         return { entities: [], isEditorOn: true };
       });
     } else {
-      component.setState((prevState) => {
+      component.setState(prevState => {
         return { squares: SquaresService.squares, entities: EntitiesService.entities, isEditorOn: false };
       });
     }
   };
 
   zoomIn() {
-    component.setState((prevState) => {
+    component.setState(prevState => {
       return { squareSize: prevState.squareSize + 5 };
     });
   }
 
   zoomOut() {
-    component.setState((prevState) => {
+    component.setState(prevState => {
       return { squareSize: prevState.squareSize - 5 };
     });
   }
@@ -85,7 +85,7 @@ export class GameActionsClassForGameComponent {
 
   processNextUnprocessedEntity() {
     const entitiesForProcessing = EntitiesService.entities.filter(
-      (entity) => !entity.isFriendly && entity.isAlive && entity.actionPoints > 0
+      entity => !entity.isFriendly && entity.isAlive && entity.actionPoints > 0
     );
     if (entitiesForProcessing.length) {
       const entityForThisTurn = entitiesForProcessing[0];
@@ -100,7 +100,7 @@ export class GameActionsClassForGameComponent {
 
   setNewStateAfterProcessingChosenEntity(entity) {
     component.setState(
-      (prevState) => GameLogic.calculeteNextGameStateAfterProcessingAGivenEntity(prevState, entity),
+      prevState => GameLogic.calculateNextGameStateAfterProcessingAGivenEntity(prevState, entity),
       () => this.setSquaresAccordingToEntities()
     );
     this.processInterface();
@@ -108,7 +108,7 @@ export class GameActionsClassForGameComponent {
 
   executeActions = () => {
     component.setState(
-      (prevState) => GameLogic.calculeteNextGameStateAfterProcessingAGivenEntity(prevState, prevState.selected),
+      prevState => GameLogic.calculateNextGameStateAfterProcessingAGivenEntity(prevState, EntitiesService.selected),
       () => this.afterExecuteActions()
     );
     this.processInterface();
@@ -126,7 +126,7 @@ export class GameActionsClassForGameComponent {
 
   processInterface() {
     component.setState(
-      (prevState) => GameLogic.calculateNextInterfaceState(prevState),
+      prevState => GameLogic.calculateNextInterfaceState(prevState),
       () => this.setSquaresAccordingToEntities()
     );
   }
@@ -136,10 +136,10 @@ export class GameActionsClassForGameComponent {
    * Also: entities are no longer rendered within `Square` component
    */
   setSquaresAccordingToEntities() {
-    component.setState((prevState) => GameLogic.syncSquaresWithEntities(prevState));
+    component.setState(prevState => GameLogic.syncSquaresWithEntities(prevState));
   }
 
-  handleKeyPress = (param) => {
+  handleKeyPress = param => {
     console.log(param);
     switch (param) {
       case "space":
@@ -201,7 +201,7 @@ export class GameActionsClassForGameComponent {
         }
 
         function doesSquareHaveAliveEntities(square: Square): boolean {
-          return !!(square.entities && square.entities.find((entity) => entity.isAlive));
+          return !!(square.entities && square.entities.find(entity => entity.isAlive));
         }
         // setting attack
         if (doubleClick() && selected && doesSquareHaveAliveEntities(targeted) && selected !== targeted.entity) {
@@ -221,7 +221,7 @@ export class GameActionsClassForGameComponent {
   };
 
   drawAggro() {
-    EntitiesService.entities.forEach((entity) => {
+    EntitiesService.entities.forEach(entity => {
       if (entity.isFriendly) return;
       entity.isShooting = false;
       this.aggro(entity);
@@ -232,7 +232,7 @@ export class GameActionsClassForGameComponent {
     // let actor = EntitiesService.findEntityById(name);
     const position = entity.position;
     const closeEntities = this.findEntitiesThatAreClose(position);
-    const entitiesToAttack = closeEntities.filter((closeEntity) => closeEntity.hp > 0);
+    const entitiesToAttack = closeEntities.filter(closeEntity => closeEntity.hp > 0);
     if (entitiesToAttack.length) {
       const firstAmongThem = entitiesToAttack[0];
       entity.attackPosition(firstAmongThem.position);
@@ -260,10 +260,10 @@ export class GameActionsClassForGameComponent {
 
   nuke = (dmg: number) => {
     component.setState(
-      (state) => {
+      state => {
         const { entities } = state;
 
-        entities.forEach((entity) => {
+        entities.forEach(entity => {
           entity.hp = entity.hp - dmg;
         });
 
@@ -295,7 +295,7 @@ export class GameActionsClassForGameComponent {
   };
 
   onInventoryClick = (entity: Entity, itemName: string) => {
-    component.setState((prevState) => {
+    component.setState(prevState => {
       const entities = [].concat(prevState.entities);
       EntitiesService.entities = entities;
       const entityId = EntitiesService.getEntityId(entity);
@@ -315,7 +315,7 @@ export class GameActionsClassForGameComponent {
 
   handleDeselectAllEntities = () => {
     component.setState(
-      (state) => {
+      state => {
         let { selected } = state;
         const { squares, entities } = state;
 

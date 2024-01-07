@@ -194,6 +194,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         <div>{availableActions}</div>
         <ul>
           {positionInfo}
+          {square.squareType}
           {distanceInfo}
           {bloodInfo}
           {items}

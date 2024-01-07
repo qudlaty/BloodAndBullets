@@ -56,9 +56,13 @@ export class GameModelClass {
     console.log(squaresStringified);
     const squaresLoaded = JSON.parse(squaresStringified);
     this.loadSquaresIntoService(squaresLoaded);
-
-    const entitiesWithinTheMap = squaresLoaded.filter(square => square.entity).map(square => square.entity);
-    console.log("Entities Within The Map:", entitiesWithinTheMap);
+    const loadedGeneratedEntities = JSON.parse(this.generatedEntitiesJSON);
+    this.loadGeneratedEntitiesIntoService(loadedGeneratedEntities);
+    console.log(EntitiesService.entities);
+    EntitiesService.setSelected(EntitiesService.findEntityById("Lazer Blady G"));
+    GameActions.executeActions();
+    // const entitiesWithinTheMap = squaresLoaded.filter(square => square.entities.length).map(square => square.entity);
+    // console.log("Entities Within The Map:", entitiesWithinTheMap);
 
     function makeInstanceOfAWeapon(weaponRecord): Item {
       return new L30();
@@ -74,12 +78,12 @@ export class GameModelClass {
       return entityRecord;
     }
 
-    const entitiesProcessed = entitiesWithinTheMap
-      .map(entity => processEquipmentForEntityRecord(entity))
-      .map(entityRecord => new Entity(entityRecord));
+    //   const entitiesProcessed = entitiesWithinTheMap
+    //   .map(entity => processEquipmentForEntityRecord(entity))
+    //   .map(entityRecord => new Entity(entityRecord));
 
-    console.log("ALIVE ENTITIES?", entitiesProcessed);
-    this.loadEntitiesIntoService(entitiesProcessed); ///
+    // console.log("ALIVE ENTITIES?", entitiesProcessed);
+    //this.loadEntitiesIntoService(entitiesProcessed); ///
     GameActions.setSquaresAccordingToEntities();
     GameActions.processInterface();
   };
@@ -93,15 +97,14 @@ export class GameModelClass {
       targetSquare.name = (sourceSquare && sourceSquare.name) || " ";
       targetSquare.description = (sourceSquare && sourceSquare.description) || " ";
     });
-    GameModel.loadGeneratedEntitities();
   };
 
   loadEntitiesIntoService = (entities: Entity[]) => {
     EntitiesService.entities = entities;
   };
 
-  loadGeneratedEntitiesIntoService = (generatedEntities: Entity[]) => {
-    EntitiesService.entities = generatedEntities;
+  loadGeneratedEntitiesIntoService = (generatedEntities: any[]) => {
+    EntitiesService.entities = EntitiesService.changeEntitiesIntoFullBlownObjects(generatedEntities);
   };
 
   loadBuiltInMap = () => {
@@ -145,7 +148,7 @@ export class GameModelClass {
         actionPoints: 1,
         maxActionPoints: 1,
         hasWeapon: false,
-        name: "Mosquito",
+        name: `Mosquito_${id}`,
         hp: 12,
         maxHp: 20,
         icon: "🦟",
@@ -155,10 +158,6 @@ export class GameModelClass {
         },
       };
 
-      if (id != 0 && id % 10 == 0) {
-        idx = 0;
-        idy++;
-      }
       if (squareType == "wall" || squareType == "nothing") {
         switch (randomizeSquareTypeNumber(0, 4)) {
           case 3:
@@ -216,6 +215,7 @@ export class GameModelClass {
           // );
         } else {
           newSquare.entities.push(ent);
+          console.log("adding  entitty to map", squareType, newSquare, ent);
           arrMap.push(newSquare);
           this.generatedEntities.push(ent);
         }
@@ -224,36 +224,47 @@ export class GameModelClass {
       }
 
       id++;
-      idx++;
+      if (id !== 0 && id % SquaresService.arenaSize == 0) {
+        idx = 0;
+        idy++;
+      } else {
+        idx++;
+      }
     });
     //foreach end
+    const lazerBlady = {
+      isFriendly: true,
+      bleedingReductionPerTurn: 1,
+      isSupposedToBeBreathing: true,
+      isPassable: false,
+      actionPoints: 2,
+      maxActionPoints: 2,
+      hasWeapon: true,
+      name: "Lazer Blady G",
+      hp: 75,
+      maxHp: 100,
+      icon: "🧑‍🚀",
+      position: {
+        x: 6,
+        y: 8,
+      },
+      inventory: [new M16()],
+      equipment: {
+        hands: new L30(),
+      },
+    };
 
-    // this.generatedEntities.push({
-    //   isFriendly: true,
-    //   bleedingReductionPerTurn: 1,
-    //   isSupposedToBeBreathing: true,
-    //   isPassable: false,
-    //   actionPoints: 2,
-    //   maxActionPoints: 2,
-    //   hasWeapon: true,
-    //   name: "Lazer Blady",
-    //   hp: 75,
-    //   maxHp: 100,
-    //   icon: "🧑‍🚀",
-    //   position: {
-    //     x: 6,
-    //     y: 8,
-    //   },
-    //   inventory: [new M16()],
-    //   equipment: {
-    //     hands: new L30(),
-    //   },
-    // });
+    this.generatedEntities.push(lazerBlady);
+    const targetSquareIndex = SquaresService.getSquareIndexFromPosition(lazerBlady.position.x, lazerBlady.position.y);
+    arrMap[targetSquareIndex].entities.push(lazerBlady);
+    // eslint-disable-next-line no-debugger
+    // debugger;
+
     console.log(arrMap, this.generatedEntities, "dupa blady");
     this.generatedEntitiesJSON = JSON.stringify(this.generatedEntities);
     const jsonMap = JSON.stringify(arrMap);
     localStorage.setItem("autoGenMap", jsonMap);
-    //this.generatedEntities = [];
+    this.generatedEntities = [];
     //console.log(this.generatedEntitiesJSON);
   };
 }

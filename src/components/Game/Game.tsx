@@ -32,7 +32,7 @@ export class Game extends React.PureComponent<void, GameState> {
 
     GameModel.loadBuiltInMap();
     GameModel.loadPredefinedEntitities();
-    EntitiesService.setSelected(EntitiesService.findEntityById("Lazer Blady"), true);
+    EntitiesService.setSelected(EntitiesService.findEntityById("Lazer Blady"));
 
     this.state = new GameState();
 

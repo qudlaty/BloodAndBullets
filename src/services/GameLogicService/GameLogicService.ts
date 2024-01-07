@@ -24,7 +24,7 @@ class GameLogicClass {
   calculateNextInterfaceState = (previousState: GameState) => {
     const nextState = previousState;
     const { entities, selected } = nextState;
-    entities.forEach((entity) => {
+    entities.forEach(entity => {
       if (entity === selected) SquaresService.markAvailableDestinationsForSelectedEntity(selected);
     });
 
@@ -36,7 +36,7 @@ class GameLogicClass {
    * @param previousState
    */
 
-  calculeteNextGameStateAfterProcessingAGivenEntity(previousState: GameState, givenEntity: Entity): GameState {
+  calculateNextGameStateAfterProcessingAGivenEntity(previousState: GameState, givenEntity: Entity): GameState {
     if (givenEntity.actionPoints === 0) return previousState;
     const nextState: GameState = previousState;
     const { entities } = nextState;
@@ -68,12 +68,12 @@ class GameLogicClass {
   }
 
   calculateNumberOfAliveFriends(entities: Entity[]): number {
-    return entities.filter((entity) => entity.isFriendly && entity.isAlive).length;
+    return entities.filter(entity => entity.isFriendly && entity.isAlive).length;
   }
 
   calculateNumberOfAliveEnemies(entities: Entity[]): number {
     let amountOfAliveEnemies = 0;
-    entities.forEach((entity) => {
+    entities.forEach(entity => {
       if (entity.isFriendly) {
         return;
       } else if (entity.isAlive) {
@@ -84,7 +84,7 @@ class GameLogicClass {
     return amountOfAliveEnemies;
   }
 
-  syncSquaresWithEntities = (previousState) => {
+  syncSquaresWithEntities = previousState => {
     const squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
     /*
     Reattach new squares array to the SquaresService
@@ -97,7 +97,7 @@ class GameLogicClass {
     if (entities.length) {
       Helpers.resetGivenFieldsOnACollection(squares, "entity", "entities");
     }
-    entities.forEach((entity) => {
+    entities.forEach(entity => {
       SquaresService.setEntityWithinApropriateSquare(entity);
     });
 
