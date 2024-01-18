@@ -18,9 +18,9 @@ export class M40 extends Rifle {
 
 export class L30 extends Lazer {
   name = "Assault Lazer Cannon";
-  rounds = 1;
-  maxRounds = 1;
-  reloadCostInAP = 4;
+  rounds = 5;
+  maxRounds = 10;
+  reloadCostInAP = 2;
   damage = 10;
   description: "Portable 30kW Energy beam weapon";
   manufacturer: "Amaar Industries";

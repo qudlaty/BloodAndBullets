@@ -73,6 +73,7 @@ module.exports = {
     "no-return-assign": "off",
     "class-methods-use-this": "off",
     "no-console": "off",
+    "no-debugger": "off",
     "no-shadow": "off",
     "no-else-return": "off",
     "spaced-comment": "off",

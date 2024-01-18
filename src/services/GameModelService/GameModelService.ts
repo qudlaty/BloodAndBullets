@@ -15,7 +15,6 @@ export class GameModelClass {
   generatedEntitiesJSON;
   entities;
   squares;
-  selected;
 
   constructor() {
     this.entities = EntitiesService.entities;
@@ -60,30 +59,30 @@ export class GameModelClass {
     this.loadGeneratedEntitiesIntoService(loadedGeneratedEntities);
     console.log(EntitiesService.entities);
     EntitiesService.setSelected(EntitiesService.findEntityById("Lazer Blady G"));
-    GameActions.executeActions();
-    // const entitiesWithinTheMap = squaresLoaded.filter(square => square.entities.length).map(square => square.entity);
-    // console.log("Entities Within The Map:", entitiesWithinTheMap);
+    GameActions.setSelectedInStateAccordingToSelectedInEntitiesService();
+    // GameActions.executeActions();
+    //const entitiesWithinTheMap = squaresLoaded.filter(square => square.entities.length).map(square => square.entity);
+    //console.log("Entities Within The Map:", entitiesWithinTheMap);
 
     function makeInstanceOfAWeapon(weaponRecord): Item {
       return new L30();
     }
 
-    function processEquipmentForEntityRecord(entityRecord): any {
-      if (entityRecord.equipment && entityRecord.equipment.hands) {
-        entityRecord.equipment.hands = makeInstanceOfAWeapon(entityRecord.equipment.hands);
+    function processEquipmentForEntityOrEntityRecord(entity): any {
+      if (entity.equipment && entity.equipment.hands) {
+        entity.equipment.hands = makeInstanceOfAWeapon(entity.equipment.hands);
       }
-      if (entityRecord.inventory) {
-        entityRecord.inventory.map(itemRecord => makeInstanceOfAWeapon(itemRecord));
+      if (entity.inventory) {
+        entity.inventory = entity.inventory.map(itemRecord => makeInstanceOfAWeapon(itemRecord));
       }
-      return entityRecord;
+      return entity;
     }
 
-    //   const entitiesProcessed = entitiesWithinTheMap
-    //   .map(entity => processEquipmentForEntityRecord(entity))
-    //   .map(entityRecord => new Entity(entityRecord));
+    const entitiesProcessed = EntitiesService.entities.map(entity => processEquipmentForEntityOrEntityRecord(entity));
 
-    // console.log("ALIVE ENTITIES?", entitiesProcessed);
-    //this.loadEntitiesIntoService(entitiesProcessed); ///
+    console.log("ALIVE ENTITIES?", entitiesProcessed);
+    this.loadEntitiesIntoService(entitiesProcessed); ///
+
     GameActions.setSquaresAccordingToEntities();
     GameActions.processInterface();
   };
@@ -237,8 +236,8 @@ export class GameModelClass {
       bleedingReductionPerTurn: 1,
       isSupposedToBeBreathing: true,
       isPassable: false,
-      actionPoints: 2,
-      maxActionPoints: 2,
+      actionPoints: 6,
+      maxActionPoints: 10,
       hasWeapon: true,
       name: "Lazer Blady G",
       hp: 75,

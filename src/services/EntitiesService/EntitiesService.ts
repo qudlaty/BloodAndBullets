@@ -134,10 +134,10 @@ class EntitiesServiceClass {
     return selected;
   }
 
-  setSelected(selected: Entity): Entity {
-    this.selected = selected;
-    selected.active = true;
-    return selected;
+  setSelected(givenEntity: Entity): Entity {
+    this.selected = givenEntity;
+    this.selected.active = true;
+    return this.selected;
   }
 
   setDeselected(selected: Entity): Entity {

@@ -6,7 +6,7 @@ import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "se
 import { GameState } from "services/GameLogicService";
 import { Square } from "services/SquaresService";
 
-let component = null;
+let gameComponent = null;
 /**
  * @description Class with methods designed to operate on Game Component state.
  * @requires Game component to be passed to constructor.
@@ -14,33 +14,33 @@ let component = null;
  */
 export class GameActionsClassForGameComponent {
   constructor(that) {
-    component = that;
+    gameComponent = that;
   }
 
   entitiesProcessingLoopIntervalHandle = null;
   playerActionTime: number = 1000; //in milliseconds
 
   toggleEditorMode = () => {
-    if (!component.state.isEditorOn) {
-      Helpers.resetGivenFieldsOnACollection(component.state.squares, "blood", "entity");
-      component.setState(prevState => {
+    if (!gameComponent.state.isEditorOn) {
+      Helpers.resetGivenFieldsOnACollection(gameComponent.state.squares, "blood", "entity");
+      gameComponent.setState(prevState => {
         return { entities: [], isEditorOn: true };
       });
     } else {
-      component.setState(prevState => {
+      gameComponent.setState(prevState => {
         return { squares: SquaresService.squares, entities: EntitiesService.entities, isEditorOn: false };
       });
     }
   };
 
   zoomIn() {
-    component.setState(prevState => {
+    gameComponent.setState(prevState => {
       return { squareSize: prevState.squareSize + 5 };
     });
   }
 
   zoomOut() {
-    component.setState(prevState => {
+    gameComponent.setState(prevState => {
       return { squareSize: prevState.squareSize - 5 };
     });
   }
@@ -57,20 +57,20 @@ export class GameActionsClassForGameComponent {
     }
     console.debug("Executing nextStep");
     this.nextStep();
-    if (component.state.isAutoLoopOn) {
+    if (gameComponent.state.isAutoLoopOn) {
       console.debug("Scheduling next loop step in 1s");
       setTimeout(this.loop, 1000);
     }
   };
 
   nextTick = () => {
-    component.setState({ isAutoLoopOn: false });
+    gameComponent.setState({ isAutoLoopOn: false });
     this.nextStep(); // TODO should not be run if processing loop is in progress
   };
 
   nextStep() {
-    component.stepNumber++;
-    console.info("Starting processing turn #", component.stepNumber);
+    gameComponent.stepNumber++;
+    console.info("Starting processing turn #", gameComponent.stepNumber);
     EntitiesService.refillActionPointsForAllEntities();
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, "targetPosition", "isShooting");
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isAttacked");
@@ -99,7 +99,7 @@ export class GameActionsClassForGameComponent {
   }
 
   setNewStateAfterProcessingChosenEntity(entity) {
-    component.setState(
+    gameComponent.setState(
       prevState => GameLogic.calculateNextGameStateAfterProcessingAGivenEntity(prevState, entity),
       () => this.setSquaresAccordingToEntities()
     );
@@ -107,7 +107,7 @@ export class GameActionsClassForGameComponent {
   }
 
   executeActions = () => {
-    component.setState(
+    gameComponent.setState(
       prevState => GameLogic.calculateNextGameStateAfterProcessingAGivenEntity(prevState, EntitiesService.selected),
       () => this.afterExecuteActions()
     );
@@ -125,10 +125,18 @@ export class GameActionsClassForGameComponent {
   };
 
   processInterface() {
-    component.setState(
+    gameComponent.setState(
       prevState => GameLogic.calculateNextInterfaceState(prevState),
       () => this.setSquaresAccordingToEntities()
     );
+  }
+
+  setSelectedInStateAccordingToSelectedInEntitiesService() {
+    gameComponent.setState(prevState => {
+      let selected = EntitiesService.selected;
+      debugger;
+      return { selected: selected };
+    });
   }
 
   /** Sets entities within apropriate squares, based on the value of their `position` field
@@ -136,7 +144,7 @@ export class GameActionsClassForGameComponent {
    * Also: entities are no longer rendered within `Square` component
    */
   setSquaresAccordingToEntities() {
-    component.setState(prevState => GameLogic.syncSquaresWithEntities(prevState));
+    gameComponent.setState(prevState => GameLogic.syncSquaresWithEntities(prevState));
   }
 
   handleKeyPress = param => {
@@ -150,7 +158,7 @@ export class GameActionsClassForGameComponent {
   };
 
   handleClickV2 = (squareIndex: number) => {
-    component.setState(
+    gameComponent.setState(
       (state: GameState) => {
         let { selected, targeted, targetedSquareNumber: selectedSquareNumber } = state;
         const { squares, entities, isEditorOn } = state;
@@ -259,7 +267,7 @@ export class GameActionsClassForGameComponent {
   }
 
   nuke = (dmg: number) => {
-    component.setState(
+    gameComponent.setState(
       state => {
         const { entities } = state;
 
@@ -276,18 +284,18 @@ export class GameActionsClassForGameComponent {
   };
 
   toggleRotateBoard = () => {
-    component.setState({ isBoardRotated: !component.state.isBoardRotated });
+    gameComponent.setState({ isBoardRotated: !gameComponent.state.isBoardRotated });
   };
 
   switchAutoLoop = () => {
-    component.setState(
+    gameComponent.setState(
       (previousState: GameState) => {
         const isAutoLoopOn = !previousState.isAutoLoopOn;
         console.info("Switching auto loop to", isAutoLoopOn);
         return { isAutoLoopOn };
       },
       () => {
-        if (component.state.isAutoLoopOn) {
+        if (gameComponent.state.isAutoLoopOn) {
           this.loop();
         }
       }
@@ -295,7 +303,7 @@ export class GameActionsClassForGameComponent {
   };
 
   onInventoryClick = (entity: Entity, itemName: string) => {
-    component.setState(prevState => {
+    gameComponent.setState(prevState => {
       const entities = [].concat(prevState.entities);
       EntitiesService.entities = entities;
       const entityId = EntitiesService.getEntityId(entity);
@@ -314,7 +322,7 @@ export class GameActionsClassForGameComponent {
   };
 
   handleDeselectAllEntities = () => {
-    component.setState(
+    gameComponent.setState(
       state => {
         let { selected } = state;
         const { squares, entities } = state;
