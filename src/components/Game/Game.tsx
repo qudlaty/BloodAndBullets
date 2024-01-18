@@ -125,7 +125,7 @@ export class Game extends React.PureComponent<void, GameState> {
               <button onClick={GameActions.executeActions} className="execute_actions">
                 Execute Actions
               </button>
-              <span className="step-counter">Tick: {this.turnNumber}</span>
+              <span className="step-counter">Turn: {this.turnNumber}</span>
               <label className="button auto-cycle">
                 <input type="checkbox" checked={this.state.isAutoLoopOn} onChange={GameActions.switchAutoLoop} />
                 <span>Auto Cycle</span>

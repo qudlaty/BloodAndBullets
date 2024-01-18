@@ -7,8 +7,8 @@ import styles from "./Board.module.scss";
 
 interface BoardProps {
   onClick(i: number): void;
-  squares: Square[]; // updated every tick
-  entities: Entity[]; // updated every tick
+  squares: Square[]; // updated every action
+  entities: Entity[]; // updated every action
   size: number;
   isRotated: boolean;
   style: any;
@@ -39,7 +39,7 @@ export class Board extends React.Component<BoardProps> {
   }
 
   EntityPawns = (): ReactElement[] =>
-    this.props.entities.map((entity) => <EntityPawn key={entity.name} entity={entity} />);
+    this.props.entities.map(entity => <EntityPawn key={entity.name} entity={entity} />);
 
   BoardSquares = () => {
     let cellId: number = 0;

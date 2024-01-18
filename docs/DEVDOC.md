@@ -35,16 +35,13 @@ The .vscode directory contained within this repo should take care of setting up 
 
 ## Concepts and problems
 
-### The concept of **tick** vs the concept of **turn**.
+### The concept of **action** vs the concept of a **turn**.
 
 - **Turn** is a part of a higher-level game logic, concerning who (which side of a conflict) is allowed to execute actions. There is also a limit of how many actions you can take during a turn (action points).
 
   - After player executes their action and ends the turn, everything else also executes actions and we again wait for player input = next turn.
 
-- **Tick** is the smallest unit of game-time, during which the state of the game is unaltered, but the next state can be calculated.
-  Transition to next tick is triggered by the timer driving the game loop (at least so far).
-
-Initially, we have a new tick every 1 second.
+- **Action** is the smallest event that is actively changing game state.
 
 ### Actions
 
@@ -57,13 +54,11 @@ Initially, we have a new tick every 1 second.
   - Changes hp on all entities
 - ...
 
-Question: So actions change state **within** a tick, how should that be related to the **tick** calculating next game state?
-
 Perhaps we should talk about the following concepts:
 
-- interface state (selection, targetting, camera position)
-- instant actions (within our turn), changing the GameState
-- queued actions (like walking, shooting) that need to be animated over multiple ticks.
+- interface state (selection, targeting, camera position)
+- instant actions (within our turn), changing the GameState, moving, shooting, inventory changes
+- queued actions (like walking, shooting) that need to be animated over multiple ticks. ???
 
 **Bonus** - Actions nicely relate to redux architecture.
 
