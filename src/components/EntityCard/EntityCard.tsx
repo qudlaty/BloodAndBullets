@@ -1,5 +1,5 @@
 import React from "react";
-import { LinearDisplay, InventoryList } from "components";
+import { LinearDisplay, InventoryList, EmojiMapper } from "components";
 import { Entity, Item, InventoryItem, EntitiesService, RangedWeapon } from "services";
 import * as Helpers from "helpers";
 import "./EntityCard.scss";
@@ -102,7 +102,9 @@ export class EntityCard extends React.Component<EntityCardProps> {
         </button> */}
 
         <div>
-          <div className="entity-card__portrait">{entity.icon}</div>
+          <div className="entity-card__portrait">
+            <EmojiMapper emoji={entity.icon} />
+          </div>
         </div>
         <strong title="Name">{entity.name}</strong>
         <br />
