@@ -29,15 +29,20 @@ export class RangedWeapon extends Weapon {
 }
 
 // TODO: Should add kinetic/thermal damage
+export enum WeaponType {
+  projectile = "projectile",
+  energy = "energy",
+}
+
 export class Rifle extends RangedWeapon {
-  type = "projectile";
+  type = WeaponType.projectile;
   range = 4;
   damage = 1;
   causesBleeding = 2;
 }
 
 export class Lazer extends RangedWeapon {
-  type = "lazer";
+  type = WeaponType.energy;
   range = 6;
   damage = 5;
   causesBleeding = 0;

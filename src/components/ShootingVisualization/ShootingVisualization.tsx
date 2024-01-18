@@ -1,5 +1,6 @@
 import * as Helpers from "helpers";
 import React, { ReactElement } from "react";
+import { WeaponType } from "services";
 
 export function ShootingVisualization(props): ReactElement {
   const { entity } = props;
@@ -39,7 +40,7 @@ export function ShootingVisualization(props): ReactElement {
       }
       `;
 
-      if (weaponType === "lazer") {
+      if (weaponType === WeaponType.energy) {
         // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
         const className = `projectile${localId}_beam`;
         const projectile = "";

@@ -17,9 +17,9 @@ export class M40 extends Rifle {
 }
 
 export class L30 extends Lazer {
-  name = "Assault Lazer Cannon";
-  rounds = 5;
-  maxRounds = 10;
+  name = "L30 Beam Laser";
+  rounds = 6;
+  maxRounds = 6;
   reloadCostInAP = 2;
   damage = 10;
   description: "Portable 30kW Energy beam weapon";
