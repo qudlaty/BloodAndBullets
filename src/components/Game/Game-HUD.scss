@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column-reverse;
     font-family: Verdana;
-    max-width: 300px;
+    max-width: 190px;
     //border: 1px solid #555;
     grid-template-columns: 50% 50%;
     margin-bottom: 10px;
@@ -33,7 +33,6 @@
         background: #095c09;
         border: 2px solid #13af13;
       }
-      margin-right: 10px;
     }
     .targeted {
       border-color: #ac7000;

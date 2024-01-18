@@ -97,9 +97,9 @@ export class EntityCard extends React.Component<EntityCardProps> {
 
     return (
       <div className={className}>
-        <button className="inventory-list__drop-button" onClick={() => this.props.onEntityClick(entity.name)}>
+        {/* <button className="inventory-list__drop-button" onClick={() => this.props.onEntityClick(entity.name)}>
           Pick up
-        </button>
+        </button> */}
 
         <div>
           <div className="entity-card__portrait">{entity.icon}</div>
@@ -111,9 +111,7 @@ export class EntityCard extends React.Component<EntityCardProps> {
           <LinearDisplay className="full" label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
           <LinearDisplay className="full" label="HP" current={entity.hp} max={entity.maxHp} />
           {bleedingText}
-          <br />
-          <br />
-          <span title="Location" className="entity-data__location">
+          {/* <span title="Location" className="entity-data__location">
             LOC: {entity.position.x}, {entity.position.y}
           </span>
           <span title="Distance to target" hidden={!entity.targetPosition} className="entity-data__distance-to-target">
@@ -122,7 +120,7 @@ export class EntityCard extends React.Component<EntityCardProps> {
           <span title="Target location" hidden={!entity.targetPosition} className="entity-data__target-position">
             TRGT: {entity.targetPosition && entity.targetPosition.x}, {entity.targetPosition && entity.targetPosition.y}
           </span>
-          <br />
+          <br /> */}
         </div>
         <InventoryList
           label="Equipped"

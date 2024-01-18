@@ -1,4 +1,5 @@
 .entity-card {
+  font-size: 12px;
   min-width: 100px;
   border: 2px solid #888;
   background: #333;
@@ -33,6 +34,7 @@
     border: 1px solid #666;
     margin: 0;
     margin-right: 10px;
+    margin-bottom: 5px;
   }
 
   .entity-data {
@@ -41,6 +43,7 @@
       font-family: monospace;
       font-size: 0.7em;
       padding: 0.2em 0.4em;
+      margin-top: 5px;
     }
     &__location {
       float: left;
