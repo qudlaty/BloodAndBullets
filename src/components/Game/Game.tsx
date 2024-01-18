@@ -20,12 +20,12 @@ import SelectedEntityInfo from "./SelectedEntityInfo";
 import "./Game.scss";
 import "./Game-HUD.scss";
 
-let GameActions = null;
+let GameActions: GameActionsClassForGameComponent = null;
 
 /** Game composes all the parts of the interface together */
 export class Game extends React.PureComponent<void, GameState> {
   renderCounter: number = 0;
-  stepNumber: number = 0;
+  turnNumber: number = 0;
 
   constructor(props: void) {
     super(props);
@@ -125,13 +125,13 @@ export class Game extends React.PureComponent<void, GameState> {
               <button onClick={GameActions.executeActions} className="execute_actions">
                 Execute Actions
               </button>
-              <span className="step-counter">Tick: {this.stepNumber}</span>
+              <span className="step-counter">Tick: {this.turnNumber}</span>
               <label className="button auto-cycle">
                 <input type="checkbox" checked={this.state.isAutoLoopOn} onChange={GameActions.switchAutoLoop} />
                 <span>Auto Cycle</span>
               </label>
-              <button onClick={GameActions.nextTick} className="button next_tick">
-                Next Tick
+              <button onClick={GameActions.endTurn} className="button next_tick">
+                End Turn
               </button>
               {/* <span className="info">
                 Enemies alive: {this.state.enemiesAlive} <br />

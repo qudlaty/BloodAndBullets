@@ -1,12 +1,13 @@
 /** This file contains most of the click-handling logic for the Game */
 /* Handling of particular events is delegated to proper services */
 
+import { Game } from "components";
 import * as Helpers from "helpers";
 import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "services";
 import { GameState } from "services/GameLogicService";
 import { Square } from "services/SquaresService";
 
-let gameComponent = null;
+let gameComponent: Game = null;
 /**
  * @description Class with methods designed to operate on Game Component state.
  * @requires Game component to be passed to constructor.
@@ -56,21 +57,21 @@ export class GameActionsClassForGameComponent {
       return;
     }
     console.debug("Executing nextStep");
-    this.nextStep();
+    this.nextTurn();
     if (gameComponent.state.isAutoLoopOn) {
       console.debug("Scheduling next loop step in 1s");
       setTimeout(this.loop, 1000);
     }
   };
 
-  nextTick = () => {
+  endTurn = () => {
     gameComponent.setState({ isAutoLoopOn: false });
-    this.nextStep(); // TODO should not be run if processing loop is in progress
+    this.nextTurn(); // TODO should not be run if processing loop is in progress
   };
 
-  nextStep() {
-    gameComponent.stepNumber++;
-    console.info("Starting processing turn #", gameComponent.stepNumber);
+  nextTurn() {
+    gameComponent.turnNumber++;
+    console.info("Starting processing turn #", gameComponent.turnNumber);
     EntitiesService.refillActionPointsForAllEntities();
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, "targetPosition", "isShooting");
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isAttacked");
