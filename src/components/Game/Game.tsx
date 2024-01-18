@@ -108,7 +108,7 @@ export class Game extends React.PureComponent<void, GameState> {
             <MessageBox />
           </section>
         </main>
-        <SlideInPanel title="Actions and Info" initiallyOpen={true}>
+        <SlideInPanel title="Actions" initiallyOpen={true}>
           <div className="game__info">
             <div className="actions">
               <button onClick={GameActions.toggleEditorMode}>Editor Mode</button>
@@ -133,7 +133,7 @@ export class Game extends React.PureComponent<void, GameState> {
               <button onClick={GameActions.nextTick} className="button next_tick">
                 Next Tick
               </button>
-              <span className="info">
+              {/* <span className="info">
                 Enemies alive: {this.state.enemiesAlive} <br />
                 Friends alive: {this.state.friendsAlive} <br />
                 {this.state.enemiesAlive && !this.state.friendsAlive ? "YOU LOST" : ""}
@@ -141,7 +141,7 @@ export class Game extends React.PureComponent<void, GameState> {
               </span>
               &nbsp;
               <p className="instructions"></p>
-              <span>Friends actions points: {this.calculateFriendlyActionPoints()} </span>
+              <span>Friends actions points: {this.calculateFriendlyActionPoints()} </span> */}
             </div>
           </div>
         </SlideInPanel>
