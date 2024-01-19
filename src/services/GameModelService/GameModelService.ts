@@ -114,8 +114,6 @@ export class GameModelClass {
     // TODO: Save and load entities together with the map?
     //console.log(this.generatedEntities, "geemnratedentites");
     console.log(characterDefinitions);
-    // eslint-disable-next-line no-debugger
-    //debugger;
     this.loadEntitiesIntoService(characterDefinitions);
   };
 
@@ -256,9 +254,6 @@ export class GameModelClass {
     this.generatedEntities.push(lazerBlady);
     const targetSquareIndex = SquaresService.getSquareIndexFromPosition(lazerBlady.position.x, lazerBlady.position.y);
     arrMap[targetSquareIndex].entities.push(lazerBlady);
-    // eslint-disable-next-line no-debugger
-    // debugger;
-
     console.log(arrMap, this.generatedEntities, "dupa blady");
     this.generatedEntitiesJSON = JSON.stringify(this.generatedEntities);
     const jsonMap = JSON.stringify(arrMap);

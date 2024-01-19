@@ -53,8 +53,6 @@ class EntitiesServiceClass {
   }
 
   changeEntitiesIntoFullBlownObjects(entitiesInitialValues: any[]): Entity[] {
-    // eslint-disable-next-line no-debugger
-    //debugger;
     return entitiesInitialValues
       .map(entity => this.addEntityToDefaultValues(entity)) //
       .map(entity => new Entity(entity));
@@ -123,15 +121,16 @@ class EntitiesServiceClass {
   }
 
   selectEntityFromGivenSquare(selected: Entity, targeted: Square): Entity {
-    if (selected && targeted && targeted.entity) {
+    let newlySelected;
+    if (selected && targeted && targeted.entities.length) {
       selected.active = false;
     }
-    if (targeted && targeted.entity) {
-      selected = targeted.entity;
-      selected.active = true;
+    if (targeted && targeted.entities.length) {
+      newlySelected = targeted.entities[0];
+      newlySelected.active = true;
     }
 
-    return selected;
+    return newlySelected;
   }
 
   setSelected(givenEntity: Entity): Entity {

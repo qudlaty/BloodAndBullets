@@ -135,7 +135,6 @@ export class GameActionsClassForGameComponent {
   setSelectedInStateAccordingToSelectedInEntitiesService() {
     gameComponent.setState(prevState => {
       let selected = EntitiesService.selected;
-      debugger;
       return { selected: selected };
     });
   }
@@ -196,10 +195,13 @@ export class GameActionsClassForGameComponent {
         }
 
         if (doubleClick()) {
-          if (!selected && targeted.entity && targeted.entity.isAlive) {
+          const targetEntity = targeted?.entities?.length && targeted?.entities[0];
+          if (!selected && targetEntity?.isAlive && targetEntity?.isFriendly) {
             // Selecting
             selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
             //targeted = undefined;
+            EntitiesService.setSelected(selected);
+            this.setSelectedInStateAccordingToSelectedInEntitiesService();
           } else if (Helpers.isSelectedTargeted(selected, targeted)) {
             // Deselecting if not selecting
             //* // DISABLE DOUBLECLICK DESELECT
