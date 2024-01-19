@@ -97,10 +97,6 @@ export class EntityCard extends React.Component<EntityCardProps> {
 
     return (
       <div className={className}>
-        {/* <button className="inventory-list__drop-button" onClick={() => this.props.onEntityClick(entity.name)}>
-          Pick up
-        </button> */}
-
         <div>
           <div className="entity-card__portrait">
             <EmojiMapper emoji={entity.icon} />
@@ -142,6 +138,16 @@ export class EntityCard extends React.Component<EntityCardProps> {
           inventory={entity.inventory}
           processInterface={() => this.props.processInterface()}
         />
+        {entity.isDead ? (
+          <button
+            className="inventory-list__drop-button pick-up-button"
+            onClick={() => this.props.onEntityClick(entity.name)}
+          >
+            Pick up
+          </button>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

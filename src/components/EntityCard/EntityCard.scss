@@ -5,6 +5,7 @@
   background: #333;
   border-radius: 2px;
   padding: 10px;
+  padding-bottom: 28px;
   position: relative;
   strong {
     font-size: 12px;
@@ -72,5 +73,12 @@
         opacity: 0.7;
       }
     }
+  }
+  .pick-up-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    padding: 5px;
   }
 }
