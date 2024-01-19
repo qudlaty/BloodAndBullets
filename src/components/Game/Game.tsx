@@ -11,7 +11,7 @@ import {
 } from "services";
 
 // components
-import { Board, MessageBox, Controls, SlideInPanel } from "components";
+import { Board, MessageBox, Controls, SlideInPanel, HudPanel } from "components";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 
@@ -106,6 +106,11 @@ export class Game extends React.PureComponent<void, GameState> {
           </div>
           <section className="section-status">
             <MessageBox />
+            <HudPanel title="=>">
+              <button onClick={GameActions.endTurn} className="button next_tick next_turn">
+                End Turn
+              </button>
+            </HudPanel>
           </section>
         </main>
         <SlideInPanel title="Actions" initiallyOpen={true}>
@@ -125,12 +130,12 @@ export class Game extends React.PureComponent<void, GameState> {
               <button onClick={GameActions.executeActions} className="execute_actions">
                 Execute Actions
               </button>
-              <span className="step-counter">Turn: {this.turnNumber}</span>
+              <span className="st ep-counter">Turn: {this.turnNumber}</span>
               <label className="button auto-cycle">
                 <input type="checkbox" checked={this.state.isAutoLoopOn} onChange={GameActions.switchAutoLoop} />
                 <span>Auto Cycle</span>
               </label>
-              <button onClick={GameActions.endTurn} className="button next_tick">
+              <button onClick={GameActions.endTurn} className="button next_tick next_turn">
                 End Turn
               </button>
               {/* <span className="info">
