@@ -36,14 +36,14 @@ export enum WeaponType {
 
 export class Rifle extends RangedWeapon {
   type = WeaponType.projectile;
-  range = 4;
+  range = 8;
   damage = 1;
   causesBleeding = 2;
 }
 
 export class Lazer extends RangedWeapon {
   type = WeaponType.energy;
-  range = 6;
+  range = 10;
   damage = 5;
   causesBleeding = 0;
 }
