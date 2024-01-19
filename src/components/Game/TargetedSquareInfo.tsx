@@ -1,6 +1,6 @@
 import React from "react";
 // services
-import { SquaresService, EntitiesService } from "services";
+import { SquaresService, EntitiesService, MessageService } from "services";
 import { Entity, Square, Position } from "services";
 // components
 import { EntityCard, InventoryList } from "components";
@@ -44,6 +44,8 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         EntitiesService.removeEntity(item as Entity); // TODO: Take this out of the component
       }
       selected.addToInventory(item);
+    } else {
+      MessageService.send(`${selected.name} can't pickup ${itemName}. They need to be on the same square to do that.`);
     }
     this.props.processInterface();
   };
@@ -197,8 +199,8 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
           {square.squareType}
           {distanceInfo}
           {bloodInfo}
-          {items}
           {editorButtons} */}
+          {items}
         </ul>
       </div>
     );
