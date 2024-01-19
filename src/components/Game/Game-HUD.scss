@@ -15,11 +15,14 @@
     grid-template-columns: 50% 50%;
     margin-bottom: 10px;
     border-right: 1px solid $color-grey-23;
+    justify-content: space-between;
+    align-items: stretch;
     .selected,
     .targeted {
       display: block;
-      border: 1px solid rgb(116, 98, 0);
+      border: 1px solid #ee9b01;
       //padding: 10px;
+      width: 165px;
       &__label {
         display: block;
         text-align: center;
@@ -27,7 +30,7 @@
       }
     }
     .selected {
-      border-color: #095c09;
+      //border-color: #095c09;
       &__label {
         margin-bottom: 5px;
         background: #095c09;

@@ -87,7 +87,6 @@ export class Game extends React.PureComponent<void, GameState> {
             onInventoryClick={GameActions.onInventoryClick}
             processInterface={() => GameActions.processInterface()}
           />
-          <div></div>
         </section>
         <main className="section-main">
           <div className="game__board">

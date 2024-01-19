@@ -1,7 +1,9 @@
 .entity-card {
   font-size: 12px;
   min-width: 100px;
-  border: 2px solid #888;
+  width: 140px;
+  border: 2px solid #ee9b01;
+
   background: #333;
   border-radius: 2px;
   padding: 10px;
@@ -11,7 +13,7 @@
     font-size: 12px;
   }
   &--active {
-    border: 2px solid #eee;
+    border: 2px solid #13af13;
     background: #222;
     strong {
       color: #eee;
@@ -19,6 +21,7 @@
   }
   &--friendly {
     background: #202525;
+    border-color: #13af13;
   }
 
   &--dead {
