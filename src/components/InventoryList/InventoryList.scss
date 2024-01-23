@@ -1,8 +1,33 @@
 .inventory-list {
   margin-top: 1vh;
+
+  &--collapsed {
+    .inventory-list__label-icon {
+      color: #eee;
+      transform: rotate(-90deg);
+    }
+    .inventory-list__items {
+      transform: scaleY(0);
+      max-height: 0;
+    }
+  }
+  &--expanded {
+    .inventory-list__label-icon {
+      transform: rotate(0deg);
+    }
+    .inventory-list__items {
+      transform: scaleY(1);
+      max-height: 1000px;
+    }
+  }
   &__label {
+    &-icon {
+      display: inline-block;
+      transition: all 1s;
+    }
   }
   &__items {
+    transition: all 1s;
   }
   &__item {
     background-color: #222;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./InventoryList.scss";
 import { Item, RangedWeapon } from "services";
 import { InventoryItem } from "components/InventoryItem";
@@ -15,13 +15,19 @@ interface InventoryListProps {
 }
 
 export function InventoryList(props: InventoryListProps) {
-  const className = `inventory-list ${props.className || ""}`;
+  const baseClassName = `inventory-list`;
 
+  const isExpandedInitialState = false;
+  const [isExpanded, setIsExpanded] = useState(isExpandedInitialState);
   if (!props.inventory) {
     return null;
   }
 
-  const inventoryItems = props.inventory.map((item) => (
+  const finalClassName = `
+    ${baseClassName} ${baseClassName}${isExpanded ? "--expanded" : "--collapsed"} ${props.className || ""}
+  `;
+
+  const inventoryItems = props.inventory.map(item => (
     <InventoryItem
       key={`i${item.name}`}
       item={item}
@@ -32,9 +38,12 @@ export function InventoryList(props: InventoryListProps) {
     />
   ));
 
+  const handleLabelClick = () => setIsExpanded(isExpanded => !isExpanded);
+
   return (
-    <div className={className}>
-      <div className="inventory-list__label">
+    <div className={finalClassName}>
+      <div className="inventory-list__label" onClick={handleLabelClick}>
+        <span className="inventory-list__label-icon">▾</span>
         {props.label}
         :&nbsp;
       </div>
