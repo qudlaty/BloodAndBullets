@@ -3,6 +3,10 @@ import { themes } from "@storybook/theming";
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: "dark",
+    },
+    layout: "centered",
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
