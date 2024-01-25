@@ -24,7 +24,9 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +48,15 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-interactions": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/blocks": "^7.6.10",
+    "@storybook/preset-create-react-app": "^7.6.10",
+    "@storybook/react": "^7.6.10",
+    "@storybook/react-webpack5": "^7.6.10",
+    "@storybook/test": "^7.6.10",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.54.0",
@@ -54,6 +65,10 @@
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
-    "prettier": "^3.1.0"
+    "eslint-plugin-storybook": "^0.6.15",
+    "prettier": "^3.1.0",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.6.10",
+    "webpack": "^5.89.0"
   }
 }
