@@ -9,7 +9,9 @@ interface GridProps {
 }
 
 interface GridState {}
-
+/**
+ * Renders a grid starting from a certain position
+ */
 export class Grid extends React.Component<GridProps, GridState> {
   renderGrid() {
     const rows = [];
