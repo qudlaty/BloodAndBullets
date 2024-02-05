@@ -20,7 +20,7 @@ class Items extends React.PureComponent<ItemsProps> {
 
     if (!items) return null;
 
-    items.forEach((item) => {
+    items.forEach(item => {
       const entity = item as Entity;
       if (entity.icon) {
         this.itemsIcons.push(<div className="square__item-icon">{entity.icon}</div>);
@@ -30,7 +30,7 @@ class Items extends React.PureComponent<ItemsProps> {
     return (
       <div className="square__items">
         <div className="square__items-icons">{this.itemsIcons}</div>
-        <div className="square__items-number">{itemsNumber}</div>
+        <div className="square__items-number">{itemsNumber || ""}</div>
       </div>
     );
   }

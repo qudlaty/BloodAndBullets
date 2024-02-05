@@ -14,8 +14,8 @@ interface BloodProps {
 class Blood extends React.PureComponent<BloodProps> {
   render() {
     const { bloodAmount } = this.props;
-    if (bloodAmount < 0) {
-      console.error("Blood amount negative.");
+    if (bloodAmount <= 0) {
+      console.error("Blood amount zero or negative.");
       return;
     }
 
