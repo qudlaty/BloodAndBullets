@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SquareComponent } from "components";
+import React from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -40,6 +41,7 @@ export const Empty: Story = {
     itemsNumber: 0,
   },
 };
+
 export const Light: Story = {
   args: {
     squareId: 0,
@@ -58,3 +60,17 @@ export const Heavy: Story = {
     itemsNumber: 5,
   },
 };
+
+//
+export function SuperHeavy(): JSX.Element {
+  //
+  //
+  const args = {
+    squareId: 0,
+    onClick: () => {},
+    blood: 40,
+    items: [],
+    itemsNumber: 5,
+  };
+  return <SquareComponent {...args}></SquareComponent>;
+}
