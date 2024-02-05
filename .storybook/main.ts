@@ -8,6 +8,15 @@ const config: StorybookConfig = {
     "@storybook/preset-create-react-app",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
+    {
+      name: "@storybook/addon-storysource",
+      options: {
+        loaderOptions: {
+          injectStoryParameters: false,
+        },
+        parser: "typescript",
+      },
+    },
   ],
   framework: {
     name: "@storybook/react-webpack5",
