@@ -9,13 +9,16 @@ interface SlideInPanelProps {
 }
 
 export function SlideInPanel({ title, children, className, initiallyOpen }: SlideInPanelProps) {
-  const initialState = initiallyOpen;
-  const [isShown, setIsShown] = useState(initialState);
+  const [isShownValueForCurrentRender, setIsShownValueForNextRender] = useState(initiallyOpen);
   const baseClassName = `slide-in-panel`;
   const finalClassName = `
-    ${baseClassName} ${baseClassName}${isShown ? "--shown" : "--hidden"} ${className || ""}
+    ${baseClassName} 
+    ${baseClassName}${isShownValueForCurrentRender ? "--shown" : "--hidden"} 
+    ${className || ""}
   `;
-  const handleTabClick = () => setIsShown(isShown => !isShown);
+  const handleTabClick = () => {
+    setIsShownValueForNextRender(previousValue => !previousValue);
+  };
 
   return (
     <div className={finalClassName}>
