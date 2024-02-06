@@ -3,19 +3,34 @@ import { HpBar } from "components";
 
 // START OF UGLY STORYBOOK SUGAR
 import type { Meta, StoryObj } from "@storybook/react";
+
+const fontSize40px = { fontSize: "40px" };
+const squareStyle = { ...fontSize40px, width: "1em", height: "1em", border: `1px solid rgba(200,200,200,0.5)` };
 const meta = {
   component: HpBar,
+  render: ({ ...args }) => (
+    <>
+      <div style={squareStyle}>
+        <HpBar {...args}></HpBar>
+      </div>
+    </>
+  ),
+  argTypes: {
+    current: {
+      control: {
+        type: "range",
+        min: -10,
+        max: 150,
+        step: 1,
+      },
+    },
+  },
 } satisfies Meta<typeof HpBar>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 // END OF UGLY STORYBOOK SUGAR
 
 export const Full: Story = {
-  render: args => (
-    <div style={{ fontSize: 80, width: "1em", height: "1em", border: `1px solid rgba(200,200,200,0.5)` }}>
-      <HpBar {...args}></HpBar>
-    </div>
-  ),
   args: {
     current: 100,
     max: 100,
@@ -55,8 +70,8 @@ export const Under: Story = {
 
 export const Red: Story = {
   args: {
-    current: 666,
-    max: 1000,
+    current: 66.6,
+    max: 100,
     color: "red",
   },
 };
