@@ -9,25 +9,15 @@ import "./Square.scss";
 
 // TODO: This should really take less props
 interface SquareProps {
-  /**
-   * Unique square id
-   */
+  /** Unique square id  */
   squareId: number;
-  /**
-   * Optional CSS class name
-   */
+  /** Optional CSS class name */
   className?: string;
-  /**
-   * Handler for this square click
-   */
+  /** Handler for this square click */
   onClick: (squareIndex: number) => void;
-  /**
-   * The amount of blood on this square
-   */
+  /** The amount of blood on this square */
   blood: number;
-  /**
-   * A list of items on this square
-   */
+  /** A list of items on this square */
   items: Item[];
   /**
    * A number of items on this square.
@@ -37,13 +27,13 @@ interface SquareProps {
 }
 
 /**
- * @description Displays a square with blood and items on it.
- * @param squareId - unique numerical id
- * @param className - string with CSS clasess
- * @param onClick - callback to call when square is clicked
- * @param blood - amount of blood
- * @param items - array of items
- * @param itemsNumber - numberof items
+ * Displays a single square with blood and items on it.
+ * @param squareId - Unique square id
+ * @param className - Optional CSS class name
+ * @param onClick - Handler for this square click
+ * @param blood - The amount of blood on this square
+ * @param items - A list of items on this square
+ * @param itemsNumber - A number of items on this square.
  */
 export class SquareComponent extends React.PureComponent<SquareProps> {
   onClick = () => {
@@ -65,7 +55,7 @@ export class SquareComponent extends React.PureComponent<SquareProps> {
     }
 
     const squareModel = SquaresService.squares[this.props.squareId];
-    const icon = squareModel.icon;
+    const icon = squareModel?.icon;
 
     return (
       <button className={"square " + this.props.className} onClick={this.onClick}>
