@@ -11,13 +11,18 @@ const meta: Meta<typeof LinearDisplay> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Closed: Story = {
+export const Half: Story = {
   args: {
     current: 50,
     max: 100,
   },
 };
 
-export const Second: Story = {
+export const PartialFromHpBar: Story = {
   args: (HpStories.Partial as unknown as Story).args,
 };
+
+export const Empty = HpStories.Empty as unknown as Story;
+export const Full = HpStories.Full as unknown as Story;
+export const Under = HpStories.Under as unknown as Story;
+export const Over = HpStories.Over as unknown as Story;
