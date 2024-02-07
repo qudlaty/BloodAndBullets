@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import { themes } from "@storybook/theming";
+import DocumentationTemplate from "./templates/DocumentationTemplate.mdx";
 
 const preview: Preview = {
   parameters: {
@@ -16,6 +17,8 @@ const preview: Preview = {
     },
     docs: {
       theme: themes.dark,
+      page: DocumentationTemplate,
+      controls: { exclude: [] },
     },
     options: {
       storySort: {
