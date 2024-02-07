@@ -7,6 +7,9 @@ interface CellProps {
 
 interface CellState {}
 
+/**
+ * Renders children in a container with a "cell" CSS class
+ */
 export class Cell extends React.PureComponent<CellProps, CellState> {
   state = {};
 

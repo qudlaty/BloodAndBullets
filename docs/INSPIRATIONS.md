@@ -5,3 +5,9 @@ The existing games that we could look at for some solutions and approaches.
 - [HalfWay](https://store.steampowered.com/app/253150/Halfway/)
 - [Zero Sievert](https://store.steampowered.com/app/1782120/ZERO_Sievert/)
 - [USC Counterforce](https://store.steampowered.com/app/1574870/USC_Counterforce/)
+
+- [Solasta](https://store.steampowered.com/app/1096530/Solasta_Crown_of_the_Magister/) - especially the map editor
+
+Early Turn Based Interfaces
+
+- [Blades of Exile](https://en.wikipedia.org/wiki/Tile-based_video_game#/media/File:BOEcombat1.png)

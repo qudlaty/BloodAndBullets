@@ -9,12 +9,31 @@ import "./Square.scss";
 
 // TODO: This should really take less props
 interface SquareProps {
+  /**
+   * Unique square id
+   */
   squareId: number;
+  /**
+   * Optional CSS class name
+   */
   className?: string;
+  /**
+   * Handler for this square click
+   */
   onClick: (squareIndex: number) => void;
+  /**
+   * The amount of blood on this square
+   */
   blood: number;
-  items: Item[]; // collection of objects
-  itemsNumber: number; // here to trigger update when list length changes
+  /**
+   * A list of items on this square
+   */
+  items: Item[];
+  /**
+   * A number of items on this square.
+   * Here to trigger an update when list length changes.
+   */
+  itemsNumber: number;
 }
 
 /**

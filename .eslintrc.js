@@ -12,6 +12,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
+    "plugin:storybook/recommended",
   ],
   overrides: [
     {
@@ -84,5 +85,7 @@ module.exports = {
     "@typescript-eslint/strict-boolean-expressions": "off",
     "react/require-default-props  ": "off",
     "operator-assignment": "off",
+
+    "react/no-unescaped-entities": "off",
   },
 };

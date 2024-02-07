@@ -27,8 +27,8 @@ export class Controls extends React.Component<ControlsProps, ControlsState> {
   }
 
   componentDidMount() {
-    document.addEventListener("keydown", (e) => this.onKeyDown(e), false);
-    document.addEventListener("keyup", (e) => this.onKeyUp(e), false);
+    document.addEventListener("keydown", e => this.onKeyDown(e), false);
+    document.addEventListener("keyup", e => this.onKeyUp(e), false);
   }
 
   onKeyDown(event) {
