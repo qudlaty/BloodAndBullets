@@ -7,7 +7,7 @@ interface SlideInPanelProps {
   children: ReactNode | ReactNode[];
   initiallyOpen: boolean;
 }
-
+/** A panel that slides in from the right */
 export function SlideInPanel({ title, children, className, initiallyOpen }: SlideInPanelProps) {
   const [isShownValueForCurrentRender, setIsShownValueForNextRender] = useState(initiallyOpen);
   const baseClassName = `slide-in-panel`;

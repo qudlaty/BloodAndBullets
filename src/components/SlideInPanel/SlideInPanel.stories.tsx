@@ -7,32 +7,35 @@ const meta: Meta<typeof SlideInPanel> = {
   args: {
     children: <ChildrenForPanel />,
   },
+  parameters: {
+    layout: "fullscreen",
+  },
+  render: args => (
+    <div
+      style={{
+        //
+        height: "300px",
+        width: "100%",
+      }}
+    >
+      <SlideInPanel {...args}></SlideInPanel>
+    </div>
+  ),
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Closed: Story = {
+export const InitiallyClosed: Story = {
   args: {
     initiallyOpen: false,
+    title: "Click Me",
   },
 };
-export const Open: Story = {
+export const InitiallyOpen: Story = {
   args: {
     initiallyOpen: true,
-  },
-};
-
-export const OpenWithTitle: Story = {
-  args: {
-    initiallyOpen: true,
-    title: "Alpha",
-  },
-};
-export const ClosedWithTitle: Story = {
-  args: {
-    initiallyOpen: false,
-    title: "Alpha",
+    title: "Click Me",
   },
 };
 
