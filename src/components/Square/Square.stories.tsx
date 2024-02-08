@@ -22,6 +22,17 @@ type Story = StoryObj<typeof meta>;
 
 const fontSize40px = { fontSize: "40px" };
 
+/** A typical square */
+export const Default: Story = {
+  args: {
+    squareId: 0,
+    blood: 10,
+    items: [],
+    itemsNumber: 5,
+  },
+};
+
+/** Just an empty square */
 export const Empty: Story = {
   args: {
     squareId: 0,
@@ -31,6 +42,7 @@ export const Empty: Story = {
   },
 };
 
+/** Light amount of blood */
 export const Light: Story = {
   args: {
     squareId: 0,
@@ -39,6 +51,8 @@ export const Light: Story = {
     itemsNumber: 1,
   },
 };
+
+/** Heavy amount of blood */
 export const Heavy: Story = {
   args: {
     squareId: 0,
@@ -48,6 +62,7 @@ export const Heavy: Story = {
   },
 };
 
+/** Super Heavy amount of blood and an action attached */
 export const SuperHeavy: Story = {
   args: {
     squareId: 0,
