@@ -7,7 +7,7 @@ interface InventoryItemProps {
   onDrop(itemName: string);
   onReload(weapon: RangedWeapon);
   onClick(itemName: string);
-  processInterface: Function;
+  processInterface: () => void;
 }
 
 export function InventoryItem(props: InventoryItemProps) {

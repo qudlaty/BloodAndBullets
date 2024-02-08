@@ -10,7 +10,7 @@ interface SelectedEntityInfoProperties {
   selected: Entity;
   onInventoryClick(entity: Entity, itemName: string): void;
   handleDeselectAllEntities: () => void;
-  processInterface: Function;
+  processInterface: () => void;
 }
 
 // TODO: Change this into HOC, as it doesn't really need half of it's props for itself

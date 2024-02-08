@@ -8,7 +8,7 @@ interface EntityCardProps {
   entity: Entity;
   onInventoryClick?(entity: Entity, itemName: string);
   onEntityClick?(entityName: string);
-  processInterface?: Function;
+  processInterface?: () => void;
 }
 
 export class EntityCard extends React.Component<EntityCardProps> {

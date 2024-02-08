@@ -16,7 +16,7 @@ interface TargetedSquareInfoProps {
   selected: Entity;
   targeted: Square;
   onInventoryClick(entity: Entity, itemName: string): void;
-  processInterface: Function;
+  processInterface: () => void;
 }
 
 // TODO: Refactor, does it really need all this logic.

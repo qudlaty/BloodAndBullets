@@ -11,7 +11,7 @@ interface InventoryListProps {
   onDrop(itemName: string);
   onReload(weapon: RangedWeapon);
   inventory: Item[]; //
-  processInterface: Function;
+  processInterface: () => void;
 }
 
 export function InventoryList(props: InventoryListProps) {

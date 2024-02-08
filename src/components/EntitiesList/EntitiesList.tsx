@@ -7,14 +7,14 @@ import "./EntitiesList.scss";
 interface ListOfEntitiesProps {
   entities: Entity[];
   onInventoryClick: any;
-  processInterface: Function;
+  processInterface: () => void;
 }
 
 export default class ListOfEntities extends React.Component<ListOfEntitiesProps> {
   render() {
     const entitiesFriendly = this.props.entities
-      .filter((entity) => entity.isFriendly)
-      .map((obj) => {
+      .filter(entity => entity.isFriendly)
+      .map(obj => {
         return (
           <EntityCard
             key={obj.name}
@@ -26,8 +26,8 @@ export default class ListOfEntities extends React.Component<ListOfEntitiesProps>
       });
 
     const entitiesUnfriendly = this.props.entities
-      .filter((entity) => !entity.isFriendly)
-      .map((obj) => {
+      .filter(entity => !entity.isFriendly)
+      .map(obj => {
         return <EntityCard key={obj.name} entity={obj} processInterface={() => this.props.processInterface()} />;
       });
 

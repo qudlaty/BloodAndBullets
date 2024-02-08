@@ -3,7 +3,7 @@ import "./Controls.scss";
 
 interface ControlsProps {
   keys: string[];
-  onKeyPress: Function;
+  onKeyPress: (key: string) => void;
 }
 
 interface ControlsState {
