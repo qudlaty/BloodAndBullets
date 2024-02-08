@@ -1,0 +1,12 @@
+.cell {
+  border: 1px solid #b3cd20;
+  width: 1em;
+  height: 1em;
+  &__contents {
+    font-size: 0.3em;
+    color: white;
+  }
+  &.special {
+    background: greenyellow;
+  }
+}

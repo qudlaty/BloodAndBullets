@@ -1,8 +1,9 @@
 import React from "react";
-//import "./Cell.scss";
+import "./Cell.scss";
 
 interface CellProps {
   children?: any;
+  style?: any;
 }
 
 interface CellState {}
@@ -21,6 +22,10 @@ export class Cell extends React.PureComponent<CellProps, CellState> {
 
   render() {
     //console.log(`Rendering [${this.props.children}]`);
-    return <div className="cell">{this.props?.children}</div>;
+    return (
+      <div className="cell" style={this.props?.style}>
+        <div className="cell__contents">{this.props?.children}</div>
+      </div>
+    );
   }
 }
