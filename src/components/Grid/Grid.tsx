@@ -28,13 +28,21 @@ export class Grid extends React.Component<GridProps, GridState> {
         );
         currentRow.push(currentCell);
       }
+
+      const rowStyle = { gridTemplateColumns: `repeat(${this.props.width + 1}, 40px)` };
       rows.push(
-        <div className="row" key={`$key_X_${sourceY}`}>
+        <div className="row" key={`$key_X_${sourceY}`} style={rowStyle}>
           {currentRow}
         </div>
       );
     }
-    return <div className="grid">{rows}</div>;
+    const gridStyle = { gridTemplateRows: `repeat(${this.props.height + 1}, 40px)` };
+
+    return (
+      <div className="grid" style={gridStyle}>
+        {rows}
+      </div>
+    );
   }
 
   render() {
