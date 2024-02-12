@@ -49,7 +49,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
         >
           <EmojiMapper emoji={entity.icon} />
         </div>
-        <ShootingVisualization entity={entity} />
+        {entity.isShooting && <ShootingVisualization entity={entity} />}
       </div>
     );
   }
