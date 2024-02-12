@@ -1,5 +1,5 @@
 import React from "react";
-import { SquaresService, Entity } from "services";
+import { SquaresService, Entity, Weapon } from "services";
 import { HpBar, ShootingVisualization, EmojiMapper } from "components";
 import * as Helpers from "helpers";
 import "./EntityPawn.scss";
@@ -27,6 +27,9 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
 
     const boardPadding = 10;
     const squareMargin = 2;
+
+    const weaponTypeObject = { weaponType: (entity.equipment?.hands as Weapon)?.type };
+
     return (
       <div
         className={`entity-pawn ${entity.isDead ? "entity-pawn--dead" : ""}`}
@@ -49,7 +52,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
         >
           <EmojiMapper emoji={entity.icon} />
         </div>
-        {entity.isShooting && <ShootingVisualization entity={entity} />}
+        {entity.isShooting && <ShootingVisualization {...entity} {...weaponTypeObject} />}
       </div>
     );
   }

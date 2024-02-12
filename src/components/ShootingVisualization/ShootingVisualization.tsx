@@ -1,32 +1,40 @@
 import * as Helpers from "helpers";
 import React, { ReactElement } from "react";
-import { WeaponType } from "services";
+import { Entity, Position, WeaponType } from "services";
 
-export function ShootingVisualization(props): ReactElement {
-  const { entity } = props;
+export type ShootingVisualizationProps = {
+  targetPosition: Position;
+  icon: string;
+  actionPoints: number;
+  position: Position;
+  hasWeapon?: boolean;
+  isShooting?: boolean;
+  weaponType: WeaponType;
+};
 
+export function ShootingVisualization({
+  targetPosition,
+  icon,
+  position,
+  hasWeapon,
+  isShooting,
+  weaponType,
+}: ShootingVisualizationProps): ReactElement {
   const calcNewAangle = Helpers.calculateAngle;
-  const targetCoords = entity.targetPosition;
+  const targetCoords = targetPosition;
   let projectileNumber = 5;
   const projectiles = [];
-  const localId = `Entity${entity.icon}`;
-  const uniqueShootingAnimationId = `shooting-animation-${localId}-ap-${entity.actionPoints}`;
+  const localId = `Entity${icon}`;
+  const uniqueShootingAnimationId = `shooting-animation-${localId}-ap}`;
   let customStyle = "";
   let commonStyles = "";
 
-  if (
-    targetCoords &&
-    entity.position &&
-    entity.hasWeapon &&
-    entity.isShooting &&
-    (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y)
-  ) {
+  if (targetCoords && position && isShooting && (targetPosition.x !== position.x || targetPosition.y !== position.y)) {
     if (targetCoords) {
-      const distanceToTargetXInUnits = targetCoords.x - entity.position.x;
-      const distanceToTargetYInUnits = targetCoords.y - entity.position.y;
+      const distanceToTargetXInUnits = targetCoords.x - position.x;
+      const distanceToTargetYInUnits = targetCoords.y - position.y;
 
       const actualDistanceInUnits = Helpers.calculateDistance(distanceToTargetXInUnits, distanceToTargetYInUnits);
-      const weaponType = entity && entity.equipment && entity.equipment.hands && entity.equipment.hands.type;
       const angle = calcNewAangle(distanceToTargetXInUnits, distanceToTargetYInUnits);
       commonStyles = `
       @keyframes fading${uniqueShootingAnimationId} {
@@ -91,8 +99,8 @@ export function ShootingVisualization(props): ReactElement {
           @keyframes shooting${localId} {
             0%   {transform: translate(0,0) rotate(${angle}deg) scaleY(0.3)}
             100% {transform: translate(
-              ${36 * (targetCoords.x - entity.position.x)}px,
-              ${36 * (targetCoords.y - entity.position.y)}px
+              ${36 * (targetCoords.x - position.x)}px,
+              ${36 * (targetCoords.y - position.y)}px
             ) rotate(${angle}deg) scaleY(2)}
           }
           `;
@@ -105,7 +113,7 @@ export function ShootingVisualization(props): ReactElement {
             animation-delay: ${projectileNumber - 1 * 0.3}s;
           }`;
         }
-        const projectile = entity.isShooting ? "|" : "";
+        const projectile = isShooting ? "|" : "";
 
         projectileNumber = 3;
 

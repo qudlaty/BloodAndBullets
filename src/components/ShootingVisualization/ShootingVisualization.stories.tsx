@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ShootingVisualization } from "components";
 import React from "react";
+import { WeaponType } from "services";
 
 const meta = {
   component: ShootingVisualization,
@@ -14,5 +15,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {
-  args: {},
+  args: {
+    position: { x: 0, y: 0 },
+    targetPosition: { x: 4, y: 0 },
+    icon: "X",
+    actionPoints: 4,
+    weaponType: WeaponType.energy,
+  },
 };

@@ -3,6 +3,7 @@ export class Item {
 }
 
 export class Weapon extends Item {
+  type: WeaponType;
   causesBleeding = 0;
   range = 0;
   damage = 0;
