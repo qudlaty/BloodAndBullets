@@ -102,11 +102,19 @@ export class Combative extends Identifiable {
   isShooting?: boolean; // TODO: refactor to not be optional maybe?
   ceaseFire?: boolean;
   hasWeapon?: boolean;
+  attackNumber: number;
+
   attackPosition(targetedSquarePosition: Position) {
     if (this.hasWeapon) {
       this.targetPosition = targetedSquarePosition;
       //this.isShooting = true;
       this.ceaseFire = false;
+      if (!this.attackNumber) {
+        this.attackNumber = 1;
+      } else {
+        this.attackNumber++;
+      }
+      console.log(this.attackNumber);
     } else {
       MessageService.send(`${this.name} can't shoot - no weapon equipped`);
     }
@@ -121,7 +129,7 @@ export class HavingInventory extends Identifiable {
     if (!this.inventory) {
       this.inventory = [];
     }
-    const actualItemIndex: number = this.inventory.findIndex((item) => item.name === itemName);
+    const actualItemIndex: number = this.inventory.findIndex(item => item.name === itemName);
     if (actualItemIndex === -1) return null;
     const actualItem: InventoryItem = this.inventory.splice(actualItemIndex, 1)[0];
 

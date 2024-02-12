@@ -4,28 +4,25 @@ import { Entity, Position, WeaponType } from "services";
 
 export type ShootingVisualizationProps = {
   targetPosition: Position;
-  icon: string;
-  actionPoints: number;
   position: Position;
-  hasWeapon?: boolean;
   isShooting?: boolean;
   weaponType: WeaponType;
+  actionId: number;
 };
 
 export function ShootingVisualization({
   targetPosition,
-  icon,
   position,
-  hasWeapon,
   isShooting,
   weaponType,
+  actionId,
 }: ShootingVisualizationProps): ReactElement {
   const calcNewAangle = Helpers.calculateAngle;
   const targetCoords = targetPosition;
   let projectileNumber = 5;
   const projectiles = [];
-  const localId = `Entity${icon}`;
-  const uniqueShootingAnimationId = `shooting-animation-${localId}-ap}`;
+  const localId = `Entity${position.x}-${position.y}-${targetCoords.x}${targetCoords.y}${actionId}`;
+  const uniqueShootingAnimationId = `shooting-animation-${localId}`;
   let customStyle = "";
   let commonStyles = "";
 

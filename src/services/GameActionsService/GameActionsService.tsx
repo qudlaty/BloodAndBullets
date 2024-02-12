@@ -167,6 +167,7 @@ export class GameActionsClassForGameComponent {
         selectedSquareNumber = squareIndex;
         const doubleClick = () => previousTargeted === targeted;
         SquaresService.markSquareAtIndexAsTargeted(squareIndex);
+        selected.isShooting = false;
 
         if (isEditorOn) {
           switch (targeted.squareType) {
@@ -318,6 +319,7 @@ export class GameActionsClassForGameComponent {
       } else {
         actualEntity.equipInHands(itemName);
       }
+      actualEntity.isShooting = false;
 
       return { entities };
     });

@@ -3,6 +3,7 @@ import { SquaresService, Entity, Weapon } from "services";
 import { HpBar, ShootingVisualization, EmojiMapper } from "components";
 import * as Helpers from "helpers";
 import "./EntityPawn.scss";
+import { action } from "@storybook/addon-actions/*";
 
 interface EntityPawnProps {
   entity: Entity;
@@ -28,7 +29,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
     const boardPadding = 10;
     const squareMargin = 2;
 
-    const weaponTypeObject = { weaponType: (entity.equipment?.hands as Weapon)?.type };
+    const customPropsObject = { weaponType: (entity.equipment?.hands as Weapon)?.type, actionId: entity.attackNumber };
 
     return (
       <div
@@ -52,7 +53,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
         >
           <EmojiMapper emoji={entity.icon} />
         </div>
-        {entity.isShooting && <ShootingVisualization {...entity} {...weaponTypeObject} />}
+        {entity.isShooting && <ShootingVisualization {...entity} {...customPropsObject} />}
       </div>
     );
   }
