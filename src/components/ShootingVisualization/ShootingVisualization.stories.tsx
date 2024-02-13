@@ -20,7 +20,7 @@ const meta = {
       </div>
     </>
   ),
-  args: { actionId: 4 },
+  args: { actionId: 4, runningTimeInMs: -1 },
 } satisfies Meta<typeof ShootingVisualization>;
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -43,7 +43,7 @@ export const MidRangeLazerDiagonal: Story = {
 export const ShortRangeLazer: Story = {
   args: {
     position: { x: 0, y: 0 },
-    targetPosition: { x: 2, y: 0 },
+    targetPosition: { x: 1, y: 0 },
     weaponType: WeaponType.energy,
   },
 };
@@ -51,7 +51,7 @@ export const ShortRangeLazer: Story = {
 export const ShortRangeProjectile: Story = {
   args: {
     position: { x: 0, y: 0 },
-    targetPosition: { x: 2, y: 0 },
+    targetPosition: { x: 1, y: 0 },
     weaponType: WeaponType.projectile,
   },
 };

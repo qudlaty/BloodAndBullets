@@ -12,6 +12,8 @@ export type ShootingVisualizationProps = {
   weaponType: WeaponType;
   /** Unique number of this action - used to ensure each attack has a separate animation */
   actionId: number;
+  /** Time to run the visualization animation, in milliseconds. 0 to not run at all, -1 to run infinitely */
+  runningTimeInMs?: number;
 };
 /** Displays a shooting attack visualization */
 export function ShootingVisualization({
@@ -19,15 +21,17 @@ export function ShootingVisualization({
   position,
   weaponType,
   actionId,
+  runningTimeInMs = 1000,
 }: ShootingVisualizationProps): ReactElement {
   const calcNewAangle = Helpers.calculateAngle;
   const targetCoords = targetPosition;
   let projectileNumber = 5;
   const projectiles = [];
-  const localId = `Entity${position.x}-${position.y}-${targetCoords.x}${targetCoords.y}${actionId}`;
+  const localId = `Entity-x${position.x}-y${position.y}-tx${targetCoords.x}-ty${targetCoords.y}-aid${actionId}`;
   const uniqueShootingAnimationId = `shooting-animation-${localId}`;
   let customStyle = "";
   let commonStyles = "";
+  const runningTime = runningTimeInMs ?? 1000;
 
   if (targetCoords && position && (targetPosition.x !== position.x || targetPosition.y !== position.y)) {
     if (targetCoords) {
@@ -36,15 +40,20 @@ export function ShootingVisualization({
 
       const actualDistanceInUnits = Helpers.calculateDistance(distanceToTargetXInUnits, distanceToTargetYInUnits);
       const angle = calcNewAangle(distanceToTargetXInUnits, distanceToTargetYInUnits);
+
       commonStyles = `
       @keyframes fading${uniqueShootingAnimationId} {
         0%  {opacity: 1;}
-        95% {opacity: 1;}
+        90% {opacity: 1;}
         100%  {opacity: 0;}
       }
-
-      .fading-after-1s-for-${uniqueShootingAnimationId} {
-        animation: fading${uniqueShootingAnimationId} 1s linear normal forwards 1;
+      ${
+        runningTime >= 0
+          ? `
+          .fading-after-${runningTime}ms-for-${uniqueShootingAnimationId} {
+              animation: fading${uniqueShootingAnimationId} ${runningTime}ms linear normal forwards 1;
+          }`
+          : ``
       }
       `;
 
@@ -128,7 +137,7 @@ export function ShootingVisualization({
       }
     }
   }
-  const finalClassName = `shooting-visualization fading-after-1s-for-${uniqueShootingAnimationId}`;
+  const finalClassName = `shooting-visualization fading-after-${runningTime}ms-for-${uniqueShootingAnimationId}`;
   return (
     <div className={finalClassName}>
       <style>{customStyle + commonStyles}</style>
