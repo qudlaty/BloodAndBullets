@@ -110,6 +110,8 @@ export class Combative extends Identifiable {
   isShooting?: boolean; // TODO: refactor to not be optional maybe?
   ceaseFire?: boolean;
   hasWeapon?: boolean;
+  // TODO: Refactor this to work differently, this class has no bussiness counting the attacks executed
+  /** Unique number of the attack action - used to ensure each attack has a separate animation */
   attackNumber: number;
 
   attackPosition(targetedSquarePosition: Position) {

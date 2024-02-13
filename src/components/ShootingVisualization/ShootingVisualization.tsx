@@ -4,12 +4,16 @@ import { Position, WeaponType } from "services";
 import "./ShootingVisualization.scss";
 
 export type ShootingVisualizationProps = {
+  /** Position of a target square in a grid */
   targetPosition: Position;
+  /** Position of a source square in a grid */
   position: Position;
+  /** Type of a weapon */
   weaponType: WeaponType;
+  /** Unique number of this action - used to ensure each attack has a separate animation */
   actionId: number;
 };
-
+/** Displays a shooting attack visualization */
 export function ShootingVisualization({
   targetPosition,
   position,
