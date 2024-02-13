@@ -8,18 +8,20 @@ export interface Position {
   y: number;
 }
 
+/** The one who can be identified */
 export class Identifiable {
   id: number | string;
   name: string = "";
   icon: string = " ";
 }
 
+/** The one who acts */
 export class Actor {
-  // one who acts
   actionPoints: number = 2;
   maxActionPoints: number = 2;
 }
 
+/** The one who can be positioned, who can take space */
 export class Positionable {
   position: Position = { x: undefined, y: undefined };
   isPassable: boolean = false;
@@ -32,6 +34,7 @@ export class Positionable {
   }
 }
 
+/** The one who can move */
 export class Movable extends Identifiable {
   moveDestination: Position;
   // TODO: are these methods really appropriate for this context?
@@ -52,6 +55,7 @@ export class Movable extends Identifiable {
   }
 }
 
+/** The one who can die */
 export class Mortal extends Positionable {
   hp: number = 100;
   maxHp: number = 100;
@@ -62,6 +66,8 @@ export class Mortal extends Positionable {
     return this.hp > 0;
   }
 }
+
+/** The one who can bleed */
 
 export class Bleedable extends Mortal {
   public bleeding: number = 0;
@@ -87,6 +93,7 @@ export class Bleedable extends Mortal {
   }
 }
 
+/** The one who can breathe */
 export class Breathing extends Mortal {
   isSupposedToBeBreathing: boolean = undefined;
   get isBreathing(): boolean {
@@ -97,6 +104,7 @@ export class Breathing extends Mortal {
   }
 }
 
+/** The one who can fight */
 export class Combative extends Identifiable {
   targetPosition: Position;
   isShooting?: boolean; // TODO: refactor to not be optional maybe?
@@ -122,7 +130,9 @@ export class Combative extends Identifiable {
   }
 }
 
+/** The one who can be held in Inventory */
 export type InventoryItem = Item | Entity;
+/** The one who can have Inventory */
 export class HavingInventory extends Identifiable {
   inventory: Array<InventoryItem>;
   takeFromInventory(itemName: string): InventoryItem {
@@ -143,6 +153,7 @@ export class HavingInventory extends Identifiable {
   }
 }
 
+/** The one who can have Equipment */
 export class HavingEquipment extends HavingInventory {
   equipment: { hands: Item };
   hasWeapon?: boolean;

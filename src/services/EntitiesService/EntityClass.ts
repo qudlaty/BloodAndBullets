@@ -10,11 +10,9 @@ import {
   HavingInventory,
   HavingEquipment,
   Actor,
-} from ".";
+} from "./EntityFeatures";
 
-/**
- * @description The base class for Entities on the board
- */
+/** The base class for Entities on the board */
 export class Entity {
   // Extended by mixins below
   constructor(...props) {
