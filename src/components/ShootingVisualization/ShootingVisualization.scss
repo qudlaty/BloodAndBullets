@@ -3,3 +3,23 @@
   height: 1em;
   position: relative;
 }
+
+.shooting-visualization {
+  //position: absolute;
+  z-index: 1;
+  .projectile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 26px;
+    color: white;
+  }
+  transition: all 1s;
+  transform-style: preserve-3d;
+  transform: perspective(0) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.board--rotated .entity-pawn .shooting-visualization {
+  transform: translateY(3px) rotateX(60deg) rotateZ(45deg);
+}

@@ -20,7 +20,10 @@ const meta = {
       </div>
     </>
   ),
-  args: { actionId: 4, runningTimeInMs: -1 },
+  args: {
+    actionId: 4,
+    runningTimeInMs: -1, // Make visualization infinite by default
+  },
 } satisfies Meta<typeof ShootingVisualization>;
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -55,7 +58,16 @@ export const ShortRangeProjectile: Story = {
     weaponType: WeaponType.projectile,
   },
 };
-export const MidRangeProjectile: Story = {
+
+export const MidRangeProjectileHorizontal: Story = {
+  args: {
+    position: { x: 0, y: 0 },
+    targetPosition: { x: 4, y: 0 },
+    weaponType: WeaponType.projectile,
+  },
+};
+
+export const MidRangeProjectileDiagonal: Story = {
   args: {
     position: { x: 0, y: 0 },
     targetPosition: { x: 4, y: 2 },

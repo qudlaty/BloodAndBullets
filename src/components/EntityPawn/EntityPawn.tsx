@@ -26,6 +26,7 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
     const zIndex = entity.isShooting ? 5 : 1;
     const animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
 
+    //TODO: This should be passed in props from above
     const boardPadding = 10;
     const squareMargin = 2;
 
