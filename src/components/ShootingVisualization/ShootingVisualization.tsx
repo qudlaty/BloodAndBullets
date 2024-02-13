@@ -59,7 +59,7 @@ export function ShootingVisualization({
 
       if (weaponType === WeaponType.energy) {
         // TODO: perhaps call to `visualizeShooting(from,to,weaponType)`
-        const className = `projectile${localId}_beam`;
+        const beamClassName = `projectile${localId}_beam`;
         const projectile = "";
         const distanceWhereBeamBegins = 20; //in pixels
         //actualDistance = actualDistance - distanceWhereBeamBegins;
@@ -81,7 +81,7 @@ export function ShootingVisualization({
             100%  {transform: rotate(${angle + 90 - 1}deg) translateX(${distanceWhereBeamBegins}px);}
           }
 
-          .${className} {
+          .${beamClassName} {
             width: ${actualDistanceInUnits}em;
             height: 3px;
             border-radius: 5px;
@@ -99,11 +99,12 @@ export function ShootingVisualization({
           }
           `;
         projectiles.push(
-          <div key={className} className={className}>
+          <div key={beamClassName} className={beamClassName}>
             {projectile}
           </div>
         );
       } else {
+        //TODO: Why 36? - calculate this from params or better yet - from 'em'
         customStyle = `
           @keyframes shooting${localId} {
             0%   {transform: translate(0,0) rotate(${angle}deg) scaleY(0.3)}
@@ -122,7 +123,7 @@ export function ShootingVisualization({
             animation-delay: ${projectileNumber - 1 * 0.3}s;
           }`;
         }
-        const projectile = "|";
+        const projectile = ".";
 
         projectileNumber = 3;
 
