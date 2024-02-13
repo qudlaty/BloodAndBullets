@@ -6,7 +6,6 @@ import "./ShootingVisualization.scss";
 export type ShootingVisualizationProps = {
   targetPosition: Position;
   position: Position;
-  isShooting?: boolean;
   weaponType: WeaponType;
   actionId: number;
 };
@@ -14,7 +13,6 @@ export type ShootingVisualizationProps = {
 export function ShootingVisualization({
   targetPosition,
   position,
-  isShooting,
   weaponType,
   actionId,
 }: ShootingVisualizationProps): ReactElement {
@@ -27,7 +25,7 @@ export function ShootingVisualization({
   let customStyle = "";
   let commonStyles = "";
 
-  if (targetCoords && position && isShooting && (targetPosition.x !== position.x || targetPosition.y !== position.y)) {
+  if (targetCoords && position && (targetPosition.x !== position.x || targetPosition.y !== position.y)) {
     if (targetCoords) {
       const distanceToTargetXInUnits = targetCoords.x - position.x;
       const distanceToTargetYInUnits = targetCoords.y - position.y;
@@ -111,7 +109,7 @@ export function ShootingVisualization({
             animation-delay: ${projectileNumber - 1 * 0.3}s;
           }`;
         }
-        const projectile = isShooting ? "|" : "";
+        const projectile = "|";
 
         projectileNumber = 3;
 

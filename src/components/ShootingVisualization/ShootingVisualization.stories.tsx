@@ -20,7 +20,7 @@ const meta = {
       </div>
     </>
   ),
-  args: { isShooting: true, actionId: 4 },
+  args: { actionId: 4 },
 } satisfies Meta<typeof ShootingVisualization>;
 export default meta;
 type Story = StoryObj<typeof meta>;
