@@ -1,6 +1,7 @@
 import * as Helpers from "helpers";
 import React, { ReactElement } from "react";
-import { Entity, Position, WeaponType } from "services";
+import { Position, WeaponType } from "services";
+import "./ShootingVisualization.scss";
 
 export type ShootingVisualizationProps = {
   targetPosition: Position;
