@@ -186,8 +186,17 @@ export class GameActionsClassForGameComponent {
           }
         }
 
-        /** Setting move destination while clicking on empty square */
-        if (doubleClick() && targeted.isAvailableDestination) {
+        // setting attack
+        if (doubleClick() && selected && doesSquareHaveAliveEntities(targeted)) {
+          const targetSquarePosition = SquaresService.getSquarePositionFromIndex(squareIndex);
+          selected.attackPosition(targetSquarePosition);
+          SquaresService.markSquareAtIndexAsAttacked(squareIndex);
+          delete selected.moveDestination;
+          delete selected.isShooting;
+          Helpers.resetGivenFieldsOnACollection(squares, "isChosenDestination");
+          this.executeActions();
+        } else if (doubleClick() && targeted.isAvailableDestination) {
+          /** Setting move destination while clicking on empty square */
           selected.setMoveDestinationSquareByNumber(squareIndex);
           delete selected.targetPosition;
           delete selected.isShooting;
@@ -214,16 +223,6 @@ export class GameActionsClassForGameComponent {
 
         function doesSquareHaveAliveEntities(square: Square): boolean {
           return !!(square.entities && square.entities.find(entity => entity.isAlive));
-        }
-        // setting attack
-        if (doubleClick() && selected && doesSquareHaveAliveEntities(targeted) && selected !== targeted.entity) {
-          const targetSquarePosition = SquaresService.getSquarePositionFromIndex(squareIndex);
-          selected.attackPosition(targetSquarePosition);
-          SquaresService.markSquareAtIndexAsAttacked(squareIndex);
-          delete selected.moveDestination;
-          delete selected.isShooting;
-          Helpers.resetGivenFieldsOnACollection(squares, "isChosenDestination");
-          this.executeActions();
         }
 
         return { squares, entities, selected, targeted, targetedSquareNumber: selectedSquareNumber };
