@@ -6,6 +6,8 @@ any means necessary.
 
 [CLICK HERE TO PLAY THE NIGHTLY BUILD](https://qudlaty.github.io/BloodAndBullets/build/)
 
+[Click here to open a Storybook component documentation system](https://qudlaty.github.io/BloodAndBullets/storybook-static/)
+
 It introduces multiple mechanics making the deadly game of on-board spaceship
 combat full of tactical possibilities.
 
