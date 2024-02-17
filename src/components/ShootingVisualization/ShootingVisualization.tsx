@@ -14,6 +14,10 @@ export type ShootingVisualizationProps = {
   actionId: number;
   /** Time to run the visualization animation, in milliseconds. 0 to not run at all, -1 to run infinitely */
   runningTimeInMs?: number;
+  /** Number of shots when it's a projectile weapon */
+  numberOfProjectiles?: number;
+  /** Spread of bullets on target, in pixels */
+  varianceBase?: number;
 };
 /** Displays a shooting attack visualization */
 export function ShootingVisualization({
@@ -22,10 +26,12 @@ export function ShootingVisualization({
   weaponType,
   actionId,
   runningTimeInMs = 1000,
+  numberOfProjectiles = 10,
+  varianceBase = 7,
 }: ShootingVisualizationProps): ReactElement {
   const calcNewAangle = Helpers.calculateAngle;
   const targetCoords = targetPosition;
-  let projectileNumber = 5;
+  let projectileNumber = numberOfProjectiles;
   const projectiles = [];
   const localId = `Entity-x${position.x}-y${position.y}-tx${targetCoords.x}-ty${targetCoords.y}-aid${actionId}`;
   const uniqueShootingAnimationId = `shooting-animation-${localId}`;
@@ -105,27 +111,30 @@ export function ShootingVisualization({
         );
       } else {
         //TODO: Why 36? - calculate this from params or better yet - from 'em'
-        customStyle = `
-          @keyframes shooting${localId} {
-            0%   {transform: translate(0,0) rotate(${angle}deg) scaleY(0.3)}
+        while (projectileNumber--) {
+          //const varianceBase = 36;
+          const targetVarianceX = Math.random() * varianceBase - varianceBase / 2;
+          const targetVarianceY = Math.random() * varianceBase - varianceBase / 2;
+          customStyle += `
+          @keyframes shooting${localId}_${projectileNumber} {
+            0%   {transform: translate(0,0) rotate(${angle}deg) scaleY(1)}
             100% {transform: translate(
-              ${36 * (targetCoords.x - position.x)}px,
-              ${36 * (targetCoords.y - position.y)}px
-            ) rotate(${angle}deg) scaleY(2)}
+              ${40 * (targetCoords.x - position.x) + targetVarianceX}px,
+              ${40 * (targetCoords.y - position.y) + targetVarianceY}px
+            ) rotate(${angle}deg) scaleY(1)}
           }
           `;
 
-        while (projectileNumber--) {
           customStyle += `
           .projectile${localId}_${projectileNumber} {
-            transform: rotate(${angle}deg);
-            animation: shooting${localId} 0.8s linear infinite;
-            animation-delay: ${projectileNumber - 1 * 0.3}s;
+            transform: rotateZ(${angle}deg);
+            animation: shooting${localId}_${projectileNumber} 0.8s linear infinite;
+            animation-delay: ${projectileNumber * 0.2}s;
           }`;
         }
         const projectile = ".";
 
-        projectileNumber = 3;
+        projectileNumber = numberOfProjectiles;
 
         while (projectileNumber--) {
           const className = `projectile projectile${localId}_${projectileNumber}`;

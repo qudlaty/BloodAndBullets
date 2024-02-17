@@ -15,7 +15,7 @@ const meta = {
   render: args => (
     <>
       <Description />
-      <div style={{ fontSize: "40px", border: "1px solid red" }}>
+      <div style={{ fontSize: "40px", border: "1px solid red", position: "relative", width: "1em", height: "1em" }}>
         <ShootingVisualization {...args}></ShootingVisualization>
       </div>
     </>
