@@ -26,8 +26,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build && npm run move-storybook",
-    "move-storybook": "mv storybook-static build/storybook"
+    "build-storybook": "storybook build",
+    "build-all": "npm run build && npm run build-storybook"
   },
   "eslintConfig": {
     "extends": [
