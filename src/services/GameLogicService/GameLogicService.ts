@@ -5,6 +5,7 @@ import { SquaresService, Square } from "services/SquaresService";
 import { EntitiesService, Entity } from "services/EntitiesService";
 import * as Helpers from "helpers";
 import { ScriptsService } from "services/ScriptsService";
+import { MessageService } from "services";
 
 /**
  * @description Assorted methods required to run the game logic
@@ -37,7 +38,11 @@ class GameLogicClass {
    */
 
   calculateNextGameStateAfterProcessingAGivenEntity(previousState: GameState, givenEntity: Entity): GameState {
-    if (givenEntity.actionPoints === 0) return previousState;
+    if (givenEntity.actionPoints === 0) {
+      const entity = givenEntity;
+      MessageService.send(`${entity.name} has not enough AP to execute this action`);
+      return previousState;
+    }
     const nextState: GameState = previousState;
     const { entities } = nextState;
     this.processAnEntity(givenEntity);
