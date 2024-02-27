@@ -7,6 +7,7 @@ interface InventoryListProps {
   className?: string;
   label: string;
   title: string;
+  interactButtonText: string;
   onClick(itemName: string);
   onDrop(itemName: string);
   onReload(weapon: RangedWeapon);
@@ -31,6 +32,7 @@ export function InventoryList(props: InventoryListProps) {
     <InventoryItem
       key={`i${item.name}`}
       item={item}
+      interactButtonText={props.interactButtonText}
       onClick={props.onClick}
       onDrop={props.onDrop}
       onReload={props.onReload}

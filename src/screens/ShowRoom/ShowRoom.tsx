@@ -17,7 +17,7 @@ export class ShowRoom extends React.Component<void, void> {
       content: (
         <Controls
           keys={["q", "e"]}
-          onKeyPress={(e) => {
+          onKeyPress={e => {
             console.log("ehlo", e);
           }}
         ></Controls>
@@ -41,7 +41,16 @@ export class ShowRoom extends React.Component<void, void> {
 
     {
       name: "InventoryItem",
-      content: <InventoryItem item={new M16()} onDrop={noop} onReload={noop} onClick={noop} processInterface={noop} />,
+      content: (
+        <InventoryItem
+          item={new M16()}
+          interactButtonText="Equip"
+          onDrop={noop}
+          onReload={noop}
+          onClick={noop}
+          processInterface={noop}
+        />
+      ),
     },
     {
       name: "LinearDisplay 66/100",

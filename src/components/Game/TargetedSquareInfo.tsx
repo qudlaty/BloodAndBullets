@@ -132,6 +132,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         <InventoryList
           label="Items in this location"
           title="On the floor"
+          interactButtonText="Pick up"
           onClick={this.onItemClick}
           onDrop={null}
           onReload={null}

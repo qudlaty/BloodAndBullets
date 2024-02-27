@@ -123,6 +123,7 @@ export class EntityCard extends React.Component<EntityCardProps> {
         <InventoryList
           label="Equipped"
           title="In hands"
+          interactButtonText="Unequip"
           onClick={this.handleInventoryClick}
           onDrop={this.onDrop}
           onReload={this.onReload}
@@ -132,6 +133,7 @@ export class EntityCard extends React.Component<EntityCardProps> {
         <InventoryList
           label="Inventory"
           title="In backpack"
+          interactButtonText="Equip"
           onClick={this.handleInventoryClick}
           onDrop={this.onDrop}
           onReload={this.onReload}

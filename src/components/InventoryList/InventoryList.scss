@@ -38,7 +38,8 @@
     font-size: 10px;
   }
   &__reload-button,
-  &__drop-button {
+  &__drop-button,
+  &__equip-button {
     background: #222;
     color: #666;
     border: 1px solid #666;
@@ -56,7 +57,8 @@
       animation: blink_softly 1.5s alternate infinite;
     }
   }
-  &__drop-button {
+  &__drop-button,
+  &__equip-button {
     float: right;
   }
 }

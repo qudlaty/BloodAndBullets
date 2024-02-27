@@ -4,6 +4,7 @@ import { LinearDisplay } from "components/LinearDisplay";
 
 interface InventoryItemProps {
   item: Item;
+  interactButtonText: string;
   onDrop(itemName: string);
   onReload(weapon: RangedWeapon);
   onClick(itemName: string);
@@ -28,6 +29,14 @@ export function InventoryItem(props: InventoryItemProps) {
       </button>
     );
   }
+  const equipButton = (
+    <button //
+      className="inventory-list__equip-button"
+      onClick={() => props.onClick(item.name)}
+    >
+      {props.interactButtonText}
+    </button>
+  );
 
   if (item instanceof RangedWeapon) {
     const weapon = item as RangedWeapon;
@@ -63,12 +72,13 @@ export function InventoryItem(props: InventoryItemProps) {
 
   return (
     <div key={item.name}>
-      <div onClick={() => props.onClick(item.name)} key={item.name} className="inventory-list__item">
+      <div key={item.name} className="inventory-list__item">
         <span>{item.name}</span>
         <div>{ammoCounter}</div>
       </div>
       {reloadButton}
       {dropButton}
+      {equipButton}
     </div>
   );
 }
