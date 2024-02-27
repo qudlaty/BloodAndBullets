@@ -16,3 +16,4 @@ export * from "./InventoryItem";
 export * from "./HpBar";
 export * from "./ShootingVisualization";
 export * from "./SlideInPanel";
+export * from "./GradientBolt";

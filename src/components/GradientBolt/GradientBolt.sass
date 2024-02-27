@@ -1,0 +1,57 @@
+.line-of-fire
+    font-size: 1vh
+    position: relative
+    text-align: right
+    top: 1.7em
+    left: 5em
+    height: 1em
+    width: 40em
+    //border: 1px solid #F33f
+    border-radius: 10em
+    overflow: hidden
+
+    .bolt
+        width: 20em
+        height: 1em
+        position: absolute
+        border-radius: 10em
+        &.version-0
+            background: linear-gradient(to right, #0000, #FFFF)
+        &.version-1
+            background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(255,255,255,1) 80%, rgba(255,0,0,1) 90%, rgba(255,0,0,1) 100%)
+        &.version-2
+            background: linear-gradient(to right, #0000 0%, #EEEA 80%,  #F000 81%, #F000 86%, #EEEF 100%)
+        &.version-3
+            background: linear-gradient(to right, #0000 0%, #F005 80%,  #F000 81%, #F000 81%, #EEEF 100%)
+        &.version-4
+            background: linear-gradient(to right, #0000 0%, #FFF5 80%,  #F000 81%, #F000 82%, #F00F 83%, #EEEF 90%, #EEEF 100%)
+        &.version-5
+            background: linear-gradient(to right, #0000 0%, #FFF5 80%,  #F000 81%, #EEEF 90%, #EEEF 93%, #FB0F 93%, #FB0F 100%)
+        &.version-6
+            background: linear-gradient(to right, #0000 0%, #FFF5 80%,  #FFF5 81%, #FB0F 100%)
+        &.version-7
+            background: linear-gradient(to right, #FFF0 0%, #FFF3 85%,  #FB0F 90%, #FB0F 100%)
+
+            
+        &.shooting
+            animation: shooting 5s linear infinite
+        &.shooting-transform
+            animation: shooting-transform 5s linear infinite
+
+          
+@keyframes shooting
+  0%
+    left: -20em
+  100%
+    left: 100%
+  
+@keyframes shooting-transform
+  0%
+    transform: translateX(-100%)
+    opacity: 1
+  50%
+    transform: translateX(10em)
+    opacity: 1
+  100%
+    transform: translateX(40em)
+    opacity: 0
