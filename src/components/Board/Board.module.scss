@@ -1,4 +1,7 @@
 .board {
+  * {
+    transform-style: preserve-3d;
+  }
   //min-width: 442px;// TODO: refactor this
   background: transparent; // #111;
   padding: 10px;
@@ -26,12 +29,12 @@
 }
 
 .board {
-  transform: perspective(700px) rotateX(0) rotateY(0) rotateZ(0);
+  transform: perspective(13337px) rotateX(0) rotateY(0) rotateZ(0);
   transform-style: preserve-3d;
   transition:
     transform 1s,
     font-size 0.1s;
   &--rotated {
-    transform: perspective(700px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+    transform: perspective(13337px) rotateX(45deg) rotateY(0deg) rotateZ(45deg);
   }
 }
