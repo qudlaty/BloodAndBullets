@@ -18,7 +18,7 @@ interface InventoryListProps {
 export function InventoryList(props: InventoryListProps) {
   const baseClassName = `inventory-list`;
 
-  const isExpandedInitialState = false;
+  const isExpandedInitialState = true;
   const [isExpanded, setIsExpanded] = useState(isExpandedInitialState);
   if (!props.inventory) {
     return null;
