@@ -41,6 +41,8 @@ class GameLogicClass {
     if (givenEntity.actionPoints === 0) {
       const entity = givenEntity;
       MessageService.send(`${entity.name} has not enough AP to execute this action`);
+      MessageService.setCursorMessage("NO AP");
+
       return previousState;
     }
     const nextState: GameState = previousState;
@@ -49,6 +51,7 @@ class GameLogicClass {
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);
     nextState.friendsAlive = this.calculateNumberOfAliveFriends(entities);
     ScriptsService.runScripts(givenEntity);
+
     return nextState;
   }
 

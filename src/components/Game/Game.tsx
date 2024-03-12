@@ -11,7 +11,7 @@ import {
 } from "services";
 
 // components
-import { Board, MessageBox, Controls, SlideInPanel, HudPanel } from "components";
+import { Board, MessageBox, Controls, SlideInPanel, HudPanel, CursorMessage } from "components";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 
@@ -44,6 +44,7 @@ export class Game extends React.PureComponent<void, GameState> {
     this.startIfAutoLoopIsOn();
     MessageService.send("Mission loaded");
     GameActions.processInterface();
+    GameActions.startUpdatingClickPositionCssVariables();
   }
 
   startIfAutoLoopIsOn() {
@@ -70,6 +71,11 @@ export class Game extends React.PureComponent<void, GameState> {
     // console.log("Rendering Game. #", this.renderCounter++);
     return (
       <div className="game game-hud">
+        <CursorMessage
+          messageText={MessageService.cursorMessage}
+          messageTimeInMs={1500}
+          key={MessageService.cursorMessageNumber}
+        ></CursorMessage>
         <section className="section-details">
           <SelectedEntityInfo
             selected={this.state.selected}

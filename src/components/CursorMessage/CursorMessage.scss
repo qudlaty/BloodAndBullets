@@ -1,0 +1,32 @@
+.cursor-message {
+  position: fixed;
+  left: var(--mouse-click-position-x);
+  top: var(--mouse-click-position-y);
+  width: 8em;
+  height: 1em;
+  line-height: 1em;
+  text-align: center;
+  z-index: 40000;
+  transform: translateY(-1.5em) translateY(-50%) translateX(-50%);
+  color: #eee;
+  --blur: 2px;
+  --color: #000;
+  text-shadow:
+    -1px 0 var(--blur) var(--color),
+    1px 0 var(--blur) var(--color),
+    0 -1px var(--blur) var(--color),
+    0 1px var(--blur) var(--color);
+  pointer-events: none;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}

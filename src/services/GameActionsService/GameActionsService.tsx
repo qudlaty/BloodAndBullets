@@ -346,4 +346,17 @@ export class GameActionsClassForGameComponent {
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, "isShooting");
     this.processInterface();
   };
+
+  startUpdatingClickPositionCssVariables = () => {
+    const updateClickPositionCssVariables = (x: number, y: number) => {
+      console.log("EVENT:", x, y);
+      document.documentElement.style.setProperty("--mouse-click-position-x", x + "px");
+      document.documentElement.style.setProperty("--mouse-click-position-y", y + "px");
+    };
+
+    document.addEventListener(
+      "click", //
+      event => updateClickPositionCssVariables(event.clientX, event.clientY)
+    );
+  };
 }

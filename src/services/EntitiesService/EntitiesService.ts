@@ -163,6 +163,9 @@ class EntitiesServiceClass {
     } else {
       weapon.rounds = "empty";
       this.stopShooting(entity);
+      MessageService.setCursorMessage("NO AMMO");
+      MessageService.send(`${entity.name} can't shoot, as they have no ammunition loaded.`);
+
       return 0;
     }
 
@@ -208,6 +211,7 @@ class EntitiesServiceClass {
       weapon.reload();
     } else {
       MessageService.send(`${entity.name} has not enough AP to reload ${weapon.name}`);
+      MessageService.setCursorMessage(`NO AP`);
     }
   }
 

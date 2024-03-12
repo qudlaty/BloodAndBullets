@@ -6,6 +6,10 @@ export type MessageRecord = {
 
 export class MessageServiceClass {
   messages: MessageRecord[] = [];
+  cursorMessage: string = "";
+  /** Needed to let us know when to render a new message */
+  cursorMessageNumber: number = 0;
+
   send(message: string) {
     const timestamp = new Date().toISOString().substring(11, 23);
     const newMessageRecord: MessageRecord = {
@@ -13,6 +17,11 @@ export class MessageServiceClass {
       timestamp,
     };
     this.messages.push(newMessageRecord);
+  }
+
+  setCursorMessage(messageText: string) {
+    this.cursorMessage = messageText;
+    this.cursorMessageNumber++;
   }
 }
 
