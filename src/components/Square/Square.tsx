@@ -28,7 +28,7 @@ interface SquareProps {
 
 /**
  * Displays a single square with blood and items on it.
- * @param squareId - Unique square id, passed to onClick
+ * @param squareId - Unique square id
  * @param className - Optional CSS class name
  * @param onClick - Handler for this square click
  * @param blood - The amount of blood on this square

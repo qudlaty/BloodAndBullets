@@ -6,19 +6,18 @@ import { Square } from "services/SquaresService";
  * Sets all given fields on a collection to `undefined`
  */
 export function resetGivenFieldsOnACollection(collection, ...fieldNames) {
-  collection.forEach((item: Record<string, any>) => {
-    fieldNames.forEach((fieldName: string) => {
+  collection.forEach((item) => {
+    fieldNames.forEach((fieldName) => {
       item && (item[fieldName] = undefined);
     });
   });
 }
 
 /** @description Takes a number and fits it within given boundaries, then returns it */
-export function getNumberWithinBoundaries(givenNumber: number, min: number, max: number): number {
-  let result;
-  if (givenNumber < min) result = min;
-  if (givenNumber > max) result = max;
-  return result;
+export function getNumberWithinBoundaries(value: number, min: number, max: number): number {
+  if (value < min) value = min;
+  if (value > max) value = max;
+  return value;
 }
 
 /** @description Returns a random integer between min and max */
@@ -45,8 +44,8 @@ export function calculateDistance(x: number, y: number): number {
 /** @description Mixing classess together */
 export function applyMixins(derivedCtor: any, baseCtors: any[]) {
   // see https://www.typescriptlang.org/docs/handbook/mixins.html
-  baseCtors.forEach((baseCtor: Record<"prototype", any>) => {
-    Object.getOwnPropertyNames(baseCtor.prototype).forEach((name: string) => {
+  baseCtors.forEach((baseCtor) => {
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
       Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
     });
   });
@@ -90,7 +89,7 @@ export function turnFlagsIntoClasses(flags: object, classNameBase?: string) {
     classNameBase = "";
   }
 
-  Object.keys(flagsToClassess).forEach(key => {
+  Object.keys(flagsToClassess).forEach((key) => {
     if (flags[key]) {
       className += ` ${classNameBase}${flagsToClassess[key]}`;
     }
@@ -118,7 +117,7 @@ export function newCopyOfArray(array: any[]) {
 export function getCssClassesForAGivenSquare(square: Square): string {
   if (!square) return;
   const squareClassNameBase = "square";
-  let squareClassName = `${squareClassNameBase} ${square?.squareType}`;
+  let squareClassName = `${squareClassNameBase} ${square && square.squareType}`;
   squareClassName += turnFlagsIntoClasses(square, squareClassNameBase);
   if (square.entity) {
     squareClassName += turnFlagsIntoClasses(square.entity, squareClassNameBase);

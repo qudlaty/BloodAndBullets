@@ -9,9 +9,7 @@ interface GradientBoltProps {
   /** Time the bolt will take to travel and vanish from the line of fire (with tail) */
   boltFlightTimeInHundredsOfMs: number;
 }
-/** A bolt rendered from a single div with a gradient
- * TODO: Add a thin 1px version as well
- */
+/** A bolt rendered from a single div with a gradient */
 export const GradientBolt = ({
   lineOfFireLength = "20em",
   version = 0,
