@@ -98,10 +98,6 @@ export class Game extends React.PureComponent<void, GameState> {
               isRotated={this.state.isBoardRotated}
               style={{ fontSize: `${this.state.squareSize}px` }}
             />
-            <Controls
-              keys={["W", "S", "A", "D", "space"]} // TODO: implement using this.
-              onKeyPress={GameActions.handleKeyPress}
-            ></Controls>
           </div>
           <section className="section-status">
             <MessageBox />
