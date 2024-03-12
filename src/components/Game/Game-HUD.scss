@@ -54,14 +54,13 @@
     }
   }
   .section-main {
-    //border: 3px solid yellow;
+    padding-top: 4em;
     flex: 1 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .section-status {
-    //border: 2px solid lightblue;
   }
 
   .info {
