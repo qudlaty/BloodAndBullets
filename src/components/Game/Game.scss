@@ -15,9 +15,8 @@
   }
   &__board {
     border: 1px solid #666;
-
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
   }
   &__info {
