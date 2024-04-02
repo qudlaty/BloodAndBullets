@@ -1,6 +1,9 @@
 import { M16, M40, L30 } from "./ItemDefinitions";
 import { EntitiesService, Entity } from "services";
 
+/**
+ * @description Entities set loaded with the default map so far
+ */
 export const entitiesInitialValues = [
   {
     name: "Lazer Blady",
@@ -22,7 +25,7 @@ export const entitiesInitialValues = [
     icon: "🤖",
     isFriendly: true,
     isBreathing: false,
-    position: { x: 3, y: 5 },
+    position: { x: 2, y: 5 },
     equipment: { hands: new L30() },
     bleedingReductionPerTurn: 50,
   },
@@ -41,7 +44,7 @@ export const entitiesInitialValues = [
     hp: 100,
     maxHp: 100,
     icon: "🦑",
-    position: { x: 5, y: 5 },
+    position: { x: 4, y: 2 },
     equipment: { hands: new M40() },
   },
   {
@@ -51,7 +54,7 @@ export const entitiesInitialValues = [
     maxHp: 50,
     icon: "🐜",
     isBreathing: true,
-    position: { x: 7, y: 6 },
+    position: { x: 7, y: 5 },
     equipment: { hands: new M40() },
   },
   {
@@ -67,7 +70,7 @@ export const entitiesInitialValues = [
     hp: 12,
     maxHp: 20,
     icon: "🦟",
-    position: { x: 2, y: 7 },
+    position: { x: 0, y: 7 },
     equipment: { hands: new M16() },
     actionPoints: 1,
     maxActionPoints: 1,
