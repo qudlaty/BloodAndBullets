@@ -48,7 +48,10 @@
     //margin: 5px;
     // position: relative;
     // top: -0px;
-
+    &:hover {
+      color: #aaa;
+      border-color: #eee;
+    }
     &--partial {
       color: #999;
     }
