@@ -26,7 +26,7 @@
 
   &--dead {
     background: #442020;
-    opacity: 0.4;
+    opacity: 1;
     border: 2px solid #700;
   }
 
@@ -83,6 +83,11 @@
     right: 0;
     color: white;
     padding: 5px;
+  }
+
+  .equipment-panel .inventory-list__equip-button {
+    // unequip button only
+    float: right;
   }
 }
 .inventory-button {

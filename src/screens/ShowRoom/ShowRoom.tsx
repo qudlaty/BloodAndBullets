@@ -47,7 +47,7 @@ export class ShowRoom extends React.Component<void, void> {
           interactButtonText="Equip"
           onDrop={noop}
           onReload={noop}
-          onClick={noop}
+          onInteract={noop}
           processInterface={noop}
         />
       ),

@@ -8,8 +8,8 @@ interface InventoryListProps {
   label: string;
   title: string;
   interactButtonText: string;
-  onClick(itemName: string);
-  onDrop(itemName: string);
+  onInteract?(itemName: string);
+  onDrop?(itemName: string);
   onReload?(weapon: RangedWeapon);
   inventory: Item[]; //
   processInterface: () => void;
@@ -33,7 +33,7 @@ export function InventoryList(props: InventoryListProps) {
       key={`i${item.name}`}
       item={item}
       interactButtonText={props.interactButtonText}
-      onClick={props.onClick}
+      onInteract={props.onInteract}
       onDrop={props.onDrop}
       onReload={props.onReload}
       processInterface={props.processInterface}

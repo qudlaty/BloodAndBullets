@@ -48,7 +48,9 @@
       animation: blink_softly 1.5s alternate infinite;
     }
   }
-  &__drop-button,
+  &__drop-button {
+    float: right;
+  }
   &__equip-button {
     //float: right;
   }

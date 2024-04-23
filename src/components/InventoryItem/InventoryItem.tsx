@@ -5,9 +5,9 @@ import { LinearDisplay } from "components/LinearDisplay";
 interface InventoryItemProps {
   item: Item;
   interactButtonText: string;
-  onDrop(itemName: string);
+  onDrop?(itemName: string);
   onReload?(weapon: RangedWeapon);
-  onClick(itemName: string);
+  onInteract?(itemName: string);
   processInterface: () => void;
 }
 
@@ -15,6 +15,7 @@ export function InventoryItem(props: InventoryItemProps) {
   const { item } = props;
   let reloadButton;
   let dropButton;
+  let equipButton;
   let ammoCounter;
 
   if (props.onDrop) {
@@ -25,18 +26,20 @@ export function InventoryItem(props: InventoryItemProps) {
           props.onDrop(item.name);
         }}
       >
-        Drop
+        Drop ↘
       </button>
     );
   }
-  const equipButton = (
-    <button //
-      className="inventory-list__equip-button"
-      onClick={() => props.onClick(item.name)}
-    >
-      {props.interactButtonText}
-    </button>
-  );
+  if (props.onInteract) {
+    equipButton = (
+      <button //
+        className="inventory-list__equip-button"
+        onClick={() => props.onInteract(item.name)}
+      >
+        {props.interactButtonText}
+      </button>
+    );
+  }
 
   if (item instanceof RangedWeapon) {
     const weapon = item as RangedWeapon;

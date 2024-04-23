@@ -127,13 +127,13 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       });
     }
 
-    if (targeted.items) {
+    if (targeted.items && targeted.items.length) {
       items = (
         <InventoryList
           label="Items in this location"
           title="On the floor"
-          interactButtonText="Pick up"
-          onClick={this.onItemClick}
+          interactButtonText="↖ Pick up"
+          onInteract={this.onItemClick}
           onDrop={null}
           onReload={null}
           inventory={targeted.items}

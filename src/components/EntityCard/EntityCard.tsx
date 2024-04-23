@@ -126,23 +126,24 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
           <LinearDisplay className="full" label="HP" current={entity.hp} max={entity.maxHp} />
           {bleedingText}
         </div>
-        <InventoryList
-          label=""
-          title="In hands"
-          interactButtonText="Unequip"
-          onClick={this.handleInventoryItemClick}
-          onDrop={this.onDrop}
-          onReload={this.onReload}
-          inventory={inHandsArray}
-          processInterface={() => this.props.processInterface()}
-        />
+        <div className="equipment-panel">
+          <InventoryList
+            label=""
+            title="In hands"
+            interactButtonText="Unequip →"
+            onInteract={this.state.isInventoryOpen && this.handleInventoryItemClick}
+            onReload={this.onReload}
+            inventory={inHandsArray}
+            processInterface={() => this.props.processInterface()}
+          />
+        </div>
         {this.state.isInventoryOpen && (
           <div className="inventory-panel">
             <InventoryList
               label="Inventory"
               title="In backpack"
-              interactButtonText="Equip"
-              onClick={this.handleInventoryItemClick}
+              interactButtonText=" ← Equip"
+              onInteract={this.handleInventoryItemClick}
               onDrop={this.onDrop}
               inventory={entity.inventory}
               processInterface={() => this.props.processInterface()}
