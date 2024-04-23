@@ -85,3 +85,19 @@
     padding: 5px;
   }
 }
+.inventory-button {
+  margin-top: 6px;
+}
+.inventory-panel {
+  position: absolute;
+  left: calc(100% + 4px);
+  bottom: 0%;
+  background: #2b2b2b;
+  border: 2px solid #333;
+  padding: 10px;
+  padding-top: 0;
+  padding-bottom: 3px;
+  overflow-y: auto;
+  max-height: 300px;
+  z-index: 10;
+}

@@ -10,7 +10,7 @@ interface InventoryListProps {
   interactButtonText: string;
   onClick(itemName: string);
   onDrop(itemName: string);
-  onReload(weapon: RangedWeapon);
+  onReload?(weapon: RangedWeapon);
   inventory: Item[]; //
   processInterface: () => void;
 }
@@ -44,13 +44,10 @@ export function InventoryList(props: InventoryListProps) {
 
   return (
     <div className={finalClassName}>
-      <div className="inventory-list__label" onClick={handleLabelClick}>
-        <span className="inventory-list__label-icon">▾</span>
-        {props.label}
-        :&nbsp;
-      </div>
+      {props.label && <div className="inventory-list__label">{props.label}</div>}
       <div className="inventory-list__items" title={props.title}>
         {inventoryItems}
+        {props.inventory.length == 0 ? "is empty" : null}
       </div>
     </div>
   );

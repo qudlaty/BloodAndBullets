@@ -6,7 +6,7 @@ interface InventoryItemProps {
   item: Item;
   interactButtonText: string;
   onDrop(itemName: string);
-  onReload(weapon: RangedWeapon);
+  onReload?(weapon: RangedWeapon);
   onClick(itemName: string);
   processInterface: () => void;
 }
@@ -41,7 +41,7 @@ export function InventoryItem(props: InventoryItemProps) {
   if (item instanceof RangedWeapon) {
     const weapon = item as RangedWeapon;
 
-    if (weapon.reload) {
+    if (weapon.reload && props.onReload) {
       // has reload capability
       let className = " inventory-list__reload-button ";
 

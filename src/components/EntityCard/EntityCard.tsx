@@ -10,11 +10,27 @@ interface EntityCardProps {
   onEntityClick?(entityName: string);
   processInterface?: () => void;
 }
+interface EntityCardState {
+  isInventoryOpen: boolean;
+}
 
-export class EntityCard extends React.Component<EntityCardProps> {
-  renderCount = 0;
-  handleInventoryClick = (itemName: string): void => {
+export class EntityCard extends React.Component<EntityCardProps, EntityCardState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isInventoryOpen: false,
+    };
+  }
+
+  handleInventoryItemClick = (itemName: string): void => {
     this.props.onInventoryClick(this.props.entity, itemName);
+  };
+
+  handleInventoryButtonClick = () => {
+    this.setState(prevState => {
+      console.log("changing from", prevState.isInventoryOpen);
+      return { isInventoryOpen: !prevState.isInventoryOpen };
+    });
   };
 
   onDrop = (itemName: string) => {
@@ -109,37 +125,30 @@ export class EntityCard extends React.Component<EntityCardProps> {
           <LinearDisplay className="full" label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
           <LinearDisplay className="full" label="HP" current={entity.hp} max={entity.maxHp} />
           {bleedingText}
-          {/* <span title="Location" className="entity-data__location">
-            LOC: {entity.position.x}, {entity.position.y}
-          </span>
-          <span title="Distance to target" hidden={!entity.targetPosition} className="entity-data__distance-to-target">
-            DIST: {this.distanceToTarget}
-          </span>
-          <span title="Target location" hidden={!entity.targetPosition} className="entity-data__target-position">
-            TRGT: {entity.targetPosition && entity.targetPosition.x}, {entity.targetPosition && entity.targetPosition.y}
-          </span>
-          <br /> */}
         </div>
         <InventoryList
-          label="Equipped"
+          label=""
           title="In hands"
           interactButtonText="Unequip"
-          onClick={this.handleInventoryClick}
+          onClick={this.handleInventoryItemClick}
           onDrop={this.onDrop}
           onReload={this.onReload}
           inventory={inHandsArray}
           processInterface={() => this.props.processInterface()}
         />
-        <InventoryList
-          label="Inventory"
-          title="In backpack"
-          interactButtonText="Equip"
-          onClick={this.handleInventoryClick}
-          onDrop={this.onDrop}
-          onReload={this.onReload}
-          inventory={entity.inventory}
-          processInterface={() => this.props.processInterface()}
-        />
+        {this.state.isInventoryOpen && (
+          <div className="inventory-panel">
+            <InventoryList
+              label="Inventory"
+              title="In backpack"
+              interactButtonText="Equip"
+              onClick={this.handleInventoryItemClick}
+              onDrop={this.onDrop}
+              inventory={entity.inventory}
+              processInterface={() => this.props.processInterface()}
+            />
+          </div>
+        )}
         {entity.isDead ? (
           <button
             className="inventory-list__drop-button pick-up-button"
@@ -150,6 +159,12 @@ export class EntityCard extends React.Component<EntityCardProps> {
         ) : (
           ""
         )}
+        <button
+          className="inventory-list__drop-button inventory-button"
+          onClick={() => this.handleInventoryButtonClick()}
+        >
+          INV
+        </button>
       </div>
     );
   }

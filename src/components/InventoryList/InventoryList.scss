@@ -1,37 +1,25 @@
 .inventory-list {
-  margin-top: 1vh;
-
-  &--collapsed {
-    .inventory-list__label-icon {
-      color: #eee;
-      transform: rotate(-90deg);
-    }
-    .inventory-list__items {
-      transform: scaleY(0);
-      max-height: 0;
-    }
-  }
   &--expanded {
-    .inventory-list__label-icon {
-      transform: rotate(0deg);
-    }
     .inventory-list__items {
       transform: scaleY(1);
       max-height: 1000px;
     }
   }
   &__label {
-    &-icon {
-      display: inline-block;
-      transition: all 1s;
-    }
+    margin-bottom: 10px;
+
+    font-size: 10px;
+    text-align: center;
+    background: #333;
+    padding: 3px;
+    padding-bottom: 6px;
   }
   &__items {
     transition: all 1s;
   }
   &__item {
     background-color: #222;
-    border: 1px solid #666;
+    border: 1px solid #555;
     padding: 5px;
     //margin: 5px;
     margin-top: 3px;
@@ -45,7 +33,7 @@
     border: 1px solid #666;
     font-size: 10px;
     padding: 2px 5px;
-    //margin: 5px;
+    margin-bottom: 6px;
     // position: relative;
     // top: -0px;
     &:hover {
@@ -62,7 +50,7 @@
   }
   &__drop-button,
   &__equip-button {
-    float: right;
+    //float: right;
   }
 }
 
