@@ -117,7 +117,10 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
             <EmojiMapper emoji={entity.icon} />
           </div>
         </div>
-        <strong title="Name">{entity.name}</strong>
+        <strong title="Name">
+          {entity.isDead && "Dead "}
+          {entity.name}
+        </strong>
         <br />
         <small className="entity-data__rank">Private</small>
         <div className="entity-data__status-displays">
@@ -161,7 +164,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
             className="inventory-list__drop-button pick-up-button"
             onClick={() => this.props.onEntityClick(entity.name)}
           >
-            Pick up
+            Pick up the body
           </button>
         )}
       </div>
