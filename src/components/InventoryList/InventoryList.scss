@@ -16,6 +16,16 @@
   }
   &__items {
     transition: all 1s;
+    .is-empty {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      color: #555;
+      font-weight: bold;
+      font-size: 1em;
+      position: relative;
+      top: -3px;
+    }
   }
   &__item {
     background-color: #222;

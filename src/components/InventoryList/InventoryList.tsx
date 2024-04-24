@@ -11,7 +11,7 @@ interface InventoryListProps {
   onInteract?(itemName: string);
   onDrop?(itemName: string);
   onReload?(weapon: RangedWeapon);
-  inventory: Item[]; //
+  inventory?: Item[]; //
   processInterface: () => void;
 }
 
@@ -20,15 +20,12 @@ export function InventoryList(props: InventoryListProps) {
 
   const isExpandedInitialState = true;
   const [isExpanded, setIsExpanded] = useState(isExpandedInitialState);
-  if (!props.inventory) {
-    return null;
-  }
 
   const finalClassName = `
     ${baseClassName} ${baseClassName}${isExpanded ? "--expanded" : "--collapsed"} ${props.className || ""}
   `;
 
-  const inventoryItems = props.inventory.map(item => (
+  const inventoryItems = props.inventory?.map(item => (
     <InventoryItem
       key={`i${item.name}`}
       item={item}
@@ -40,14 +37,12 @@ export function InventoryList(props: InventoryListProps) {
     />
   ));
 
-  const handleLabelClick = () => setIsExpanded(isExpanded => !isExpanded);
-
   return (
     <div className={finalClassName}>
       {props.label && <div className="inventory-list__label">{props.label}</div>}
       <div className="inventory-list__items" title={props.title}>
         {inventoryItems}
-        {props.inventory.length == 0 ? "is empty" : null}
+        {props.inventory?.length > 0 ? null : props.label && <span className="is-empty">is empty</span>}
       </div>
     </div>
   );
