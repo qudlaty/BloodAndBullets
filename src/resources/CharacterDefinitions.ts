@@ -27,6 +27,7 @@ export const entitiesInitialValues = [
     isBreathing: false,
     position: { x: 2, y: 5 },
     equipment: { hands: new L30() },
+    inventory: [new M16()],
     bleedingReductionPerTurn: 50,
   },
   {
