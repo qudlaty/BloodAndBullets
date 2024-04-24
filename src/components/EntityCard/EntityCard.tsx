@@ -132,6 +132,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
             interactButtonText="Unequip →"
             onInteract={this.state.isInventoryOpen && this.handleInventoryItemClick}
             onReload={this.onReload}
+            onDrop={this.props.entity.isDead && this.onDrop}
             inventory={inHandsArray}
             processInterface={() => this.props.processInterface()}
           />
