@@ -5,6 +5,7 @@ import { LinearDisplay } from "components/LinearDisplay";
 interface InventoryItemProps {
   item: Item;
   interactButtonText: string;
+  shorterDisplay?: boolean;
   onDrop?(itemName: string);
   onReload?(weapon: RangedWeapon);
   onInteract?(itemName: string);
@@ -68,16 +69,19 @@ export function InventoryItem(props: InventoryItemProps) {
       reloadButton = null;
     }
 
-    ammoCounter = weapon.reload ? (
-      <LinearDisplay className="full" label="Rounds" current={weapon.rounds} max={weapon.maxRounds} />
-    ) : null;
+    ammoCounter =
+      weapon.reload && props.shorterDisplay ? (
+        ` (${weapon.rounds})`
+      ) : (
+        <LinearDisplay className="full" label="Rounds" current={weapon.rounds} max={weapon.maxRounds} />
+      );
   }
 
   return (
     <div key={item.name}>
       <div key={item.name} className="inventory-list__item">
         <span>{item.name}</span>
-        <div>{ammoCounter}</div>
+        {ammoCounter}
       </div>
       {reloadButton}
       {dropButton}

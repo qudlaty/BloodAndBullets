@@ -6,6 +6,7 @@ import "./EntityCard.scss";
 
 interface EntityCardProps {
   entity: Entity;
+  shorterDisplay?: boolean;
   onInventoryClick?(entity: Entity, itemName: string);
   onEntityClick?(entityName: string);
   processInterface?: () => void;
@@ -137,6 +138,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
             onReload={this.props.entity.isAlive && this.onReload}
             onDrop={this.props.entity.isDead && this.onDrop}
             inventory={inHandsArray}
+            shorterDisplay={this.props.shorterDisplay}
             processInterface={() => this.props.processInterface()}
           />
         </div>

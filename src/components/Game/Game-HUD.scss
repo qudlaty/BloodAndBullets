@@ -51,6 +51,9 @@
       .inventory-button {
         width: 100%;
       }
+      & > .inventory-button {
+        margin-top: 5px;
+      }
     }
     .targeted {
       ul {

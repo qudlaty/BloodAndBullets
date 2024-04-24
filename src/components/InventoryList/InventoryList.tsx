@@ -12,6 +12,7 @@ interface InventoryListProps {
   onDrop?(itemName: string);
   onReload?(weapon: RangedWeapon);
   inventory?: Item[]; //
+  shorterDisplay?: boolean;
   processInterface: () => void;
 }
 
@@ -30,6 +31,7 @@ export function InventoryList(props: InventoryListProps) {
       key={`i${item.name}`}
       item={item}
       interactButtonText={props.interactButtonText}
+      shorterDisplay={props.shorterDisplay}
       onInteract={props.onInteract}
       onDrop={props.onDrop}
       onReload={props.onReload}

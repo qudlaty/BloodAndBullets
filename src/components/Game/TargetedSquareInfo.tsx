@@ -143,6 +143,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
               onEntityClick={this.onItemClick}
               onInventoryClick={this.props.onInventoryClick}
               entity={i}
+              shorterDisplay={true}
               processInterface={() => this.props.processInterface()}
             />
           );
