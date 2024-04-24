@@ -92,9 +92,9 @@ export class GameModelClass {
       const targetSquare = square;
       const sourceSquare = squaresLoaded[index];
       targetSquare.squareType = (sourceSquare && sourceSquare.squareType) || "floor";
-      targetSquare.icon = (sourceSquare && sourceSquare.icon) || " ";
-      targetSquare.name = (sourceSquare && sourceSquare.name) || " ";
-      targetSquare.description = (sourceSquare && sourceSquare.description) || " ";
+      targetSquare.icon = (sourceSquare && sourceSquare.icon) || "";
+      targetSquare.name = (sourceSquare && sourceSquare.name) || "";
+      targetSquare.description = (sourceSquare && sourceSquare.description) || "";
     });
   };
 
@@ -188,12 +188,12 @@ export class GameModelClass {
       }
       const newSquare = {
         id: id,
-        name: " ",
-        icon: " ",
+        name: "",
+        icon: "",
         squareType: squareType,
         entities: [],
         position: { x: idx, y: idy },
-        description: " ",
+        description: "",
       };
 
       if (squareType == "floor") {
