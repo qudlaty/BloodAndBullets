@@ -7,7 +7,6 @@
   background: #333;
   border-radius: 2px;
   padding: 10px;
-  padding-bottom: 28px;
   position: relative;
   strong {
     font-size: 12px;
@@ -68,7 +67,7 @@
 
   .bleeding-info {
     display: inline-block;
-    margin: 1em 0;
+    margin: 0.2em 0;
     color: rgb(141, 0, 0);
     &__reduction {
       color: #666;
@@ -77,22 +76,26 @@
       }
     }
   }
-  .pick-up-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: white;
-    padding: 5px;
+
+  .entity-data__status-displays {
+    margin-bottom: 6px;
   }
 
   .equipment-panel .inventory-list__equip-button {
     // unequip button only
     float: right;
   }
+  & > .inventory-button,
+  .pick-up-button {
+    width: 100%;
+    float: none;
+  }
+
+  & > button:last-child {
+    margin-bottom: -6px;
+  }
 }
-.inventory-button {
-  margin-top: 6px;
-}
+
 .inventory-panel {
   position: absolute;
   left: calc(100% + 4px);
@@ -104,5 +107,6 @@
   padding-bottom: 3px;
   overflow-y: auto;
   max-height: 300px;
+  min-width: 121px;
   z-index: 10;
 }

@@ -28,7 +28,6 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
 
   handleInventoryButtonClick = () => {
     this.setState(prevState => {
-      console.log("changing from", prevState.isInventoryOpen);
       return { isInventoryOpen: !prevState.isInventoryOpen };
     });
   };
@@ -121,7 +120,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
         <strong title="Name">{entity.name}</strong>
         <br />
         <small className="entity-data__rank">Private</small>
-        <div>
+        <div className="entity-data__status-displays">
           <LinearDisplay className="full" label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
           <LinearDisplay className="full" label="HP" current={entity.hp} max={entity.maxHp} />
           {bleedingText}
@@ -150,22 +149,20 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
             />
           </div>
         )}
-        {entity.isDead ? (
+        <button
+          className="inventory-list__drop-button inventory-button"
+          onClick={() => this.handleInventoryButtonClick()}
+        >
+          INVENTORY ({entity.inventory?.length || 0})
+        </button>
+        {entity.isDead && (
           <button
             className="inventory-list__drop-button pick-up-button"
             onClick={() => this.props.onEntityClick(entity.name)}
           >
             Pick up
           </button>
-        ) : (
-          ""
         )}
-        <button
-          className="inventory-list__drop-button inventory-button"
-          onClick={() => this.handleInventoryButtonClick()}
-        >
-          INV
-        </button>
       </div>
     );
   }
