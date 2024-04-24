@@ -64,6 +64,9 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         EntitiesService.removeEntity(item as Entity); // TODO: Take this out of the component
       }
       selected.addToInventory(item);
+      if (!selected.equipment.hands) {
+        selected.equipInHands(item.name);
+      }
     } else {
       MessageService.send(`${selected.name} can't pickup ${itemName}. They need to be on the same square to do that.`);
     }
@@ -153,7 +156,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
           {this.state.isInventoryOpen && (
             <div className="inventory-panel">
               <InventoryList
-                label="Items in this location"
+                label="Items on the floor"
                 title="On the floor"
                 interactButtonText="↖ Pick up"
                 onInteract={this.onItemClick}
