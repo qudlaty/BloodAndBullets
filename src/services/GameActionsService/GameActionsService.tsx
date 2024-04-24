@@ -349,7 +349,7 @@ export class GameActionsClassForGameComponent {
 
   startUpdatingClickPositionCssVariables = () => {
     const updateClickPositionCssVariables = (x: number, y: number) => {
-      console.log("EVENT:", x, y);
+      console.debug("CLICK EVENT AT:", x, y);
       document.documentElement.style.setProperty("--mouse-click-position-x", x + "px");
       document.documentElement.style.setProperty("--mouse-click-position-y", y + "px");
     };
