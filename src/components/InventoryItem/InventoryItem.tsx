@@ -61,7 +61,7 @@ export function InventoryItem(props: InventoryItemProps) {
             props.processInterface();
           }}
         >
-          Reload
+          Reload ({weapon.reloadCostInAP}AP)
         </button>
       );
     } else {
