@@ -17,9 +17,8 @@
     align-items: stretch;
     .selected,
     .targeted {
+      position: relative;
       display: block;
-      border: 1px solid #ee9b01;
-      //padding: 10px;
       width: 165px;
       &__label {
         display: block;
@@ -43,6 +42,14 @@
         background: #ac7000;
         border: 2px solid #ee9b01;
         color: black;
+      }
+
+      .inventory-panel {
+        top: 0%;
+        bottom: auto;
+      }
+      .inventory-button {
+        width: 100%;
       }
     }
     .targeted {

@@ -18,10 +18,30 @@ interface TargetedSquareInfoProps {
   onInventoryClick(entity: Entity, itemName: string): void;
   processInterface: () => void;
 }
+interface TargetedSquareInfoState {
+  isInventoryOpen: boolean;
+}
 
 // TODO: Refactor, does it really need all this logic.
-export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps> {
+export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps, TargetedSquareInfoState> {
   boxSerialNumber: number = 0;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isInventoryOpen: false,
+    };
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.squareNumber !== this.props.squareNumber) {
+      this.setState({ isInventoryOpen: false });
+    }
+  }
+  handleInventoryButtonClick = () => {
+    this.setState(prevState => {
+      return { isInventoryOpen: !prevState.isInventoryOpen };
+    });
+  };
 
   onItemClick = (itemName: string): void => {
     const { selected, targeted, squareNumber } = this.props;
@@ -129,16 +149,28 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
     if (targeted.items && targeted.items.length) {
       items = (
-        <InventoryList
-          label="Items in this location"
-          title="On the floor"
-          interactButtonText="↖ Pick up"
-          onInteract={this.onItemClick}
-          onDrop={null}
-          onReload={null}
-          inventory={targeted.items}
-          processInterface={() => this.props.processInterface()}
-        />
+        <>
+          {this.state.isInventoryOpen && (
+            <div className="inventory-panel">
+              <InventoryList
+                label="Items in this location"
+                title="On the floor"
+                interactButtonText="↖ Pick up"
+                onInteract={this.onItemClick}
+                onDrop={null}
+                onReload={null}
+                inventory={targeted.items}
+                processInterface={() => this.props.processInterface()}
+              />
+            </div>
+          )}
+          <button
+            className="inventory-list__drop-button inventory-button"
+            onClick={() => this.handleInventoryButtonClick()}
+          >
+            Show items on the floor ({targeted.items.length})
+          </button>
+        </>
       );
     }
 
@@ -189,20 +221,22 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     return (
       <div className={this.props.className}>
         <strong className="targeted__label">Target square Info</strong>
+
         <code>
           {square.icon} {square.name}
         </code>
-        <p>{square.description}</p>
+        {square.description && <p className="square-description">{square.description}</p>}
+
         <div>{entityInfo}</div>
         <div>{availableActions}</div>
-        <ul>
-          {/* {positionInfo}
+        {items}
+
+        {/*
+          {positionInfo} 
           {square.squareType}
           {distanceInfo}
           {bloodInfo}
           {editorButtons} */}
-          {items}
-        </ul>
       </div>
     );
   }
