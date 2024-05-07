@@ -3,7 +3,7 @@
 
 import { Game } from "components";
 import * as Helpers from "helpers";
-import { Entity, EntitiesService, SquaresService, GameLogic, Position } from "services";
+import { Entity, EntitiesService, SquaresService, GameLogic, Position, MessageService, MessageLevel } from "services";
 import { GameState } from "services/GameLogicService";
 import { Square } from "services/SquaresService";
 
@@ -108,6 +108,7 @@ export class GameActionsClassForGameComponent {
   }
 
   executeActions = () => {
+    MessageService.send(`Executing actions`, MessageLevel.debug);
     gameComponent.setState(
       prevState => GameLogic.calculateNextGameStateAfterProcessingAGivenEntity(prevState, EntitiesService.selected),
       () => this.afterExecuteActions()
@@ -166,10 +167,17 @@ export class GameActionsClassForGameComponent {
         targeted = squares[squareIndex];
         selectedSquareNumber = squareIndex;
         const doubleClick = () => previousTargeted === targeted;
+
         SquaresService.markSquareAtIndexAsTargeted(squareIndex);
+
         selected.isShooting = false;
 
         if (isEditorOn) {
+          const squareCoords = targeted.position;
+          MessageService.send(
+            `Editing square #${squareIndex} at ${squareCoords.x},${squareCoords.y}`,
+            MessageLevel.debug
+          );
           switch (targeted.squareType) {
             case "floor":
               targeted.squareType = "wall";

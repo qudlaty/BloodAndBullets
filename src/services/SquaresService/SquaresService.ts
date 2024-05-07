@@ -1,6 +1,7 @@
 import * as Helpers from "helpers";
 import { Square } from "./SquareClass";
 import { Entity, Position } from "services/EntitiesService";
+import { MessageLevel, MessageService } from "services/MessageService";
 
 class SquaresServiceClass {
   arenaSize: number = 10; // TODO: This should be defined ELSEWHERE
@@ -62,18 +63,33 @@ class SquaresServiceClass {
     Helpers.resetGivenFieldsOnACollection(this.squares, "isTargeted");
     this.initializeSquareAtIndexIfEmpty(squareIndex);
     this.squares[squareIndex].isTargeted = true;
+
+    const squareCoords: Position = this.getSquarePositionFromIndex(squareIndex);
+    MessageService.send(`Targetting square #${squareIndex} at ${squareCoords.x},${squareCoords.y}`, MessageLevel.debug);
   }
 
   markSquareAtIndexAsAttacked(squareIndex: number): void {
     Helpers.resetGivenFieldsOnACollection(this.squares, "isAttacked");
     this.initializeSquareAtIndexIfEmpty(squareIndex);
     this.squares[squareIndex].isAttacked = true;
+
+    const squareCoords: Position = this.getSquarePositionFromIndex(squareIndex);
+    MessageService.send(
+      `Marking square #${squareIndex} at ${squareCoords.x},${squareCoords.y} as attacked`,
+      MessageLevel.debug
+    );
   }
 
   markSquareAtIndexAsChosenDestination(squareIndex: number): void {
     Helpers.resetGivenFieldsOnACollection(this.squares, "isChosenDestination");
     this.initializeSquareAtIndexIfEmpty(squareIndex);
     this.squares[squareIndex].isChosenDestination = true;
+
+    const squareCoords: Position = this.getSquarePositionFromIndex(squareIndex);
+    MessageService.send(
+      `Marking square #${squareIndex} at ${squareCoords.x},${squareCoords.y} as chosen destination`,
+      MessageLevel.debug
+    );
   }
 
   initializeSquareAtIndexIfEmpty(squareIndex: number) {
@@ -111,14 +127,14 @@ class SquaresServiceClass {
 
   isTargetSquareEnterable(targetSquare: Square): boolean {
     const unpassableEntitiesInThisSquare =
-      targetSquare.entities && targetSquare.entities.filter((entity) => !entity.isPassable && entity.isAlive);
+      targetSquare.entities && targetSquare.entities.filter(entity => !entity.isPassable && entity.isAlive);
     return !(unpassableEntitiesInThisSquare && unpassableEntitiesInThisSquare.length);
   }
 
-  isSquareEnterableByFriendlyUnits = (square) => ["floor", "monster-filter"].includes(square.squareType);
+  isSquareEnterableByFriendlyUnits = square => ["floor", "monster-filter"].includes(square.squareType);
 
   lightAllSquares(): void {
-    this.squares.forEach((square) => (square.isLit = true));
+    this.squares.forEach(square => (square.isLit = true));
   }
   castLightsFromFriendlyEntity(entity: Entity): void {
     if (entity.isFriendly) {

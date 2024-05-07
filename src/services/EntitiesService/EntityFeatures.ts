@@ -1,4 +1,4 @@
-import { Item, Weapon, Square } from "services";
+import { Item, Weapon, Square, MessageLevel } from "services";
 import { SquaresService, MessageService } from "services";
 import { Entity } from "./EntityClass";
 
@@ -128,6 +128,11 @@ export class Combative extends Identifiable {
     } else {
       MessageService.send(`${this.name} can't shoot - no weapon equipped`);
     }
+
+    MessageService.send(
+      `${this.name} is attacking square ${targetedSquarePosition.x},${targetedSquarePosition.y}`,
+      MessageLevel.debug
+    );
     console.log(this.name, "is attacking", targetedSquarePosition, this);
   }
 }

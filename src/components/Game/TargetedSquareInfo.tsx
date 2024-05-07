@@ -68,7 +68,7 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         selected.equipInHands(item.name);
       }
     } else {
-      MessageService.send(`${selected.name} can't pickup ${itemName}. They need to be on the same square to do that.`);
+      MessageService.send(`${selected.name} can't pick up ${itemName}. They need to be on the same square to do that.`);
     }
     this.props.processInterface();
   };
