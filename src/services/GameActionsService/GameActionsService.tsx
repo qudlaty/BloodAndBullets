@@ -218,6 +218,10 @@ export class GameActionsClassForGameComponent {
             // Selecting
             selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
             //targeted = undefined;
+            MessageService.send(
+              `Selecting an entity ${selected.name} at ${selected.position.x},${selected.position.y}`,
+              MessageLevel.debug
+            );
             EntitiesService.setSelected(selected);
             this.setSelectedInStateAccordingToSelectedInEntitiesService();
           } else if (Helpers.isSelectedTargeted(selected, targeted)) {
