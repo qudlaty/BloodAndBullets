@@ -15,7 +15,7 @@ export class MessageBox extends React.Component {
   renderMessage = (messageRecord: MessageRecord, number: number) => {
     const messageNumber = `000${number}`.slice(-3);
     return (
-      <li key={`msg${number}`}>
+      <li key={`msg${number}`} className={`message-level-${messageRecord.level}`}>
         <span className="message-number">{messageNumber + ` `}</span>
         <span className="message-timestamp">{messageRecord.timestamp + ` `}</span>
         <span className="message-text">{messageRecord.message}</span>

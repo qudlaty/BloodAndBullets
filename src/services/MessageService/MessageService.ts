@@ -1,8 +1,14 @@
 export type MessageRecord = {
   message: string;
   timestamp: string;
-  type?: string;
+  level?: MessageLevel;
 };
+
+export enum MessageLevel {
+  log = "log",
+  warning = "warning",
+  debug = "debug",
+}
 
 export class MessageServiceClass {
   messages: MessageRecord[] = [];
@@ -10,11 +16,12 @@ export class MessageServiceClass {
   /** Needed to let us know when to render a new message */
   cursorMessageNumber: number = 0;
 
-  send(message: string) {
+  send(message: string, level: MessageLevel = MessageLevel.log) {
     const timestamp = new Date().toISOString().substring(11, 23);
     const newMessageRecord: MessageRecord = {
       message,
       timestamp,
+      level,
     };
     this.messages.push(newMessageRecord);
   }
