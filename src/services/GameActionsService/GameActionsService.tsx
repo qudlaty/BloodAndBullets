@@ -170,7 +170,7 @@ export class GameActionsClassForGameComponent {
 
         SquaresService.markSquareAtIndexAsTargeted(squareIndex);
 
-        selected.isShooting = false;
+        selected && (selected.isShooting = false);
 
         if (isEditorOn) {
           const squareCoords = targeted.position;
