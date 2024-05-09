@@ -18,3 +18,4 @@ export * from "./ShootingVisualization";
 export * from "./SlideInPanel";
 export * from "./GradientBolt";
 export * from "./CursorMessage";
+export * from "./FancyButton";
