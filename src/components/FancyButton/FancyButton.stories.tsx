@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { FancyButton } from "components";
+import { BorderStyle, FancyButton } from "components";
 
 const meta = {
   component: FancyButton,
   render: args => (
     <>
-      <div style={{ fontSize: "10px" }}>
+      <div style={{ fontSize: "10px", display: "flex" }}>
         <FancyButton {...args}></FancyButton>
       </div>
     </>
@@ -20,9 +20,15 @@ export const Default: Story = {
   args: {},
 };
 
-export const Three: Story = {
-  args: {},
+export const CustomizedText: Story = {
+  args: { children: ["Activate"], sideBorderWidthInPixels: 10 },
 };
-export const Twenty: Story = {
-  args: {},
+export const HeavilyCustomized: Story = {
+  args: {
+    children: ["Click This"],
+    backgroundColor: "#EEE",
+    textColor: "#111",
+    sideBorderWidthInPixels: 4,
+    sideBorderStyle: BorderStyle.dashed,
+  },
 };

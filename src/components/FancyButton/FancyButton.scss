@@ -1,91 +1,57 @@
-$bw: 1em;
-.panel-01 {
-  font-family: Verdana;
-  font-weight: normal;
-  color: #acab;
-  $backgroundColor: rgba(0, 100, 0, 0.5);
-  $t: transparent;
-  background: $backgroundColor;
-  width: 200px;
-  height: 50px;
-  margin: 20px;
-  position: relative;
-  // line-height: calc(100px - 0.5em);
-  // padding-top: 1em;
-  //box-sizing: border-box;
-  text-align: center;
-  &:before,
-  &:after {
-    position: absolute;
-    top: 0px;
-    content: "";
-    display: block;
-    border: $bw solid $t;
-    height: calc(100% - 2 * #{$bw});
-    z-index: 10;
-  }
-  &:before {
-    left: -2 * $bw;
-    border-right-color: $backgroundColor;
-  }
-  &:after {
-    right: -2 * $bw;
-    border-left-color: $backgroundColor;
-    // border-bottom: none;
-    // height: calc(100% - #{$bw});
-  }
-}
-
 .fancy-button {
-  $bw: 14px;
-  @extend .panel-01;
-  $color-outside: #111;
-  background-color: $color-outside;
+  --text-color: #acab;
+  --background-color: #111;
+  --side-border-width: 9px;
+  --side-border-style: dashed;
+  --side-border-color: var(--background-color);
+  background: var(--background-color);
+  color: var(--text-color);
+  $t: transparent;
+
+  font-family: Verdana;
+
+  min-width: 200px;
+  min-height: 50px;
+  position: relative;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &:before,
   &:after {
-    border-width: $bw;
-    height: calc(100% - 2 * #{$bw});
-    //border-color: #ABC3;
+    content: "";
+    position: absolute;
+    border: var(--side-border-width) var(--side-border-style) $t;
+    height: calc(50px - 2 * var(--side-border-width));
+    z-index: 1;
   }
   &:before {
-    left: calc(-2 * #{$bw});
-    border-right-color: $color-outside;
+    left: calc(-2 * var(--side-border-width));
+    border-right-color: var(--side-border-color);
   }
   &:after {
-    right: calc(-2 * #{$bw});
-    border-left-color: $color-outside;
-    z-index: -1;
+    right: calc(-2 * var(--side-border-width));
+    border-left-color: var(--side-border-color);
   }
-  display: flex;
-  padding: 0;
-
-  &-inner {
-    $color-inside: #333;
-    margin: auto;
-    $bw: 2em;
-    @extend .panel-01;
-    height: calc(100% - 2 * 0.6em);
-    width: calc(100% - 1 * 0.3em);
-    $decoBw: calc(0.5 * #{$bw});
-    background: $color-inside;
-    padding-top: 0.9em;
-    color: #666;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    &:before,
-    &:after {
-      border-width: $decoBw;
-      height: calc(100% - 2 * #{$decoBw});
-    }
-    &:before {
-      left: calc(-2 * #{$decoBw});
-      border-right-color: $color-inside;
-    }
-    &:after {
-      right: calc(-2 * #{$decoBw});
-      border-left-color: $color-inside;
-    }
+  filter: drop-shadow(2px 2px 6px var(--background-color));
+  transition:
+    filter 0.5s,
+    color 0.5s,
+    text-shadow 0.5s;
+  &:hover {
+    filter: drop-shadow(2px 4px 6px green);
+    color: rgb(0, 200, 0);
+    text-shadow: #00ff13 0px 0px 2px;
+    cursor: pointer;
+    user-select: none;
+  }
+  &:active {
+    transition:
+      filter 0.1s,
+      color 0.1s;
+    filter: drop-shadow(2px 4px 6px #eee);
+    color: white;
   }
 }
