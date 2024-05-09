@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/BloodAndBullets/build/static/css/main.d4f8f201.css",
-    "main.js": "/BloodAndBullets/build/static/js/main.a559d1da.js",
+    "main.css": "/BloodAndBullets/build/static/css/main.e86fd5f4.css",
+    "main.js": "/BloodAndBullets/build/static/js/main.6b6d5c49.js",
     "static/media/astronaut-light-skin-tone_joy_pixels_1f9d1-1f3fb-200d-1f680.png": "/BloodAndBullets/build/static/media/astronaut-light-skin-tone_joy_pixels_1f9d1-1f3fb-200d-1f680.cea55987b6cfa226bea7.png",
     "static/media/squid__joypixels_1f991.png": "/BloodAndBullets/build/static/media/squid__joypixels_1f991.48c6b8fcbff787f73cf9.png",
     "static/media/mosquito__emojipedia_1f99f.png": "/BloodAndBullets/build/static/media/mosquito__emojipedia_1f99f.61955cfddcaead81d599.png",
@@ -11,11 +11,11 @@
     "static/media/spider__whatsapp_1f577-fe0f.png": "/BloodAndBullets/build/static/media/spider__whatsapp_1f577-fe0f.7b98d6dd6653e1dd816f.png",
     "static/media/microbe__joypixels_1f9a0.png": "/BloodAndBullets/build/static/media/microbe__joypixels_1f9a0.ddc13d32f89b4bb4ab05.png",
     "index.html": "/BloodAndBullets/build/index.html",
-    "main.d4f8f201.css.map": "/BloodAndBullets/build/static/css/main.d4f8f201.css.map",
-    "main.a559d1da.js.map": "/BloodAndBullets/build/static/js/main.a559d1da.js.map"
+    "main.e86fd5f4.css.map": "/BloodAndBullets/build/static/css/main.e86fd5f4.css.map",
+    "main.6b6d5c49.js.map": "/BloodAndBullets/build/static/js/main.6b6d5c49.js.map"
   },
   "entrypoints": [
-    "static/css/main.d4f8f201.css",
-    "static/js/main.a559d1da.js"
+    "static/css/main.e86fd5f4.css",
+    "static/js/main.6b6d5c49.js"
   ]
 }
