@@ -26,10 +26,10 @@ export const CustomizedText: Story = {
 export const HeavilyCustomized: Story = {
   args: {
     children: ["Click This"],
-    backgroundColor: "#EEE",
-    textColor: "#111",
-    hoverColor: "#444",
-    activeColor: "#000",
+    backgroundColor: "#CCC",
+    textColor: "#210",
+    hoverColor: "#330",
+    activeColor: "#FF0C",
     sideBorderWidthInPixels: 4,
     sideBorderStyle: BorderStyle.dashed,
   },

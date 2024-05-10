@@ -1,8 +1,8 @@
 .fancy-button {
   --background-color: #111;
   --text-color: #acab;
-  --hover-color: rgb(200, 200, 200);
-  --active-color: rgb(0, 200, 0);
+  --hover-color: rgb(150, 150, 150);
+  --active-color: rgb(200, 200, 200);
   --side-border-width: 9px;
   --side-border-style: dashed;
   --side-border-color: var(--background-color);
@@ -54,6 +54,10 @@
     text-shadow: var(--hover-color) 0px 0px 2px;
     cursor: pointer;
     user-select: none;
+    transition:
+      filter 0.1s,
+      color 0.1s,
+      text-shadow 0.1s;
   }
   &:active {
     transition:
