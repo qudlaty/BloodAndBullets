@@ -8,6 +8,8 @@ interface FancyButtonProps {
   width?: string;
   height?: string;
   textColor?: string;
+  hoverColor?: string;
+  activeColor?: string;
   backgroundColor?: string;
   sideBorderWidthInPixels?: number;
   sideBorderColor?: string;
@@ -27,6 +29,8 @@ export function FancyButton({
   width,
   height,
   textColor,
+  hoverColor,
+  activeColor,
   backgroundColor,
   sideBorderWidthInPixels,
   sideBorderColor,
@@ -42,6 +46,8 @@ export function FancyButton({
     width,
     height,
     ...(textColor && { "--text-color": `${textColor}` }),
+    ...(hoverColor && { "--hover-color": `${hoverColor}` }),
+    ...(activeColor && { "--active-color": `${activeColor}` }),
     ...(backgroundColor && { "--background-color": `${backgroundColor}` }),
     ...(sideBorderWidthInPixels && { "--side-border-width": `${sideBorderWidthInPixels}px` }),
     ...(sideBorderColor && { "--side-border-color": sideBorderColor }),

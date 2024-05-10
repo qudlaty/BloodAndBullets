@@ -21,13 +21,15 @@ export const Default: Story = {
 };
 
 export const CustomizedText: Story = {
-  args: { children: ["Activate"], sideBorderWidthInPixels: 10 },
+  args: { children: ["Activate"], sideBorderWidthInPixels: 6 },
 };
 export const HeavilyCustomized: Story = {
   args: {
     children: ["Click This"],
     backgroundColor: "#EEE",
     textColor: "#111",
+    hoverColor: "#444",
+    activeColor: "#000",
     sideBorderWidthInPixels: 4,
     sideBorderStyle: BorderStyle.dashed,
   },

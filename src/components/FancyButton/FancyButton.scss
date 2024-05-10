@@ -1,17 +1,19 @@
 .fancy-button {
-  --text-color: #acab;
   --background-color: #111;
+  --text-color: #acab;
+  --hover-color: rgb(200, 200, 200);
+  --active-color: rgb(0, 200, 0);
   --side-border-width: 9px;
   --side-border-style: dashed;
   --side-border-color: var(--background-color);
   background: var(--background-color);
   color: var(--text-color);
   $t: transparent;
-
   font-family: Verdana;
 
-  min-width: 200px;
-  min-height: 50px;
+  min-width: 50px;
+  min-height: 32px;
+  padding: 0 1em;
   position: relative;
   box-sizing: border-box;
 
@@ -24,26 +26,32 @@
     content: "";
     position: absolute;
     border: var(--side-border-width) var(--side-border-style) $t;
-    height: calc(50px - 2 * var(--side-border-width));
-    z-index: 1;
+    height: calc(100% - 2 * var(--side-border-width));
+    z-index: -1;
   }
+  // to fix visual problems caused by non-integer border widths
+  // when any zoom is applied (browser or system level),
+  // we cover the gap with the shadow of the apropriate color.
   &:before {
     left: calc(-2 * var(--side-border-width));
     border-right-color: var(--side-border-color);
+    box-shadow: 2px 0px 0px 0px var(--side-border-color); // *
   }
   &:after {
     right: calc(-2 * var(--side-border-width));
     border-left-color: var(--side-border-color);
+    box-shadow: -2px 0px 0px 0px var(--side-border-color); // *
   }
+
   filter: drop-shadow(2px 2px 6px var(--background-color));
   transition:
     filter 0.5s,
     color 0.5s,
     text-shadow 0.5s;
   &:hover {
-    filter: drop-shadow(2px 4px 6px green);
-    color: rgb(0, 200, 0);
-    text-shadow: #00ff13 0px 0px 2px;
+    filter: drop-shadow(2px 4px 6px var(--hover-color));
+    color: var(--hover-color);
+    text-shadow: var(--hover-color) 0px 0px 2px;
     cursor: pointer;
     user-select: none;
   }
@@ -51,7 +59,7 @@
     transition:
       filter 0.1s,
       color 0.1s;
-    filter: drop-shadow(2px 4px 6px #eee);
-    color: white;
+    filter: drop-shadow(2px 4px 6px var(--active-color));
+    color: var(--active-color);
   }
 }
