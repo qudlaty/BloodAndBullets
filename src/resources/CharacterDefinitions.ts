@@ -1,4 +1,4 @@
-import { M16, M40, L30 } from "./ItemDefinitions";
+import { M16, M40, L30, R40 } from "./ItemDefinitions";
 import { EntitiesService, Entity } from "services";
 
 /**
@@ -26,7 +26,7 @@ export const entitiesInitialValues = [
     isFriendly: true,
     isBreathing: false,
     position: { x: 2, y: 5 },
-    equipment: { hands: new L30() },
+    equipment: { hands: new R40() },
     inventory: [new M16()],
     bleedingReductionPerTurn: 50,
   },

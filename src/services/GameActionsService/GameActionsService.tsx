@@ -73,6 +73,8 @@ export class GameActionsClassForGameComponent {
     gameComponent.turnNumber++;
     console.info("Starting processing turn #", gameComponent.turnNumber);
     EntitiesService.refillActionPointsForAllEntities();
+    EntitiesService.rechargeWeaponsForAllEntities();
+
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, "targetPosition", "isShooting");
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isAttacked");
     this.processEntities();

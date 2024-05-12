@@ -1,5 +1,5 @@
 import React from "react";
-import { Item, RangedWeapon } from "services";
+import { EnergyWeapon, Item, RangedWeapon, RechargableWeapon, WeaponType } from "services";
 import { LinearDisplay } from "components/LinearDisplay";
 
 interface InventoryItemProps {
@@ -43,15 +43,15 @@ export function InventoryItem(props: InventoryItemProps) {
   }
 
   if (item instanceof RangedWeapon) {
-    const weapon = item as RangedWeapon;
+    const weapon = item as RangedWeapon | RechargableWeapon;
 
-    if (weapon.reload && props.onReload) {
+    if (weapon.reload && props.onReload && !(item instanceof RechargableWeapon)) {
       // has reload capability
       let className = " inventory-list__reload-button ";
 
-      if (weapon.rounds === 0 || weapon.rounds === "empty") {
+      if (weapon.charges === 0 || weapon.charges === "empty") {
         className += " inventory-list__reload-button--empty ";
-      } else if (weapon.rounds < weapon.maxRounds) {
+      } else if (weapon.charges < weapon.maxCharges) {
         className += " inventory-list__reload-button--partial ";
       }
       reloadButton = (
@@ -71,9 +71,14 @@ export function InventoryItem(props: InventoryItemProps) {
 
     ammoCounter =
       weapon.reload && props.shorterDisplay ? (
-        ` (${weapon.rounds})`
+        ` (${weapon.charges})`
       ) : (
-        <LinearDisplay className="full" label="Rounds" current={weapon.rounds} max={weapon.maxRounds} />
+        <LinearDisplay
+          className="full"
+          label={weapon.type == WeaponType.energy ? "Charges" : "Rounds"}
+          current={weapon.charges}
+          max={weapon.maxCharges}
+        />
       );
   }
 

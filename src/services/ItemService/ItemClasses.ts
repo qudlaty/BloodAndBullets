@@ -1,35 +1,59 @@
+import { MessageService } from "services/MessageService";
+
 export class Item {
   constructor() {
     this.id = crypto.randomUUID();
   }
   id: string;
   name: string = "";
+  description?: string = "";
+  manufacturer?: string = "";
+  previousOwners?: any[];
+  mass?: number = 0;
 }
 
 export class Weapon extends Item {
   type: WeaponType;
-  causesBleeding = 0;
-  range = 0;
-  damage = 0;
+  range: number = 0;
+  damage: number = 0;
+  causesBleeding: number = 0;
+  causesBurning: number = 0;
 }
 
 export class RangedWeapon extends Weapon {
-  rounds: number | any = 0;
-  maxRounds = 5;
+  charges: number | any = 0;
+  maxCharges = 5;
   reloadCostInAP = 1;
+  dischargeRatePerShot = 1;
 
   fire() {
-    this.rounds--;
+    this.charges--;
     console.log("Firing ranged weapon. Damage: ", this.damage);
     return this.damage;
   }
 
   get isAbleToFire() {
-    return this.rounds > 0;
+    return this.charges > 0;
   }
 
   reload() {
-    this.rounds = this.maxRounds;
+    this.charges = this.maxCharges;
+  }
+}
+
+export class EnergyWeapon extends RangedWeapon {
+  type = WeaponType.energy;
+}
+export class RechargableWeapon extends EnergyWeapon {
+  chargingPerTurn = 0;
+  reloadCostInAP = 0;
+  reload() {
+    MessageService.send(`Rechargable weapons can't be reloaded manually.`);
+  }
+  recharge() {
+    if (this.charges < this.maxCharges) {
+      this.charges++;
+    }
   }
 }
 
@@ -40,15 +64,31 @@ export enum WeaponType {
 }
 
 export class Rifle extends RangedWeapon {
-  type = WeaponType.projectile;
-  range = 8;
-  damage = 1;
-  causesBleeding = 2;
+  constructor() {
+    super();
+    this.type = WeaponType.projectile;
+    this.range = 8;
+    this.damage = 1;
+    this.causesBleeding = 2;
+  }
 }
 
-export class Lazer extends RangedWeapon {
-  type = WeaponType.energy;
-  range = 10;
-  damage = 5;
-  causesBleeding = 0;
+export class LaserGun extends RangedWeapon {
+  constructor() {
+    super();
+    this.type = WeaponType.energy;
+    this.range = 10;
+    this.damage = 5;
+    this.causesBleeding = 0;
+  }
+}
+
+export class RechargableLaserGun extends RechargableWeapon {
+  constructor() {
+    super();
+    this.type = WeaponType.energy;
+    this.range = 10;
+    this.damage = 5;
+    this.causesBleeding = 0;
+  }
 }

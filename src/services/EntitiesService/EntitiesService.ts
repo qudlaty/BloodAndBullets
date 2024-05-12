@@ -3,7 +3,7 @@ import { SquaresService, Square } from "services/SquaresService";
 import * as Helpers from "helpers";
 import { MessageService, RangedWeapon } from "services";
 import { Identifiable } from "./EntityFeatures";
-import { Item } from "services/ItemService";
+import { Item, RechargableWeapon } from "services/ItemService";
 const arenaSize: number = 10;
 
 const defaultEntityValues = {
@@ -161,7 +161,7 @@ class EntitiesServiceClass {
       entity.isShooting = true;
       entity.actionPoints--;
     } else {
-      weapon.rounds = "empty";
+      weapon.charges = "empty";
       this.stopShooting(entity);
       MessageService.setCursorMessage("NO AMMO");
       MessageService.send(`${entity.name} can't shoot, as they have no ammunition loaded.`);
@@ -202,7 +202,7 @@ class EntitiesServiceClass {
     if (entity.equipment.hands && entity.equipment.hands === weapon) {
       this.stopShooting(entity);
     }
-    if (weapon.rounds === weapon.maxRounds) {
+    if (weapon.charges === weapon.maxCharges) {
       MessageService.send(`${weapon.name} already fully loaded`);
       return;
     }
@@ -285,6 +285,21 @@ class EntitiesServiceClass {
   refillActionPointsForAllEntities() {
     this.entities.forEach(entity => {
       entity.actionPoints = entity.maxActionPoints;
+    });
+  }
+  rechargeWeaponsForAllEntities() {
+    this.entities.forEach(entity => {
+      const equippedWeapon = entity.equipment.hands;
+      if (equippedWeapon instanceof RechargableWeapon) {
+        equippedWeapon.recharge();
+        console.log(`Recharging weapon ${equippedWeapon.name} in ${entity.name} hands.`);
+      }
+      entity?.inventory?.forEach(inventoryItem => {
+        if (inventoryItem instanceof RechargableWeapon) {
+          inventoryItem.recharge();
+          console.log(`Recharging weapon ${inventoryItem.name} in ${entity.name} hands.`);
+        }
+      });
     });
   }
 }
