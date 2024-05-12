@@ -10,7 +10,7 @@ export interface Position {
 
 /** The one who can be identified */
 export class Identifiable {
-  id: number | string;
+  id: string;
   name: string = "";
   icon: string = " ";
 }

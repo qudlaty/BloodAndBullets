@@ -17,6 +17,7 @@ export class Entity {
   // Extended by mixins below
   constructor(...props) {
     Object.assign(this, ...props);
+    this.id = crypto.randomUUID();
   }
   isFriendly?: boolean;
   active?: boolean;

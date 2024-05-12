@@ -1,4 +1,8 @@
 export class Item {
+  constructor() {
+    this.id = crypto.randomUUID();
+  }
+  id: string;
   name: string = "";
 }
 
