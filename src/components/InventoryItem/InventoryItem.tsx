@@ -1,5 +1,5 @@
 import React from "react";
-import { EnergyWeapon, Item, RangedWeapon, RechargableWeapon, WeaponType } from "services";
+import { EnergyWeapon, Item, RangedWeapon, RechargableEnergyWeapon, WeaponType } from "services";
 import { LinearDisplay } from "components/LinearDisplay";
 
 interface InventoryItemProps {
@@ -43,9 +43,9 @@ export function InventoryItem(props: InventoryItemProps) {
   }
 
   if (item instanceof RangedWeapon) {
-    const weapon = item as RangedWeapon | RechargableWeapon;
+    const weapon = item as RangedWeapon | RechargableEnergyWeapon;
 
-    if (weapon.reload && props.onReload && !(item instanceof RechargableWeapon)) {
+    if (weapon.reload && props.onReload && !(item instanceof RechargableEnergyWeapon)) {
       // has reload capability
       let className = " inventory-list__reload-button ";
 

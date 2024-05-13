@@ -41,54 +41,32 @@ export class RangedWeapon extends Weapon {
   }
 }
 
-export class EnergyWeapon extends RangedWeapon {
-  type = WeaponType.energy;
-}
-export class RechargableWeapon extends EnergyWeapon {
-  chargingPerTurn = 0;
-  reloadCostInAP = 0;
-  reload() {
-    MessageService.send(`Rechargable weapons can't be reloaded manually.`);
-  }
-  recharge() {
-    if (this.charges < this.maxCharges) {
-      this.charges++;
-    }
-  }
-}
-
 // TODO: Should add kinetic/thermal damage
 export enum WeaponType {
   projectile = "projectile",
   energy = "energy",
 }
 
-export class Rifle extends RangedWeapon {
-  constructor() {
-    super();
-    this.type = WeaponType.projectile;
-    this.range = 8;
-    this.damage = 1;
-    this.causesBleeding = 2;
-  }
+export class ProjectileWeapon extends RangedWeapon {
+  type = WeaponType.projectile;
+  causesBleeding = 5;
+  causesBurning = 1;
+}
+export class EnergyWeapon extends RangedWeapon {
+  type = WeaponType.energy;
+  causesBleeding = 0;
+  causesBurning = 6;
 }
 
-export class LaserGun extends RangedWeapon {
-  constructor() {
-    super();
-    this.type = WeaponType.energy;
-    this.range = 10;
-    this.damage = 5;
-    this.causesBleeding = 0;
+export class RechargableEnergyWeapon extends EnergyWeapon {
+  chargingPerTurn = 1;
+  reloadCostInAP = 0;
+  reload() {
+    MessageService.send(`Rechargable weapons can't be reloaded manually.`);
   }
-}
-
-export class RechargableLaserGun extends RechargableWeapon {
-  constructor() {
-    super();
-    this.type = WeaponType.energy;
-    this.range = 10;
-    this.damage = 5;
-    this.causesBleeding = 0;
+  recharge() {
+    if (this.charges < this.maxCharges) {
+      this.charges += this.chargingPerTurn;
+    }
   }
 }

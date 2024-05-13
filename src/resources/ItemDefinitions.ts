@@ -1,6 +1,6 @@
-import { Rifle, LaserGun, RechargableWeapon, RechargableLaserGun } from "services";
+import { ProjectileWeapon, EnergyWeapon, RechargableEnergyWeapon } from "services";
 
-export class M16 extends Rifle {
+export class M16 extends ProjectileWeapon {
   name = "M16";
   charges = 30;
   maxCharges = 30;
@@ -8,7 +8,7 @@ export class M16 extends Rifle {
   damage = 3;
 }
 
-export class M40 extends Rifle {
+export class M40 extends ProjectileWeapon {
   name = "M41A Pulse Rifle";
   charges = 10;
   maxCharges = 10;
@@ -16,7 +16,7 @@ export class M40 extends Rifle {
   damage = 5;
 }
 
-export class M37 extends Rifle {
+export class M37 extends ProjectileWeapon {
   name = "Ithaca 37 Shotgun";
   charges = 6;
   maxCharges = 6;
@@ -26,8 +26,8 @@ export class M37 extends Rifle {
   causesBleeding = 5;
   causedKnockback = 3;
 }
-export class L30 extends LaserGun {
-  values: Partial<LaserGun> = {
+export class L30 extends EnergyWeapon {
+  properties: Partial<EnergyWeapon> = {
     name: "L30 Beam Laser",
     description: "Portable 30kW Energy beam weapon. Fed by energy magazines.",
     manufacturer: "Amaar Industries",
@@ -39,12 +39,12 @@ export class L30 extends LaserGun {
   };
   constructor() {
     super();
-    Object.assign(this, this.values);
+    Object.assign(this, this.properties);
   }
 }
 
-export class R40 extends RechargableLaserGun {
-  values: Partial<RechargableLaserGun> = {
+export class R40 extends RechargableEnergyWeapon {
+  properties: Partial<RechargableEnergyWeapon> = {
     name: "R40 Rechargable Laser",
     charges: 1,
     maxCharges: 3,
@@ -59,6 +59,6 @@ export class R40 extends RechargableLaserGun {
   };
   constructor() {
     super();
-    Object.assign(this, this.values);
+    Object.assign(this, this.properties);
   }
 }

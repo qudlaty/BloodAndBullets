@@ -3,7 +3,7 @@ import { SquaresService, Square } from "services/SquaresService";
 import * as Helpers from "helpers";
 import { MessageService, RangedWeapon } from "services";
 import { Identifiable } from "./EntityFeatures";
-import { Item, RechargableWeapon } from "services/ItemService";
+import { Item, RechargableEnergyWeapon } from "services/ItemService";
 const arenaSize: number = 10;
 
 const defaultEntityValues = {
@@ -290,12 +290,12 @@ class EntitiesServiceClass {
   rechargeWeaponsForAllEntities() {
     this.entities.forEach(entity => {
       const equippedWeapon = entity.equipment.hands;
-      if (equippedWeapon instanceof RechargableWeapon) {
+      if (equippedWeapon instanceof RechargableEnergyWeapon) {
         equippedWeapon.recharge();
         console.log(`Recharging weapon ${equippedWeapon.name} in ${entity.name} hands.`);
       }
       entity?.inventory?.forEach(inventoryItem => {
-        if (inventoryItem instanceof RechargableWeapon) {
+        if (inventoryItem instanceof RechargableEnergyWeapon) {
           inventoryItem.recharge();
           console.log(`Recharging weapon ${inventoryItem.name} in ${entity.name} hands.`);
         }
