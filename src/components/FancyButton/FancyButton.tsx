@@ -7,12 +7,24 @@ interface FancyButtonProps {
   children?: ReactNode | ReactNode[];
   width?: string;
   height?: string;
+
   textColor?: string;
-  hoverColor?: string;
-  activeColor?: string;
+  textColorHover?: string;
+  textColorActive?: string;
+
   backgroundColor?: string;
-  sideBorderWidthInPixels?: number;
+  backgroundColorHover?: string;
+  backgroundColorActive?: string;
+
+  shadowColor?: string;
+  shadowColorHover?: string;
+  shadowColorActive?: string;
+
   sideBorderColor?: string;
+  sideBorderColorHover?: string;
+  sideBorderColorActive?: string;
+
+  sideBorderWidthInPixels?: number;
   sideBorderStyle?: BorderStyle;
 }
 
@@ -28,13 +40,25 @@ export function FancyButton({
   className,
   width,
   height,
+
   textColor,
-  hoverColor,
-  activeColor,
+  textColorHover,
+  textColorActive,
+
   backgroundColor,
-  sideBorderWidthInPixels,
+  backgroundColorHover,
+  backgroundColorActive,
+
   sideBorderColor,
+  sideBorderColorHover,
+  sideBorderColorActive,
+
+  shadowColor,
+  shadowColorHover,
+  shadowColorActive,
+
   sideBorderStyle = BorderStyle.dashed,
+  sideBorderWidthInPixels,
 }: FancyButtonProps) {
   const baseClassName = `fancy-button`;
   const finalClassName = `
@@ -42,17 +66,33 @@ export function FancyButton({
     ${className || ""}
   `;
 
+  const cssVariableToPropMap = {
+    "--text-color": textColor,
+    "--text-color--hover": textColorHover,
+    "--text-color--active": textColorActive,
+
+    "--background-color": backgroundColor,
+    "--background-color--hover": backgroundColorHover,
+    "--background-color--active": backgroundColorActive,
+
+    "--shadow-color": shadowColor,
+    "--shadow-color--hover": shadowColorHover,
+    "--shadow-color--active": shadowColorActive,
+
+    "--side-border-color": sideBorderColor,
+    "--side-border-color--hover": sideBorderColorHover,
+    "--side-border-color--active": sideBorderColorActive,
+
+    "--side-border-style": sideBorderStyle,
+    ...(sideBorderWidthInPixels && { "--side-border-width": `${sideBorderWidthInPixels}px` }),
+  };
+
   const dynamicStyle = {
     width,
     height,
-    ...(textColor && { "--text-color": `${textColor}` }),
-    ...(hoverColor && { "--hover-color": `${hoverColor}` }),
-    ...(activeColor && { "--active-color": `${activeColor}` }),
-    ...(backgroundColor && { "--background-color": `${backgroundColor}` }),
-    ...(sideBorderWidthInPixels && { "--side-border-width": `${sideBorderWidthInPixels}px` }),
-    ...(sideBorderColor && { "--side-border-color": sideBorderColor }),
-    ...(sideBorderStyle && { "--side-border-style": sideBorderStyle }),
+    ...cssVariableToPropMap,
   };
+
   return (
     <div className={finalClassName} title={title} style={dynamicStyle}>
       {children || "Primary Activation Taster"}
