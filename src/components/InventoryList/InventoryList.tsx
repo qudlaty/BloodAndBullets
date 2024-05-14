@@ -11,6 +11,7 @@ interface InventoryListProps {
   onInteract?(itemName: string);
   onDrop?(itemName: string);
   onReload?(weapon: RangedWeapon);
+  onClose?();
   inventory?: Item[]; //
   shorterDisplay?: boolean;
   processInterface: () => void;
@@ -42,6 +43,11 @@ export function InventoryList(props: InventoryListProps) {
   return (
     <div className={finalClassName}>
       {props.label && <div className="inventory-list__label">{props.label}</div>}
+      {props.onClose && (
+        <button onClick={props.onClose} className="inventory-list__close-button">
+          X
+        </button>
+      )}
       <div className="inventory-list__items" title={props.title}>
         {inventoryItems}
         {props.inventory?.length > 0 ? null : props.label && <span className="is-empty">is empty</span>}

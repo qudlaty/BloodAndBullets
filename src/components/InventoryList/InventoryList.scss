@@ -9,10 +9,10 @@
     margin-bottom: 10px;
 
     font-size: 10px;
-    text-align: center;
     background: #333;
-    padding: 3px;
-    padding-bottom: 6px;
+    padding: 3px 5px;
+    padding-bottom: 4px;
+    width: 100%;
   }
   &__items {
     transition: all 1s;
@@ -37,7 +37,8 @@
   }
   &__reload-button,
   &__drop-button,
-  &__equip-button {
+  &__equip-button,
+  &__close-button {
     background: #222;
     color: #666;
     border: 1px solid #666;
@@ -63,6 +64,15 @@
   }
   &__equip-button {
     //float: right;
+  }
+  &__close-button {
+    position: absolute;
+    right: 10px;
+    top: -4px;
+    border-radius: 3px;
+    padding-top: 4px;
+    font-weight: bold;
+    font-size: 7px;
   }
 }
 

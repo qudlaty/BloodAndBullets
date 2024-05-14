@@ -150,6 +150,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
               interactButtonText=" ← Equip"
               onInteract={this.handleInventoryItemClick}
               onDrop={this.onDrop}
+              onClose={this.handleInventoryButtonClick}
               inventory={entity.inventory}
               processInterface={() => this.props.processInterface()}
             />
