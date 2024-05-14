@@ -19,3 +19,4 @@ export * from "./SlideInPanel";
 export * from "./GradientBolt";
 export * from "./CursorMessage";
 export * from "./FancyButton";
+export * from "./InfoPanel";

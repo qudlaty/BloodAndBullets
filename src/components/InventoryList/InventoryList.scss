@@ -38,7 +38,8 @@
   &__reload-button,
   &__drop-button,
   &__equip-button,
-  &__close-button {
+  &__close-button,
+  &__info-button {
     background: #222;
     color: #666;
     border: 1px solid #666;
@@ -73,6 +74,14 @@
     padding-top: 4px;
     font-weight: bold;
     font-size: 7px;
+  }
+  &__info-button {
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    position: absolute;
+    right: 1px;
+    top: 3px;
   }
 }
 

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { EnergyWeapon, Item, RangedWeapon, RechargableEnergyWeapon, WeaponType } from "services";
 import { LinearDisplay } from "components/LinearDisplay";
+import { InfoPanel } from "components/InfoPanel";
 
 interface InventoryItemProps {
   item: Item;
@@ -18,6 +19,12 @@ export function InventoryItem(props: InventoryItemProps) {
   let dropButton;
   let equipButton;
   let ammoCounter;
+  const [isInfoPanelOpen, setIsInfoPanelOpen] = useState(false);
+
+  const switchInfoPanelState = () => {
+    console.log("info panel", isInfoPanelOpen);
+    setIsInfoPanelOpen(previousValue => !previousValue);
+  };
 
   if (props.onDrop) {
     dropButton = (
@@ -84,8 +91,13 @@ export function InventoryItem(props: InventoryItemProps) {
 
   return (
     <div key={item.name}>
+      {isInfoPanelOpen && <InfoPanel item={item} onClose={switchInfoPanelState}></InfoPanel>}
       <div key={item.name} className="inventory-list__item">
         <span>{item.name}</span>
+
+        <button title="Show info" className="inventory-list__info-button" onClick={switchInfoPanelState}>
+          ⓘ
+        </button>
         {ammoCounter}
       </div>
       {reloadButton}

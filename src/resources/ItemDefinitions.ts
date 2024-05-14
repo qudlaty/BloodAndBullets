@@ -55,7 +55,7 @@ export class R40 extends RechargableEnergyWeapon {
       `Charged over time by an onboard micro-reactor. ` +
       `Gains one charge per turn.`,
     manufacturer: "Amaar Industries",
-    previousOwners: ["Amaar Industries Factory"],
+    previousOwners: ["Intaki Syndicate", "Amaar Industries Factory"],
   };
   constructor() {
     super();
