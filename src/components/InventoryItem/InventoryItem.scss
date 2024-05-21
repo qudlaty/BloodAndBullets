@@ -13,6 +13,8 @@
   &__button-group {
     display: flex;
     justify-content: space-between;
+    position: relative;
+    top: -0.6px;
   }
   &__button {
     background: #222;
