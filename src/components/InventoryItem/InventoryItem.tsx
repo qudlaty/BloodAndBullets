@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { EnergyWeapon, Item, RangedWeapon, RechargableEnergyWeapon, WeaponType } from "services";
+import { Item, RangedWeapon, RechargableEnergyWeapon, WeaponType } from "services";
 import { LinearDisplay } from "components/LinearDisplay";
-import { InfoPanel } from "components/InfoPanel";
 import "./InventoryItem.scss";
+import { InfoPanelSwitchButton } from "components/InfoPanelSwitchButton";
 
 interface InventoryItemProps {
   item: Item;
@@ -22,12 +22,6 @@ export function InventoryItem(props: InventoryItemProps) {
   let dropButton;
   let interactButton;
   let ammoCounter;
-  const [isInfoPanelOpen, setIsInfoPanelOpen] = useState(false);
-
-  const switchInfoPanelState = () => {
-    console.log("info panel", isInfoPanelOpen);
-    setIsInfoPanelOpen(previousValue => !previousValue);
-  };
 
   if (props.onDrop) {
     dropButton = (
@@ -105,19 +99,7 @@ export function InventoryItem(props: InventoryItemProps) {
     <div key={item.id} className="inventory-item">
       <div key={item.name} className="inventory-item__body">
         <span>{item.name}</span>
-
-        <button
-          title="Show info"
-          className={`
-            ${componentClassName}__button
-            ${componentClassName}__button-info
-          `}
-          onClick={switchInfoPanelState}
-        >
-          ⓘ
-        </button>
-        {isInfoPanelOpen && <InfoPanel item={item} onClose={switchInfoPanelState}></InfoPanel>}
-
+        <InfoPanelSwitchButton item={item}></InfoPanelSwitchButton>
         {ammoCounter}
       </div>
       <div className="inventory-item__button-group">
