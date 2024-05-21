@@ -28,28 +28,33 @@ const meta: Meta<typeof InventoryItem> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const R40Info: Story = {
+export const R40ShowingNoReload: Story = {
   args: {
     item: new R40(),
   },
 };
-export const L30Info: Story = {
+export const L30ShowingNoInteract: Story = {
   args: {
     item: new L30(),
+    onInteract: null,
   },
 };
-export const M16Info: Story = {
+export const M16ShowingNoDrop: Story = {
   args: {
     item: new M16(),
+    onDrop: null,
   },
 };
-export const M37Info: Story = {
+export const M37CustomInteractButtonText: Story = {
   args: {
     item: new M37(),
+    interactButtonText: "Handle",
   },
 };
-export const M40Info: Story = {
+export const M40ShorterDisplayAndCustomInteractText: Story = {
   args: {
     item: new M40(),
+    shorterDisplay: true,
+    interactButtonText: "Pick up",
   },
 };
