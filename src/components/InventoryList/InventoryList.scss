@@ -1,7 +1,6 @@
 .inventory-list {
   &--expanded {
     .inventory-list__items {
-      transform: scaleY(1);
       max-height: 1000px;
     }
   }
@@ -28,6 +27,7 @@
     }
   }
   &__item {
+    position: relative;
     background-color: #222;
     border: 1px solid #555;
     padding: 5px;
