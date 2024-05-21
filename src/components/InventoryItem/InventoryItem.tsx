@@ -17,9 +17,10 @@ interface InventoryItemProps {
 export function InventoryItem(props: InventoryItemProps) {
   const { item } = props;
   const DEFAULT_INTERACT_BUTTON_TEXT = "Interact";
+  const componentClassName = "inventory-item";
   let reloadButton;
   let dropButton;
-  let equipButton;
+  let interactButton;
   let ammoCounter;
   const [isInfoPanelOpen, setIsInfoPanelOpen] = useState(false);
 
@@ -31,7 +32,10 @@ export function InventoryItem(props: InventoryItemProps) {
   if (props.onDrop) {
     dropButton = (
       <button
-        className="inventory-item__drop-button"
+        className={`
+          ${componentClassName + "__button"}
+          ${componentClassName + "__button-drop"}
+        `}
         onClick={() => {
           props.onDrop(item.name);
         }}
@@ -41,9 +45,12 @@ export function InventoryItem(props: InventoryItemProps) {
     );
   }
   if (props.onInteract) {
-    equipButton = (
+    interactButton = (
       <button //
-        className="inventory-item__equip-button"
+        className={`
+          ${componentClassName + "__button"}
+          ${componentClassName + "__button-interact"}
+        `}
         onClick={() => props.onInteract(item.name)}
       >
         {props.interactButtonText || DEFAULT_INTERACT_BUTTON_TEXT}
@@ -56,16 +63,19 @@ export function InventoryItem(props: InventoryItemProps) {
 
     if (weapon.reload && props.onReload && !(item instanceof RechargableEnergyWeapon)) {
       // has reload capability
-      let className = " inventory-item__reload-button ";
+      let buttonClassName = `${componentClassName}__button-reload`;
 
       if (weapon.charges === 0 || weapon.charges === "empty") {
-        className += " inventory-item__reload-button--empty ";
+        buttonClassName += ` ${buttonClassName}--empty`;
       } else if (weapon.charges < weapon.maxCharges) {
-        className += " inventory-item__reload-button--partial ";
+        buttonClassName += ` ${buttonClassName}--partial`;
       }
+
+      const finalButtonClassName = `${componentClassName}__button` + ` ` + buttonClassName;
+
       reloadButton = (
         <button
-          className={className}
+          className={finalButtonClassName}
           onClick={() => {
             props.onReload && props.onReload(weapon);
             props.processInterface && props.processInterface();
@@ -96,7 +106,14 @@ export function InventoryItem(props: InventoryItemProps) {
       <div key={item.name} className="inventory-item__body">
         <span>{item.name}</span>
 
-        <button title="Show info" className="inventory-item__info-button" onClick={switchInfoPanelState}>
+        <button
+          title="Show info"
+          className={`
+            ${componentClassName}__button
+            ${componentClassName}__button-info
+          `}
+          onClick={switchInfoPanelState}
+        >
           ⓘ
         </button>
         {isInfoPanelOpen && <InfoPanel item={item} onClose={switchInfoPanelState}></InfoPanel>}
@@ -106,7 +123,7 @@ export function InventoryItem(props: InventoryItemProps) {
       <div className="inventory-item__button-group">
         {reloadButton}
         {dropButton}
-        {equipButton}
+        {interactButton}
       </div>
     </div>
   );

@@ -10,14 +10,7 @@
     margin-top: 3px;
     font-size: 10px;
   }
-  &__button-group {
-    //
-  }
-  &__reload-button,
-  &__drop-button,
-  &__equip-button,
-  &__close-button,
-  &__info-button,
+
   &__button {
     background: #222;
     color: #666;
@@ -39,22 +32,14 @@
       animation: blink_softly 1.5s alternate infinite;
     }
   }
-  &__drop-button {
+  &__button-drop {
     float: right;
   }
-  &__equip-button {
+  &__button-interact {
     //float: right;
   }
-  &__close-button {
-    position: absolute;
-    right: 10px;
-    top: -4px;
-    border-radius: 3px;
-    padding-top: 4px;
-    font-weight: bold;
-    font-size: 7px;
-  }
-  &__info-button {
+
+  &__button-info {
     border: none;
     font-size: 1.2em;
     font-weight: bold;

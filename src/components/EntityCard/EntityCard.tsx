@@ -156,15 +156,12 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
             />
           </div>
         )}
-        <button
-          className="inventory-list__drop-button inventory-button"
-          onClick={() => this.handleInventoryButtonClick()}
-        >
+        <button className="inventory-item__button inventory-button" onClick={() => this.handleInventoryButtonClick()}>
           INVENTORY ({entity.inventory?.length || 0})
         </button>
         {entity.isDead && (
           <button
-            className="inventory-list__drop-button pick-up-button"
+            className="inventory-item__button pick-up-button"
             onClick={() => this.props.onEntityClick(entity.name)}
           >
             Pick up the body
