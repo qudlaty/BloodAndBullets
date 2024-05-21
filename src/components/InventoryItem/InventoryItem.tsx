@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import { EnergyWeapon, Item, RangedWeapon, RechargableEnergyWeapon, WeaponType } from "services";
 import { LinearDisplay } from "components/LinearDisplay";
 import { InfoPanel } from "components/InfoPanel";
+import "./InventoryItem.scss";
 
 interface InventoryItemProps {
   item: Item;
-  interactButtonText: string;
+  interactButtonText?: string;
   shorterDisplay?: boolean;
   onDrop?(itemName: string);
   onReload?(weapon: RangedWeapon);
   onInteract?(itemName: string);
-  processInterface: () => void;
+  processInterface?();
 }
 
 export function InventoryItem(props: InventoryItemProps) {
   const { item } = props;
+  const DEFAULT_INTERACT_BUTTON_TEXT = "Interact";
   let reloadButton;
   let dropButton;
   let equipButton;
@@ -29,7 +31,7 @@ export function InventoryItem(props: InventoryItemProps) {
   if (props.onDrop) {
     dropButton = (
       <button
-        className="inventory-list__drop-button"
+        className="inventory-item__drop-button"
         onClick={() => {
           props.onDrop(item.name);
         }}
@@ -41,10 +43,10 @@ export function InventoryItem(props: InventoryItemProps) {
   if (props.onInteract) {
     equipButton = (
       <button //
-        className="inventory-list__equip-button"
+        className="inventory-item__equip-button"
         onClick={() => props.onInteract(item.name)}
       >
-        {props.interactButtonText}
+        {props.interactButtonText || DEFAULT_INTERACT_BUTTON_TEXT}
       </button>
     );
   }
@@ -54,19 +56,19 @@ export function InventoryItem(props: InventoryItemProps) {
 
     if (weapon.reload && props.onReload && !(item instanceof RechargableEnergyWeapon)) {
       // has reload capability
-      let className = " inventory-list__reload-button ";
+      let className = " inventory-item__reload-button ";
 
       if (weapon.charges === 0 || weapon.charges === "empty") {
-        className += " inventory-list__reload-button--empty ";
+        className += " inventory-item__reload-button--empty ";
       } else if (weapon.charges < weapon.maxCharges) {
-        className += " inventory-list__reload-button--partial ";
+        className += " inventory-item__reload-button--partial ";
       }
       reloadButton = (
         <button
           className={className}
           onClick={() => {
             props.onReload && props.onReload(weapon);
-            props.processInterface();
+            props.processInterface && props.processInterface();
           }}
         >
           Reload ({weapon.reloadCostInAP}AP)
@@ -90,19 +92,22 @@ export function InventoryItem(props: InventoryItemProps) {
   }
 
   return (
-    <div key={item.name}>
-      {isInfoPanelOpen && <InfoPanel item={item} onClose={switchInfoPanelState}></InfoPanel>}
-      <div key={item.name} className="inventory-list__item">
+    <div key={item.id} className="inventory-item">
+      <div key={item.name} className="inventory-item__body">
         <span>{item.name}</span>
 
-        <button title="Show info" className="inventory-list__info-button" onClick={switchInfoPanelState}>
+        <button title="Show info" className="inventory-item__info-button" onClick={switchInfoPanelState}>
           ⓘ
         </button>
+        {isInfoPanelOpen && <InfoPanel item={item} onClose={switchInfoPanelState}></InfoPanel>}
+
         {ammoCounter}
       </div>
-      {reloadButton}
-      {dropButton}
-      {equipButton}
+      <div className="inventory-item__button-group">
+        {reloadButton}
+        {dropButton}
+        {equipButton}
+      </div>
     </div>
   );
 }
