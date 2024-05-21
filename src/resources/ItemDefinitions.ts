@@ -1,30 +1,83 @@
 import { ProjectileWeapon, EnergyWeapon, RechargableEnergyWeapon } from "services";
 
+export class G17 extends ProjectileWeapon {
+  properties: Partial<ProjectileWeapon> = {
+    name: "G17",
+    description:
+      `High capacity semi-automatic pistol, mass-produced on Old Terra. ` + //
+      `Still millions of them are in use today. Cheap and reliable. ` +
+      `Fires the ever-popular 9mm Parabellum bullet.`,
+    manufacturer: "Glock Ges.m.b.H.",
+    charges: 17,
+    maxCharges: 17,
+    reloadCostInAP: 1,
+    damage: 2,
+    range: 4,
+    mass: 1,
+  };
+  constructor() {
+    super();
+    Object.assign(this, this.properties);
+  }
+}
 export class M16 extends ProjectileWeapon {
-  name = "M16";
-  charges = 30;
-  maxCharges = 30;
-  reloadCostInAP = 4;
-  damage = 3;
+  properties: Partial<ProjectileWeapon> = {
+    name: "M16",
+    description: `Ancient combat rifle from Old Terra. Relatively light. Fires 5.56mm FMJ rounds.`,
+    manufacturer: `Colt's Manufacturing Company`,
+    charges: 20,
+    maxCharges: 20,
+    reloadCostInAP: 4,
+    damage: 3,
+    range: 8,
+    mass: 3,
+  };
+  constructor() {
+    super();
+    Object.assign(this, this.properties);
+  }
 }
 
 export class M40 extends ProjectileWeapon {
-  name = "M41A Pulse Rifle";
-  charges = 10;
-  maxCharges = 10;
-  reloadCostInAP = 4;
-  damage = 5;
+  properties: Partial<ProjectileWeapon> = {
+    name: "M41A Pulse Rifle",
+    description:
+      `Heavy but effective long range kinetic weapon. ` + //
+      `Fires 10 millimeter explosive-tip caseless. ` +
+      `Standard light armor-piercing round. ` +
+      `Excells at neutralizing alien threats. `,
+    manufacturer: "Armat Battlefield Systems",
+    charges: 10,
+    maxCharges: 10,
+    reloadCostInAP: 4,
+    damage: 5,
+    range: 10,
+    mass: 4,
+  };
+  constructor() {
+    super();
+    Object.assign(this, this.properties);
+  }
 }
 
 export class M37 extends ProjectileWeapon {
-  name = "Ithaca 37 Shotgun";
-  charges = 6;
-  maxCharges = 6;
-  reloadCostInAp = 4;
-  damage = 5;
-  range = 5;
-  causesBleeding = 5;
+  properties: Partial<ProjectileWeapon> = {
+    name: "Ithaca 37 Shotgun",
+    description: "Good to keep it handy for close encounters. Better than harsh language.",
+    manufacturer: "Ithaca Gun Company",
+    charges: 6,
+    maxCharges: 6,
+    reloadCostInAP: 4,
+    damage: 15,
+    range: 3,
+    mass: 3,
+    causesBleeding: 10,
+  };
   causedKnockback = 3;
+  constructor() {
+    super();
+    Object.assign(this, this.properties);
+  }
 }
 export class L30 extends EnergyWeapon {
   properties: Partial<EnergyWeapon> = {
@@ -35,7 +88,9 @@ export class L30 extends EnergyWeapon {
     charges: 5,
     maxCharges: 5,
     reloadCostInAP: 2,
-    damage: 10,
+    damage: 7,
+    range: 10,
+    mass: 2,
   };
   constructor() {
     super();
@@ -48,8 +103,9 @@ export class R40 extends RechargableEnergyWeapon {
     name: "R40 Rechargable Laser",
     charges: 1,
     maxCharges: 3,
+    damage: 7,
+    range: 10,
     mass: 2,
-    damage: 10,
     description:
       `Portable 40kW Energy beam weapon. ` +
       `Charged over time by an onboard micro-reactor. ` +
