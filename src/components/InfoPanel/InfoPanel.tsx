@@ -46,6 +46,7 @@ export function InfoPanel({ title, className, item, onClose }: InfoPanelProps) {
             <ul>
               {Object.entries(item)
                 .filter(entry => typeof entry[1] === "number")
+                .sort((entryA, entryB) => entryA[0].localeCompare(entryB[0]))
                 .map(entry => (
                   <li key={entry[0]}>{entry[0] + ": " + entry[1]}</li>
                 ))}
