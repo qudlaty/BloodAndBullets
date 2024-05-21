@@ -7,7 +7,17 @@ const meta = {
   component: EntityCard,
   render: args => (
     <>
-      <div style={{ fontSize: "10px", display: "flex" }}>
+      <div
+        style={{
+          fontSize: "10px",
+          display: "flex",
+          //height: "300px",
+          width: "100%",
+          background: "#191919",
+          color: "#a0a0a0",
+          fontFamily: "sans-serif",
+        }}
+      >
         <EntityCard {...args}></EntityCard>
       </div>
     </>

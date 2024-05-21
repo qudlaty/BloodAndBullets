@@ -15,6 +15,9 @@ const meta: Meta<typeof InfoPanel> = {
         //
         height: "300px",
         width: "100%",
+        background: "#191919",
+        color: "#a0a0a0",
+        fontFamily: "sans-serif",
       }}
     >
       <InfoPanel {...args}></InfoPanel>
