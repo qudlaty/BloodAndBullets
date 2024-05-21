@@ -170,7 +170,10 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
             </div>
           )}
           <button
-            className="inventory-list__drop-button inventory-button"
+            className={`
+              inventory-list__button 
+              inventory-button
+            `}
             onClick={() => this.handleInventoryButtonClick()}
           >
             Show items on the floor ({targeted.items.length})

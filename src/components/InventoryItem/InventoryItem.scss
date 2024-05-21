@@ -10,7 +10,10 @@
     margin-top: 3px;
     font-size: 10px;
   }
-
+  &__button-group {
+    display: flex;
+    justify-content: space-between;
+  }
   &__button {
     background: #222;
     color: #666;
@@ -31,12 +34,6 @@
       color: #eee;
       animation: blink_softly 1.5s alternate infinite;
     }
-  }
-  &__button-drop {
-    float: right;
-  }
-  &__button-interact {
-    //float: right;
   }
 
   &__button-info {

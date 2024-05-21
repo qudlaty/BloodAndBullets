@@ -81,9 +81,10 @@
     margin-bottom: 6px;
   }
 
-  .equipment-panel .inventory-item__button-interact {
-    // unequip button only
-    float: right;
+  .equipment-panel .inventory-item__button-interact,
+  .equipment-panel .inventory-item__button-drop {
+    // move unequip and drop buttons to the right
+    margin-left: auto;
   }
   & > .inventory-button,
   .pick-up-button {

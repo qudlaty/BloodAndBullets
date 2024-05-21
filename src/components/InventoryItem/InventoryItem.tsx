@@ -122,8 +122,8 @@ export function InventoryItem(props: InventoryItemProps) {
       </div>
       <div className="inventory-item__button-group">
         {reloadButton}
-        {dropButton}
         {interactButton}
+        {dropButton}
       </div>
     </div>
   );
