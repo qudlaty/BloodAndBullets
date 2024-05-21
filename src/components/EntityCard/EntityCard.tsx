@@ -3,6 +3,7 @@ import { LinearDisplay, InventoryList, EmojiMapper } from "components";
 import { Entity, Item, InventoryItem, EntitiesService, RangedWeapon } from "services";
 import * as Helpers from "helpers";
 import "./EntityCard.scss";
+import { InfoPanelSwitchButton } from "components/InfoPanelSwitchButton";
 
 interface EntityCardProps {
   entity: Entity;
@@ -124,6 +125,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
         </strong>
         <br />
         <small className="entity-data__rank">Private</small>
+        <InfoPanelSwitchButton item={entity as Item}></InfoPanelSwitchButton>
         <div className="entity-data__status-displays">
           <LinearDisplay className="full" label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />
           <LinearDisplay className="full" label="HP" current={entity.hp} max={entity.maxHp} />
