@@ -127,6 +127,7 @@ export class Combative extends Identifiable {
       console.log(this.attackNumber);
     } else {
       MessageService.send(`${this.name} can't shoot - no weapon equipped`);
+      MessageService.setCursorMessage(`No Weapon Equipped`);
     }
 
     MessageService.send(
