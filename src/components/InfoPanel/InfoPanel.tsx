@@ -20,7 +20,7 @@ export function InfoPanel({ title, className, item, onClose }: InfoPanelProps) {
   return (
     <div className={finalClassName}>
       <div className="info-panel__title" title={title}>
-        {title || item?.name}
+        {title} {title && item?.name && "-"} {item?.name}
       </div>
       <button className="info-panel__close-button" onClick={onClose}>
         X

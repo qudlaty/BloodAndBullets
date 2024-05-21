@@ -55,3 +55,22 @@ export const M40Info: Story = {
     item: new M40(),
   },
 };
+
+export const M40InfoWithoutTitle: Story = {
+  args: {
+    item: new M40(),
+  },
+};
+
+export const M40InfoWithoutItemName: Story = {
+  args: {
+    title: "Item Details",
+    item: { ...new M40(), name: null },
+  },
+};
+
+export const M40InfoWithoutTitleOrItemName: Story = {
+  args: {
+    item: { ...new M40(), name: null },
+  },
+};
