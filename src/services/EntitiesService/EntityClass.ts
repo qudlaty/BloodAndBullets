@@ -1,6 +1,7 @@
 import { applyMixins } from "helpers";
 import {
   Identifiable,
+  Military,
   Positionable,
   Mortal,
   Bleedable,
@@ -28,6 +29,7 @@ export class Entity {
 
 export interface Entity
   extends Identifiable,
+    Military,
     Positionable,
     Mortal,
     Bleedable,
@@ -39,6 +41,7 @@ export interface Entity
     Actor {}
 applyMixins(Entity, [
   Identifiable,
+  Military,
   Positionable,
   Mortal,
   Bleedable,

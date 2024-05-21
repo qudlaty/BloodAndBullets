@@ -124,7 +124,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
           {entity.name}
         </strong>
         <br />
-        <small className="entity-data__rank">Private</small>
+        <small className="entity-data__rank">{entity?.rank}</small>
         <InfoPanelSwitchButton item={entity as Item}></InfoPanelSwitchButton>
         <div className="entity-data__status-displays">
           <LinearDisplay className="full" label="AP" current={entity.actionPoints} max={entity.maxActionPoints} />

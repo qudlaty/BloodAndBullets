@@ -12,9 +12,13 @@ export interface Position {
 export class Identifiable {
   id: string;
   name: string = "";
+  description?: string = "";
   icon: string = " ";
 }
 
+export class Military {
+  rank?: string;
+}
 /** The one who acts */
 export class Actor {
   actionPoints: number = 2;
