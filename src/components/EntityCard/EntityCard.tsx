@@ -77,18 +77,18 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
     if (!entity) return null;
     // FIXME: Below should be separated into several sub-components
     // Each sub-component should receive flat data (position, hp, ...)
-
-    let className = "entity-card";
+    const baseClassName = "entity-card";
+    let finalClassName = baseClassName;
     if (entity.active) {
-      className += " entity-card--active";
+      finalClassName += ` ${baseClassName}--active`;
     }
 
     if (entity.isFriendly) {
-      className += " entity-card--friendly";
+      finalClassName += ` ${baseClassName}--friendly`;
     }
 
     if (entity.isDead) {
-      className += " entity-card--dead";
+      finalClassName += ` ${baseClassName}--dead`;
     }
 
     const inHands = entity.equipment && entity.equipment.hands;
@@ -112,7 +112,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
     }
 
     return (
-      <div className={className}>
+      <div className={finalClassName}>
         <div>
           <div className="entity-card__portrait">
             <EmojiMapper emoji={entity.icon} />
@@ -142,6 +142,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
             processInterface={() => this.props.processInterface()}
           />
         </div>
+
         {this.state.isInventoryOpen && (
           <div className="inventory-panel">
             <InventoryList
@@ -159,6 +160,7 @@ export class EntityCard extends React.Component<EntityCardProps, EntityCardState
         <button className="inventory-item__button inventory-button" onClick={() => this.handleInventoryButtonClick()}>
           INVENTORY ({entity.inventory?.length || 0})
         </button>
+
         {entity.isDead && (
           <button
             className="inventory-item__button pick-up-button"
