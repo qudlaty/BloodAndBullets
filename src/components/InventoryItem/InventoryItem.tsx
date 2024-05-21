@@ -99,8 +99,8 @@ export function InventoryItem(props: InventoryItemProps) {
     <div key={item.id} className="inventory-item">
       <div key={item.name} className="inventory-item__body">
         <span>{item.name}</span>
-        <InfoPanelSwitchButton item={item}></InfoPanelSwitchButton>
         {ammoCounter}
+        <InfoPanelSwitchButton item={item}></InfoPanelSwitchButton>
       </div>
       <div className="inventory-item__button-group">
         {reloadButton}
