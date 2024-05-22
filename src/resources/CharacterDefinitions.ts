@@ -20,6 +20,21 @@ export const entitiesInitialValues: Partial<Entity>[] = [
     maxActionPoints: 10,
   },
   {
+    name: "John Doe",
+    rank: "Corporal",
+    description: "Tough as nails. Been to many wars. He has seen things you wouldn't believe.",
+    hp: 90,
+    maxHp: 100,
+    icon: "🧑",
+    isFriendly: true,
+    bleedingReductionPerTurn: 3,
+    position: { x: 8, y: 9 },
+    inventory: [new G17()],
+    equipment: { hands: new M40() },
+    actionPoints: 6,
+    maxActionPoints: 6,
+  },
+  {
     name: "Robot",
     rank: "Asset",
     description:
