@@ -1,8 +1,9 @@
 # BloodAndBullets
 
-"Blood And Bullets: Assault Squad" is a tactical roguelike allowing you to lead
-a boarding party tasked with invading starships in order to take them over by
-any means necessary.
+"Blood And Bullets: Assault Squad" is a working title for a tactical, turn-based, 
+roguelike game allowing you to lead a boarding party tasked with invading starships 
+in order to take them over by any means necessary.
+It is written entirely from the ground-up as a web-game, using mainly React and Typescript.
 
 [CLICK HERE TO PLAY THE NIGHTLY BUILD](https://qudlaty.github.io/BloodAndBullets/build/)
 
