@@ -28,7 +28,7 @@ export class EmojiMapper extends React.Component<EmojiMapperProps> {
     if (emojiMappedTo) {
       output = <div className={"emoji emoji-" + emojiMappedTo}></div>;
     } else {
-      output = <div>{emoji}.</div>;
+      output = <div>{emoji}</div>;
     }
 
     return <>{output}</>;
