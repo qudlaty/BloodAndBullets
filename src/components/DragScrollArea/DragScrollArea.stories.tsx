@@ -40,7 +40,7 @@ export const SimpleText = args => (
 export const WithBoard = args => (
   <div style={containerStyle}>
     <DragScrollArea {...args}>
-      <Board {...(Twenty.args as BoardProps)}></Board>
+      <Board {...(Twenty.args as BoardProps)} size={10}></Board>
     </DragScrollArea>
   </div>
 );
@@ -48,7 +48,7 @@ export const WithBoard = args => (
 export const WithBoardRotated = args => (
   <div style={containerStyle}>
     <DragScrollArea {...args}>
-      <Board {...(Twenty.args as BoardProps)} isRotated={true}></Board>
+      <Board {...(Twenty.args as BoardProps)} size={10} isRotated={true}></Board>
     </DragScrollArea>
   </div>
 );

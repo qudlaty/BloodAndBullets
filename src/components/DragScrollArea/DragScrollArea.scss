@@ -8,8 +8,11 @@
   }
   &-internal {
     cursor: grab;
-    border: 1px dashed orange;
+    border: 4px dashed orange;
     width: max-content;
     height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

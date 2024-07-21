@@ -10,6 +10,7 @@ interface DragScrollAreaState {}
 /** Drag with right mouse button, to move content around */
 export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScrollAreaState> {
   areaReference;
+  innerDivReference;
   scroll = {
     x: 0,
     y: 0,
@@ -18,8 +19,27 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
   constructor(props) {
     super(props);
     this.areaReference = React.createRef();
+    this.innerDivReference = React.createRef();
   }
 
+  componentDidMount() {
+    this.calculateSize();
+    window.addEventListener("resize", this.calculateSize);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.calculateSize);
+  }
+  calculateSize = () => {
+    const innerDiv = this.innerDivReference.current;
+    if (innerDiv) {
+      const containedElement = innerDiv.firstChild;
+      if (containedElement && containedElement.getBoundingClientRect) {
+        const containedElementBoundingBox = containedElement.getBoundingClientRect();
+        innerDiv.style.width = `${containedElementBoundingBox.width}px`;
+        innerDiv.style.height = `${containedElementBoundingBox.height}px`;
+      }
+    }
+  };
   scrollRelativeXY(deltaX: number, deltaY: number) {
     this.scroll.x -= deltaX;
     this.scroll.y -= deltaY;
@@ -67,7 +87,13 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
         onMouseDown={e => this.onMouseDown(e)}
         onContextMenu={e => e.preventDefault()}
       >
-        <div className="drag-scroll-area drag-scroll-area-internal">{this.props.children}</div>
+        <div
+          className="drag-scroll-area drag-scroll-area-internal"
+          ref={this.innerDivReference}
+          //
+        >
+          {this.props.children}
+        </div>
       </div>
     );
   }
