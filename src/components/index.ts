@@ -9,6 +9,7 @@ export * from "./Square";
 export * from "./LinearDisplay";
 export * from "./HudPanel";
 export * from "./Grid";
+export * from "./DragScrollArea";
 export * from "./Controls";
 export * from "./MessageBox";
 export * from "./InventoryList";

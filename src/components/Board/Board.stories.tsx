@@ -34,6 +34,7 @@ export const Three: Story = {
 };
 export const Twenty: Story = {
   args: {
+    ...meta.args,
     size: 20,
   },
 };

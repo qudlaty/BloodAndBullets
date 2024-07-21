@@ -5,8 +5,8 @@ import * as Helpers from "helpers";
 
 import styles from "./Board.module.scss";
 
-interface BoardProps {
-  onClick(i: number): void;
+export interface BoardProps {
+  onClick?(i: number): void;
   squares: Square[]; // updated every action
   entities: Entity[]; // updated every action
   size: number;
@@ -14,7 +14,8 @@ interface BoardProps {
   style: any;
 }
 /**
- * @description Board component renders Squares and EntityPawns
+ * Board component renders the rectangular grid of Squares
+ * and a layer of floating EntityPawns
  */
 export class Board extends React.Component<BoardProps> {
   handleClick = (i: number) => {

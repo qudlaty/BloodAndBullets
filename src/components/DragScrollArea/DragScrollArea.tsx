@@ -7,6 +7,7 @@ interface DragScrollAreaProps {
 
 interface DragScrollAreaState {}
 
+/** Drag with right mouse button, to move content around */
 export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScrollAreaState> {
   areaReference;
   scroll = {
@@ -33,7 +34,7 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
     this.executeScroll();
   }
 
-  onMouseDown = (e) => {
+  onMouseDown = e => {
     if (e.button === 2) {
       document.addEventListener("mouseup", this.onMouseUp);
       document.addEventListener("mousemove", this.onMouseMove);
@@ -41,11 +42,11 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
     }
   };
 
-  onMouseMove = (e) => {
+  onMouseMove = e => {
     this.scrollRelativeXY(e.movementX, e.movementY);
   };
 
-  onMouseUp = (e) => {
+  onMouseUp = e => {
     document.removeEventListener("mouseup", this.onMouseUp);
     document.removeEventListener("mousemove", this.onMouseMove);
     e.preventDefault();
@@ -63,8 +64,8 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
       <div
         className="drag-scroll-area drag-scroll-area-external"
         ref={this.areaReference}
-        onMouseDown={(e) => this.onMouseDown(e)}
-        onContextMenu={(e) => e.preventDefault()}
+        onMouseDown={e => this.onMouseDown(e)}
+        onContextMenu={e => e.preventDefault()}
       >
         <div className="drag-scroll-area drag-scroll-area-internal">{this.props.children}</div>
       </div>
