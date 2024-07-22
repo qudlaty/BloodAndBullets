@@ -4,6 +4,7 @@ import "./DragScrollArea.scss";
 interface DragScrollAreaProps {
   children: JSX.Element;
   centeredOn?: string;
+  boardIsRotated?: boolean;
 }
 
 interface DragScrollAreaState {}
@@ -32,10 +33,21 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.recalculateInnerDivSize);
+    const innerDiv = this.innerDivReference.current;
+    const containedElement = innerDiv.firstChild;
+    containedElement.removeEventListener("transitionend", this.recalculateInnerDivSize);
   }
   componentDidUpdate(prevProps) {
+    if (this.props.boardIsRotated !== prevProps.boardIsRotated) {
+      this.recalculateInnerDivSize();
+      const innerDiv = this.innerDivReference.current;
+      const containedElement = innerDiv.firstChild;
+      (containedElement as HTMLElement).addEventListener("transitionend", this.recalculateInnerDivSize);
+    }
     if (this.props.centeredOn !== prevProps.centeredOn) {
       this.centerInnerDivOnATarget(this.props.centeredOn);
+    } else {
+      this.centerInnerDivAfterResize();
     }
   }
   recalculateInnerDivSize = () => {
@@ -45,8 +57,12 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
       const containedElement = innerDiv.firstChild;
       if (containedElement && containedElement.getBoundingClientRect) {
         const containedElementBoundingBox = containedElement.getBoundingClientRect();
-        innerDiv.style.width = `${containedElementBoundingBox.width * 1.5}px`;
-        innerDiv.style.height = `${containedElementBoundingBox.height * 1.5}px`;
+        const outerDivBoundingBox = outerDiv.getBoundingClientRect();
+
+        const finalWidth = `${Math.max(containedElementBoundingBox.width, outerDivBoundingBox.width) * 1.5}px`;
+        const finalHeight = `${Math.max(containedElementBoundingBox.height, outerDivBoundingBox.height) * 1.5}px`;
+        innerDiv.style.width = finalWidth;
+        innerDiv.style.height = finalHeight;
       }
     }
     this.centerInnerDivAfterResize();

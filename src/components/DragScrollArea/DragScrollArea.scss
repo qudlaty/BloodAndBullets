@@ -2,13 +2,13 @@
   &-external {
     overflow: hidden;
     position: absolute;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     border: 0px solid black;
   }
   &-internal {
     cursor: grab;
-    //border: 4px dashed orange;
+    border: 1px dashed orange;
     width: max-content;
     height: max-content;
     display: flex;

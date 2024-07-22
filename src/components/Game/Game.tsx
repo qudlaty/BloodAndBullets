@@ -96,7 +96,7 @@ export class Game extends React.PureComponent<void, GameState> {
         </section>
         <main className="section-main">
           <div className="game__board">
-            <DragScrollArea>
+            <DragScrollArea boardIsRotated={this.state.isBoardRotated}>
               <Board
                 squares={this.state.squares}
                 entities={this.state.entities}
