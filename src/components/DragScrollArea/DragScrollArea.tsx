@@ -3,13 +3,14 @@ import "./DragScrollArea.scss";
 
 interface DragScrollAreaProps {
   children: JSX.Element;
+  centeredOn?: string;
 }
 
 interface DragScrollAreaState {}
 
 /** Drag with right mouse button, to move content around */
 export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScrollAreaState> {
-  areaReference;
+  outerDivReference;
   innerDivReference;
   scroll = {
     x: 0,
@@ -18,28 +19,79 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
 
   constructor(props) {
     super(props);
-    this.areaReference = React.createRef();
+    this.outerDivReference = React.createRef();
     this.innerDivReference = React.createRef();
   }
 
   componentDidMount() {
-    this.calculateSize();
-    window.addEventListener("resize", this.calculateSize);
+    this.recalculateInnerDivSize();
+    window.addEventListener("resize", this.recalculateInnerDivSize);
+    if (this.props.centeredOn) {
+      this.centerInnerDivOnATarget(this.props.centeredOn);
+    }
   }
   componentWillUnmount() {
-    window.removeEventListener("resize", this.calculateSize);
+    window.removeEventListener("resize", this.recalculateInnerDivSize);
   }
-  calculateSize = () => {
+  componentDidUpdate(prevProps) {
+    if (this.props.centeredOn !== prevProps.centeredOn) {
+      this.centerInnerDivOnATarget(this.props.centeredOn);
+    }
+  }
+  recalculateInnerDivSize = () => {
     const innerDiv = this.innerDivReference.current;
+    const outerDiv = this.outerDivReference.current;
     if (innerDiv) {
       const containedElement = innerDiv.firstChild;
       if (containedElement && containedElement.getBoundingClientRect) {
         const containedElementBoundingBox = containedElement.getBoundingClientRect();
-        innerDiv.style.width = `${containedElementBoundingBox.width}px`;
-        innerDiv.style.height = `${containedElementBoundingBox.height}px`;
+        innerDiv.style.width = `${containedElementBoundingBox.width * 1.5}px`;
+        innerDiv.style.height = `${containedElementBoundingBox.height * 1.5}px`;
       }
     }
+    this.centerInnerDivAfterResize();
   };
+
+  centerInnerDivAfterResize = () => {
+    const innerDiv = this.innerDivReference.current;
+    const outerDiv = this.outerDivReference.current;
+    if (innerDiv && outerDiv) {
+      const outerRect = outerDiv.getBoundingClientRect();
+      const innerRect = innerDiv.getBoundingClientRect();
+      const scrollX = (innerRect.width - outerRect.width) / 2;
+      const scrollY = (innerRect.height - outerRect.height) / 2;
+      this.scroll.x = scrollX;
+      this.scroll.y = scrollY;
+      this.executeScroll();
+    }
+  };
+  centerInnerDivOnATarget(targetSelector: string) {
+    const outerDiv = this.outerDivReference.current;
+    const targetElement = outerDiv.querySelector(targetSelector);
+
+    if (targetElement) {
+      const outerDivRect = outerDiv.getBoundingClientRect();
+      const targetRect = targetElement.getBoundingClientRect();
+
+      // Calculate positions
+      const targetCenterX = targetRect.left + targetRect.width / 2;
+      const outerDivCenterX = outerDivRect.left + outerDivRect.width / 2;
+      const targetCenterY = targetRect.top + targetRect.height / 2;
+      const outerDivCenterY = outerDivRect.top + outerDivRect.height / 2;
+
+      // Calculate scroll offsets
+      const scrollOffsetX = targetCenterX - outerDivCenterX;
+      const scrollOffsetY = targetCenterY - outerDivCenterY;
+
+      // Apply scroll positions
+      const currentScrollX = outerDiv.scrollLeft;
+      const currentScrollY = outerDiv.scrollTop;
+
+      this.scroll.x = currentScrollX + scrollOffsetX;
+      this.scroll.y = currentScrollY + scrollOffsetY;
+      this.executeScroll();
+    }
+  }
   scrollRelativeXY(deltaX: number, deltaY: number) {
     this.scroll.x -= deltaX;
     this.scroll.y -= deltaY;
@@ -73,7 +125,7 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
   };
 
   executeScroll() {
-    this.areaReference.current.scroll({
+    this.outerDivReference.current.scroll({
       top: this.scroll.y,
       left: this.scroll.x,
     });
@@ -83,7 +135,7 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
     return (
       <div
         className="drag-scroll-area drag-scroll-area-external"
-        ref={this.areaReference}
+        ref={this.outerDivReference}
         onMouseDown={e => this.onMouseDown(e)}
         onContextMenu={e => e.preventDefault()}
       >

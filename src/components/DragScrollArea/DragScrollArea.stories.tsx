@@ -53,6 +53,14 @@ export const WithBoardRotated = args => (
   </div>
 );
 
+export const WithBoardRotatedCenteredOnTarget = args => (
+  <div style={containerStyle}>
+    <DragScrollArea {...args} centeredOn=".square:nth-child(4)">
+      <Board {...(Twenty.args as BoardProps)} size={10} isRotated={true}></Board>
+    </DragScrollArea>
+  </div>
+);
+
 export const Light: Story = {
   args: {
     children: ["L"],
