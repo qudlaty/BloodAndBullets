@@ -11,7 +11,7 @@ import {
 } from "services";
 
 // components
-import { Board, MessageBox, Controls, SlideInPanel, HudPanel, CursorMessage } from "components";
+import { Board, MessageBox, Controls, SlideInPanel, HudPanel, CursorMessage, DragScrollArea } from "components";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 
@@ -96,14 +96,16 @@ export class Game extends React.PureComponent<void, GameState> {
         </section>
         <main className="section-main">
           <div className="game__board">
-            <Board
-              squares={this.state.squares}
-              entities={this.state.entities}
-              onClick={i => GameActions.handleClickV2(i)}
-              size={this.state.arenaSize}
-              isRotated={this.state.isBoardRotated}
-              style={{ fontSize: `${this.state.squareSize}px` }}
-            />
+            <DragScrollArea>
+              <Board
+                squares={this.state.squares}
+                entities={this.state.entities}
+                onClick={i => GameActions.handleClickV2(i)}
+                size={this.state.arenaSize}
+                isRotated={this.state.isBoardRotated}
+                style={{ fontSize: `${this.state.squareSize}px` }}
+              />
+            </DragScrollArea>
           </div>
           <section className="section-status">
             <MessageBox />
