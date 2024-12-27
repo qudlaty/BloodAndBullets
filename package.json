@@ -7,7 +7,14 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "comment": "=== Original Scripts Below ===",
+    "info": "echo 'Requires Node 20 and React 18 (Does it?)'",
+    "start": "npm run info && vite",
+    "OGlint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build-all": "npm run build && npm run build-storybook"
   },
   "dependencies": {
     "react": "^18.3.1",
