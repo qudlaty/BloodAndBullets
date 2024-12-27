@@ -11,7 +11,7 @@ export interface BoardProps {
   entities: Entity[]; // updated every action
   size: number;
   isRotated: boolean;
-  style: any;
+  style?: any;
 }
 /**
  * Board component renders the rectangular grid of Squares
