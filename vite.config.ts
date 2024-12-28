@@ -13,7 +13,10 @@ export default defineConfig({
       },
     },
   },
+  root: "./src", // where to look for index.html
   build: {
-    outDir: "build",
+    outDir: "../build", // where to put build results
+    emptyOutDir: true,
   },
+  base: "./", // where to start asset urls
 });
