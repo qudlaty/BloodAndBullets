@@ -19,4 +19,5 @@ export default defineConfig({
     emptyOutDir: true,
   },
   base: "./", // where to start asset urls
+  publicDir: "../public", // where are the public files
 });
