@@ -12,13 +12,13 @@ It is written using mainly React and Typescript.
 
 ----
 ## Screen of the game in isometric view mode and firing of a projectile weapon
-![Screen with laser firing](/docs/_assets/images/screen-03-3d-firing-projectile.jpg?raw=true "Firing G17 in 3d mode")
+![Screen with laser firing](./docs/_assets/images/screen-03-3d-firing-projectile.jpg?raw=true "Firing G17 in 3d mode")
 ----
 ## Screen of the game in flat view mode and firing of an energy weapon
-![Screen with laser firing](/docs/_assets/images/screen-02-firing-laser.jpg?raw=true "Firing Da Laser")
+![Screen with laser firing](./docs/_assets/images/screen-02-firing-laser.jpg?raw=true "Firing Da Laser")
 ----
 ## Screen of the game in flat view mode with inventory view open
-![Screen with open inventory](/docs/_assets/images/screen-01-inventory-open.jpg?raw=true "Inventory View")
+![Screen with open inventory](./docs/_assets/images/screen-01-inventory-open.jpg?raw=true "Inventory View")
 ----
 
 Blood and Bullets introduces multiple mechanics making the deadly game of on-board spaceship combat full of tactical possibilities. 
