@@ -1,7 +1,8 @@
 {
-  "name": "severian-vite-template",
+  "name": "BloodAndBullets",
+  "version": "0.1.0",
+  "homepage": "https://qudlaty.github.io/BloodAndBullets/build/",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
