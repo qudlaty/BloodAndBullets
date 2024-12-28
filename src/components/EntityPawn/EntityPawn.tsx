@@ -3,7 +3,7 @@ import { SquaresService, Entity, Weapon } from "services";
 import { HpBar, ShootingVisualization, EmojiMapper } from "components";
 import * as Helpers from "helpers";
 import "./EntityPawn.scss";
-import { action } from "@storybook/addon-actions/*";
+import { action } from "@storybook/addon-actions";
 
 interface EntityPawnProps {
   entity: Entity;

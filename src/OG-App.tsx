@@ -3,7 +3,7 @@ import { Game } from "./components";
 import { BlastZone } from "screens/BlastZone";
 import { ShowRoom } from "screens/ShowRoom";
 
-import "App.scss";
+import "OG-App.scss";
 
 interface AppState {
   activeSceneName: string;
@@ -29,9 +29,9 @@ export default class App extends React.Component<void, AppState> {
 
   componentDidMount() {}
 
-  handleChange = (e) => {
+  handleChange = e => {
     const nameOfSelectedScene = e.target.value;
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return { activeSceneName: nameOfSelectedScene };
     });
   };
