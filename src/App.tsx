@@ -9,7 +9,7 @@ interface AppState {
   activeSceneName: string;
 }
 
-const availableScreenNames = ["Game", "BlastZone", "ShowRoom"];
+const availableSceneNames = ["Game", "BlastZone", "ShowRoom"];
 
 export default class App extends React.Component<void, AppState> {
   sceneComponents: object = {
@@ -37,7 +37,7 @@ export default class App extends React.Component<void, AppState> {
   render() {
     const SelectedScene = this.sceneComponents[this.state.activeSceneName];
 
-    const availableScreenSwitchOptions = availableScreenNames.map(stringToOption);
+    const availableSceneSwitchOptions = availableSceneNames.map(stringToOption);
     return (
       <div className="app">
         <div className="meta-bar">
@@ -48,7 +48,7 @@ export default class App extends React.Component<void, AppState> {
           <div className="scene-switch">
             <span>Select scene: </span>
             <select value={this.state.activeSceneName} onChange={this.handleSelectSceneChange}>
-              {availableScreenSwitchOptions}
+              {availableSceneSwitchOptions}
             </select>
           </div>
         </div>
