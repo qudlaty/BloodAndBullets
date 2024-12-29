@@ -20,6 +20,7 @@ export interface GameState {
   isAutoLoopOn: boolean;
   isBoardRotated: boolean;
   isEditorOn: boolean;
+  areEnemiesSelectable: boolean;
 }
 
 export class GameState implements GameState {
@@ -39,6 +40,7 @@ export class GameState implements GameState {
       isAutoLoopOn: false,
       isBoardRotated: false,
       isEditorOn: false,
+      areEnemiesSelectable: true,
     });
   }
 }

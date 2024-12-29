@@ -226,7 +226,7 @@ export class GameActionsClassForGameComponent {
 
           if (doubleClick()) {
             const targetEntity = targeted?.entities?.length && targeted?.entities[0];
-            if (!selected && targetEntity?.isAlive && targetEntity?.isFriendly) {
+            if (!selected && targetEntity?.isAlive && (targetEntity?.isFriendly || state.areEnemiesSelectable)) {
               // Selecting
               selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
               //targeted = undefined;
