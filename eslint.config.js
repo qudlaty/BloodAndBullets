@@ -20,8 +20,14 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-      "@typescript-eslint/no-unsafe-declaration-merging": "off",
-      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-unsafe-declaration-merging": "off", // same name for interface and class
+      "@typescript-eslint/no-unused-vars": "off", // unused arrow function params
+      "@typescript-eslint/no-empty-object-type": "off", // component state interface = {}
+      "@typescript-eslint/no-unused-expressions": "off", // short circuiting
+      "@typescript-eslint/no-explicit-any": "off", // it's a prototype project, sometimes the type is the least of our problems
+      "@typescript-eslint/no-this-alias": "off", // we do have some `this` aliases
+      "prefer-const": "warn", // yes, we do, but it's not that serious
+      "no-case-declarations": "warn", // also not that serious
     },
   }
 );
