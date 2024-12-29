@@ -3,7 +3,7 @@ import { Game } from "./components";
 import { BlastZone } from "screens/BlastZone";
 import { ShowRoom } from "screens/ShowRoom";
 
-import "OG-App.scss";
+import "App.scss";
 
 interface AppState {
   activeSceneName: string;
