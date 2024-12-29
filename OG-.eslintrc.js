@@ -1,3 +1,6 @@
+// This is the old eslint config where a lot of things were disabled.
+// Might be useful at some point to move some of this stuff into the new one.
+
 module.exports = {
   env: {
     browser: true,
