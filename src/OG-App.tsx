@@ -12,7 +12,7 @@ interface AppState {
 const availableScreenNames = ["Game", "BlastZone", "ShowRoom"];
 
 export default class App extends React.Component<void, AppState> {
-  sceneComponents: {} = {
+  sceneComponents: object = {
     Game,
     BlastZone,
     ShowRoom,
@@ -29,11 +29,9 @@ export default class App extends React.Component<void, AppState> {
 
   componentDidMount() {}
 
-  handleChange = e => {
-    const nameOfSelectedScene = e.target.value;
-    this.setState(prevState => {
-      return { activeSceneName: nameOfSelectedScene };
-    });
+  handleSelectSceneChange = event => {
+    const nameOfSelectedScene = event.target.value;
+    this.setState({ activeSceneName: nameOfSelectedScene });
   };
 
   render() {
@@ -47,9 +45,9 @@ export default class App extends React.Component<void, AppState> {
             <span className="be">B</span>lood and <span className="be">B</span>u<span className="el">ll</span>ets
           </div>
 
-          <div className="screen-switch">
-            <span>Select screen: </span>
-            <select value={this.state.activeSceneName} onChange={this.handleChange}>
+          <div className="scene-switch">
+            <span>Select scene: </span>
+            <select value={this.state.activeSceneName} onChange={this.handleSelectSceneChange}>
               {availableScreenSwitchOptions}
             </select>
           </div>
