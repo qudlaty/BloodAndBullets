@@ -16,7 +16,6 @@ import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 
 // others
-// import styles from "./Game.module.scss";
 import "./Game.scss";
 import "./Game-HUD.scss";
 

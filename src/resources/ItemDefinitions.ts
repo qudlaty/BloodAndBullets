@@ -105,13 +105,36 @@ export class R40 extends RechargableEnergyWeapon {
     maxCharges: 3,
     damage: 7,
     range: 10,
-    mass: 2,
+    mass: 3,
     description:
       `Portable 40kW Energy beam weapon. ` +
       `Charged over time by an onboard micro-reactor. ` +
       `Gains one charge per turn.`,
     manufacturer: "Amaar Industries",
     previousOwners: ["Intaki Syndicate", "Amaar Industries Factory"],
+  };
+  constructor() {
+    super();
+    Object.assign(this, this.properties);
+  }
+}
+
+export class K01 extends ProjectileWeapon {
+  properties: Partial<ProjectileWeapon> = {
+    name: "K01 Slugcaster",
+    description:
+      `Three shot revolver pattern hand cannon. ` + //
+      `Favorite among pioneers on planet Pandora, ` +
+      `where it's praised for effectiveness against local big-scale wildlife. ` +
+      `Fires tungsten tipped depleted uranium slugs, 12x44mm. ` +
+      `This thing packs a serious punch.`,
+    manufacturer: "Kavashikari Industries",
+    charges: 3,
+    maxCharges: 3,
+    reloadCostInAP: 3,
+    damage: 10,
+    range: 4,
+    mass: 1,
   };
   constructor() {
     super();
