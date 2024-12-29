@@ -1,7 +1,4 @@
 .board {
-  * {
-    transform-style: preserve-3d;
-  }
   //min-width: 442px;// TODO: refactor this
   background: transparent; // #111;
   padding: 10px;
@@ -13,7 +10,9 @@
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-
+  * {
+    transform-style: preserve-3d;
+  }
   &__row {
     z-index: 0;
     position: relative;

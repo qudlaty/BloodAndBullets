@@ -1,7 +1,8 @@
-@import "src/styles/mixins";
-@import "src/styles/variables";
+@use "src/styles/mixins";
+@use "src/styles/variables";
+
 .zero {
-  @include zero;
+  @include mixins.zero;
 }
 
 body {
@@ -9,7 +10,7 @@ body {
     14px "Century Gothic",
     Futura,
     sans-serif;
-  background: $color-grey-19;
+  background: variables.$color-grey-19;
   color: #a0a0a0;
 }
 

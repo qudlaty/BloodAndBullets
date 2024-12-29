@@ -1,27 +1,26 @@
-@import "src/styles/variables";
-@import "src/styles/mixins";
+@use "src/styles/variables";
+@use "src/styles/mixins";
 
 $border-width: 2px;
 $tab-size: 64px;
 .slide-in-panel {
-  @include zero;
+  @include mixins.zero;
+  max-width: calc(100% - $tab-size);
+  border: $border-width solid variables.$color-grey-a7;
+  position: fixed;
+  right: 0;
   &,
   & > * {
     box-sizing: border-box;
     transition: all 1s;
   }
-  border: $border-width solid $color-grey-a7;
-  position: fixed;
-  right: 0;
-  max-width: calc(100% - $tab-size);
-
   &__tab {
     position: absolute;
     top: -$border-width;
     transform: translateX(-100%);
 
     background: rgba(200, 200, 200, 0.15);
-    border: $border-width solid $color-grey-cb;
+    border: $border-width solid variables.$color-grey-cb;
 
     font-size: 12px;
     width: $tab-size;
@@ -33,7 +32,7 @@ $tab-size: 64px;
     align-items: center;
   }
   &__content {
-    background: $color-grey-19;
+    background: variables.$color-grey-19;
   }
   &--shown {
     border-color: white;

@@ -1,6 +1,6 @@
-@import "src/styles/variables";
-@import "src/styles/mixins";
-@import "../InventoryItem/InventoryItem.scss";
+@use "src/styles/variables";
+@use "src/styles/mixins";
+@use "../InventoryItem/InventoryItem.scss";
 
 .info-panel-switch-button {
   @extend .inventory-item__button;

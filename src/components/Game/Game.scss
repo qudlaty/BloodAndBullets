@@ -1,4 +1,4 @@
-@import "src/styles/variables";
+@use "src/styles/variables";
 
 .game {
   display: flex;
@@ -39,10 +39,10 @@
     border: 2px solid #666;
     padding: 5px;
     &.next_turn {
-      border: 2px solid $blue-1;
+      border: 2px solid variables.$blue-1;
     }
     &.execute_actions {
-      border: 2px solid $blue-1;
+      border: 2px solid variables.$blue-1;
     }
     &.nuke {
       color: #e00;

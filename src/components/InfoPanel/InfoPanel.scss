@@ -1,5 +1,5 @@
-@import "src/styles/variables";
-@import "src/styles/mixins";
+@use "src/styles/variables";
+@use "src/styles/mixins";
 
 $border-width: 2px;
 $tab-size: 64px;
@@ -11,7 +11,7 @@ $tab-size: 64px;
   bottom: 50vh;
   left: 50vw;
   width: 300px;
-  background: $color-grey-19;
+  background: variables.$color-grey-19;
   border: 1px solid #666;
   padding: 10px;
   padding-top: 0;
@@ -38,7 +38,7 @@ $tab-size: 64px;
   }
   &__content {
     min-height: 100px;
-    background: $color-grey-19;
+    background: variables.$color-grey-19;
     .hud-panel {
       margin-inline: 0px;
       border-color: #555;

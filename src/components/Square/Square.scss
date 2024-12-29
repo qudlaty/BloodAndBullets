@@ -1,5 +1,5 @@
 @use "sass:color";
-@import "src/styles/variables";
+@use "src/styles/variables";
 
 // @keyframes shoot-and-rotate {
 //   0% {
@@ -37,8 +37,8 @@ $squareSize: 1em;
 $black-and-yellow-stripes: repeating-linear-gradient(45deg, black 25%, black 50%, yellow 50%, yellow 75%);
 
 @mixin metal-floor($color) {
-  $color-darker: darken($color, 3%);
-  $color-lighter: lighten($color, 3%);
+  $color-darker: color.adjust($color, $lightness: -3%);
+  $color-lighter: color.adjust($color, $lightness: 3%);
   $color-gap: $color;
   $color-line: $color-lighter;
   background: repeating-linear-gradient(
@@ -172,13 +172,13 @@ $black-and-yellow-stripes: repeating-linear-gradient(45deg, black 25%, black 50%
     @include metal-floor(#444);
     &:hover {
       //background-color: rgb(240, 160, 5);
-      border: 2px solid $blue-1;
+      border: 2px solid variables.$blue-1;
     }
   }
 
   @mixin slanted-block-border($color) {
-    $color-darker: darken($color, 10%);
-    $color-lighter: lighten($color, 10%);
+    $color-darker: color.adjust($color, $lightness: -10%);
+    $color-lighter: color.adjust($color, $lightness: 10%);
     $border-size: 5px;
     $border-color: $color-darker;
     $border-color-sides: $color-lighter; //#888;
