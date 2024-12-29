@@ -28,6 +28,7 @@ interface FancyButtonProps {
   sideBorderStyle?: BorderStyle;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export enum BorderStyle {
   solid = "solid",
   dashed = "dashed",

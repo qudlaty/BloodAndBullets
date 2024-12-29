@@ -67,8 +67,8 @@ class ScriptsServiceClass {
     console.debug(JSON.stringify(this.scripts));
   }
 
-  runScripts = (param) => {
-    this.scripts.forEach((script) => this.runScript(script));
+  runScripts = param => {
+    this.scripts.forEach(script => this.runScript(script));
   };
 
   runScript(script) {
@@ -82,7 +82,7 @@ class ScriptsServiceClass {
 
   isConditionFullfilled(script): boolean {
     switch (script.what) {
-      case scriptTypes.entityPresent:
+      case scriptTypes.entityPresent: {
         if (!script.where) break; // unless we're talking "everywhere"
         const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         console.log(
@@ -94,7 +94,7 @@ class ScriptsServiceClass {
         } else {
           // we have "who"
           let isGivenEntityFoundAtGivenLocation = false;
-          entitiesFoundAtLocationGiven.forEach((entityAtLocation) => {
+          entitiesFoundAtLocationGiven.forEach(entityAtLocation => {
             if (entityAtLocation.name === script.who) {
               isGivenEntityFoundAtGivenLocation = true;
             }
@@ -102,6 +102,7 @@ class ScriptsServiceClass {
 
           return isGivenEntityFoundAtGivenLocation;
         }
+      }
       default:
     }
 
@@ -117,7 +118,7 @@ class ScriptsServiceClass {
         console.log("Going to loadMap", script.result.params[0]);
         // TODO: GameModel.loadMapByName(script.result.params[0]);
         break;
-      case "heal":
+      case "heal": {
         console.log(`Going to heal ${script.where.x},${script.where.y}`);
         const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);
         entitiesFoundAtLocationGiven.forEach((entityAtLocation: Entity) => {
@@ -127,6 +128,7 @@ class ScriptsServiceClass {
           entityAtLocation.hp = entityAtLocation.maxHp;
         });
         break;
+      }
       case "move": {
         console.log(`Going to heal ${script.where.x},${script.where.y}`);
         const entitiesFoundAtLocationGiven = EntitiesService.getEntitiesAtGivenPosition(script.where);

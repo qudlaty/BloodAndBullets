@@ -137,7 +137,7 @@ export class GameActionsClassForGameComponent {
 
   setSelectedInStateAccordingToSelectedInEntitiesService() {
     gameComponent.setState(prevState => {
-      let selected = EntitiesService.selected;
+      const selected = EntitiesService.selected;
       return { selected: selected };
     });
   }
