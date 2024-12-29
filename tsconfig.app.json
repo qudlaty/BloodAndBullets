@@ -1,4 +1,8 @@
 {
+  "COMMENT": "THIS IS TSCONFIG FOR THE APP CODE",
+
+  "include": ["src"],
+
   "compilerOptions": {
     "baseUrl": "./src",
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
@@ -10,6 +14,7 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -20,8 +25,7 @@
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": false,
+    "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": false
-  },
-  "include": ["src"]
+  }
 }
