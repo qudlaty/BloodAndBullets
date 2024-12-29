@@ -112,6 +112,18 @@ class GameLogicClass {
     return { squares, entities };
   };
 
+  reSyncSquares = previousState => {
+    const squares: Square[] = Helpers.newCopyOfArray(previousState.squares);
+    /*
+    Reattach new squares array to the SquaresService
+    This might actually be not-needed, as elements of that array are objects
+    and are referenced in both arrays, so unless we're adding new squares,
+    everything should work without re-attaching
+    */
+    SquaresService.squares = squares;
+    return { squares };
+  };
+
   deselectAllEntities = () => {
     Helpers.resetGivenFieldsOnACollection(EntitiesService.entities, "active");
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isChosenDestination", "isAvailableDestination");

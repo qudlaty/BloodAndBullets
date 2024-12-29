@@ -129,9 +129,16 @@ export class GameActionsClassForGameComponent {
   };
 
   processInterface() {
+    console.debug("Processing Interface");
     gameComponent.setState(
       prevState => GameLogic.calculateNextInterfaceState(prevState),
-      () => this.setSquaresAccordingToEntities()
+      () => {
+        if (gameComponent.state.isEditorOn) {
+          this.refreshSquares();
+        } else {
+          this.setSquaresAccordingToEntities();
+        }
+      }
     );
   }
 
@@ -148,6 +155,10 @@ export class GameActionsClassForGameComponent {
    */
   setSquaresAccordingToEntities() {
     gameComponent.setState(prevState => GameLogic.syncSquaresWithEntities(prevState));
+  }
+
+  refreshSquares() {
+    gameComponent.setState(prevState => GameLogic.reSyncSquares(prevState));
   }
 
   handleKeyPress = param => {
@@ -194,51 +205,50 @@ export class GameActionsClassForGameComponent {
               targeted.squareType = "floor";
               break;
           }
-        }
+        } else {
+          // setting attack
+          if (doubleClick() && selected && doesSquareHaveAliveEntities(targeted)) {
+            const targetSquarePosition = SquaresService.getSquarePositionFromIndex(squareIndex);
+            selected.attackPosition(targetSquarePosition);
+            SquaresService.markSquareAtIndexAsAttacked(squareIndex);
+            delete selected.moveDestination;
+            delete selected.isShooting;
+            Helpers.resetGivenFieldsOnACollection(squares, "isChosenDestination");
+            this.executeActions();
+          } else if (doubleClick() && targeted.isAvailableDestination) {
+            /** Setting move destination while clicking on empty square */
+            selected.setMoveDestinationSquareByNumber(squareIndex);
+            delete selected.targetPosition;
+            delete selected.isShooting;
+            Helpers.resetGivenFieldsOnACollection(squares, "isAttacked");
+            this.executeActions();
+          }
 
-        // setting attack
-        if (doubleClick() && selected && doesSquareHaveAliveEntities(targeted)) {
-          const targetSquarePosition = SquaresService.getSquarePositionFromIndex(squareIndex);
-          selected.attackPosition(targetSquarePosition);
-          SquaresService.markSquareAtIndexAsAttacked(squareIndex);
-          delete selected.moveDestination;
-          delete selected.isShooting;
-          Helpers.resetGivenFieldsOnACollection(squares, "isChosenDestination");
-          this.executeActions();
-        } else if (doubleClick() && targeted.isAvailableDestination) {
-          /** Setting move destination while clicking on empty square */
-          selected.setMoveDestinationSquareByNumber(squareIndex);
-          delete selected.targetPosition;
-          delete selected.isShooting;
-          Helpers.resetGivenFieldsOnACollection(squares, "isAttacked");
-          this.executeActions();
-        }
+          if (doubleClick()) {
+            const targetEntity = targeted?.entities?.length && targeted?.entities[0];
+            if (!selected && targetEntity?.isAlive && targetEntity?.isFriendly) {
+              // Selecting
+              selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
+              //targeted = undefined;
+              MessageService.send(
+                `Selecting an entity ${selected.name} at ${selected.position.x},${selected.position.y}`,
+                MessageLevel.debug
+              );
+              EntitiesService.setSelected(selected);
+              this.setSelectedInStateAccordingToSelectedInEntitiesService();
+            } else if (Helpers.isSelectedTargeted(selected, targeted)) {
+              // Deselecting if not selecting
+              //* // DISABLE DOUBLECLICK DESELECT
+              // GameLogic.deselectAllEntities();
+              // selected = undefined;
+              // */
+            }
+          }
 
-        if (doubleClick()) {
-          const targetEntity = targeted?.entities?.length && targeted?.entities[0];
-          if (!selected && targetEntity?.isAlive && targetEntity?.isFriendly) {
-            // Selecting
-            selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
-            //targeted = undefined;
-            MessageService.send(
-              `Selecting an entity ${selected.name} at ${selected.position.x},${selected.position.y}`,
-              MessageLevel.debug
-            );
-            EntitiesService.setSelected(selected);
-            this.setSelectedInStateAccordingToSelectedInEntitiesService();
-          } else if (Helpers.isSelectedTargeted(selected, targeted)) {
-            // Deselecting if not selecting
-            //* // DISABLE DOUBLECLICK DESELECT
-            // GameLogic.deselectAllEntities();
-            // selected = undefined;
-            // */
+          function doesSquareHaveAliveEntities(square: Square): boolean {
+            return !!(square.entities && square.entities.find(entity => entity.isAlive));
           }
         }
-
-        function doesSquareHaveAliveEntities(square: Square): boolean {
-          return !!(square.entities && square.entities.find(entity => entity.isAlive));
-        }
-
         return { squares, entities, selected, targeted, targetedSquareNumber: selectedSquareNumber };
       },
       () => this.processInterface()
