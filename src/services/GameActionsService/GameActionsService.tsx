@@ -383,4 +383,10 @@ export class GameActionsClassForGameComponent {
       event => updateClickPositionCssVariables(event.clientX, event.clientY)
     );
   };
+
+  resetMap = () => {
+    Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isAvailableDestination");
+    Helpers.setGivenFieldOnACollection(SquaresService.squares, "squareType", "floor");
+    this.processInterface();
+  };
 }

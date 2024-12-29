@@ -3,6 +3,9 @@ import { EntitiesService, Entity } from "services/EntitiesService";
 
 import { characterDefinitions } from "resources/CharacterDefinitions";
 import intro from "resources/maps/intro.json";
+import mapA from "resources/maps/mapA.json";
+import mapB from "resources/maps/mapB.json";
+
 import { GameActionsClassForGameComponent } from "services/GameActionsService";
 import { L30, M16 } from "resources";
 import { Item } from "services/ItemService";
@@ -107,7 +110,19 @@ export class GameModelClass {
   };
 
   loadBuiltInMap = () => {
+    this.loadSquaresIntoService(mapA);
+  };
+
+  loadMapIntro = () => {
     this.loadSquaresIntoService(intro);
+  };
+
+  loadMapA = () => {
+    this.loadSquaresIntoService(mapA);
+  };
+
+  loadMapB = () => {
+    this.loadSquaresIntoService(mapB);
   };
 
   loadPredefinedEntitities = () => {

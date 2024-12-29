@@ -6,10 +6,20 @@ import { Square } from "services/SquaresService";
  * Sets all given fields on a collection to `undefined`
  */
 export function resetGivenFieldsOnACollection(collection, ...fieldNames) {
-  collection.forEach((item) => {
-    fieldNames.forEach((fieldName) => {
+  collection.forEach(item => {
+    fieldNames.forEach(fieldName => {
       item && (item[fieldName] = undefined);
     });
+  });
+}
+
+/** @description
+ * Takes a collection and a string describing object key.
+ * Sets all given fields on a collection to newValue
+ */
+export function setGivenFieldOnACollection(collection, fieldName, newValue) {
+  collection.forEach(item => {
+    item && (item[fieldName] = newValue);
   });
 }
 
@@ -44,8 +54,8 @@ export function calculateDistance(x: number, y: number): number {
 /** @description Mixing classess together */
 export function applyMixins(derivedCtor: any, baseCtors: any[]) {
   // see https://www.typescriptlang.org/docs/handbook/mixins.html
-  baseCtors.forEach((baseCtor) => {
-    Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
+  baseCtors.forEach(baseCtor => {
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
       Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
     });
   });
@@ -89,7 +99,7 @@ export function turnFlagsIntoClasses(flags: object, classNameBase?: string) {
     classNameBase = "";
   }
 
-  Object.keys(flagsToClassess).forEach((key) => {
+  Object.keys(flagsToClassess).forEach(key => {
     if (flags[key]) {
       className += ` ${classNameBase}${flagsToClassess[key]}`;
     }

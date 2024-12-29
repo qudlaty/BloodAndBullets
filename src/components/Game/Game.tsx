@@ -149,6 +149,40 @@ export class Game extends React.PureComponent<void, GameState> {
               &nbsp;
               <p className="instructions"></p>
               <span>Friends actions points: {this.calculateFriendlyActionPoints()} </span> */}
+              {this.state.isEditorOn && (
+                <>
+                  <button onClick={() => GameActions.resetMap()} className="button">
+                    Reset the map
+                  </button>
+                  <button
+                    onClick={() => {
+                      GameModel.loadMapIntro();
+                      GameActions.processInterface();
+                    }}
+                    className="button"
+                  >
+                    Load map: intro
+                  </button>
+                  <button
+                    onClick={() => {
+                      GameModel.loadMapA();
+                      GameActions.processInterface();
+                    }}
+                    className="button"
+                  >
+                    Load map: mapA
+                  </button>
+                  <button
+                    onClick={() => {
+                      GameModel.loadMapB();
+                      GameActions.processInterface();
+                    }}
+                    className="button"
+                  >
+                    Load map: mapB
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </SlideInPanel>
