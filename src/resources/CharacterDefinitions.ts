@@ -1,4 +1,4 @@
-import { M16, M40, L30, R40, G17 } from "./ItemDefinitions";
+import { M16, M40, L30, R40, G17, K01 } from "./ItemDefinitions";
 import { EntitiesService, Entity } from "services";
 
 /**
@@ -48,7 +48,7 @@ export const entitiesInitialValues: Partial<Entity>[] = [
     isBreathing: false,
     position: { x: 2, y: 5 },
     equipment: { hands: new R40() },
-    inventory: [new G17()],
+    inventory: [new K01()],
     bleedingReductionPerTurn: 50,
   },
   {
