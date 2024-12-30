@@ -47,7 +47,7 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
     if (this.props.centeredOn !== prevProps.centeredOn) {
       this.centerInnerDivOnATarget(this.props.centeredOn);
     } else {
-      this.centerInnerDivAfterResize();
+      //this.centerInnerDivAfterResize(); // For some reason this was firing after every click on the Game Board
     }
   }
   recalculateInnerDivSize = () => {
@@ -148,6 +148,7 @@ export class DragScrollArea extends React.Component<DragScrollAreaProps, DragScr
   }
 
   render() {
+    console.log("DRAGSCROLL RENDER");
     return (
       <div
         className="drag-scroll-area drag-scroll-area-external"
