@@ -22,7 +22,9 @@ export class EntityPawn extends React.Component<EntityPawnProps> {
     classessFromFlags += Helpers.turnFlagsIntoClasses(square, classNameBase);
     className += ` ${classessFromFlags} `;
     const fof = entity.isFriendly ? "friendly" : "hostile";
-    const color = entity.isFriendly ? "green" : "red";
+    const friendlyEntityColor = "rgb(50, 250, 50)";
+    const enemyEntityColor = "rgb(250, 50, 50)";
+    const color = entity.isFriendly ? friendlyEntityColor : enemyEntityColor;
     const zIndex = entity.isShooting ? 5 : 1;
     const animationBreathing = entity.isBreathing ? `breathing ${this.randomTime} alternate infinite linear` : "none";
 

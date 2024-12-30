@@ -3,7 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { HpBar } from "components";
 
 const fontSize40px = { fontSize: "40px" };
-const squareStyle = { ...fontSize40px, width: "1em", height: "1em", border: `1px solid rgba(200,200,200,0.5)` };
+const squareStyle = {
+  ...fontSize40px,
+  width: "1em",
+  height: "1em",
+  border: `1px solid rgba(200,200,200,0.5)`,
+  position: "relative",
+};
 const meta = {
   component: HpBar,
   render: args => (

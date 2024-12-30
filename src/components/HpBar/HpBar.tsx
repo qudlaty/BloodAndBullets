@@ -15,8 +15,12 @@ export class HpBar extends React.Component<HpBarProps> {
       width: `${percentage}%`,
       backgroundColor: this.props.color,
     };
+    const containerStyle = {
+      color: this.props.color,
+    };
+
     return (
-      <div className="hpbar">
+      <div className="hpbar" style={containerStyle}>
         <div className="hpbar__indicator" style={progressStyle}></div>
         <span className="hpbar__text">{this.props.current}</span>
       </div>
