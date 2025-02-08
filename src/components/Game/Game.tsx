@@ -181,6 +181,24 @@ export class Game extends React.PureComponent<void, GameState> {
                   >
                     Load map: mapB
                   </button>
+                  <button
+                    onClick={() => {
+                      this.setState({ arenaSize: this.state.arenaSize + 1 });
+                      GameActions.processInterface();
+                    }}
+                    className="button"
+                  >
+                    Arena Size +
+                  </button>
+                  <button
+                    onClick={() => {
+                      this.setState({ arenaSize: this.state.arenaSize - 1 });
+                      GameActions.processInterface();
+                    }}
+                    className="button"
+                  >
+                    Arena Size -
+                  </button>
                 </>
               )}
             </div>
