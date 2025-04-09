@@ -8,13 +8,15 @@ export interface Square {
   entity?: Entity;
   blood?: number;
   squareType: string;
+  isLit?: boolean;
+  isInTwilightZone?: boolean;
+  addItem(item: Item): void;
+
+  // Interface state
   isAvailableDestination?: boolean;
   isChosenDestination?: boolean;
   isTargeted?: boolean;
   isAttacked?: boolean;
-  isLit?: boolean;
-  isInTwilightZone?: boolean;
-  addItem(item: Item): void;
 }
 
 export class Square extends HavingInventory implements Square {

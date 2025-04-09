@@ -4,7 +4,7 @@
 import { Game } from "components";
 import * as Helpers from "helpers";
 import { Entity, EntitiesService, SquaresService, GameLogic, Position, MessageService, MessageLevel } from "services";
-import { GameState } from "services/GameLogicService";
+import { WorldState } from "services/GameLogicService";
 import { Square } from "services/SquaresService";
 
 let gameComponent: Game = null;
@@ -173,7 +173,7 @@ export class GameActionsClassForGameComponent {
 
   handleClickV2 = (squareIndex: number) => {
     gameComponent.setState(
-      (state: GameState) => {
+      (state: WorldState) => {
         let { selected, targeted, targetedSquareNumber: selectedSquareNumber } = state;
         const { squares, entities, isEditorOn } = state;
         const previousTargeted = targeted;
@@ -316,7 +316,7 @@ export class GameActionsClassForGameComponent {
 
   switchAutoLoop = () => {
     gameComponent.setState(
-      (previousState: GameState) => {
+      (previousState: WorldState) => {
         const isAutoLoopOn = !previousState.isAutoLoopOn;
         console.info("Switching auto loop to", isAutoLoopOn);
         return { isAutoLoopOn };

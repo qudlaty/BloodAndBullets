@@ -5,7 +5,7 @@ import {
   EntitiesService,
   GameModel,
   GameActionsClassForGameComponent,
-  GameState,
+  WorldState,
   Entity,
   MessageService,
 } from "services";
@@ -22,7 +22,7 @@ import "./Game-HUD.scss";
 let GameActions: GameActionsClassForGameComponent = null;
 
 /** Game composes all the parts of the interface together */
-export class Game extends React.PureComponent<void, GameState> {
+export class Game extends React.PureComponent<void, WorldState> {
   renderCounter: number = 0;
   turnNumber: number = 0;
 
@@ -33,7 +33,7 @@ export class Game extends React.PureComponent<void, GameState> {
     GameModel.loadPredefinedEntitities();
     EntitiesService.setSelected(EntitiesService.findEntityById("Lazer Blady"));
 
-    this.state = new GameState();
+    this.state = new WorldState();
 
     GameActions = new GameActionsClassForGameComponent(this);
     console.log("Initial state dump:", this.state);

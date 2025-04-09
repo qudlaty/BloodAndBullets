@@ -1,5 +1,5 @@
 import { GameModel, GameModelClass } from "services/GameModelService";
-import { GameState } from "./GameState";
+import { WorldState } from "./WorldState";
 
 import { SquaresService, Square } from "services/SquaresService";
 import { EntitiesService, Entity } from "services/EntitiesService";
@@ -22,7 +22,7 @@ class GameLogicClass {
     console.log(GameModel.entities);
   };
 
-  calculateNextInterfaceState = (previousState: GameState) => {
+  calculateNextInterfaceState = (previousState: WorldState) => {
     const nextState = previousState;
     const { entities, selected } = nextState;
     entities.forEach(entity => {
@@ -37,7 +37,7 @@ class GameLogicClass {
    * @param previousState
    */
 
-  calculateNextGameStateAfterProcessingAGivenEntity(previousState: GameState, givenEntity: Entity): GameState {
+  calculateNextGameStateAfterProcessingAGivenEntity(previousState: WorldState, givenEntity: Entity): WorldState {
     if (givenEntity.actionPoints === 0) {
       const entity = givenEntity;
       MessageService.send(`${entity.name} has not enough AP to execute this action`);
@@ -45,7 +45,7 @@ class GameLogicClass {
 
       return previousState;
     }
-    const nextState: GameState = previousState;
+    const nextState: WorldState = previousState;
     const { entities } = nextState;
     this.processAnEntity(givenEntity);
     nextState.enemiesAlive = this.calculateNumberOfAliveEnemies(entities);

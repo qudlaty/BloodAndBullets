@@ -5,7 +5,7 @@ import GameLogic from "./GameLogicService";
  * @description Interface of GameState used in Game Component as state
  *
  */
-export interface GameState {
+export interface WorldState {
   entities: Entity[];
   squares: Square[];
   selected: Entity;
@@ -23,7 +23,7 @@ export interface GameState {
   areEnemiesSelectable: boolean;
 }
 
-export class GameState implements GameState {
+export class WorldState implements WorldState {
   constructor() {
     Object.assign(this, {
       entities: EntitiesService.entities,
