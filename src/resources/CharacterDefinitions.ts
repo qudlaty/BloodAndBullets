@@ -126,6 +126,30 @@ export const entitiesInitialValues: Partial<Entity>[] = [
     position: { x: 3, y: 8 },
     equipment: { hands: new L30() },
   },
+  {
+    name: "Monster",
+    description:
+      `This alien monstrosity came from the void. ` + //
+      `Noone knows what it wants. But it will take it. With the many hands, tentacles, and other apendages that is has. ` +
+      `Running is futile. `,
+    hp: 100,
+    maxHp: 100,
+    icon: "👾",
+    position: { x: 5, y: 1 },
+    equipment: { hands: new R40() },
+  },
+  {
+    name: "Monster",
+    description:
+      `This alien monstrosity came from the void. ` + //
+      `Noone knows what it wants. But it will take it. With the many hands, tentacles, and other apendages that is has. ` +
+      `Running is futile. `,
+    hp: 100,
+    maxHp: 100,
+    icon: "👾",
+    position: { x: 7, y: 0 },
+    equipment: { hands: new R40() },
+  },
 ];
 
 // const addEntityToDefaultValues = entity => Object.assign({ ...defaultEntityValues }, entity);

@@ -19,6 +19,7 @@ export class EmojiMapper extends React.Component<EmojiMapperProps> {
     "🧑‍🚀": "astronaut",
     "🤖": "robot",
     "🛢️": "oildrum",
+    "👾": "monster",
   };
 
   render() {
