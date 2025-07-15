@@ -28,5 +28,13 @@ const config: StorybookConfig = {
     defaultName: "Documentation",
   },
   staticDirs: ["..\\public\\storybook"],
+  previewHead: head => `
+    ${head}
+    <style>
+      body {
+        background-color: #333;
+      }
+    </style>
+  `,
 };
 export default config;
