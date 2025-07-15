@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { InfoPanelSwitchButton } from "./InfoPanelSwitchButton";
 import { L30, M16, M37, M40, R40 } from "resources";
