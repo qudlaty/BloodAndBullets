@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Board, BoardProps, DragScrollArea } from "components";
 import { Twenty } from "components/Board/Board.stories";
 

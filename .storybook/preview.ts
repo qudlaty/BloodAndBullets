@@ -1,5 +1,5 @@
-import type { Preview } from "@storybook/react";
-import { themes } from "@storybook/theming";
+import type { Preview } from "@storybook/react-vite";
+import { themes } from "storybook/theming";
 import DocumentationTemplate from "./templates/DocumentationTemplate.mdx";
 
 const preview: Preview = {
@@ -19,6 +19,7 @@ const preview: Preview = {
       theme: themes.dark,
       page: DocumentationTemplate,
       controls: { exclude: [] },
+      codePanel: true,
     },
     options: {
       storySort: {
@@ -26,6 +27,10 @@ const preview: Preview = {
       },
     },
   },
+  initialGlobals: {
+    backgrounds: { value: "dark" },
+  },
+  tags: ["autodocs"],
 };
 
 export default preview;

@@ -3,21 +3,7 @@ import type { StorybookConfig } from "@storybook/react-vite";
 const config: StorybookConfig = {
   framework: "@storybook/react-vite",
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-interactions",
-    {
-      name: "@storybook/addon-storysource",
-      options: {
-        loaderOptions: {
-          injectStoryParameters: false,
-        },
-        parser: "typescript",
-      },
-    },
-  ],
+  addons: ["@storybook/addon-links", "@storybook/addon-onboarding", "@storybook/addon-docs"],
   core: {
     builder: "@storybook/builder-vite",
   },
@@ -39,9 +25,16 @@ const config: StorybookConfig = {
   },
 
   docs: {
-    autodocs: true,
     defaultName: "Documentation",
   },
   staticDirs: ["..\\public\\storybook"],
+  previewHead: head => `
+    ${head}
+    <style>
+      body {
+        background-color: #333;
+      }
+    </style>
+  `,
 };
 export default config;
