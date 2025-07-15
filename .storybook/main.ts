@@ -31,8 +31,11 @@ const config: StorybookConfig = {
   previewHead: head => `
     ${head}
     <style>
+      .sb-preparing-story, 
+      .sb-preparing-docs,
       body {
         background-color: #333;
+        transition: none !important;
       }
     </style>
   `,
