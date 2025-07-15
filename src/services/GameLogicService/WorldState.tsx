@@ -2,7 +2,7 @@ import { Entity, Square, EntitiesService, SquaresService } from "services";
 import GameLogic from "./GameLogicService";
 
 /**
- * @description Interface of GameState used in Game Component as state
+ * @description Interface of WorldState used in the Game Component as state
  *
  */
 export interface WorldState {

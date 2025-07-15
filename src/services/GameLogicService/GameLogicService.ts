@@ -37,7 +37,7 @@ class GameLogicClass {
    * @param previousState
    */
 
-  calculateNextGameStateAfterProcessingAGivenEntity(previousState: WorldState, givenEntity: Entity): WorldState {
+  calculateNextWorldStateAfterProcessingAGivenEntity(previousState: WorldState, givenEntity: Entity): WorldState {
     if (givenEntity.actionPoints === 0) {
       const entity = givenEntity;
       MessageService.send(`${entity.name} has not enough AP to execute this action`);

@@ -103,7 +103,7 @@ export class GameActionsClassForGameComponent {
 
   setNewStateAfterProcessingChosenEntity(entity) {
     gameComponent.setState(
-      prevState => GameLogic.calculateNextGameStateAfterProcessingAGivenEntity(prevState, entity),
+      prevState => GameLogic.calculateNextWorldStateAfterProcessingAGivenEntity(prevState, entity),
       () => this.setSquaresAccordingToEntities()
     );
     this.processInterface();
@@ -112,7 +112,7 @@ export class GameActionsClassForGameComponent {
   executeActions = () => {
     MessageService.send(`Executing actions`, MessageLevel.debug);
     gameComponent.setState(
-      prevState => GameLogic.calculateNextGameStateAfterProcessingAGivenEntity(prevState, EntitiesService.selected),
+      prevState => GameLogic.calculateNextWorldStateAfterProcessingAGivenEntity(prevState, EntitiesService.selected),
       () => this.afterExecuteActions()
     );
     this.processInterface();
