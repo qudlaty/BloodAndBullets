@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SquareComponent } from "components";
-import { action } from "@storybook/addon-actions";
+import { action } from "storybook/actions";
 import React from "react";
 
 const meta: Meta<typeof SquareComponent> = {
