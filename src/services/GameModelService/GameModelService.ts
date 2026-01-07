@@ -76,12 +76,16 @@ export class GameModelClass {
         entity.equipment.hands = makeInstanceOfAWeapon(entity.equipment.hands);
       }
       if (entity.inventory) {
-        entity.inventory = entity.inventory.map(itemRecord => makeInstanceOfAWeapon(itemRecord));
+        entity.inventory = entity.inventory.map(itemRecord =>
+          makeInstanceOfAWeapon(itemRecord)
+        );
       }
       return entity;
     }
 
-    const entitiesProcessed = EntitiesService.entities.map(entity => processEquipmentForEntityOrEntityRecord(entity));
+    const entitiesProcessed = EntitiesService.entities.map(entity =>
+      processEquipmentForEntityOrEntityRecord(entity)
+    );
 
     console.log("ALIVE ENTITIES?", entitiesProcessed);
     this.loadEntitiesIntoService(entitiesProcessed); ///
@@ -90,6 +94,13 @@ export class GameModelClass {
     GameActions.processInterface();
   };
 
+  /**
+   * @description
+   * This actually iterates through squares already present
+   * in the service, and for each of them, sets the squareType
+   * and icon, name, description on a target square
+   * to whatever was loaded.
+   */
   loadSquaresIntoService = squaresLoaded => {
     SquaresService.squares.forEach((square, index) => {
       const targetSquare = square;
@@ -106,7 +117,8 @@ export class GameModelClass {
   };
 
   loadGeneratedEntitiesIntoService = (generatedEntities: any[]) => {
-    EntitiesService.entities = EntitiesService.changeEntitiesIntoFullBlownObjects(generatedEntities);
+    EntitiesService.entities =
+      EntitiesService.changeEntitiesIntoFullBlownObjects(generatedEntities);
   };
 
   loadBuiltInMap = () => {
@@ -214,7 +226,8 @@ export class GameModelClass {
       if (squareType == "floor") {
         if (
           arrMap.length > 1 &&
-          (arrMap[arrMap.length - 1].entities.length != 0 || arrMap[arrMap.length - 2].entities.length != 0)
+          (arrMap[arrMap.length - 1].entities.length != 0 ||
+            arrMap[arrMap.length - 2].entities.length != 0)
         ) {
           arrMap.push(newSquare);
 
@@ -267,7 +280,10 @@ export class GameModelClass {
     };
 
     this.generatedEntities.push(lazerBlady);
-    const targetSquareIndex = SquaresService.getSquareIndexFromPosition(lazerBlady.position.x, lazerBlady.position.y);
+    const targetSquareIndex = SquaresService.getSquareIndexFromPosition(
+      lazerBlady.position.x,
+      lazerBlady.position.y
+    );
     arrMap[targetSquareIndex].entities.push(lazerBlady);
     console.log(arrMap, this.generatedEntities, "dupa blady");
     this.generatedEntitiesJSON = JSON.stringify(this.generatedEntities);
