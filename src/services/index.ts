@@ -6,3 +6,4 @@ export * from "./MessageService";
 export * from "./GameLogicService";
 export * from "./GameModelService";
 export * from "./GameActionsService";
+export * from "./MapService";
