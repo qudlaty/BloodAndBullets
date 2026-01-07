@@ -5,11 +5,13 @@ import { MessageLevel, MessageService } from "services/MessageService";
 
 class SquaresServiceClass {
   arenaSize: number = 10; // TODO: This should be defined ELSEWHERE
+  arenaSizeX: number = 10;
+  arenaSizeY: number = 10;
 
   squares: Square[] = [];
 
   constructor() {
-    let i = this.arenaSize * this.arenaSize;
+    let i = this.arenaSizeX * this.arenaSizeY;
     while (i-- !== 0) {
       this.initializeSquareAtIndexIfEmpty(i);
     }
@@ -24,12 +26,12 @@ class SquaresServiceClass {
   }
 
   getSquareIndexFromPosition(x: number, y: number): number {
-    return y * this.arenaSize + x;
+    return y * this.arenaSizeX + x;
   }
 
   getSquarePositionFromIndex(squareIndex: number): Position {
     const y = Math.floor(squareIndex / this.arenaSize);
-    const x = squareIndex % this.arenaSize;
+    const x = squareIndex % this.arenaSizeX;
     return { x, y };
   }
 
@@ -65,7 +67,10 @@ class SquaresServiceClass {
     this.squares[squareIndex].isTargeted = true;
 
     const squareCoords: Position = this.getSquarePositionFromIndex(squareIndex);
-    MessageService.send(`Targetting square #${squareIndex} at ${squareCoords.x},${squareCoords.y}`, MessageLevel.debug);
+    MessageService.send(
+      `Targetting square #${squareIndex} at ${squareCoords.x},${squareCoords.y}`,
+      MessageLevel.debug
+    );
   }
 
   markSquareAtIndexAsAttacked(squareIndex: number): void {
@@ -106,11 +111,11 @@ class SquaresServiceClass {
       Helpers.resetGivenFieldsOnACollection(this.squares, "isAvailableDestination");
 
       for (let j = y - 1; j <= y + 1; j++) {
-        if (j < 0 || j >= this.arenaSize) {
+        if (j < 0 || j >= this.arenaSizeY) {
           continue;
         }
         for (let i = x - 1; i <= x + 1; i++) {
-          if (i < 0 || i >= this.arenaSize || (i === x && j === y)) {
+          if (i < 0 || i >= this.arenaSizeX || (i === x && j === y)) {
             continue;
           }
 
@@ -127,11 +132,13 @@ class SquaresServiceClass {
 
   isTargetSquareEnterable(targetSquare: Square): boolean {
     const unpassableEntitiesInThisSquare =
-      targetSquare.entities && targetSquare.entities.filter(entity => !entity.isPassable && entity.isAlive);
+      targetSquare.entities &&
+      targetSquare.entities.filter(entity => !entity.isPassable && entity.isAlive);
     return !(unpassableEntitiesInThisSquare && unpassableEntitiesInThisSquare.length);
   }
 
-  isSquareEnterableByFriendlyUnits = square => ["floor", "monster-filter"].includes(square.squareType);
+  isSquareEnterableByFriendlyUnits = square =>
+    ["floor", "monster-filter"].includes(square.squareType);
 
   lightAllSquares(): void {
     this.squares.forEach(square => (square.isLit = true));
@@ -141,11 +148,11 @@ class SquaresServiceClass {
       const { x, y } = entity.position;
 
       for (let j = y - 2; j <= y + 2; j++) {
-        if (j < 0 || j >= this.arenaSize) {
+        if (j < 0 || j >= this.arenaSizeY) {
           continue;
         }
         for (let i = x - 2; i <= x + 2; i++) {
-          if (i < 0 || i >= this.arenaSize) {
+          if (i < 0 || i >= this.arenaSizeX) {
             continue;
           }
 
@@ -157,11 +164,11 @@ class SquaresServiceClass {
       }
 
       for (let j = y - 1; j <= y + 1; j++) {
-        if (j < 0 || j >= this.arenaSize) {
+        if (j < 0 || j >= this.arenaSizeY) {
           continue;
         }
         for (let i = x - 1; i <= x + 1; i++) {
-          if (i < 0 || i >= this.arenaSize) {
+          if (i < 0 || i >= this.arenaSizeX) {
             continue;
           }
 
