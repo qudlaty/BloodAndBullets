@@ -205,7 +205,8 @@ export class Game extends React.PureComponent<void, WorldState> {
                   </button>
                   <button
                     onClick={() => {
-                      this.setState({ arenaSizeX: this.state.arenaSizeX - 1 });
+                      this.state.arenaSizeX > 1 &&
+                        this.setState({ arenaSizeX: this.state.arenaSizeX - 1 });
                       GameActions.processInterface();
                     }}
                     className="button"
@@ -223,7 +224,8 @@ export class Game extends React.PureComponent<void, WorldState> {
                   </button>
                   <button
                     onClick={() => {
-                      this.setState({ arenaSizeY: this.state.arenaSizeY - 1 });
+                      this.state.arenaSizeY > 1 &&
+                        this.setState({ arenaSizeY: this.state.arenaSizeY - 1 });
                       GameActions.processInterface();
                     }}
                     className="button"
