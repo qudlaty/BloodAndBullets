@@ -109,7 +109,8 @@ class EntitiesServiceClass {
   getEntitiesAtGivenPosition(targetPosition: Position): Entity[] {
     return this.entities.filter((potentialTargetEntity: Entity): boolean => {
       return (
-        potentialTargetEntity.position.x === targetPosition.x && potentialTargetEntity.position.y === targetPosition.y
+        potentialTargetEntity.position.x === targetPosition.x &&
+        potentialTargetEntity.position.y === targetPosition.y
       );
     });
   }
@@ -224,8 +225,9 @@ class EntitiesServiceClass {
 
   ceaseFireNextTickIfNoAliveTargets(entity: Entity): void {
     if (!entity.targetPosition) return;
-    const areThereAliveTargetEntities = !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition)
-      .length;
+    const areThereAliveTargetEntities = !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(
+      entity.targetPosition
+    ).length;
     if (!areThereAliveTargetEntities) {
       entity.ceaseFire = true;
     }
@@ -233,11 +235,13 @@ class EntitiesServiceClass {
 
   isEntityTargettingSomethingAlive(entity: Entity): boolean {
     const areThereAliveTargetEntities: boolean =
-      entity.targetPosition && !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
+      entity.targetPosition &&
+      !!EntitiesService.getEntitiesAtGivenPositionThatAreAlive(entity.targetPosition).length;
 
     return (
       entity.targetPosition &&
-      (entity.targetPosition.x !== entity.position.x || entity.targetPosition.y !== entity.position.y) &&
+      (entity.targetPosition.x !== entity.position.x ||
+        entity.targetPosition.y !== entity.position.y) &&
       areThereAliveTargetEntities
     );
   }
