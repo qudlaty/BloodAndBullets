@@ -23,7 +23,10 @@ interface TargetedSquareInfoState {
 }
 
 // TODO: Refactor, does it really need all this logic.
-export default class TargetedSquareInfo extends React.Component<TargetedSquareInfoProps, TargetedSquareInfoState> {
+export default class TargetedSquareInfo extends React.Component<
+  TargetedSquareInfoProps,
+  TargetedSquareInfoState
+> {
   boxSerialNumber: number = 0;
 
   constructor(props) {
@@ -58,7 +61,10 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
         item = targeted.entities.find(entity => entity.name === itemName);
 
-        const square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
+        const square = SquaresService.getSquareFromPosition(
+          targetedSquarePosition.x,
+          targetedSquarePosition.y
+        );
         //square.entity = null;
         EntitiesService.removeEntityFromListOfEntities(square.entities, item as Entity);
         EntitiesService.removeEntity(item as Entity); // TODO: Take this out of the component
@@ -68,7 +74,9 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
         selected.equipInHands(item.name);
       }
     } else {
-      MessageService.send(`${selected.name} can't pick up ${itemName}. They need to be on the same square to do that.`);
+      MessageService.send(
+        `${selected.name} can't pick up ${itemName}. They need to be on the same square to do that.`
+      );
     }
     this.props.processInterface();
   };
@@ -93,7 +101,10 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
     const targetPosition = Object.assign({}, targetedSquarePosition);
     box.position = targetPosition;
     box.name += this.boxSerialNumber++;
-    const square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
+    const square = SquaresService.getSquareFromPosition(
+      targetedSquarePosition.x,
+      targetedSquarePosition.y
+    );
 
     const newStructure = new Entity(box);
 
@@ -125,10 +136,16 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
 
     const editorButtons = (
       <div>
-        <button onClick={() => this.onAddStructureClick(targetedSquarePosition, "box")} className="button">
+        <button
+          onClick={() => this.onAddStructureClick(targetedSquarePosition, "box")}
+          className="button"
+        >
           Add box
         </button>
-        <button onClick={() => this.onAddStructureClick(targetedSquarePosition, "redBarrel")} className="button">
+        <button
+          onClick={() => this.onAddStructureClick(targetedSquarePosition, "redBarrel")}
+          className="button"
+        >
           Add barrel
         </button>
       </div>
@@ -193,7 +210,11 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       if (distanceToSelected !== 0) {
         if (targeted.isAvailableDestination) {
           availableActions[0] = (
-            <button key="move" onClick={() => this.onMoveClick(selected, targetedSquarePosition)} className="button">
+            <button
+              key="move"
+              onClick={() => this.onMoveClick(selected, targetedSquarePosition)}
+              className="button"
+            >
               Move
             </button>
           );
@@ -224,7 +245,12 @@ export default class TargetedSquareInfo extends React.Component<TargetedSquareIn
       bloodInfo = <li>Blood amount: {targeted.blood}</li>;
     }
 
-    const square = SquaresService.getSquareFromPosition(targetedSquarePosition.x, targetedSquarePosition.y);
+    const square = SquaresService.getSquareFromPosition(
+      targetedSquarePosition.x,
+      targetedSquarePosition.y
+    );
+
+    if (!square) return <></>;
 
     return (
       <div className={this.props.className}>
