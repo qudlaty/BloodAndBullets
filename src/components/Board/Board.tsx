@@ -9,7 +9,8 @@ export interface BoardProps {
   onClick?(i: number): void;
   squares: Square[]; // updated every action
   entities: Entity[]; // updated every action
-  size: number;
+  sizeX: number;
+  sizeY: number;
   isRotated: boolean;
   style?: any;
 }
@@ -47,11 +48,11 @@ export class Board extends React.Component<BoardProps> {
     let rowId: number = 0;
     let colId: number;
 
-    const rowsOfSquares = Array(this.props.size)
+    const rowsOfSquares = Array(this.props.sizeY)
       .fill(null)
       .map((row, number) => {
         colId = 0;
-        const cells = Array(this.props.size)
+        const cells = Array(this.props.sizeX)
           .fill(null)
           .map((cell, number) => {
             return this.renderSquare(cellId++, rowId, colId++);

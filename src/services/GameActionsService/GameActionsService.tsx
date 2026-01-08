@@ -3,7 +3,15 @@
 
 import { Game } from "components";
 import * as Helpers from "helpers";
-import { Entity, EntitiesService, SquaresService, GameLogic, Position, MessageService, MessageLevel } from "services";
+import {
+  Entity,
+  EntitiesService,
+  SquaresService,
+  GameLogic,
+  Position,
+  MessageService,
+  MessageLevel,
+} from "services";
 import { WorldState } from "services/GameLogicService";
 import { Square } from "services/SquaresService";
 
@@ -29,7 +37,11 @@ export class GameActionsClassForGameComponent {
       });
     } else {
       gameComponent.setState(prevState => {
-        return { squares: SquaresService.squares, entities: EntitiesService.entities, isEditorOn: false };
+        return {
+          squares: SquaresService.squares,
+          entities: EntitiesService.entities,
+          isEditorOn: false,
+        };
       });
     }
   };
@@ -83,7 +95,10 @@ export class GameActionsClassForGameComponent {
   processEntities() {
     this.drawAggro();
     // EntitiesService.moveEntities();
-    this.entitiesProcessingLoopIntervalHandle = setInterval(() => this.processNextUnprocessedEntity(), 100);
+    this.entitiesProcessingLoopIntervalHandle = setInterval(
+      () => this.processNextUnprocessedEntity(),
+      100
+    );
   }
 
   processNextUnprocessedEntity() {
@@ -112,7 +127,11 @@ export class GameActionsClassForGameComponent {
   executeActions = () => {
     MessageService.send(`Executing actions`, MessageLevel.debug);
     gameComponent.setState(
-      prevState => GameLogic.calculateNextWorldStateAfterProcessingAGivenEntity(prevState, EntitiesService.selected),
+      prevState =>
+        GameLogic.calculateNextWorldStateAfterProcessingAGivenEntity(
+          prevState,
+          EntitiesService.selected
+        ),
       () => this.afterExecuteActions()
     );
     this.processInterface();
@@ -226,7 +245,11 @@ export class GameActionsClassForGameComponent {
 
           if (doubleClick()) {
             const targetEntity = targeted?.entities?.length && targeted?.entities[0];
-            if (!selected && targetEntity?.isAlive && (targetEntity?.isFriendly || state.areEnemiesSelectable)) {
+            if (
+              !selected &&
+              targetEntity?.isAlive &&
+              (targetEntity?.isFriendly || state.areEnemiesSelectable)
+            ) {
               // Selecting
               selected = EntitiesService.selectEntityFromGivenSquare(selected, targeted);
               //targeted = undefined;
@@ -249,7 +272,13 @@ export class GameActionsClassForGameComponent {
             return !!(square.entities && square.entities.find(entity => entity.isAlive));
           }
         }
-        return { squares, entities, selected, targeted, targetedSquareNumber: selectedSquareNumber };
+        return {
+          squares,
+          entities,
+          selected,
+          targeted,
+          targetedSquareNumber: selectedSquareNumber,
+        };
       },
       () => this.processInterface()
     );
@@ -278,11 +307,11 @@ export class GameActionsClassForGameComponent {
     const { x, y } = position;
     let entities: Entity[] = [];
     for (let j = y - 1; j <= y + 1; j++) {
-      if (j < 0 || j >= SquaresService.arenaSize) {
+      if (j < 0 || j >= SquaresService.arenaSizeY) {
         continue;
       }
       for (let i = x - 1; i <= x + 1; i++) {
-        if (i < 0 || i >= SquaresService.arenaSize || (i === x && j === y)) {
+        if (i < 0 || i >= SquaresService.arenaSizeX || (i === x && j === y)) {
           continue;
         }
         const newlyFoundEntities = EntitiesService.getEntitiesAtGivenPosition({ x: i, y: j });
