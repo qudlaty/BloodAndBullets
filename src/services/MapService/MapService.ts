@@ -13,7 +13,7 @@ import mapB from "resources/maps/mapB.json";
  * A `Map` is essentially just a place.
  * Only data about the shape of a location is stored here.
  */
-export type Map = {
+export type UnifiedMapFormat = {
   id: string;
   name: string;
   description?: string;

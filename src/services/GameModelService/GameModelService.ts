@@ -9,6 +9,7 @@ import mapB from "resources/maps/mapB.json";
 import { GameActionsClassForGameComponent } from "services/GameActionsService";
 import { L30, M16 } from "resources";
 import { Item } from "services/ItemService";
+import { UnifiedMapFormat } from "services/MapService";
 
 /**
  * @description Handles loading and saving of the map and entities
@@ -27,21 +28,35 @@ export class GameModelClass {
   }
 
   saveMap = () => {
-    console.log("Alive suares:", SquaresService.squares);
+    console.log("Alive squares:", SquaresService.squares);
     const squares: Square[] = JSON.parse(JSON.stringify(SquaresService.squares));
     const squaresProcessedForSave = squares.map(square => {
       //let newSquare = { squareType: square.squareType, entity: square.entity };
 
       return square;
     });
-    const squaresStringified = JSON.stringify(squaresProcessedForSave);
-    console.log(squaresStringified);
-    const message = "Enter the name of saved map.";
-    const mapName = "map00";
 
-    const result = window.prompt(message, mapName);
-    localStorage[result] = squaresStringified;
-    window.prompt("Saved the following map as " + result, squaresStringified);
+    const message = "Enter the name of saved map.";
+    const defaultMapName = "map00";
+    const givenMapName = window.prompt(message, defaultMapName);
+
+    const resultingMap: UnifiedMapFormat = {
+      id: crypto.randomUUID(),
+      name: givenMapName,
+      description: "None",
+      dimensions: {
+        x: SquaresService.arenaSizeX,
+        y: SquaresService.arenaSizeY,
+      },
+      squares: squaresProcessedForSave,
+    };
+
+    const mapStringified = JSON.stringify(resultingMap);
+
+    localStorage[givenMapName] = mapStringified;
+    console.log(mapStringified);
+
+    window.prompt("Saved the following map as " + givenMapName, mapStringified);
   };
 
   loadMap = (GameActions: GameActionsClassForGameComponent) => {
