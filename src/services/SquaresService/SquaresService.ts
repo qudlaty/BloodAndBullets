@@ -17,8 +17,42 @@ class SquaresServiceClass {
   }
 
   setArenaSize(arenaSizeX: number, arenaSizeY: number) {
+    const oldSquares = this.squares;
+    const oldArenaSizeX = this.arenaSizeX;
+    const oldArenaSizeY = this.arenaSizeY;
+
+    // Create a new array for the new dimensions
+    const newSquares = new Array(arenaSizeX * arenaSizeY);
+
+    // Copy existing squares to their new positions
+    for (let y = 0; y < oldArenaSizeY; y++) {
+      for (let x = 0; x < oldArenaSizeX; x++) {
+        // Only copy if the old position is within the new bounds
+        if (x < arenaSizeX && y < arenaSizeY) {
+          const oldIndex = y * oldArenaSizeX + x;
+          const newIndex = y * arenaSizeX + x;
+          const square = oldSquares[oldIndex];
+          if (square) {
+            square.id = newIndex as any;
+            newSquares[newIndex] = square;
+          }
+        }
+      }
+    }
+
+    // Update the service state
     this.arenaSizeX = arenaSizeX;
     this.arenaSizeY = arenaSizeY;
+    this.squares.length = 0;
+    this.squares.push(...newSquares);
+
+    // Initialize any new squares that were added
+    for (let i = 0; i < this.squares.length; i++) {
+      if (!this.squares[i]) {
+        this.initializeSquareAtIndexIfEmpty(i);
+        this.squares[i].squareType = "floor";
+      }
+    }
   }
 
   getSquareFromPosition(x: number, y: number): Square {
@@ -34,7 +68,7 @@ class SquaresServiceClass {
   }
 
   getSquarePositionFromIndex(squareIndex: number): Position {
-    const y = Math.floor(squareIndex / this.arenaSizeY);
+    const y = Math.floor(squareIndex / this.arenaSizeX);
     const x = squareIndex % this.arenaSizeX;
     return { x, y };
   }
