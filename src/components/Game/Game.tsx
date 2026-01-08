@@ -186,7 +186,14 @@ export class Game extends React.PureComponent<void, WorldState> {
                   >
                     MapBrush - Floor
                   </button>
-
+                  <button
+                    onClick={() => {
+                      this.setState({ mapBrush: null });
+                    }}
+                    className="button"
+                  >
+                    MapBrush - OFF
+                  </button>
                   <button
                     onClick={() => {
                       GameModel.loadMapIntro();
