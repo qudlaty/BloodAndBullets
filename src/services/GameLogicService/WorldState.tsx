@@ -12,7 +12,8 @@ export interface WorldState {
   targeted: Square;
   targetedSquareNumber: number;
 
-  arenaSize: number;
+  arenaSizeX: number;
+  arenaSizeY: number;
   squareSize: number;
   enemiesAlive: number;
   friendsAlive: number;
@@ -32,7 +33,8 @@ export class WorldState implements WorldState {
       targeted: null,
       targetedSquareNumber: null,
 
-      arenaSize: 10,
+      arenaSizeX: 10,
+      arenaSizeY: 10,
       squareSize: 40,
       enemiesAlive: GameLogic.calculateNumberOfAliveEnemies(EntitiesService.entities),
       friendsAlive: GameLogic.calculateNumberOfAliveFriends(EntitiesService.entities),

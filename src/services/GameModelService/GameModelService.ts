@@ -76,9 +76,7 @@ export class GameModelClass {
         entity.equipment.hands = makeInstanceOfAWeapon(entity.equipment.hands);
       }
       if (entity.inventory) {
-        entity.inventory = entity.inventory.map(itemRecord =>
-          makeInstanceOfAWeapon(itemRecord)
-        );
+        entity.inventory = entity.inventory.map(itemRecord => makeInstanceOfAWeapon(itemRecord));
       }
       return entity;
     }
@@ -249,7 +247,7 @@ export class GameModelClass {
       }
 
       id++;
-      if (id !== 0 && id % SquaresService.arenaSize == 0) {
+      if (id !== 0 && id % SquaresService.arenaSizeX == 0) {
         idx = 0;
         idy++;
       } else {

@@ -11,7 +11,15 @@ import {
 } from "services";
 
 // components
-import { Board, MessageBox, Controls, SlideInPanel, HudPanel, CursorMessage, DragScrollArea } from "components";
+import {
+  Board,
+  MessageBox,
+  Controls,
+  SlideInPanel,
+  HudPanel,
+  CursorMessage,
+  DragScrollArea,
+} from "components";
 import TargetedSquareInfo from "./TargetedSquareInfo";
 import SelectedEntityInfo from "./SelectedEntityInfo";
 
@@ -100,7 +108,8 @@ export class Game extends React.PureComponent<void, WorldState> {
                 squares={this.state.squares}
                 entities={this.state.entities}
                 onClick={i => GameActions.handleClickV2(i)}
-                size={this.state.arenaSize}
+                sizeX={this.state.arenaSizeX}
+                sizeY={this.state.arenaSizeY}
                 isRotated={this.state.isBoardRotated}
                 style={{ fontSize: `${this.state.squareSize}px` }}
               />
@@ -134,7 +143,11 @@ export class Game extends React.PureComponent<void, WorldState> {
               </button>
               <span className="st ep-counter">Turn: {this.turnNumber}</span>
               <label className="button auto-cycle">
-                <input type="checkbox" checked={this.state.isAutoLoopOn} onChange={GameActions.switchAutoLoop} />
+                <input
+                  type="checkbox"
+                  checked={this.state.isAutoLoopOn}
+                  onChange={GameActions.switchAutoLoop}
+                />
                 <span>Auto Cycle</span>
               </label>
               <button onClick={GameActions.endTurn} className="button next_tick next_turn">
@@ -183,21 +196,39 @@ export class Game extends React.PureComponent<void, WorldState> {
                   </button>
                   <button
                     onClick={() => {
-                      this.setState({ arenaSize: this.state.arenaSize + 1 });
+                      this.setState({ arenaSizeX: this.state.arenaSizeX + 1 });
                       GameActions.processInterface();
                     }}
                     className="button"
                   >
-                    Arena Size +
+                    Arena Size X +
                   </button>
                   <button
                     onClick={() => {
-                      this.setState({ arenaSize: this.state.arenaSize - 1 });
+                      this.setState({ arenaSizeX: this.state.arenaSizeX - 1 });
                       GameActions.processInterface();
                     }}
                     className="button"
                   >
-                    Arena Size -
+                    Arena Size X -
+                  </button>
+                  <button
+                    onClick={() => {
+                      this.setState({ arenaSizeY: this.state.arenaSizeY + 1 });
+                      GameActions.processInterface();
+                    }}
+                    className="button"
+                  >
+                    Arena Size Y +
+                  </button>
+                  <button
+                    onClick={() => {
+                      this.setState({ arenaSizeY: this.state.arenaSizeY - 1 });
+                      GameActions.processInterface();
+                    }}
+                    className="button"
+                  >
+                    Arena Size Y -
                   </button>
                 </>
               )}
