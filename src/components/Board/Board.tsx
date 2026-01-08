@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { SquareComponent, EntityPawn } from "components";
-import { Entity, Square } from "services";
+import { EntitiesService, Entity, Square, SquaresService } from "services";
 import * as Helpers from "helpers";
 
 import styles from "./Board.module.scss";
@@ -69,6 +69,10 @@ export class Board extends React.Component<BoardProps> {
 
   render() {
     let className: string = styles.board;
+
+    SquaresService.setArenaSize(this.props.sizeX, this.props.sizeY);
+    EntitiesService.setArenaSize(this.props.sizeX, this.props.sizeY);
+
     if (this.props.isRotated) {
       className += ` ${styles["board--rotated"]} board--rotated`;
     }
