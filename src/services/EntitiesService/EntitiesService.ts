@@ -4,7 +4,6 @@ import * as Helpers from "helpers";
 import { MessageService, RangedWeapon } from "services";
 import { Identifiable } from "./EntityFeatures";
 import { Item, RechargableEnergyWeapon } from "services/ItemService";
-const arenaSize: number = 10;
 
 const defaultEntityValues = {
   bleedingReductionPerTurn: 1,
@@ -21,6 +20,13 @@ const defaultEntityValues = {
 class EntitiesServiceClass {
   entities: Entity[];
   selected: Entity;
+  arenaSizeX: number = 10;
+  arenaSizeY: number = 10;
+
+  setArenaSize(arenaSizeX: number, arenaSizeY: number) {
+    this.arenaSizeX = arenaSizeX;
+    this.arenaSizeY = arenaSizeY;
+  }
 
   getEntityId(entity: Identifiable): string {
     return entity.name;
@@ -85,8 +91,16 @@ class EntitiesServiceClass {
     entity.position.x = entity.position.x + deltaX;
     entity.position.y = entity.position.y + deltaY;
 
-    entity.position.x = Helpers.getNumberWithinBoundaries(entity.position.x, 0, arenaSize - 1);
-    entity.position.y = Helpers.getNumberWithinBoundaries(entity.position.y, 0, arenaSize - 1);
+    entity.position.x = Helpers.getNumberWithinBoundaries(
+      entity.position.x,
+      0,
+      this.arenaSizeX - 1
+    );
+    entity.position.y = Helpers.getNumberWithinBoundaries(
+      entity.position.y,
+      0,
+      this.arenaSizeY - 1
+    );
 
     const newSquare = SquaresService.getSquareFromPosition(entity.position.x, entity.position.y);
 
