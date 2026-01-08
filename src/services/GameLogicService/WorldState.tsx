@@ -21,6 +21,7 @@ export interface WorldState {
   isAutoLoopOn: boolean;
   isBoardRotated: boolean;
   isEditorOn: boolean;
+  mapBrush: string;
   areEnemiesSelectable: boolean;
 }
 

@@ -165,8 +165,28 @@ export class Game extends React.PureComponent<void, WorldState> {
               {this.state.isEditorOn && (
                 <>
                   <button onClick={() => GameActions.resetMap()} className="button">
-                    Reset the map
+                    Reset the map - all floor
                   </button>
+                  <button onClick={() => GameActions.resetMap("nothing")} className="button">
+                    Reset the map - all nothing
+                  </button>
+                  <button
+                    onClick={() => {
+                      this.setState({ mapBrush: "wall" });
+                    }}
+                    className="button"
+                  >
+                    MapBrush - Wall
+                  </button>
+                  <button
+                    onClick={() => {
+                      this.setState({ mapBrush: "floor" });
+                    }}
+                    className="button"
+                  >
+                    MapBrush - Floor
+                  </button>
+
                   <button
                     onClick={() => {
                       GameModel.loadMapIntro();

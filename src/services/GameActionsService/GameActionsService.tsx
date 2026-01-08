@@ -210,19 +210,23 @@ export class GameActionsClassForGameComponent {
             `Editing square #${squareIndex} at ${squareCoords.x},${squareCoords.y}`,
             MessageLevel.debug
           );
-          switch (targeted.squareType) {
-            case "floor":
-              targeted.squareType = "wall";
-              break;
-            case "wall":
-              targeted.squareType = "nothing";
-              break;
-            case "nothing":
-              targeted.squareType = "monster-filter";
-              break;
-            case "monster-filter":
-              targeted.squareType = "floor";
-              break;
+          if (state.mapBrush) {
+            targeted.squareType = state.mapBrush;
+          } else {
+            switch (targeted.squareType) {
+              case "floor":
+                targeted.squareType = "wall";
+                break;
+              case "wall":
+                targeted.squareType = "nothing";
+                break;
+              case "monster-filter":
+                targeted.squareType = "floor";
+                break;
+              case "nothing":
+                targeted.squareType = "monster-filter";
+                break;
+            }
           }
         } else {
           // setting attack
@@ -413,9 +417,9 @@ export class GameActionsClassForGameComponent {
     );
   };
 
-  resetMap = () => {
+  resetMap = (givenValue = "floor") => {
     Helpers.resetGivenFieldsOnACollection(SquaresService.squares, "isAvailableDestination");
-    Helpers.setGivenFieldOnACollection(SquaresService.squares, "squareType", "floor");
+    Helpers.setGivenFieldOnACollection(SquaresService.squares, "squareType", givenValue);
     this.processInterface();
   };
 }
