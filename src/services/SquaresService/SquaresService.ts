@@ -4,7 +4,6 @@ import { Entity, Position } from "services/EntitiesService";
 import { MessageLevel, MessageService } from "services/MessageService";
 
 class SquaresServiceClass {
-  arenaSize: number = 10; // TODO: This should be defined ELSEWHERE
   arenaSizeX: number = 10;
   arenaSizeY: number = 10;
 
@@ -15,6 +14,11 @@ class SquaresServiceClass {
     while (i-- !== 0) {
       this.initializeSquareAtIndexIfEmpty(i);
     }
+  }
+
+  setArenaSize(arenaSizeX: number, arenaSizeY: number) {
+    this.arenaSizeX = arenaSizeX;
+    this.arenaSizeY = arenaSizeY;
   }
 
   getSquareFromPosition(x: number, y: number): Square {
@@ -30,7 +34,7 @@ class SquaresServiceClass {
   }
 
   getSquarePositionFromIndex(squareIndex: number): Position {
-    const y = Math.floor(squareIndex / this.arenaSize);
+    const y = Math.floor(squareIndex / this.arenaSizeY);
     const x = squareIndex % this.arenaSizeX;
     return { x, y };
   }
