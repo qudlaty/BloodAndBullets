@@ -139,6 +139,9 @@
 .app,
 .game,
 .section-main,
-.section-status {
+.section-status,
+.game__board,
+.drag-scroll-area {
   background: inherit;
+  background-color: inherit;
 }
