@@ -108,24 +108,6 @@ export class GameModelClass {
     GameActions.processInterface();
   };
 
-  /**
-   * @description
-   * This actually iterates through squares already present
-   * in the service, and for each of them, sets the squareType
-   * and icon, name, description on a target square
-   * to whatever was loaded.
-   */
-  loadSquaresIntoService = squaresLoaded => {
-    SquaresService.squares.forEach((square, index) => {
-      const targetSquare = square;
-      const sourceSquare = squaresLoaded[index];
-      targetSquare.squareType = (sourceSquare && sourceSquare.squareType) || "floor";
-      targetSquare.icon = (sourceSquare && sourceSquare.icon) || "";
-      targetSquare.name = (sourceSquare && sourceSquare.name) || "";
-      targetSquare.description = (sourceSquare && sourceSquare.description) || "";
-    });
-  };
-
   loadEntitiesIntoService = (entities: Entity[]) => {
     EntitiesService.entities = entities;
   };
@@ -136,23 +118,23 @@ export class GameModelClass {
   };
 
   loadBuiltInMap = () => {
-    this.loadSquaresIntoService(mapA);
+    SquaresService.loadSquares(mapA);
   };
 
   loadMapIntro = () => {
-    this.loadSquaresIntoService(intro);
+    SquaresService.loadSquares(intro);
   };
 
   loadMapA = () => {
-    this.loadSquaresIntoService(mapA);
+    SquaresService.loadSquares(mapA);
   };
 
   loadMapB = () => {
-    this.loadSquaresIntoService(mapB);
+    SquaresService.loadSquares(mapB);
   };
   loadTestMap16x16 = (GameActions: GameActionsClassForGameComponent) => {
     GameActions.setArenaSize(testMap16x16.dimensions.x, testMap16x16.dimensions.y);
-    this.loadSquaresIntoService(testMap16x16.squares);
+    SquaresService.loadSquares(testMap16x16.squares);
   };
 
   loadPredefinedEntitities = () => {

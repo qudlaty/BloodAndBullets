@@ -55,6 +55,24 @@ class SquaresServiceClass {
     }
   }
 
+  /**
+   * @description
+   * This actually iterates through squares already present
+   * in the service, and for each of them, sets the squareType
+   * and icon, name, description on a target square
+   * to whatever was loaded.
+   */
+  loadSquares = squaresLoaded => {
+    this.squares.forEach((square, index) => {
+      const targetSquare = square;
+      const sourceSquare = squaresLoaded[index];
+      targetSquare.squareType = (sourceSquare && sourceSquare.squareType) || "floor";
+      targetSquare.icon = (sourceSquare && sourceSquare.icon) || "";
+      targetSquare.name = (sourceSquare && sourceSquare.name) || "";
+      targetSquare.description = (sourceSquare && sourceSquare.description) || "";
+    });
+  };
+
   getSquareFromPosition(x: number, y: number): Square {
     return this.squares[this.getSquareIndexFromPosition(x, y)];
   }
