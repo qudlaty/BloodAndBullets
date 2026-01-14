@@ -37,13 +37,16 @@ export class Game extends React.PureComponent<void, WorldState> {
   constructor(props: void) {
     super(props);
 
+    GameActions = new GameActionsClassForGameComponent(this);
+    GameModel.registerActions(GameActions);
+
     GameModel.loadBuiltInMap();
     GameModel.loadPredefinedEntitities();
+
     EntitiesService.setSelected(EntitiesService.findEntityById("Lazer Blady"));
 
     this.state = new WorldState();
 
-    GameActions = new GameActionsClassForGameComponent(this);
     console.log("Initial state dump:", this.state);
   }
 
@@ -215,7 +218,7 @@ export class Game extends React.PureComponent<void, WorldState> {
                   </button>
                   <button
                     onClick={() => {
-                      GameModel.loadTestMap16x16(GameActions);
+                      GameModel.loadTestMap16x16();
                       GameActions.processInterface();
                     }}
                     className="button"

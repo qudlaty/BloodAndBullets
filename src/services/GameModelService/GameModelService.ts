@@ -11,6 +11,7 @@ import { GameActionsClassForGameComponent } from "services/GameActionsService";
 import { L30, M16 } from "resources";
 import { Item } from "services/ItemService";
 import { UnifiedMapFormat } from "services/MapService";
+import { Game } from "components";
 
 /**
  * @description Handles loading and saving of the map and entities
@@ -20,14 +21,18 @@ export class GameModelClass {
   generatedEntitiesJSON;
   entities;
   squares;
+  GameActions;
 
   constructor() {
     this.entities = EntitiesService.entities;
     this.squares = SquaresService.squares;
     this.generatedEntities = [];
     this.generatedEntitiesJSON = {};
+    this.GameActions = {};
   }
-
+  registerActions = (GameActions: GameActionsClassForGameComponent) => {
+    this.GameActions = GameActions;
+  };
   saveMap = () => {
     console.log("Alive squares:", SquaresService.squares);
     const squares: Square[] = JSON.parse(JSON.stringify(SquaresService.squares));
@@ -73,7 +78,7 @@ export class GameModelClass {
     if (!squaresStringified) return;
     console.log(squaresStringified);
     const squaresLoaded = JSON.parse(squaresStringified);
-    this.loadSquaresIntoService(squaresLoaded);
+    SquaresService.loadSquares(squaresLoaded);
     const loadedGeneratedEntities = JSON.parse(this.generatedEntitiesJSON);
     this.loadGeneratedEntitiesIntoService(loadedGeneratedEntities);
     console.log(EntitiesService.entities);
@@ -118,22 +123,26 @@ export class GameModelClass {
   };
 
   loadBuiltInMap = () => {
+    this.GameActions.setArenaSize(10, 10);
     SquaresService.loadSquares(mapA);
   };
 
   loadMapIntro = () => {
+    this.GameActions.setArenaSize(10, 10);
     SquaresService.loadSquares(intro);
   };
 
   loadMapA = () => {
+    this.GameActions.setArenaSize(10, 10);
     SquaresService.loadSquares(mapA);
   };
 
   loadMapB = () => {
+    this.GameActions.setArenaSize(10, 10);
     SquaresService.loadSquares(mapB);
   };
-  loadTestMap16x16 = (GameActions: GameActionsClassForGameComponent) => {
-    GameActions.setArenaSize(testMap16x16.dimensions.x, testMap16x16.dimensions.y);
+  loadTestMap16x16 = () => {
+    this.GameActions.setArenaSize(testMap16x16.dimensions.x, testMap16x16.dimensions.y);
     SquaresService.loadSquares(testMap16x16.squares);
   };
 
