@@ -215,12 +215,12 @@ export class Game extends React.PureComponent<void, WorldState> {
                   </button>
                   <button
                     onClick={() => {
-                      GameModel.loadMapB();
+                      GameModel.loadTestMap16x16(GameActions);
                       GameActions.processInterface();
                     }}
                     className="button"
                   >
-                    Load map: mapB
+                    Load map: testMap16x16
                   </button>
                   <button
                     onClick={() => {

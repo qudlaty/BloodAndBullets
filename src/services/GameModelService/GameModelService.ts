@@ -5,6 +5,7 @@ import { characterDefinitions } from "resources/CharacterDefinitions";
 import intro from "resources/maps/intro.json";
 import mapA from "resources/maps/mapA.json";
 import mapB from "resources/maps/mapB.json";
+import testMap16x16 from "resources/maps/testMap16x16.json";
 
 import { GameActionsClassForGameComponent } from "services/GameActionsService";
 import { L30, M16 } from "resources";
@@ -148,6 +149,10 @@ export class GameModelClass {
 
   loadMapB = () => {
     this.loadSquaresIntoService(mapB);
+  };
+  loadTestMap16x16 = (GameActions: GameActionsClassForGameComponent) => {
+    GameActions.setArenaSize(testMap16x16.dimensions.x, testMap16x16.dimensions.y);
+    this.loadSquaresIntoService(testMap16x16.squares);
   };
 
   loadPredefinedEntitities = () => {

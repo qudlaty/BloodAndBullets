@@ -11,6 +11,7 @@ import {
   Position,
   MessageService,
   MessageLevel,
+  UnifiedMapFormat,
 } from "services";
 import { WorldState } from "services/GameLogicService";
 import { Square } from "services/SquaresService";
@@ -178,6 +179,10 @@ export class GameActionsClassForGameComponent {
 
   refreshSquares() {
     gameComponent.setState(prevState => GameLogic.reSyncSquares(prevState));
+  }
+
+  setArenaSize(x: number, y: number) {
+    gameComponent.setState({ arenaSizeX: x, arenaSizeY: y });
   }
 
   handleKeyPress = param => {
@@ -422,4 +427,6 @@ export class GameActionsClassForGameComponent {
     Helpers.setGivenFieldOnACollection(SquaresService.squares, "squareType", givenValue);
     this.processInterface();
   };
+
+  loadMap = (map: UnifiedMapFormat) => {};
 }

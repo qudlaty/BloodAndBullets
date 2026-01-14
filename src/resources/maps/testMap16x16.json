@@ -1,0 +1,2684 @@
+{
+  "id": "e84678e7-f5fe-40d5-ade1-bee86f491aaf",
+  "name": "map00",
+  "description": "None",
+  "dimensions": { "x": 16, "y": 16 },
+  "squares": [
+    {
+      "id": 0,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 0 }
+    },
+    {
+      "id": 1,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 0 }
+    },
+    {
+      "id": 2,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 2, "y": 0 }
+    },
+    {
+      "id": 3,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 0 }
+    },
+    {
+      "id": 4,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 0 }
+    },
+    {
+      "id": 5,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 0 }
+    },
+    {
+      "id": 6,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 0 }
+    },
+    {
+      "id": 7,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "entities": [
+        {
+          "bleedingReductionPerTurn": 1,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 2,
+          "maxActionPoints": 2,
+          "hasWeapon": true,
+          "name": "Monster",
+          "description": "This alien monstrosity came from the void. Noone knows what it wants. But it will take it. With the many hands, tentacles, and other apendages that is has. Running is futile. ",
+          "hp": 100,
+          "maxHp": 100,
+          "icon": "👾",
+          "position": { "x": 7, "y": 0 },
+          "equipment": {
+            "hands": {
+              "id": "c7e67329-222d-4dad-bfaa-006a22afba90",
+              "name": "R40 Rechargable Laser",
+              "description": "Portable 40kW Energy beam weapon. Charged over time by an onboard micro-reactor. Gains one charge per turn.",
+              "manufacturer": "Amaar Industries",
+              "previousOwners": ["Intaki Syndicate", "Amaar Industries Factory"],
+              "mass": 3,
+              "type": "energy",
+              "range": 10,
+              "damage": 7,
+              "causesBleeding": 0,
+              "causesBurning": 6,
+              "charges": 1,
+              "maxCharges": 3,
+              "reloadCostInAP": 0,
+              "dischargeRatePerShot": 1,
+              "chargingPerTurn": 1,
+              "properties": {
+                "name": "R40 Rechargable Laser",
+                "charges": 1,
+                "maxCharges": 3,
+                "damage": 7,
+                "range": 10,
+                "mass": 3,
+                "description": "Portable 40kW Energy beam weapon. Charged over time by an onboard micro-reactor. Gains one charge per turn.",
+                "manufacturer": "Amaar Industries",
+                "previousOwners": ["Intaki Syndicate", "Amaar Industries Factory"]
+              }
+            }
+          },
+          "id": "e318942f-4467-4124-bd18-a74a514078fb"
+        }
+      ],
+      "position": { "x": 7, "y": 0 }
+    },
+    {
+      "id": 8,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 0 }
+    },
+    {
+      "id": 9,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 0 }
+    },
+    {
+      "id": 10,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 0 }
+    },
+    {
+      "id": 11,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 0 }
+    },
+    {
+      "id": 12,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 0 }
+    },
+    {
+      "id": 13,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 0 }
+    },
+    {
+      "id": 14,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 0 }
+    },
+    {
+      "id": 15,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 0 }
+    },
+    {
+      "id": 16,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 1 }
+    },
+    {
+      "id": 17,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 1 }
+    },
+    {
+      "id": 18,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 1 }
+    },
+    {
+      "id": 19,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 1 }
+    },
+    {
+      "id": 20,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 4, "y": 1 }
+    },
+    {
+      "id": 21,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "entities": [
+        {
+          "bleedingReductionPerTurn": 1,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 2,
+          "maxActionPoints": 2,
+          "hasWeapon": true,
+          "name": "Monster",
+          "description": "This alien monstrosity came from the void. Noone knows what it wants. But it will take it. With the many hands, tentacles, and other apendages that is has. Running is futile. ",
+          "hp": 100,
+          "maxHp": 100,
+          "icon": "👾",
+          "position": { "x": 5, "y": 1 },
+          "equipment": {
+            "hands": {
+              "id": "81f6d4c8-49f6-48f4-a167-76bc24bd460d",
+              "name": "R40 Rechargable Laser",
+              "description": "Portable 40kW Energy beam weapon. Charged over time by an onboard micro-reactor. Gains one charge per turn.",
+              "manufacturer": "Amaar Industries",
+              "previousOwners": ["Intaki Syndicate", "Amaar Industries Factory"],
+              "mass": 3,
+              "type": "energy",
+              "range": 10,
+              "damage": 7,
+              "causesBleeding": 0,
+              "causesBurning": 6,
+              "charges": 1,
+              "maxCharges": 3,
+              "reloadCostInAP": 0,
+              "dischargeRatePerShot": 1,
+              "chargingPerTurn": 1,
+              "properties": {
+                "name": "R40 Rechargable Laser",
+                "charges": 1,
+                "maxCharges": 3,
+                "damage": 7,
+                "range": 10,
+                "mass": 3,
+                "description": "Portable 40kW Energy beam weapon. Charged over time by an onboard micro-reactor. Gains one charge per turn.",
+                "manufacturer": "Amaar Industries",
+                "previousOwners": ["Intaki Syndicate", "Amaar Industries Factory"]
+              }
+            }
+          },
+          "id": "7a5edb02-eb84-4050-be1c-333eabc6cbad"
+        }
+      ],
+      "position": { "x": 5, "y": 1 }
+    },
+    {
+      "id": 22,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 6, "y": 1 }
+    },
+    {
+      "id": 23,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 1 }
+    },
+    {
+      "id": 24,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 8, "y": 1 }
+    },
+    {
+      "id": 25,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 1 }
+    },
+    {
+      "id": 26,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 1 }
+    },
+    {
+      "id": 27,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 1 }
+    },
+    {
+      "id": 28,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 1 }
+    },
+    {
+      "id": 29,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 1 }
+    },
+    {
+      "id": 30,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 1 }
+    },
+    {
+      "id": 31,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 1 }
+    },
+    {
+      "id": 32,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 2 }
+    },
+    {
+      "id": 33,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 2 }
+    },
+    {
+      "id": 34,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 2, "y": 2 }
+    },
+    {
+      "id": 35,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 2 }
+    },
+    {
+      "id": 36,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "entities": [
+        {
+          "bleedingReductionPerTurn": 1,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 2,
+          "maxActionPoints": 5,
+          "hasWeapon": true,
+          "name": "Squid",
+          "description": "Squids possess camouflage capabilities that allow them to blend with the environment and become unnoticable.They are not as strong as Octopii, but they are fast and they can handle heavy weapons with ease thanks to their strong tentacles.",
+          "hp": 100,
+          "maxHp": 100,
+          "icon": "🦑",
+          "position": { "x": 4, "y": 2 },
+          "equipment": {
+            "hands": {
+              "id": "08381021-6d19-4fc8-919a-3542a4e4cae9",
+              "name": "M41A Pulse Rifle",
+              "description": "Heavy but effective long range kinetic weapon. Fires 10 millimeter explosive-tip caseless. Standard light armor-piercing round. Excells at neutralizing alien threats. ",
+              "manufacturer": "Armat Battlefield Systems",
+              "mass": 4,
+              "type": "projectile",
+              "range": 10,
+              "damage": 5,
+              "causesBleeding": 5,
+              "causesBurning": 1,
+              "charges": 10,
+              "maxCharges": 10,
+              "reloadCostInAP": 4,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "M41A Pulse Rifle",
+                "description": "Heavy but effective long range kinetic weapon. Fires 10 millimeter explosive-tip caseless. Standard light armor-piercing round. Excells at neutralizing alien threats. ",
+                "manufacturer": "Armat Battlefield Systems",
+                "charges": 10,
+                "maxCharges": 10,
+                "reloadCostInAP": 4,
+                "damage": 5,
+                "range": 10,
+                "mass": 4
+              }
+            }
+          },
+          "id": "51f551be-0c08-499d-b597-d12c5fc15d96"
+        }
+      ],
+      "position": { "x": 4, "y": 2 }
+    },
+    {
+      "id": 37,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 2 }
+    },
+    {
+      "id": 38,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 2 }
+    },
+    {
+      "id": 39,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 2 }
+    },
+    {
+      "id": 40,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "entities": [
+        {
+          "bleedingReductionPerTurn": 0,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 2,
+          "maxActionPoints": 2,
+          "hasWeapon": true,
+          "name": "Octo",
+          "description": "Octopii are long lived and tough, but they suffer outside fluid environment and are vulnerable to bleeding.",
+          "hp": 200,
+          "maxHp": 200,
+          "icon": "🐙",
+          "position": { "x": 8, "y": 2 },
+          "bleeding": 1,
+          "equipment": {
+            "hands": {
+              "id": "61bd280b-b38a-42d6-8cbc-3431d4383bff",
+              "name": "L30 Beam Laser",
+              "description": "Portable 30kW Energy beam weapon. Fed by energy magazines.",
+              "manufacturer": "Amaar Industries",
+              "previousOwners": ["Amaar Industries Factory"],
+              "mass": 2,
+              "type": "energy",
+              "range": 10,
+              "damage": 7,
+              "causesBleeding": 0,
+              "causesBurning": 6,
+              "charges": 5,
+              "maxCharges": 5,
+              "reloadCostInAP": 2,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "L30 Beam Laser",
+                "description": "Portable 30kW Energy beam weapon. Fed by energy magazines.",
+                "manufacturer": "Amaar Industries",
+                "previousOwners": ["Amaar Industries Factory"],
+                "charges": 5,
+                "maxCharges": 5,
+                "reloadCostInAP": 2,
+                "damage": 7,
+                "range": 10,
+                "mass": 2
+              }
+            }
+          },
+          "id": "405ea3f1-4020-4acb-94fa-83ed183656db"
+        }
+      ],
+      "position": { "x": 8, "y": 2 }
+    },
+    {
+      "id": 41,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 2 }
+    },
+    {
+      "id": 42,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 2 }
+    },
+    {
+      "id": 43,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 2 }
+    },
+    {
+      "id": 44,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 2 }
+    },
+    {
+      "id": 45,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 2 }
+    },
+    {
+      "id": 46,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 2 }
+    },
+    {
+      "id": 47,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 2 }
+    },
+    {
+      "id": 48,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 3 }
+    },
+    {
+      "id": 49,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 3 }
+    },
+    {
+      "id": 50,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 2, "y": 3 }
+    },
+    {
+      "id": 51,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 3 }
+    },
+    {
+      "id": 52,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 3 }
+    },
+    {
+      "id": 53,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 3 }
+    },
+    {
+      "id": 54,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 6, "y": 3 }
+    },
+    {
+      "id": 55,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 3 }
+    },
+    {
+      "id": 56,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 8, "y": 3 }
+    },
+    {
+      "id": 57,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "entities": [
+        {
+          "bleedingReductionPerTurn": 1,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 2,
+          "maxActionPoints": 3,
+          "hasWeapon": true,
+          "name": "Henry The Spider",
+          "description": "Friendly eight-eyed creature, helping to keep the ship bug-free. Spacers say it's bad luck to kill a spider. Better keep it alive.",
+          "hp": 100,
+          "maxHp": 150,
+          "icon": "🕷️",
+          "position": { "x": 9, "y": 3 },
+          "equipment": {
+            "hands": {
+              "id": "349c029f-acdb-4404-a96a-a44b448ee465",
+              "name": "R40 Rechargable Laser",
+              "description": "Portable 40kW Energy beam weapon. Charged over time by an onboard micro-reactor. Gains one charge per turn.",
+              "manufacturer": "Amaar Industries",
+              "previousOwners": ["Intaki Syndicate", "Amaar Industries Factory"],
+              "mass": 3,
+              "type": "energy",
+              "range": 10,
+              "damage": 7,
+              "causesBleeding": 0,
+              "causesBurning": 6,
+              "charges": 1,
+              "maxCharges": 3,
+              "reloadCostInAP": 0,
+              "dischargeRatePerShot": 1,
+              "chargingPerTurn": 1,
+              "properties": {
+                "name": "R40 Rechargable Laser",
+                "charges": 1,
+                "maxCharges": 3,
+                "damage": 7,
+                "range": 10,
+                "mass": 3,
+                "description": "Portable 40kW Energy beam weapon. Charged over time by an onboard micro-reactor. Gains one charge per turn.",
+                "manufacturer": "Amaar Industries",
+                "previousOwners": ["Intaki Syndicate", "Amaar Industries Factory"]
+              }
+            }
+          },
+          "id": "85eda0d9-2f33-4d89-bb9b-1ef33ab3b3fa"
+        }
+      ],
+      "position": { "x": 9, "y": 3 }
+    },
+    {
+      "id": 58,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 3 }
+    },
+    {
+      "id": 59,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 3 }
+    },
+    {
+      "id": 60,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 3 }
+    },
+    {
+      "id": 61,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 3 }
+    },
+    {
+      "id": 62,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 3 }
+    },
+    {
+      "id": 63,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 3 }
+    },
+    {
+      "id": 64,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 4 }
+    },
+    {
+      "id": 65,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 4 }
+    },
+    {
+      "id": 66,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 2, "y": 4 }
+    },
+    {
+      "id": 67,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 4 }
+    },
+    {
+      "id": 68,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 4 }
+    },
+    {
+      "id": 69,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 4 }
+    },
+    {
+      "id": 70,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 6, "y": 4 }
+    },
+    {
+      "id": 71,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 7, "y": 4 }
+    },
+    {
+      "id": 72,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 8, "y": 4 }
+    },
+    {
+      "id": 73,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 9, "y": 4 }
+    },
+    {
+      "id": 74,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 4 }
+    },
+    {
+      "id": 75,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 4 }
+    },
+    {
+      "id": 76,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 4 }
+    },
+    {
+      "id": 77,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 4 }
+    },
+    {
+      "id": 78,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 4 }
+    },
+    {
+      "id": 79,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 4 }
+    },
+    {
+      "id": 80,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 5 }
+    },
+    {
+      "id": 81,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 5 }
+    },
+    {
+      "id": 82,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "entities": [
+        {
+          "isFriendly": true,
+          "bleedingReductionPerTurn": 50,
+          "isSupposedToBeBreathing": false,
+          "isPassable": false,
+          "actionPoints": 2,
+          "maxActionPoints": 2,
+          "hasWeapon": true,
+          "name": "Robot",
+          "rank": "Asset",
+          "description": "DST-7 Security Droid. Powered by an Energy Cell, it can stay in suspended animation for years and activate at a moment's notice to battle the intruders. Armed and armored.",
+          "hp": 50,
+          "maxHp": 50,
+          "icon": "🤖",
+          "position": { "x": 2, "y": 5 },
+          "equipment": {
+            "hands": {
+              "id": "4d4788f4-2fab-42ed-adc6-2d9fbac6947b",
+              "name": "R40 Rechargable Laser",
+              "description": "Portable 40kW Energy beam weapon. Charged over time by an onboard micro-reactor. Gains one charge per turn.",
+              "manufacturer": "Amaar Industries",
+              "previousOwners": ["Intaki Syndicate", "Amaar Industries Factory"],
+              "mass": 3,
+              "type": "energy",
+              "range": 10,
+              "damage": 7,
+              "causesBleeding": 0,
+              "causesBurning": 6,
+              "charges": 1,
+              "maxCharges": 3,
+              "reloadCostInAP": 0,
+              "dischargeRatePerShot": 1,
+              "chargingPerTurn": 1,
+              "properties": {
+                "name": "R40 Rechargable Laser",
+                "charges": 1,
+                "maxCharges": 3,
+                "damage": 7,
+                "range": 10,
+                "mass": 3,
+                "description": "Portable 40kW Energy beam weapon. Charged over time by an onboard micro-reactor. Gains one charge per turn.",
+                "manufacturer": "Amaar Industries",
+                "previousOwners": ["Intaki Syndicate", "Amaar Industries Factory"]
+              }
+            }
+          },
+          "inventory": [
+            {
+              "id": "a9126e97-22c8-4165-846f-961f3b08605f",
+              "name": "K01 Slugcaster",
+              "description": "Three shot revolver pattern hand cannon. Favorite among pioneers on planet Pandora, where it's praised for effectiveness against local big-scale wildlife. Fires tungsten tipped depleted uranium slugs, 12x44mm. This thing packs a serious punch.",
+              "manufacturer": "Kavashikari Industries",
+              "mass": 1,
+              "type": "projectile",
+              "range": 4,
+              "damage": 10,
+              "causesBleeding": 5,
+              "causesBurning": 1,
+              "charges": 3,
+              "maxCharges": 3,
+              "reloadCostInAP": 3,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "K01 Slugcaster",
+                "description": "Three shot revolver pattern hand cannon. Favorite among pioneers on planet Pandora, where it's praised for effectiveness against local big-scale wildlife. Fires tungsten tipped depleted uranium slugs, 12x44mm. This thing packs a serious punch.",
+                "manufacturer": "Kavashikari Industries",
+                "charges": 3,
+                "maxCharges": 3,
+                "reloadCostInAP": 3,
+                "damage": 10,
+                "range": 4,
+                "mass": 1
+              }
+            }
+          ],
+          "id": "d898cc78-060c-458c-bceb-5f3123aef08c"
+        }
+      ],
+      "position": { "x": 2, "y": 5 }
+    },
+    {
+      "id": 83,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 5 }
+    },
+    {
+      "id": 84,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 5 }
+    },
+    {
+      "id": 85,
+      "name": "Teleport to NW Corner",
+      "description": "Moves you to 0,0",
+      "icon": "↖️",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 5 }
+    },
+    {
+      "id": 86,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 5 }
+    },
+    {
+      "id": 87,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "entities": [
+        {
+          "bleedingReductionPerTurn": 1,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 2,
+          "maxActionPoints": 2,
+          "hasWeapon": true,
+          "name": "Ant",
+          "description": "Formids are countless like grains of sand. Do not let them get out of control on your ship.",
+          "hp": 45,
+          "maxHp": 50,
+          "icon": "🐜",
+          "position": { "x": 7, "y": 5 },
+          "equipment": {
+            "hands": {
+              "id": "a16ada86-0714-49be-a274-9fdb77c8b383",
+              "name": "M16",
+              "description": "Ancient combat rifle from Old Terra. Relatively light. Fires 5.56mm FMJ rounds.",
+              "manufacturer": "Colt's Manufacturing Company",
+              "mass": 3,
+              "type": "projectile",
+              "range": 8,
+              "damage": 3,
+              "causesBleeding": 5,
+              "causesBurning": 1,
+              "charges": 20,
+              "maxCharges": 20,
+              "reloadCostInAP": 4,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "M16",
+                "description": "Ancient combat rifle from Old Terra. Relatively light. Fires 5.56mm FMJ rounds.",
+                "manufacturer": "Colt's Manufacturing Company",
+                "charges": 20,
+                "maxCharges": 20,
+                "reloadCostInAP": 4,
+                "damage": 3,
+                "range": 8,
+                "mass": 3
+              }
+            }
+          },
+          "id": "9ebe234c-794c-4c0f-97c6-d07915542e82"
+        }
+      ],
+      "position": { "x": 7, "y": 5 }
+    },
+    {
+      "id": 88,
+      "name": "EXIT",
+      "description": "Reach this place to win The Game",
+      "icon": "🚪",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 5 }
+    },
+    {
+      "id": 89,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 5 }
+    },
+    {
+      "id": 90,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 5 }
+    },
+    {
+      "id": 91,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 5 }
+    },
+    {
+      "id": 92,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 5 }
+    },
+    {
+      "id": 93,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 5 }
+    },
+    {
+      "id": 94,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 5 }
+    },
+    {
+      "id": 95,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 5 }
+    },
+    {
+      "id": 96,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 6 }
+    },
+    {
+      "id": 97,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 1, "y": 6 }
+    },
+    {
+      "id": 98,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 6 }
+    },
+    {
+      "id": 99,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "wall",
+      "position": { "x": 3, "y": 6 }
+    },
+    {
+      "id": 100,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 6 }
+    },
+    {
+      "id": 101,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 6 }
+    },
+    {
+      "id": 102,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 6 },
+      "isAvailableDestination": true
+    },
+    {
+      "id": 103,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 6 },
+      "isAvailableDestination": true
+    },
+    {
+      "id": 104,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 6 },
+      "isAvailableDestination": true
+    },
+    {
+      "id": 105,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 6 }
+    },
+    {
+      "id": 106,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 6 }
+    },
+    {
+      "id": 107,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 6 }
+    },
+    {
+      "id": 108,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 6 }
+    },
+    {
+      "id": 109,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 6 }
+    },
+    {
+      "id": 110,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 6 }
+    },
+    {
+      "id": 111,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 6 }
+    },
+    {
+      "id": 112,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "entities": [
+        {
+          "bleedingReductionPerTurn": 5,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 1,
+          "maxActionPoints": 1,
+          "hasWeapon": true,
+          "name": "Mosquito",
+          "description": "This blood sucking creature isn't very fast, but it can sustain itself on any blood it can find. It's also efficient at stopping it's own bleeding. ",
+          "hp": 12,
+          "maxHp": 20,
+          "icon": "🦟",
+          "position": { "x": 0, "y": 7 },
+          "equipment": {
+            "hands": {
+              "id": "9b503176-9ed7-4158-8596-49b2899b209b",
+              "name": "M16",
+              "description": "Ancient combat rifle from Old Terra. Relatively light. Fires 5.56mm FMJ rounds.",
+              "manufacturer": "Colt's Manufacturing Company",
+              "mass": 3,
+              "type": "projectile",
+              "range": 8,
+              "damage": 3,
+              "causesBleeding": 5,
+              "causesBurning": 1,
+              "charges": 20,
+              "maxCharges": 20,
+              "reloadCostInAP": 4,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "M16",
+                "description": "Ancient combat rifle from Old Terra. Relatively light. Fires 5.56mm FMJ rounds.",
+                "manufacturer": "Colt's Manufacturing Company",
+                "charges": 20,
+                "maxCharges": 20,
+                "reloadCostInAP": 4,
+                "damage": 3,
+                "range": 8,
+                "mass": 3
+              }
+            }
+          },
+          "id": "aa07ea9d-5aa8-486d-ab92-e0f323ff2598"
+        }
+      ],
+      "position": { "x": 0, "y": 7 }
+    },
+    {
+      "id": 113,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 7 }
+    },
+    {
+      "id": 114,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 7 }
+    },
+    {
+      "id": 115,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 7 }
+    },
+    {
+      "id": 116,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 7 }
+    },
+    {
+      "id": 117,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 7 }
+    },
+    {
+      "id": 118,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 7 },
+      "isAvailableDestination": true
+    },
+    {
+      "id": 119,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "entities": [
+        {
+          "isFriendly": true,
+          "active": true,
+          "bleedingReductionPerTurn": 1,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 9,
+          "maxActionPoints": 10,
+          "hasWeapon": true,
+          "name": "Lazer Blady",
+          "rank": "Sergeant",
+          "description": "He's here to kick ass and chew bubble gum, and he's all out of gum.",
+          "hp": 75,
+          "maxHp": 100,
+          "icon": "🧑‍🚀",
+          "position": { "x": 7, "y": 7 },
+          "inventory": [
+            {
+              "id": "337457fe-6fbf-493f-a6c5-fa12547ff009",
+              "name": "G17",
+              "description": "High capacity semi-automatic pistol, mass-produced on Old Terra. Still millions of them are in use today. Cheap and reliable. Fires the ever-popular 9mm Parabellum bullet.",
+              "manufacturer": "Glock Ges.m.b.H.",
+              "mass": 1,
+              "type": "projectile",
+              "range": 4,
+              "damage": 2,
+              "causesBleeding": 5,
+              "causesBurning": 1,
+              "charges": 17,
+              "maxCharges": 17,
+              "reloadCostInAP": 1,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "G17",
+                "description": "High capacity semi-automatic pistol, mass-produced on Old Terra. Still millions of them are in use today. Cheap and reliable. Fires the ever-popular 9mm Parabellum bullet.",
+                "manufacturer": "Glock Ges.m.b.H.",
+                "charges": 17,
+                "maxCharges": 17,
+                "reloadCostInAP": 1,
+                "damage": 2,
+                "range": 4,
+                "mass": 1
+              }
+            }
+          ],
+          "equipment": {
+            "hands": {
+              "id": "d97ee631-0d77-456b-a9a0-ce49820a1dd8",
+              "name": "L30 Beam Laser",
+              "description": "Portable 30kW Energy beam weapon. Fed by energy magazines.",
+              "manufacturer": "Amaar Industries",
+              "previousOwners": ["Amaar Industries Factory"],
+              "mass": 2,
+              "type": "energy",
+              "range": 10,
+              "damage": 7,
+              "causesBleeding": 0,
+              "causesBurning": 6,
+              "charges": 5,
+              "maxCharges": 5,
+              "reloadCostInAP": 2,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "L30 Beam Laser",
+                "description": "Portable 30kW Energy beam weapon. Fed by energy magazines.",
+                "manufacturer": "Amaar Industries",
+                "previousOwners": ["Amaar Industries Factory"],
+                "charges": 5,
+                "maxCharges": 5,
+                "reloadCostInAP": 2,
+                "damage": 7,
+                "range": 10,
+                "mass": 2
+              }
+            }
+          },
+          "id": "38cd38cd-2054-4ee9-addf-2ef11de75242",
+          "targetPosition": { "x": 7, "y": 7 },
+          "ceaseFire": false,
+          "attackNumber": 1
+        }
+      ],
+      "position": { "x": 7, "y": 7 },
+      "isTargeted": true,
+      "isAttacked": true
+    },
+    {
+      "id": 120,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 7 },
+      "isAvailableDestination": true
+    },
+    {
+      "id": 121,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 7 }
+    },
+    {
+      "id": 122,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 7 }
+    },
+    {
+      "id": 123,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 7 }
+    },
+    {
+      "id": 124,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 7 }
+    },
+    {
+      "id": 125,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 7 }
+    },
+    {
+      "id": 126,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 7 }
+    },
+    {
+      "id": 127,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 7 }
+    },
+    {
+      "id": 128,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 8 }
+    },
+    {
+      "id": 129,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 8 }
+    },
+    {
+      "id": 130,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 8 }
+    },
+    {
+      "id": 131,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "entities": [
+        {
+          "bleedingReductionPerTurn": 1,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 2,
+          "maxActionPoints": 2,
+          "hasWeapon": true,
+          "name": "Microbe",
+          "description": "Space-bourne pathogens can be dangerous. Luckily, they're also easily dispatched, at least in most cases. This specimen is enormous for a Microbe, but it is also very weak. ",
+          "hp": 1,
+          "maxHp": 5,
+          "icon": "🦠",
+          "position": { "x": 3, "y": 8 },
+          "equipment": {
+            "hands": {
+              "id": "378ffcb4-f9e4-490a-ae8b-18320e6e09a7",
+              "name": "L30 Beam Laser",
+              "description": "Portable 30kW Energy beam weapon. Fed by energy magazines.",
+              "manufacturer": "Amaar Industries",
+              "previousOwners": ["Amaar Industries Factory"],
+              "mass": 2,
+              "type": "energy",
+              "range": 10,
+              "damage": 7,
+              "causesBleeding": 0,
+              "causesBurning": 6,
+              "charges": 5,
+              "maxCharges": 5,
+              "reloadCostInAP": 2,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "L30 Beam Laser",
+                "description": "Portable 30kW Energy beam weapon. Fed by energy magazines.",
+                "manufacturer": "Amaar Industries",
+                "previousOwners": ["Amaar Industries Factory"],
+                "charges": 5,
+                "maxCharges": 5,
+                "reloadCostInAP": 2,
+                "damage": 7,
+                "range": 10,
+                "mass": 2
+              }
+            }
+          },
+          "id": "d4b2c46a-9dd9-4d52-8376-e86be560b412"
+        }
+      ],
+      "position": { "x": 3, "y": 8 }
+    },
+    {
+      "id": 132,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 8 }
+    },
+    {
+      "id": 133,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 8 }
+    },
+    {
+      "id": 134,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 8 },
+      "isAvailableDestination": true
+    },
+    {
+      "id": 135,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 8 },
+      "isAvailableDestination": true
+    },
+    {
+      "id": 136,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 8 },
+      "isAvailableDestination": true
+    },
+    {
+      "id": 137,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 8 }
+    },
+    {
+      "id": 138,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 8 }
+    },
+    {
+      "id": 139,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 8 }
+    },
+    {
+      "id": 140,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 8 }
+    },
+    {
+      "id": 141,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 8 }
+    },
+    {
+      "id": 142,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 8 }
+    },
+    {
+      "id": 143,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 8 }
+    },
+    {
+      "id": 144,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 9 }
+    },
+    {
+      "id": 145,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 9 }
+    },
+    {
+      "id": 146,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 9 }
+    },
+    {
+      "id": 147,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 9 }
+    },
+    {
+      "id": 148,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 9 }
+    },
+    {
+      "id": 149,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 9 }
+    },
+    {
+      "id": 150,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 9 }
+    },
+    {
+      "id": 151,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 9 }
+    },
+    {
+      "id": 152,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "entities": [
+        {
+          "isFriendly": true,
+          "bleedingReductionPerTurn": 3,
+          "isSupposedToBeBreathing": true,
+          "isPassable": false,
+          "actionPoints": 6,
+          "maxActionPoints": 6,
+          "hasWeapon": true,
+          "name": "John Doe",
+          "rank": "Corporal",
+          "description": "Tough as nails. Been to many wars. He has seen things you wouldn't believe.",
+          "hp": 90,
+          "maxHp": 100,
+          "icon": "🧑",
+          "position": { "x": 8, "y": 9 },
+          "inventory": [
+            {
+              "id": "d01f8e26-0eee-41b2-865c-b7e374a9d50b",
+              "name": "G17",
+              "description": "High capacity semi-automatic pistol, mass-produced on Old Terra. Still millions of them are in use today. Cheap and reliable. Fires the ever-popular 9mm Parabellum bullet.",
+              "manufacturer": "Glock Ges.m.b.H.",
+              "mass": 1,
+              "type": "projectile",
+              "range": 4,
+              "damage": 2,
+              "causesBleeding": 5,
+              "causesBurning": 1,
+              "charges": 17,
+              "maxCharges": 17,
+              "reloadCostInAP": 1,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "G17",
+                "description": "High capacity semi-automatic pistol, mass-produced on Old Terra. Still millions of them are in use today. Cheap and reliable. Fires the ever-popular 9mm Parabellum bullet.",
+                "manufacturer": "Glock Ges.m.b.H.",
+                "charges": 17,
+                "maxCharges": 17,
+                "reloadCostInAP": 1,
+                "damage": 2,
+                "range": 4,
+                "mass": 1
+              }
+            }
+          ],
+          "equipment": {
+            "hands": {
+              "id": "39fe3ad1-861c-4d71-9898-0b2fc5cfef04",
+              "name": "M41A Pulse Rifle",
+              "description": "Heavy but effective long range kinetic weapon. Fires 10 millimeter explosive-tip caseless. Standard light armor-piercing round. Excells at neutralizing alien threats. ",
+              "manufacturer": "Armat Battlefield Systems",
+              "mass": 4,
+              "type": "projectile",
+              "range": 10,
+              "damage": 5,
+              "causesBleeding": 5,
+              "causesBurning": 1,
+              "charges": 10,
+              "maxCharges": 10,
+              "reloadCostInAP": 4,
+              "dischargeRatePerShot": 1,
+              "properties": {
+                "name": "M41A Pulse Rifle",
+                "description": "Heavy but effective long range kinetic weapon. Fires 10 millimeter explosive-tip caseless. Standard light armor-piercing round. Excells at neutralizing alien threats. ",
+                "manufacturer": "Armat Battlefield Systems",
+                "charges": 10,
+                "maxCharges": 10,
+                "reloadCostInAP": 4,
+                "damage": 5,
+                "range": 10,
+                "mass": 4
+              }
+            }
+          },
+          "id": "3a3aa657-8841-4c87-8692-1bbbaceeae54"
+        }
+      ],
+      "position": { "x": 8, "y": 9 }
+    },
+    {
+      "id": 153,
+      "name": "",
+      "description": "",
+      "icon": "",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 9 }
+    },
+    {
+      "id": 154,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 9 }
+    },
+    {
+      "id": 155,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 9 }
+    },
+    {
+      "id": 156,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 9 }
+    },
+    {
+      "id": 157,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 9 }
+    },
+    {
+      "id": 158,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 9 }
+    },
+    {
+      "id": 159,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 9 }
+    },
+    {
+      "id": 160,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 10 }
+    },
+    {
+      "id": 161,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 10 }
+    },
+    {
+      "id": 162,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 10 }
+    },
+    {
+      "id": 163,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 10 }
+    },
+    {
+      "id": 164,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 10 }
+    },
+    {
+      "id": 165,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 10 }
+    },
+    {
+      "id": 166,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 10 }
+    },
+    {
+      "id": 167,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 10 }
+    },
+    {
+      "id": 168,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 10 }
+    },
+    {
+      "id": 169,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 10 }
+    },
+    {
+      "id": 170,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 10 }
+    },
+    {
+      "id": 171,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 10 }
+    },
+    {
+      "id": 172,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 10 }
+    },
+    {
+      "id": 173,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 10 }
+    },
+    {
+      "id": 174,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 10 }
+    },
+    {
+      "id": 175,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 10 }
+    },
+    {
+      "id": 176,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 11 }
+    },
+    {
+      "id": 177,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 11 }
+    },
+    {
+      "id": 178,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 11 }
+    },
+    {
+      "id": 179,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 11 }
+    },
+    {
+      "id": 180,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 11 }
+    },
+    {
+      "id": 181,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 11 }
+    },
+    {
+      "id": 182,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 11 }
+    },
+    {
+      "id": 183,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 11 }
+    },
+    {
+      "id": 184,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 11 }
+    },
+    {
+      "id": 185,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 11 }
+    },
+    {
+      "id": 186,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 11 }
+    },
+    {
+      "id": 187,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 11 }
+    },
+    {
+      "id": 188,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 11 }
+    },
+    {
+      "id": 189,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 11 }
+    },
+    {
+      "id": 190,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 11 }
+    },
+    {
+      "id": 191,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 11 }
+    },
+    {
+      "id": 192,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 12 }
+    },
+    {
+      "id": 193,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 12 }
+    },
+    {
+      "id": 194,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 12 }
+    },
+    {
+      "id": 195,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 12 }
+    },
+    {
+      "id": 196,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 12 }
+    },
+    {
+      "id": 197,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 12 }
+    },
+    {
+      "id": 198,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 12 }
+    },
+    {
+      "id": 199,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 12 }
+    },
+    {
+      "id": 200,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 12 }
+    },
+    {
+      "id": 201,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 12 }
+    },
+    {
+      "id": 202,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 12 }
+    },
+    {
+      "id": 203,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 12 }
+    },
+    {
+      "id": 204,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 12 }
+    },
+    {
+      "id": 205,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 12 }
+    },
+    {
+      "id": 206,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 12 }
+    },
+    {
+      "id": 207,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 12 }
+    },
+    {
+      "id": 208,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 13 }
+    },
+    {
+      "id": 209,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 13 }
+    },
+    {
+      "id": 210,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 13 }
+    },
+    {
+      "id": 211,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 13 }
+    },
+    {
+      "id": 212,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 13 }
+    },
+    {
+      "id": 213,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 13 }
+    },
+    {
+      "id": 214,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 13 }
+    },
+    {
+      "id": 215,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 13 }
+    },
+    {
+      "id": 216,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 13 }
+    },
+    {
+      "id": 217,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 13 }
+    },
+    {
+      "id": 218,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 13 }
+    },
+    {
+      "id": 219,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 13 }
+    },
+    {
+      "id": 220,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 13 }
+    },
+    {
+      "id": 221,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 13 }
+    },
+    {
+      "id": 222,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 13 }
+    },
+    {
+      "id": 223,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 13 }
+    },
+    {
+      "id": 224,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 14 }
+    },
+    {
+      "id": 225,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 14 }
+    },
+    {
+      "id": 226,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 14 }
+    },
+    {
+      "id": 227,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 14 }
+    },
+    {
+      "id": 228,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 14 }
+    },
+    {
+      "id": 229,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 14 }
+    },
+    {
+      "id": 230,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 14 }
+    },
+    {
+      "id": 231,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 14 }
+    },
+    {
+      "id": 232,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 14 }
+    },
+    {
+      "id": 233,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 14 }
+    },
+    {
+      "id": 234,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 14 }
+    },
+    {
+      "id": 235,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 14 }
+    },
+    {
+      "id": 236,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 14 }
+    },
+    {
+      "id": 237,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 14 }
+    },
+    {
+      "id": 238,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 14 }
+    },
+    {
+      "id": 239,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 14 }
+    },
+    {
+      "id": 240,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 0, "y": 15 }
+    },
+    {
+      "id": 241,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 1, "y": 15 }
+    },
+    {
+      "id": 242,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 2, "y": 15 }
+    },
+    {
+      "id": 243,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 3, "y": 15 }
+    },
+    {
+      "id": 244,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 4, "y": 15 }
+    },
+    {
+      "id": 245,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 5, "y": 15 }
+    },
+    {
+      "id": 246,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 6, "y": 15 }
+    },
+    {
+      "id": 247,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 7, "y": 15 }
+    },
+    {
+      "id": 248,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 8, "y": 15 }
+    },
+    {
+      "id": 249,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 9, "y": 15 }
+    },
+    {
+      "id": 250,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 10, "y": 15 }
+    },
+    {
+      "id": 251,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 11, "y": 15 }
+    },
+    {
+      "id": 252,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 12, "y": 15 }
+    },
+    {
+      "id": 253,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 13, "y": 15 }
+    },
+    {
+      "id": 254,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 14, "y": 15 }
+    },
+    {
+      "id": 255,
+      "name": "",
+      "description": "",
+      "icon": " ",
+      "squareType": "floor",
+      "position": { "x": 15, "y": 15 }
+    }
+  ]
+}
