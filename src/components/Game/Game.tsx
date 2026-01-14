@@ -111,6 +111,7 @@ export class Game extends React.PureComponent<void, WorldState> {
                 sizeX={this.state.arenaSizeX}
                 sizeY={this.state.arenaSizeY}
                 isRotated={this.state.isBoardRotated}
+                isEditorOn={this.state.isEditorOn}
                 style={{ fontSize: `${this.state.squareSize}px` }}
               />
             </DragScrollArea>

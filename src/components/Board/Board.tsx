@@ -12,6 +12,7 @@ export interface BoardProps {
   sizeX: number;
   sizeY: number;
   isRotated: boolean;
+  isEditorOn: boolean;
   style?: any;
 }
 /**
@@ -80,9 +81,11 @@ export class Board extends React.Component<BoardProps> {
       <div className={className} style={this.props.style}>
         {this.BoardSquares()}
         {this.EntityPawns()}
-        <span className={styles["board__status"]}>
-          [ {this.props.sizeX} x {this.props.sizeY} ]
-        </span>
+        {this.props.isEditorOn && (
+          <span className={styles["board__status"]}>
+            [ {this.props.sizeX} x {this.props.sizeY} ]
+          </span>
+        )}
       </div>
     );
   }
