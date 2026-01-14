@@ -11,3 +11,8 @@ The existing games that we could look at for some solutions and approaches.
 Early Turn Based Interfaces
 
 - [Blades of Exile](https://en.wikipedia.org/wiki/Tile-based_video_game#/media/File:BOEcombat1.png)
+
+Flat-sprite in 3d world approach
+
+- [Wildermyth](https://store.steampowered.com/app/763890/Wildermyth/)
+- [Wandering Village](https://store.steampowered.com/app/1121640/The_Wandering_Village/)
